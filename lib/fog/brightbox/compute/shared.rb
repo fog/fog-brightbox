@@ -17,49 +17,35 @@ module Fog
         # @note If you create service using just a refresh token when it
         #   expires the service will no longer be able to authenticate.
         #
-        # @param [Hash] options
-        # @option options [String] :brightbox_api_url
-        #   Override the default (or configured) API endpoint
-        # @option options [String] :brightbox_auth_url
-        #   Override the default (or configured) API authentication endpoint
-        # @option options [String] :brightbox_client_id
-        #   Client identifier to authenticate with (overrides configured)
-        # @option options [String] :brightbox_secret
-        #   Client secret to authenticate with (overrides configured)
-        # @option options [String] :brightbox_username
-        #   Email or user identifier for user based authentication
-        # @option options [String] :brightbox_password
-        #   Password for user based authentication
-        # @option options [String] :brightbox_account
-        #   Account identifier to scope this connection to
-        # @option options [String] :connection_options
-        #   Settings to pass to underlying {Fog::Core::Connection}
-        # @option options [Boolean] :persistent
-        #   Sets a persistent HTTP {Fog::Core::Connection}
-        # @option options [String] :brightbox_access_token
-        #   Sets the OAuth access token to use rather than requesting a new token
-        # @option options [String] :brightbox_refresh_token
-        #   Sets the refresh token to use when requesting a newer access token
-        # @option options [String] (true) :brightbox_token_management
-        # Overide the existing behaviour to request access tokens if expired
+        # @see Fog::Brightbox::Config#initialize Config object for possible configuration options
         #
-        def initialize(options)
+        # @param [Brightbox::Config, Hash] config
+        #   Any configuration to be used for this service. This ideally should be in the newer form
+        #   of a {Brightbox::Config} object but may be a Hash.
+        #
+        def initialize(config)
+          if config.respond_to?(:config_service?) && config.config_service?
+            @config = config
+          else
+            @config = Fog::Brightbox::Config.new(config)
+          end
+
           # Currently authentication and api endpoints are the same but may change
-          @auth_url            = options[:brightbox_auth_url]  || API_URL
+          @auth_url            = @config.auth_url.to_s
           @auth_connection     = Fog::Core::Connection.new(@auth_url)
 
-          @api_url             = options[:brightbox_api_url]   || API_URL
-          @connection_options  = options[:connection_options]  || {}
-          @persistent          = options[:persistent]          || false
+          @api_url             = @config.compute_url.to_s
+          @connection_options  = @config.connection_options
+          @persistent          = @config.connection_persistent?
           @connection          = Fog::Core::Connection.new(@api_url, @persistent, @connection_options)
 
           # Authentication options
-          client_id            = options[:brightbox_client_id]
-          client_secret        = options[:brightbox_secret]
+          client_id            = @config.client_id
+          client_secret        = @config.client_secret
 
-          username             = options[:brightbox_username]
-          password             = options[:brightbox_password]
-          @configured_account  = options[:brightbox_account]
+          username             = @config.username
+          password             = @config.password
+          @configured_account  = @config.account
           # Request account can be changed at anytime and changes behaviour of future requests
           @scoped_account      = @configured_account
 
@@ -67,9 +53,9 @@ module Fog
           @credentials         = CredentialSet.new(client_id, client_secret, credential_options)
 
           # If existing tokens have been cached, allow continued use of them in the service
-          @credentials.update_tokens(options[:brightbox_access_token], options[:brightbox_refresh_token])
+          @credentials.update_tokens(@config.cached_access_token, @config.cached_refresh_token)
 
-          @token_management    = options.fetch(:brightbox_token_management, true)
+          @token_management    = @config.managed_tokens?
         end
 
         # Sets the scoped account for future requests
@@ -172,7 +158,7 @@ module Fog
         #
         def default_image
           return @default_image_id unless @default_image_id.nil?
-          @default_image_id = Fog.credentials[:brightbox_default_image] || select_default_image
+          @default_image_id = @config.default_image_id || select_default_image
         end
 
         private
