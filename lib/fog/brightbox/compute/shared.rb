@@ -29,6 +29,7 @@ module Fog
           else
             @config = Fog::Brightbox::Config.new(config)
           end
+          @config = Fog::Brightbox::Compute::Config.new(@config)
 
           # Currently authentication and api endpoints are the same but may change
           @auth_url            = @config.auth_url.to_s

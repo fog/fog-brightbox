@@ -55,6 +55,16 @@ describe Fog::Compute::Brightbox do
       }
       @config = Fog::Brightbox::Config.new(@options)
       @service = Fog::Compute::Brightbox.new(@config)
+      pass
+    end
+  end
+
+  describe "when created with Config missing required settings" do
+    it "raises ArgumentError"do
+      @config = Fog::Brightbox::Config.new({})
+      assert_raises ArgumentError do
+        @service = Fog::Compute::Brightbox.new(@config)
+      end
     end
   end
 end
