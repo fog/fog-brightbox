@@ -37,6 +37,8 @@ module Fog
       model       :server
       collection  :server_groups
       model       :server_group
+      collection  :events
+      model       :event
       collection  :firewall_policies
       model       :firewall_policy
       collection  :firewall_rules
@@ -121,6 +123,7 @@ module Fog
       request :list_applications
       request :list_cloud_ips
       request :list_collaborations
+      request :list_events
       request :list_firewall_policies
       request :list_images
       request :list_load_balancers
