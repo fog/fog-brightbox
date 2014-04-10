@@ -1,3 +1,13 @@
+### 0.1.0.dev1 / PRELEASE
+
+This PRERELEASE version may contain functionality that is removed before the 
+next release so all APIs should be considered unstable and you should lock
+to the exact version if used!
+
+Enhancements:
+
+* Add support for events feed
+
 ### 0.0.2 / 2014-04-10
 
 Bug fixes:
