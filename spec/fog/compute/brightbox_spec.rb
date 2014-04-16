@@ -46,4 +46,25 @@ describe Fog::Compute::Brightbox do
       end
     end
   end
+
+  describe "when created with a Config object" do
+    it "does not error" do
+      @options = {
+        :brightbox_client_id => "cli-12345",
+        :brightbox_secret => "1234567890"
+      }
+      @config = Fog::Brightbox::Config.new(@options)
+      @service = Fog::Compute::Brightbox.new(@config)
+      pass
+    end
+  end
+
+  describe "when created with Config missing required settings" do
+    it "raises ArgumentError"do
+      @config = Fog::Brightbox::Config.new({})
+      assert_raises ArgumentError do
+        @service = Fog::Compute::Brightbox.new(@config)
+      end
+    end
+  end
 end
