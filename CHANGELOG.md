@@ -1,8 +1,14 @@
-### 0.1.0.dev1 / PRELEASE
+### 0.1.0.dev2 / 2014-04-22
 
 This PRERELEASE version may contain functionality that is removed before the 
 next release so all APIs should be considered unstable and you should lock
 to the exact version if used!
+
+Bug fixes:
+
+* Reference fog-core-v1.22 rather than "master" branch now it is released.
+
+### 0.1.0.dev1 / 2014-04-10
 
 Enhancements:
 
