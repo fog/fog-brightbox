@@ -1,7 +1,7 @@
 ### 0.1.0.dev2 / 2014-04-22
 
-This PRERELEASE version may contain functionality that is removed before the 
-next release so all APIs should be considered unstable and you should lock
+This PRERELEASE version may contain functionality that may be removed before
+the next release so all APIs should be considered unstable and you should lock
 to the exact version if used!
 
 Bug fixes:
