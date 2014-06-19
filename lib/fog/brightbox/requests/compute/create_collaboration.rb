@@ -2,7 +2,9 @@ module Fog
   module Compute
     class Brightbox
       class Real
-        # Creates a new collaboration for a user for the account
+        # Invites the given email address to collaborate with the specified account. Existing users
+        # will be able to accept the collaboration whilst those without a Brightbox account will be
+        # invited to create one.
         #
         # @param [Hash] options
         # @option options [String] :email Email address of user to invite

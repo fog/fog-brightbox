@@ -2,7 +2,7 @@ module Fog
   module Compute
     class Brightbox
       class Real
-        # Rejects the collaboration and removes the offer
+        # Rejects the collaboration
         #
         # @param [String] identifier Unique reference to identify the resource
         #

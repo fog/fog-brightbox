@@ -2,7 +2,7 @@ module Fog
   module Compute
     class Brightbox
       class Real
-        # Accepts the collaboration and gaining permitted access
+        # Accepts the collaboration giving access to the account
         #
         # @param [String] identifier Unique reference to identify the resource
         #
