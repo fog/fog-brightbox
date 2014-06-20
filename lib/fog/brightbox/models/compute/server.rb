@@ -1,11 +1,12 @@
 require "fog/compute/models/server"
-require "fog/brightbox/model_helper"
+require "fog/brightbox/compute/resource_locking"
 
 module Fog
   module Compute
     class Brightbox
       class Server < Fog::Compute::Server
         include Fog::Brightbox::ModelHelper
+        include ResourceLocking
 
         identity  :id
         attribute :resource_type
@@ -212,7 +213,6 @@ module Fog
           end
         end
       end
-
     end
   end
 end
