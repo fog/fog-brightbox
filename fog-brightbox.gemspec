@@ -21,6 +21,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "fog-core", "~> 1.22"
   spec.add_dependency "fog-json"
+  spec.add_dependency "inflecto"
 
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"

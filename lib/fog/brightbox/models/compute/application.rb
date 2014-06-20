@@ -1,9 +1,9 @@
-require 'fog/core/model'
+require "fog/brightbox/model"
 
 module Fog
   module Compute
     class Brightbox
-      class Application < Fog::Model
+      class Application < Fog::Brightbox::Model
         identity :id
         attribute :url
         attribute :name

@@ -1,4 +1,4 @@
-require 'fog/core/model'
+require "fog/brightbox/model"
 
 module Fog
   module Compute
@@ -6,8 +6,7 @@ module Fog
       # A server group is a collection of servers
       #
       # Certain actions can accept a server group and affect all members
-      class ServerGroup < Fog::Model
-
+      class ServerGroup < Fog::Brightbox::Model
         identity :id
 
         attribute :url

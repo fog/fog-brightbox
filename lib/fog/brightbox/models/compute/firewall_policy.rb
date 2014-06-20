@@ -1,10 +1,9 @@
-require 'fog/core/model'
+require "fog/brightbox/model"
 
 module Fog
   module Compute
     class Brightbox
-
-      class FirewallPolicy < Fog::Model
+      class FirewallPolicy < Fog::Brightbox::Model
 
         identity :id
         attribute :url

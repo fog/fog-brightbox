@@ -1,7 +1,9 @@
+require "fog/brightbox/model"
+
 module Fog
   module Compute
     class Brightbox
-      class ApiClient < Fog::Model
+      class ApiClient < Fog::Brightbox::Model
         identity :id
         attribute :name
         attribute :description

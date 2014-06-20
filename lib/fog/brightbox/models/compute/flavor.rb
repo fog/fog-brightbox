@@ -1,10 +1,9 @@
-require 'fog/core/model'
+require "fog/brightbox/model"
 
 module Fog
   module Compute
     class Brightbox
-
-      class Flavor < Fog::Model
+      class Flavor < Fog::Brightbox::Model
 
         identity :id
         attribute :url
@@ -24,9 +23,7 @@ module Fog
         def bits
           0 # This is actually based on the Image type used. 32bit or 64bit Images are supported
         end
-
       end
-
     end
   end
 end

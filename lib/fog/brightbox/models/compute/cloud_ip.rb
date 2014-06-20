@@ -1,10 +1,10 @@
-require 'fog/core/model'
+require "fog/brightbox/model"
 
 module Fog
   module Compute
     class Brightbox
 
-      class CloudIp < Fog::Model
+      class CloudIp < Fog::Brightbox::Model
 
         identity :id
         attribute :url
