@@ -1,5 +1,4 @@
-require "minitest/autorun"
-require "fog/brightbox"
+require "spec_helper"
 
 describe Fog::Brightbox::Compute::Config do
   describe "when required arguments are included" do
