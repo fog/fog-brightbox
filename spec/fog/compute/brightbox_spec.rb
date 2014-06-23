@@ -1,5 +1,4 @@
-require "minitest/autorun"
-require "fog/brightbox"
+require "spec_helper"
 
 describe Fog::Compute::Brightbox do
   describe "when global config is available" do
