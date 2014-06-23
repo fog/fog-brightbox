@@ -2,7 +2,7 @@ module Fog
   module Compute
     class Brightbox
       class Real
-        # Shows details of one collaboration
+        # Shows details of the collaboration
         #
         # @param [String] identifier Unique reference to identify the resource
         #

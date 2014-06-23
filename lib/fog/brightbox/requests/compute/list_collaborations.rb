@@ -2,7 +2,7 @@ module Fog
   module Compute
     class Brightbox
       class Real
-        # Lists all the account collaborations
+        # Lists all the collaborations for the given account
         #
         #
         # @return [Hash] if successful Hash version of JSON object

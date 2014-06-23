@@ -5,6 +5,7 @@ module Fog
         # @param [Hash] options
         # @option options [String] :name
         # @option options [String] :description
+        # @option options [String] :engine Database engine to request
         # @option options [String] :version Database version to request
         # @option options [Array] :allow_access ...
         # @option options [String] :snapshot
