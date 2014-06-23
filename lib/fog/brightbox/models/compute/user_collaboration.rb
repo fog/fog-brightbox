@@ -1,9 +1,9 @@
-require 'fog/core/model'
+require "fog/brightbox/model"
 
 module Fog
   module Compute
     class Brightbox
-      class UserCollaboration < Fog::Model
+      class UserCollaboration < Fog::Brightbox::Model
         identity  :id
         attribute :status
         attribute :email

@@ -1,10 +1,9 @@
-require 'fog/core/model'
+require "fog/brightbox/model"
 
 module Fog
   module Compute
     class Brightbox
-
-      class FirewallRule < Fog::Model
+      class FirewallRule < Fog::Brightbox::Model
 
         identity :id
         attribute :url
@@ -46,9 +45,7 @@ module Fog
           service.destroy_firewall_rule(identity)
           true
         end
-
       end
-
     end
   end
 end

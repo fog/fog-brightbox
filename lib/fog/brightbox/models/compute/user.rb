@@ -1,10 +1,9 @@
-require 'fog/core/model'
+require "fog/brightbox/model"
 
 module Fog
   module Compute
     class Brightbox
-
-      class User < Fog::Model
+      class User < Fog::Brightbox::Model
 
         identity :id
         attribute :resource_type
@@ -35,9 +34,7 @@ module Fog
           merge_attributes(data)
           true
         end
-
       end
-
     end
   end
 end

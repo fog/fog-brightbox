@@ -1,11 +1,9 @@
-require 'fog/core/model'
+require "fog/brightbox/model"
 
 module Fog
   module Compute
     class Brightbox
-
-      class Image < Fog::Model
-
+      class Image < Fog::Brightbox::Model
         identity :id
         attribute :url
         attribute :resource_type
