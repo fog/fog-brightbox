@@ -4,6 +4,8 @@ module Fog
       class Real
         # Lists events related to the account.
         #
+        # @api private
+        #
         # @param [Hash] options
         # @option options [String] :limit Limit of pagination
         # @option options [String] :offset Offset of pagination

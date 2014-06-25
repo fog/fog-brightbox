@@ -3,7 +3,7 @@ require "fog/brightbox/model"
 module Fog
   module Compute
     class Brightbox
-
+      # @api private
       class Event < Fog::Brightbox::Model
 
         identity :id
