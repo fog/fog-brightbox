@@ -1,3 +1,21 @@
+### 0.1.0 / 2014-06-25
+
+Enhancements:
+
+* Add `pry` as a development dependency so available under Bundler
+* Add `spec_helper` to DRY out requires on start of tests
+* Add `Fog::Brightbox::Model` layer to add shared functionality between models
+* Add `#resource_name` and `#collection_name` inflection methods to models
+* Add basic specs for models
+
+Changes:
+
+* Update generated documentation for requests
+
+Bug fixes:
+
+* Fix `rake:spec` task to add "spec" to LOAD_PATH
+
 ### 0.1.0.dev2 / 2014-04-22
 
 This PRERELEASE version may contain functionality that may be removed before
