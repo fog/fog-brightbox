@@ -16,7 +16,7 @@ module Fog
         #
         # @see https://api.gb1.brightbox.com/1.0/#event_list_events
         #
-        def list_events(options)
+        def list_events(options = {})
           wrapped_request("get", "/1.0/events", [200], options)
         end
 
