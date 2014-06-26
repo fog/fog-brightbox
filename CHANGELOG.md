@@ -1,3 +1,9 @@
+### 0.1.1 / 2014-06-26
+
+Bug fixes:
+
+* Fix `list_events` options to have workable defaults
+
 ### 0.1.0 / 2014-06-25
 
 Enhancements:
