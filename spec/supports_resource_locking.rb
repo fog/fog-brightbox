@@ -17,7 +17,7 @@ module SupportsResourceLocking
         subject.id = "tst-12345"
 
         stub_request(:put, "http://localhost/1.0/#{collection_name}/tst-12345/lock_resource?account_id=")
-        .to_return(:status => 200, :body => "", :headers => {})
+        .to_return(:status => 200, :body => "{}", :headers => {})
 
         subject.lock!
       end
@@ -30,7 +30,7 @@ module SupportsResourceLocking
         subject.id = "tst-12345"
 
         stub_request(:put, "http://localhost/1.0/#{collection_name}/tst-12345/unlock_resource?account_id=")
-        .to_return(:status => 200, :body => "", :headers => {})
+        .to_return(:status => 200, :body => "{}", :headers => {})
 
         subject.unlock!
       end

@@ -1,15 +1,27 @@
 module ResourceLocking
   def locked?
-    false
+    if attributes.key?("locked") || attributes.key?(:locked)
+      attributes["locked"] || attributes[:locked] || false
+    else
+      false
+    end
   end
 
   def lock!
-    requires :identity
-    service.send(:"lock_resource_#{resource_name}", identity)
+    locking_request(:lock)
   end
 
   def unlock!
+    locking_request(:unlock)
+  end
+
+  private
+
+  def locking_request(lock_setting)
     requires :identity
-    service.send(:"unlock_resource_#{resource_name}", identity)
+
+    data = service.send(:"#{lock_setting}_resource_#{resource_name}", identity)
+    merge_attributes(data)
+    true
   end
 end
