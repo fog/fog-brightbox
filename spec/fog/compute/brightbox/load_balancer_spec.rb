@@ -3,6 +3,7 @@ require "fog/brightbox/models/compute/load_balancer"
 
 describe Fog::Compute::Brightbox::LoadBalancer do
   include ModelSetup
+  include SupportsResourceLocking
 
   subject { service.load_balancers.new }
 

@@ -1,9 +1,11 @@
 require "fog/brightbox/model"
+require "fog/brightbox/compute/resource_locking"
 
 module Fog
   module Compute
     class Brightbox
       class LoadBalancer < Fog::Brightbox::Model
+        include ResourceLocking
 
         identity :id
         attribute :url

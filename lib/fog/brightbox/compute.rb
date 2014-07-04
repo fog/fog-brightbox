@@ -137,6 +137,11 @@ module Fog
       request :list_users
       request :list_user_collaborations
       request :list_zones
+      request :lock_resource_database_server
+      request :lock_resource_database_snapshot
+      request :lock_resource_image
+      request :lock_resource_load_balancer
+      request :lock_resource_server
       request :map_cloud_ip
       request :move_servers_server_group
       request :reject_user_collaboration
@@ -156,6 +161,11 @@ module Fog
       request :snapshot_server
       request :start_server
       request :stop_server
+      request :unlock_resource_database_server
+      request :unlock_resource_database_snapshot
+      request :unlock_resource_image
+      request :unlock_resource_load_balancer
+      request :unlock_resource_server
       request :unmap_cloud_ip
       request :update_account
       request :update_api_client

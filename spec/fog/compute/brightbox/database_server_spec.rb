@@ -3,6 +3,7 @@ require "fog/brightbox/models/compute/database_server"
 
 describe Fog::Compute::Brightbox::DatabaseServer do
   include ModelSetup
+  include SupportsResourceLocking
 
   subject { service.database_servers.new }
 

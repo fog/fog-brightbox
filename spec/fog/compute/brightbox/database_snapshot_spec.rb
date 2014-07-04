@@ -3,6 +3,7 @@ require "fog/brightbox/models/compute/database_snapshot"
 
 describe Fog::Compute::Brightbox::DatabaseSnapshot do
   include ModelSetup
+  include SupportsResourceLocking
 
   subject { service.database_snapshots.new }
 

@@ -3,6 +3,7 @@ require "fog/brightbox/models/compute/image"
 
 describe Fog::Compute::Brightbox::Image do
   include ModelSetup
+  include SupportsResourceLocking
 
   subject { service.images.new }
 
