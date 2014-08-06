@@ -144,6 +144,7 @@ module Fog
       request :lock_resource_server
       request :map_cloud_ip
       request :move_servers_server_group
+      request :reboot_server
       request :reject_user_collaboration
       request :remove_listeners_load_balancer
       request :remove_nodes_load_balancer
@@ -154,6 +155,7 @@ module Fog
       request :reset_password_database_server
       request :reset_secret_api_client
       request :reset_secret_application
+      request :reset_server
       request :resend_collaboration
       request :reject_user_collaboration
       request :shutdown_server
