@@ -74,11 +74,16 @@ module Fog
           service.snapshot_server(identity)
         end
 
-        # Directly requesting a server reboot is not supported in the API
-        # so needs to attempt a shutdown/stop, wait and start again.
+        # Issues a hard reset to the server (or an OS level reboot command)
         #
         # Default behaviour is a hard reboot because it is more reliable
         # because the state of the server's OS is irrelevant.
+        #
+        # @example Hard reset
+        #   @server.reboot
+        #
+        # @example Soft reset
+        #   @server.reboot(false)
         #
         # @param [Boolean] use_hard_reboot
         # @return [Boolean]
@@ -86,9 +91,9 @@ module Fog
           requires :identity
           if ready?
             if use_hard_reboot
-              hard_reboot
+              service.reset_server(identity)
             else
-              soft_reboot
+              service.reboot_server(identity)
             end
           else
             # Not able to reboot if not ready in the first place
@@ -187,30 +192,6 @@ module Fog
         # @return [String] the identifier to pass to a Cloud IP mapping request
         def mapping_identity
           interfaces.first["id"]
-        end
-
-        private
-
-        # Hard reboots are fast, avoiding the OS by doing a "power off"
-        def hard_reboot
-          stop
-          wait_for { !ready? }
-          start
-        end
-
-        # Soft reboots often timeout if the OS missed the request so we do more
-        # error checking trying to detect the timeout
-        #
-        # @todo Needs cleaner error handling when the OS times out
-        def soft_reboot
-          shutdown
-          # FIXME: Using side effect of wait_for's (evaluated block) to detect timeouts
-          begin
-            wait_for(20) { !ready? }
-            start
-          rescue Fog::Errors::Timeout
-            false
-          end
         end
       end
     end
