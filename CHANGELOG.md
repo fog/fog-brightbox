@@ -1,3 +1,14 @@
+### 0.2.0 / 2014-08-07
+
+Enhancements:
+
+* Add resource locks to prevent accidental deleting of the following resources:
+  * Database servers
+  * Database snapshots
+  * Images
+  * Load balancers
+  * Servers
+
 ### 0.1.1 / 2014-06-26
 
 Bug fixes:
