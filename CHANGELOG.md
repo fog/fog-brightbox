@@ -1,3 +1,11 @@
+### 0.3.0 / 2014-08-12
+
+Enhancements:
+
+* Use improved reset and reboot requests for the `Server#reboot` method
+  allowing requests without having to fake restarts with a start/stop. This
+  keeps the VNC console active.
+
 ### 0.2.0 / 2014-08-07
 
 Enhancements:
