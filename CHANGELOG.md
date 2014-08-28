@@ -1,3 +1,9 @@
+### 0.4.1 / 2014-08-28
+
+Bug fixes:
+
+* Default updated to final hostname of `orbit.brightbox.com`.
+
 ### 0.4.0 / 2014-08-28
 
 Enhancements:
