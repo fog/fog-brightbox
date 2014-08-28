@@ -8,7 +8,7 @@ describe Fog::Storage::Brightbox do
       :status => 200,
       :body => "Authenticated",
       :headers => {
-        "X-Storage-Url"=>"https://files.gb1.brightbox.com:443/v1/acc-12345",
+        "X-Storage-Url"=>"https://orbit.brightbox.com:443/v1/acc-12345",
         "Content-Length"=>"13",
         "X-Storage-Token"=>"c1236c8c34d668df497c06075d8a76a79c6fdd0d",
         "Content-Type"=>"text/plain",
@@ -64,7 +64,7 @@ describe Fog::Storage::Brightbox do
     end
 
     before do
-      stub_request(:get, "https://files.gb1.brightbox.com/v1").to_return(valid_auth_response)
+      stub_request(:get, "https://orbit.brightbox.com/v1").to_return(valid_auth_response)
     end
 
     it "requires a call to authenticate" do
@@ -77,7 +77,7 @@ describe Fog::Storage::Brightbox do
 
     it "can authenticate" do
       service.authenticate
-      assert_equal "https://files.gb1.brightbox.com/v1/acc-12345", service.management_url.to_s
+      assert_equal "https://orbit.brightbox.com/v1/acc-12345", service.management_url.to_s
     end
   end
 
@@ -99,7 +99,7 @@ describe Fog::Storage::Brightbox do
          "Date"=>"Tue, 22 Apr 2014 14:53:54 GMT"},
          :status=>412
       }
-      stub_request(:get, "https://files.gb1.brightbox.com/v1").to_return(response)
+      stub_request(:get, "https://orbit.brightbox.com/v1").to_return(response)
 
       service.authenticate
       assert_nil service.management_url
@@ -118,7 +118,7 @@ describe Fog::Storage::Brightbox do
     end
 
     before do
-      stub_request(:get, "https://files.gb1.brightbox.com/v1").to_return(valid_auth_response)
+      stub_request(:get, "https://orbit.brightbox.com/v1").to_return(valid_auth_response)
     end
 
     it "uses the configured account" do
@@ -138,7 +138,7 @@ describe Fog::Storage::Brightbox do
     end
 
     before do
-      stub_request(:get, "https://files.gb1.brightbox.com/v1").to_return(valid_auth_response)
+      stub_request(:get, "https://orbit.brightbox.com/v1").to_return(valid_auth_response)
     end
 
     it "extracts the account from the management URL" do
@@ -186,7 +186,7 @@ describe Fog::Storage::Brightbox do
     end
 
     it "keeps setting after authentication" do
-      stub_request(:get, "https://files.gb1.brightbox.com/v1").to_return(valid_auth_response)
+      stub_request(:get, "https://orbit.brightbox.com/v1").to_return(valid_auth_response)
       config.expire_tokens!
       service.authenticate
       assert_equal "https://files.gb2.brightbox.com/v1/acc-12345", service.management_url.to_s
@@ -271,11 +271,11 @@ describe Fog::Storage::Brightbox do
 
     before do
       # Initial authentication
-      stub_request(:get, "https://files.gb1.brightbox.com/v1").
+      stub_request(:get, "https://orbit.brightbox.com/v1").
         with(:headers => {"X-Auth-Key" => "12345", "X-Auth-User" => "cli-12345"}).
         to_return(valid_auth_response)
 
-      stub_request(:get, "https://files.gb1.brightbox.com/v1/acc-12345/fnord").
+      stub_request(:get, "https://orbit.brightbox.com/v1/acc-12345/fnord").
         with(:headers => { "X-Auth-Token" => "c1236c8c34d668df497c06075d8a76a79c6fdd0d" }).
         to_return(:status => 200)
     end

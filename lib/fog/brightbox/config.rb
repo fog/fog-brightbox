@@ -89,7 +89,7 @@ module Fog
       alias_method :api_url, :compute_url
 
       def storage_url
-        URI.parse(@options[:brightbox_storage_url] || "https://files.gb1.brightbox.com")
+        URI.parse(@options[:brightbox_storage_url] || "https://orbit.brightbox.com")
       end
 
       def storage_management_url
