@@ -97,6 +97,25 @@ describe Fog::Brightbox::Config do
     end
   end
 
+  describe "when account was passed but changed" do
+    it "returns the new account" do
+      @options = { :brightbox_account => "acc-12345" }
+      @config = Fog::Brightbox::Config.new(@options)
+      @config.change_account("acc-abcde")
+      assert_equal "acc-abcde", @config.account
+    end
+  end
+
+  describe "when account was passed, changed and reset" do
+    it "returns the original account" do
+      @options = { :brightbox_account => "acc-12345" }
+      @config = Fog::Brightbox::Config.new(@options)
+      @config.change_account("acc-abcde")
+      @config.reset_account
+      assert_equal "acc-12345", @config.account
+    end
+  end
+
   describe "when connection options are passed" do
     it "returns the settings" do
       @connection_settings = {
@@ -135,7 +154,7 @@ describe Fog::Brightbox::Config do
   end
 
   describe "when cached OAuth tokens were passed" do
-    it "returns the settings" do
+    before do
       @access_token = "1234567890abcdefghijklmnopqrstuvwxyz"
       @refresh_token = "1234567890abcdefghijklmnopqrstuvwxyz"
       @options = {
@@ -143,8 +162,26 @@ describe Fog::Brightbox::Config do
         :brightbox_refresh_token => @refresh_token
       }
       @config = Fog::Brightbox::Config.new(@options)
+    end
+
+    it "returns the access token" do
       assert_equal @access_token, @config.cached_access_token
+      assert_equal @access_token, @config.latest_access_token
+    end
+
+    it "returns the refresh token" do
       assert_equal @refresh_token, @config.cached_refresh_token
+      assert_equal @refresh_token, @config.latest_refresh_token
+    end
+
+    it "does not need to authenticate" do
+      refute @config.must_authenticate?
+    end
+
+    it "can expire the tokens" do
+      @config.expire_tokens!
+      assert_nil @config.latest_access_token
+      assert_nil @config.latest_refresh_token
     end
   end
 
@@ -175,6 +212,30 @@ describe Fog::Brightbox::Config do
     it "returns nil" do
       @config = Fog::Brightbox::Config.new
       assert_nil @config.default_image_id
+    end
+  end
+
+  describe "when username and password are given" do
+    it "user_credentials? returns true" do
+      @options = {
+        :brightbox_client_id => "app-12345",
+        :brightbox_secret => "12345",
+        :brightbox_username => "user@example.com",
+        :brightbox_password => "12345"
+      }
+      @config = Fog::Brightbox::Config.new(@options)
+      assert @config.user_credentials?
+    end
+  end
+
+  describe "when no username is given" do
+    it "user_credentials? returns false" do
+      @options = {
+        :brightbox_client_id => "cli-12345",
+        :brightbox_secret => "12345"
+      }
+      @config = Fog::Brightbox::Config.new(@options)
+      refute @config.user_credentials?
     end
   end
 end
