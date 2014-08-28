@@ -1,3 +1,11 @@
+### 0.4.0 / 2014-08-28
+
+Enhancements:
+
+* Add Add support for Brightbox Orbit cloud storage service. This adds a
+  `storage` service to the Brightbox provider using the standard `fog`
+  interfaces.
+
 ### 0.3.0 / 2014-08-12
 
 Enhancements:
