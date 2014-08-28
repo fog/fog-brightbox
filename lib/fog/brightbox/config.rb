@@ -1,3 +1,5 @@
+require "fog/brightbox/oauth2"
+
 module Fog
   module Brightbox
     # The {Fog::Brightbox::Config} class is designed to encapsulate a group of settings for reuse
@@ -49,6 +51,21 @@ module Fog
         @options = options
       end
 
+      # @return [OAuth2::CredentialSet]
+      def credentials
+        @credentials ||= OAuth2::CredentialSet.new(client_id, client_secret, {
+          :username => username,
+          :password => password,
+          :access_token => cached_access_token,
+          :refresh_token => cached_refresh_token
+        })
+      end
+
+      # @return [Boolean]
+      def user_credentials?
+        credentials.user_details?
+      end
+
       # Can this be used to configure services? Yes, yes it can.
       #
       # @return [true]
@@ -71,7 +88,24 @@ module Fog
       end
       alias_method :api_url, :compute_url
 
-      # @return [String] The configured  identifier of the API client or user application.
+      def storage_url
+        URI.parse(@options[:brightbox_storage_url] || "https://files.gb1.brightbox.com")
+      end
+
+      def storage_management_url
+        @storage_management_url ||= if @options.key?(:brightbox_storage_management_url)
+          URI.parse(@options[:brightbox_storage_management_url])
+        else
+          nil
+        end
+      end
+
+      # @param [URI] management_url The URI to use for management requests.
+      def storage_management_url=(management_url)
+        @storage_management_url = management_url
+      end
+
+      # @return [String] The configured identifier of the API client or user application.
       def client_id
         @options[:brightbox_client_id]
       end
@@ -93,7 +127,21 @@ module Fog
 
       # @return [String] The configured account identifier to scope API requests by.
       def account
-        @options[:brightbox_account]
+        @current_account ||= @options[:brightbox_account]
+      end
+
+      # This changes the scoped account from the originally configured one to another.
+      #
+      # @return [String] The new account identifier used to scope API requests by.
+      def change_account(new_account)
+        @current_account = new_account
+      end
+
+      # Sets the scoped account back to originally configured one.
+      #
+      # @return [String] The configured account identifier to scope API requests by.
+      def reset_account
+        @current_account = @options[:brightbox_account]
       end
 
       def connection_options
@@ -109,8 +157,32 @@ module Fog
         @options[:brightbox_access_token]
       end
 
+      def latest_access_token
+        credentials.access_token
+      end
+
       def cached_refresh_token
         @options[:brightbox_refresh_token]
+      end
+
+      # This is the current, most up to date refresh token.
+      def latest_refresh_token
+        credentials.refresh_token
+      end
+
+      def must_authenticate?
+        !credentials.access_token?
+      end
+
+      # Allows classes sharing to mark the tokens as invalid in response to API status codes.
+      def expire_tokens!
+        update_tokens(nil)
+      end
+
+      # @param [String] access_token The new access token to use
+      # @param [String] refresh_token The new refresh token to use
+      def update_tokens(access_token, refresh_token = nil, expires_in = nil)
+        credentials.update_tokens(access_token, refresh_token, expires_in)
       end
 
       def managed_tokens?
@@ -119,6 +191,34 @@ module Fog
 
       def default_image_id
         @options.fetch(:brightbox_default_image, nil)
+      end
+
+      def latest_token
+        @options[:brightbox_access_token]
+      end
+
+      def service_type
+        @options[:brightbox_service_type] || "object-store"
+      end
+
+      def service_name
+        @options[:brightbox_service_name]
+      end
+
+      def region
+        @options[:brightbox_region]
+      end
+
+      def tenant
+        @options[:brightbox_tenant]
+      end
+
+      def storage_connection_options
+        @options[:connection_options] || {}
+      end
+
+      def storage_temp_key
+        @options[:brightbox_temp_url_key]
       end
     end
   end
