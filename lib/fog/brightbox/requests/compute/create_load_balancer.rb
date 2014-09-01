@@ -6,6 +6,7 @@ module Fog
         #
         # @param [Hash] options
         # @option options [String] :name Editable label
+        # @option options [Integer] :buffer_size Buffer size of load balancer. Default is 4096.
         # @option options [Array] :nodes Array of Node parameters
         # @option options [String] :policy Method of Load balancing to use
         # @option options [String] :certificate_pem A X509 SSL certificate in PEM format. Must be included along with 'certificate_key'. If intermediate certificates are required they should be concatenated after the main certificate

@@ -14,6 +14,8 @@ module Fog
         attribute :name
         attribute :status
 
+        attribute :buffer_size
+
         attribute :policy
         attribute :nodes
         attribute :healthcheck
@@ -51,6 +53,7 @@ module Fog
             :healthcheck => healthcheck,
             :policy => policy,
             :name => name,
+            :buffer_size => buffer_size,
             :certificate_pem => certificate_pem,
             :certificate_private_key => certificate_private_key
           }.delete_if { |k, v| v.nil? || v == "" }
