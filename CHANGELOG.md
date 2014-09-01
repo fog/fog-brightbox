@@ -1,3 +1,9 @@
+### 0.5.0 / 2014-09-01
+
+Enhancements:
+
+* Allow setting of Load Balancer buffer sizes during create and update calls.
+
 ### 0.4.1 / 2014-08-28
 
 Bug fixes:
