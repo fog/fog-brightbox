@@ -3,6 +3,8 @@ require "webmock/minitest"
 require "fog/brightbox"
 
 describe Fog::Brightbox::Storage::AuthenticationRequest do
+  include StockStorageResponses
+
   describe "when initialised with blank config" do
     before do
       stub_request(:get, "https://orbit.brightbox.com/v1").
@@ -10,7 +12,7 @@ describe Fog::Brightbox::Storage::AuthenticationRequest do
         "Host" => "orbit.brightbox.com:443",
         "X-Auth-User" => "",
         "X-Auth-Key" => ""
-      }).to_return(:status => 412, :body => "Bad URL", :headers => {})
+      }).to_return(bad_url_response)
     end
 
     it "fails" do
@@ -28,12 +30,7 @@ describe Fog::Brightbox::Storage::AuthenticationRequest do
           "Host" => "orbit.brightbox.com:443",
           "X-Auth-User" => "cli-12345",
           "X-Auth-Key" => "12345"
-      }).to_return(:status => 200, :body => "Authenticated", :headers => {
-        "X-Storage-Url" => "https://orbit.brightbox.com/v1/acc-12345",
-        "X-Storage-Token" => "abcdefghijklmnopqrstuvwxyz1234567890",
-        "X-Auth-Token" => "abcdefghijklmnopqrstuvwxyz1234567890",
-        "Content-Type" => "text/plain"
-      })
+      }).to_return(authorized_response)
     end
 
     it "authenticates correctly" do
@@ -54,12 +51,7 @@ describe Fog::Brightbox::Storage::AuthenticationRequest do
           "Host" => "orbit.brightbox.com:443",
           "X-Auth-User" => "user@example.com",
           "X-Auth-Key" => "abcde"
-      }).to_return(:status => 200, :body => "Authenticated", :headers => {
-        "X-Storage-Url" => "https://orbit.brightbox.com/v1/acc-12345",
-        "X-Storage-Token" => "abcdefghijklmnopqrstuvwxyz1234567890",
-        "X-Auth-Token" => "abcdefghijklmnopqrstuvwxyz1234567890",
-        "Content-Type" => "text/plain"
-      })
+      }).to_return(authorized_response)
     end
 
     it "authenticates correctly" do
