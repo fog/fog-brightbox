@@ -79,9 +79,9 @@ describe Fog::Storage::Brightbox do
 
     it "fails to authenticate" do
       stub_request(:get, "https://orbit.brightbox.com/v1").
-        to_return(bad_url_response)
+        to_return(unauthorized_response)
 
-      service.authenticate
+      assert_raises(Fog::Brightbox::Storage::AuthenticationRequired) { service.authenticate }
       assert_nil service.management_url
     end
   end

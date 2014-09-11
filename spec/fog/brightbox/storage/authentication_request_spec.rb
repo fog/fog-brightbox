@@ -15,11 +15,11 @@ describe Fog::Brightbox::Storage::AuthenticationRequest do
       }).to_return(bad_url_response)
     end
 
-    it "fails" do
+    it "raises error" do
       settings = {}
       @config = Fog::Brightbox::Config.new(settings)
       @request = Fog::Brightbox::Storage::AuthenticationRequest.new(@config)
-      refute @request.authenticate
+      assert_raises(Excon::Errors::PreconditionFailed) { @request.authenticate }
     end
   end
 
@@ -64,6 +64,29 @@ describe Fog::Brightbox::Storage::AuthenticationRequest do
       @config = Fog::Brightbox::Config.new(settings)
       @request = Fog::Brightbox::Storage::AuthenticationRequest.new(@config)
       assert @request.authenticate
+    end
+  end
+
+  describe "when initialised with bad user details" do
+    before do
+      stub_request(:get, "https://orbit.brightbox.com/v1").
+        with(:headers => {
+          "Host" => "orbit.brightbox.com:443",
+          "X-Auth-User" => "user@example.com",
+          "X-Auth-Key" => "abcde"
+      }).to_return(unauthorized_response)
+    end
+
+    it "raises error" do
+      settings = {
+        :brightbox_client_id => "app-12345",
+        :brightbox_secret => "12345",
+        :brightbox_username => "user@example.com",
+        :brightbox_password => "abcde"
+      }
+      @config = Fog::Brightbox::Config.new(settings)
+      @request = Fog::Brightbox::Storage::AuthenticationRequest.new(@config)
+      assert_raises(Fog::Brightbox::Storage::AuthenticationRequired) { @request.authenticate }
     end
   end
 end
