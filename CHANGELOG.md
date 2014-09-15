@@ -1,3 +1,11 @@
+### 0.5.1 / 2014-09-15
+
+Bug fixes:
+
+* Fix a possible authentication loop when bad credentials or expired tokens
+  would trigger repeated attempts to authenticate with no changes to the
+  bad credentials.
+
 ### 0.5.0 / 2014-09-01
 
 Enhancements:
