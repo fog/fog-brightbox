@@ -15,8 +15,8 @@ module Fog
           self.access_token = response.headers["X-Auth-Token"]
           self.management_url = response.headers["X-Server-Management-Url"] || response.headers["X-Storage-Url"]
           self
-        rescue Excon::Errors::Error
-          nil
+        rescue Excon::Errors::Unauthorized => error
+          raise Fog::Brightbox::Storage::AuthenticationRequired.slurp(error)
         end
 
         private

@@ -3,21 +3,8 @@ require "webmock/minitest"
 require "fog/brightbox"
 
 describe Fog::Storage::Brightbox do
-  let(:valid_auth_response) do
-    {
-      :status => 200,
-      :body => "Authenticated",
-      :headers => {
-        "X-Storage-Url"=>"https://orbit.brightbox.com:443/v1/acc-12345",
-        "Content-Length"=>"13",
-        "X-Storage-Token"=>"c1236c8c34d668df497c06075d8a76a79c6fdd0d",
-        "Content-Type"=>"text/plain",
-        "X-Auth-Token"=>"c1236c8c34d668df497c06075d8a76a79c6fdd0d",
-        "X-Trans-Id"=>"txcb228b8b9bfe4d5184828-0053568313",
-        "Date"=>"Tue, 22 Apr 2014 14:56:20 GMT"
-      }
-    }
-  end
+  include StockStorageResponses
+
   let(:config) { Fog::Brightbox::Config.new(settings) }
   let(:service) { Fog::Storage::Brightbox.new(config) }
 
@@ -64,7 +51,8 @@ describe Fog::Storage::Brightbox do
     end
 
     before do
-      stub_request(:get, "https://orbit.brightbox.com/v1").to_return(valid_auth_response)
+      stub_request(:get, "https://orbit.brightbox.com/v1").
+        to_return(authorized_response)
     end
 
     it "requires a call to authenticate" do
@@ -90,18 +78,10 @@ describe Fog::Storage::Brightbox do
     end
 
     it "fails to authenticate" do
-      response =  {
-        :body=>"Bad URL",
-        :headers=>
-        {"Content-Length"=>"7",
-         "Content-Type"=>"text/html; charset=UTF-8",
-         "X-Trans-Id"=>"txab03ff4864ff42989f4a1-0053568282",
-         "Date"=>"Tue, 22 Apr 2014 14:53:54 GMT"},
-         :status=>412
-      }
-      stub_request(:get, "https://orbit.brightbox.com/v1").to_return(response)
+      stub_request(:get, "https://orbit.brightbox.com/v1").
+        to_return(unauthorized_response)
 
-      service.authenticate
+      assert_raises(Fog::Brightbox::Storage::AuthenticationRequired) { service.authenticate }
       assert_nil service.management_url
     end
   end
@@ -118,7 +98,8 @@ describe Fog::Storage::Brightbox do
     end
 
     before do
-      stub_request(:get, "https://orbit.brightbox.com/v1").to_return(valid_auth_response)
+      stub_request(:get, "https://orbit.brightbox.com/v1").
+        to_return(authorized_response)
     end
 
     it "uses the configured account" do
@@ -138,7 +119,8 @@ describe Fog::Storage::Brightbox do
     end
 
     before do
-      stub_request(:get, "https://orbit.brightbox.com/v1").to_return(valid_auth_response)
+      stub_request(:get, "https://orbit.brightbox.com/v1").
+        to_return(authorized_response)
     end
 
     it "extracts the account from the management URL" do
@@ -186,7 +168,8 @@ describe Fog::Storage::Brightbox do
     end
 
     it "keeps setting after authentication" do
-      stub_request(:get, "https://orbit.brightbox.com/v1").to_return(valid_auth_response)
+      stub_request(:get, "https://orbit.brightbox.com/v1").
+        to_return(authorized_response)
       config.expire_tokens!
       service.authenticate
       assert_equal "https://files.gb2.brightbox.com/v1/acc-12345", service.management_url.to_s
@@ -208,9 +191,7 @@ describe Fog::Storage::Brightbox do
     before do
       # Ongoing request but tokens are expired
       stub_request(:get, "https://files.gb2.brightbox.com/v1/acc-12345/fnord").
-        to_return(:status => 401,
-                  :body => "Authentication required",
-                  :headers => { "Content-Type" => "text/plain" })
+        to_return(unauthorized_response)
     end
 
     let(:params) { { :expects => [200], :path => "fnord" } }
@@ -238,18 +219,16 @@ describe Fog::Storage::Brightbox do
       # Ongoing request but tokens are expired
       stub_request(:get, "https://files.gb2.brightbox.com/v1/acc-12345/fnord").
         with(:headers => { "X-Auth-Token" => "1234567890abcdefghijklmnopqrstuvwxyz" }).
-        to_return(:status => 401,
-                  :body => "Authentication required",
-                  :headers => { "Content-Type" => "text/plain" })
+        to_return(unauthorized_response)
 
       # The reauthentication
       stub_request(:get, "https://files.gb2.brightbox.com/v1").
         with(:headers => { "X-Auth-User" => "user@example.com", "X-Auth-Key" => "12345" }).
-        to_return(valid_auth_response)
+        to_return(authorized_response)
 
       # Repeated request
       stub_request(:get, "https://files.gb2.brightbox.com/v1/acc-12345/fnord").
-        with(:headers => { "X-Auth-Token" => "c1236c8c34d668df497c06075d8a76a79c6fdd0d" }).
+        with(:headers => { "X-Auth-Token" => "abcdefghijklmnopqrstuvwxyz1234567890" }).
         to_return(:status => 200)
     end
 
@@ -272,11 +251,11 @@ describe Fog::Storage::Brightbox do
     before do
       # Initial authentication
       stub_request(:get, "https://orbit.brightbox.com/v1").
-        with(:headers => {"X-Auth-Key" => "12345", "X-Auth-User" => "cli-12345"}).
-        to_return(valid_auth_response)
+        with(:headers => { "X-Auth-Key" => "12345", "X-Auth-User" => "cli-12345" }).
+        to_return(authorized_response)
 
       stub_request(:get, "https://orbit.brightbox.com/v1/acc-12345/fnord").
-        with(:headers => { "X-Auth-Token" => "c1236c8c34d668df497c06075d8a76a79c6fdd0d" }).
+        with(:headers => { "X-Auth-Token" => "abcdefghijklmnopqrstuvwxyz1234567890" }).
         to_return(:status => 200)
     end
 
