@@ -1,6 +1,6 @@
 # Brightbox Cloud module for fog (The Ruby cloud services library)
 
-This gem is a modular for the `fog` gem that allows you to manage resources in
+This gem is a module for the `fog` gem that allows you to manage resources in
 the Brightbox Cloud.
 
 It is included by the main `fog` metagem but can used as an independent library
