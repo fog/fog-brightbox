@@ -1,3 +1,9 @@
+### 0.6.0 / 2014-10-21
+
+Enhancements:
+
+* Allow setting of Load Balancer SSL v3 parameter when creating or updating.
+
 ### 0.5.1 / 2014-09-15
 
 Bug fixes:
