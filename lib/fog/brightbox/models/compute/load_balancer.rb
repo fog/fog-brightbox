@@ -30,6 +30,7 @@ module Fog
         attribute :certificate_expires_at
         attribute :certificate_issuer
         attribute :certificate_subject
+        attribute :certificate_enable_ssl3
 
         # Times
         attribute :created_at, :type => :time
@@ -55,7 +56,8 @@ module Fog
             :name => name,
             :buffer_size => buffer_size,
             :certificate_pem => certificate_pem,
-            :certificate_private_key => certificate_private_key
+            :certificate_private_key => certificate_private_key,
+            :sslv3 => ssl3?
           }.delete_if { |k, v| v.nil? || v == "" }
           data = service.create_load_balancer(options)
           merge_attributes(data)
@@ -96,6 +98,10 @@ module Fog
             attributes[:certificate_issuer] = nil
             attributes[:certificate_subject] = nil
           end
+        end
+
+        def ssl3?
+          attributes[:sslv3]
         end
 
         private
