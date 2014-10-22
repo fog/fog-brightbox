@@ -92,16 +92,18 @@ module Fog
             attributes[:certificate_expires_at] = time_or_original(cert_metadata["expires_at"])
             attributes[:certificate_issuer] = cert_metadata["issuer"]
             attributes[:certificate_subject] = cert_metadata["subject"]
+            attributes[:certificate_enable_ssl3] = cert_metadata["sslv3"]
           else
             attributes[:certificate_valid_from] = nil
             attributes[:certificate_expires_at] = nil
             attributes[:certificate_issuer] = nil
             attributes[:certificate_subject] = nil
+            attributes[:certificate_enable_ssl3] = nil
           end
         end
 
         def ssl3?
-          attributes[:sslv3]
+          !! attributes[:certificate_enable_ssl3]
         end
 
         private
