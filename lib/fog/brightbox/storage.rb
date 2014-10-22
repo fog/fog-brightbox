@@ -126,7 +126,7 @@ module Fog
           end
         end
 
-        # @param [URI] uri A URI object to extract the account from
+        # @param [URI] url A URI object to extract the account from
         # @return [String] The account
         def extract_account_from_url(url)
           url.path.split("/")[2]
