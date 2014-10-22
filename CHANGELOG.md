@@ -1,3 +1,9 @@
+### 0.6.1 / 2014-10-22
+
+Bug fixes:
+
+* Fixes reading from `Server#ssl3?`
+
 ### 0.6.0 / 2014-10-21
 
 Enhancements:
