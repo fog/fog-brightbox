@@ -5,7 +5,7 @@ module Fog
   module Compute
     class Brightbox
       class DatabaseSnapshot < Fog::Brightbox::Model
-        include ResourceLocking
+        include Fog::Brightbox::Compute::ResourceLocking
 
         identity :id
         attribute :url

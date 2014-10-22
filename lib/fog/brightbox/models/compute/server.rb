@@ -6,7 +6,7 @@ module Fog
     class Brightbox
       class Server < Fog::Compute::Server
         include Fog::Brightbox::ModelHelper
-        include ResourceLocking
+        include Fog::Brightbox::Compute::ResourceLocking
 
         identity  :id
         attribute :resource_type
