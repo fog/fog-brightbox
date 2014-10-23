@@ -103,11 +103,11 @@ module Fog
           end
         rescue Excon::Errors::HTTPStatusError => error
           raise case error
-          when Excon::Errors::NotFound
-            Fog::Storage::Brightbox::NotFound.slurp(error)
-          else
-            error
-          end
+                when Excon::Errors::NotFound
+                  Fog::Storage::Brightbox::NotFound.slurp(error)
+                else
+                  error
+                end
         end
 
         def authenticate
