@@ -1,5 +1,5 @@
-require 'fog/core/collection'
-require 'fog/brightbox/models/compute/database_snapshot'
+require "fog/core/collection"
+require "fog/brightbox/models/compute/database_snapshot"
 
 module Fog
   module Compute

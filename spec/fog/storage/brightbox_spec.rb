@@ -150,7 +150,7 @@ describe Fog::Storage::Brightbox do
 
   describe "when configured with tokens and management_url" do
     let(:settings) do
-       {
+      {
         :brightbox_client_id => "app-12345",
         :brightbox_secret => "12345",
         :brightbox_access_token => "1234567890abcdefghijklmnopqrstuvwxyz",
@@ -178,7 +178,7 @@ describe Fog::Storage::Brightbox do
 
   describe "when configured with expired tokens" do
     let(:settings) do
-       {
+      {
         :brightbox_client_id => "app-12345",
         :brightbox_secret => "12345",
         :brightbox_access_token => "1234567890abcdefghijklmnopqrstuvwxyz",
@@ -203,7 +203,7 @@ describe Fog::Storage::Brightbox do
 
   describe "when configured with user details and expired tokens" do
     let(:settings) do
-       {
+      {
         :brightbox_client_id => "app-12345",
         :brightbox_secret => "12345",
         :brightbox_username => "user@example.com",

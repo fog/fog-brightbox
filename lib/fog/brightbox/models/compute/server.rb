@@ -8,12 +8,12 @@ module Fog
         include Fog::Brightbox::ModelHelper
         include Fog::Brightbox::Compute::ResourceLocking
 
-        identity  :id
+        identity :id
         attribute :resource_type
         attribute :url
 
         attribute :name
-        attribute :state,       :aliases => 'status'
+        attribute :state,       :aliases => "status"
 
         attribute :hostname
         attribute :fqdn
@@ -49,7 +49,7 @@ module Fog
           if t_zone_id = attributes[:zone_id]
             t_zone_id
           elsif zone
-            zone[:id] || zone['id']
+            zone[:id] || zone["id"]
           end
         end
 
@@ -57,7 +57,7 @@ module Fog
           if t_flavour_id = attributes[:flavor_id]
             t_flavour_id
           elsif server_type
-            server_type[:id] || server_type['id']
+            server_type[:id] || server_type["id"]
           end
         end
 
@@ -170,7 +170,7 @@ module Fog
         end
 
         def save
-          raise Fog::Errors::Error.new('Resaving an existing object may create a duplicate') if persisted?
+          raise Fog::Errors::Error.new("Resaving an existing object may create a duplicate") if persisted?
           requires :image_id
           options = {
             :image => image_id,
@@ -178,7 +178,7 @@ module Fog
             :zone => zone_id,
             :user_data => user_data,
             :server_groups => server_groups
-          }.delete_if { |k, v| v.nil? || v == "" }
+          }.delete_if { |_k, v| v.nil? || v == "" }
 
           options.merge!(:server_type => flavor_id) unless flavor_id.nil? || flavor_id == ""
 

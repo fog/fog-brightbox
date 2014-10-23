@@ -44,12 +44,12 @@ describe Fog::Brightbox::Storage::Connection do
     before do
       stub_request(:get, "https://files.gb2.brightbox.com/v1/acc-12345").
         with(:headers => {
-        "Accept" => "application/json",
-        "Content-Type" => "application/json",
-        "X-Auth-Token" => valid_auth_token
-      }).to_return(:status => 200, :body => "{}", :headers => {
-        "Content-Type" => "application/json"
-      })
+               "Accept" => "application/json",
+               "Content-Type" => "application/json",
+               "X-Auth-Token" => valid_auth_token
+             }).to_return(:status => 200, :body => "{}", :headers => {
+                            "Content-Type" => "application/json"
+                          })
     end
 
     it "completes successfully" do
@@ -64,12 +64,12 @@ describe Fog::Brightbox::Storage::Connection do
     before do
       stub_request(:get, "https://files.gb2.brightbox.com/v1/acc-12345/fnord").
         with(:headers => {
-        "Accept" => "application/json",
-        "Content-Type" => "application/json",
-        "X-Auth-Token" => valid_auth_token
-      }).to_return(:status => 200, :body => "{}", :headers => {
-        "Content-Type" => "application/json"
-      })
+               "Accept" => "application/json",
+               "Content-Type" => "application/json",
+               "X-Auth-Token" => valid_auth_token
+             }).to_return(:status => 200, :body => "{}", :headers => {
+                            "Content-Type" => "application/json"
+                          })
     end
 
     it "completes successfully" do

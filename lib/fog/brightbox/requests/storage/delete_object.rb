@@ -2,7 +2,6 @@ module Fog
   module Storage
     class Brightbox
       class Real
-
         # Delete an existing object
         #
         # ==== Parameters
@@ -12,11 +11,10 @@ module Fog
         def delete_object(container, object)
           request(
             :expects  => 204,
-            :method   => 'DELETE',
+            :method   => "DELETE",
             :path     => "#{Fog::Storage::Brightbox.escape(container)}/#{Fog::Storage::Brightbox.escape(object)}"
           )
         end
-
       end
     end
   end

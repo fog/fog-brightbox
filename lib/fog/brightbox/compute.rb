@@ -1,12 +1,11 @@
-require 'fog/brightbox/core'
-require 'fog/brightbox/compute/config'
-require 'fog/brightbox/compute/shared'
-require 'fog/brightbox/compute/image_selector'
+require "fog/brightbox/core"
+require "fog/brightbox/compute/config"
+require "fog/brightbox/compute/shared"
+require "fog/brightbox/compute/image_selector"
 
 module Fog
   module Compute
     class Brightbox < Fog::Service
-
       # Client credentials
       requires :brightbox_client_id, :brightbox_secret
 
@@ -25,47 +24,47 @@ module Fog
       # Excon connection settings
       recognizes :persistent
 
-      model_path 'fog/brightbox/models/compute'
-      collection  :accounts
-      model       :account
-      collection  :applications
-      model       :application
-      collection  :api_clients
-      model       :api_client
-      collection  :collaborations
-      model       :collaboration
-      collection  :servers
-      model       :server
-      collection  :server_groups
-      model       :server_group
-      collection  :events
-      model       :event
-      collection  :firewall_policies
-      model       :firewall_policy
-      collection  :firewall_rules
-      model       :firewall_rule
-      collection  :flavors
-      model       :flavor
-      collection  :images
-      model       :image
-      collection  :load_balancers
-      model       :load_balancer
-      collection  :database_servers
-      model       :database_server
-      collection  :database_snapshots
-      model       :database_snapshot
-      collection  :database_types
-      model       :database_type
-      collection  :zones
-      model       :zone
-      collection  :cloud_ips
-      model       :cloud_ip
-      collection  :users
-      model       :user
-      collection  :user_collaborations
-      model       :user_collaboration
+      model_path "fog/brightbox/models/compute"
+      collection :accounts
+      model :account
+      collection :applications
+      model :application
+      collection :api_clients
+      model :api_client
+      collection :collaborations
+      model :collaboration
+      collection :servers
+      model :server
+      collection :server_groups
+      model :server_group
+      collection :events
+      model :event
+      collection :firewall_policies
+      model :firewall_policy
+      collection :firewall_rules
+      model :firewall_rule
+      collection :flavors
+      model :flavor
+      collection :images
+      model :image
+      collection :load_balancers
+      model :load_balancer
+      collection :database_servers
+      model :database_server
+      collection :database_snapshots
+      model :database_snapshot
+      collection :database_types
+      model :database_type
+      collection :zones
+      model :zone
+      collection :cloud_ips
+      model :cloud_ip
+      collection :users
+      model :user
+      collection :user_collaborations
+      model :user_collaboration
 
-      request_path 'fog/brightbox/requests/compute'
+      request_path "fog/brightbox/requests/compute"
       request :accept_user_collaboration
       request :activate_console_server
       request :add_listeners_load_balancer
@@ -192,11 +191,11 @@ module Fog
       class Mock
         include Fog::Brightbox::Compute::Shared
 
-        def request(method, path, expected_responses, parameters = {})
+        def request(_method, _path, _expected_responses, _parameters = {})
           _request
         end
 
-        def request_access_token(connection, credentials)
+        def request_access_token(_connection, _credentials)
           _request
         end
 
@@ -315,7 +314,6 @@ module Fog
           Fog::Brightbox::Compute::ImageSelector.new(list_images).latest_ubuntu
         end
       end
-
     end
   end
 end

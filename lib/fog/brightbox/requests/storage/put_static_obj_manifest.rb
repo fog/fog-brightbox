@@ -2,7 +2,6 @@ module Fog
   module Storage
     class Brightbox
       class Real
-
         # Create a new static large object manifest.
         #
         # A static large object is similar to a dynamic large object. Whereas a GET for a dynamic large object manifest
@@ -43,14 +42,13 @@ module Fog
         def put_static_obj_manifest(container, object, segments, options = {})
           request(
             :expects  => 201,
-            :method   => 'PUT',
+            :method   => "PUT",
             :headers  => options,
             :body     => Fog::JSON.encode(segments),
             :path     => "#{Fog::Storage::Brightbox.escape(container)}/#{Fog::Storage::Brightbox.escape(object)}",
-            :query    => { 'multipart-manifest' => 'put' }
+            :query    => { "multipart-manifest" => "put" }
           )
         end
-
       end
     end
   end

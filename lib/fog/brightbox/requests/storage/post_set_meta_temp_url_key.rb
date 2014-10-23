@@ -1,9 +1,7 @@
 module Fog
   module Storage
     class Brightbox
-
       class Real
-
         # Set the account wide Temp URL Key. This is a secret key that's
         # used to generate signed expiring URLs.
         #
@@ -25,13 +23,11 @@ module Fog
         def post_set_meta_temp_url_key(key)
           request(
             :expects  => [201, 202, 204],
-            :method   => 'POST',
-            :headers  => {'X-Account-Meta-Temp-Url-Key' => key}
+            :method   => "POST",
+            :headers  => { "X-Account-Meta-Temp-Url-Key" => key }
           )
         end
-
       end
-
     end
   end
 end

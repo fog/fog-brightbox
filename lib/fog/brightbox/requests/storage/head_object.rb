@@ -2,7 +2,6 @@ module Fog
   module Storage
     class Brightbox
       class Real
-
         # Get headers for object
         #
         # ==== Parameters
@@ -11,12 +10,11 @@ module Fog
         #
         def head_object(container, object)
           request({
-            :expects  => 200,
-            :method   => 'HEAD',
-            :path     => "#{Fog::Storage::Brightbox.escape(container)}/#{Fog::Storage::Brightbox.escape(object)}"
-          }, false)
+                    :expects  => 200,
+                    :method   => "HEAD",
+                    :path     => "#{Fog::Storage::Brightbox.escape(container)}/#{Fog::Storage::Brightbox.escape(object)}"
+                  }, false)
         end
-
       end
     end
   end

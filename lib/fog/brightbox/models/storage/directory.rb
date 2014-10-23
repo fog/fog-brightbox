@@ -5,7 +5,7 @@ module Fog
   module Storage
     class Brightbox
       class Directory < Fog::Model
-        identity  :key, :aliases => "name"
+        identity :key, :aliases => "name"
 
         attribute :bytes, :aliases => "X-Container-Bytes-Used"
         attribute :count, :aliases => "X-Container-Object-Count"
@@ -29,20 +29,18 @@ module Fog
           end
         end
 
-        def public=(new_public)
-          @public = new_public
-        end
+        attr_writer :public
 
         def public_url
-          #raise NotImplementedError
+          # raise NotImplementedError
           ""
         end
 
         def save
           requires :key
           options = {
-            'read_permissions' => read_permissions,
-            'write_permissions' => write_permissions
+            "read_permissions" => read_permissions,
+            "write_permissions" => write_permissions
           }
           service.put_container(key, options)
           true

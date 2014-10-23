@@ -22,7 +22,7 @@ module Fog
           options = {
             :name => name,
             :description => description
-          }.delete_if { |k, v| v.nil? || v == "" }
+          }.delete_if { |_k, v| v.nil? || v == "" }
           data = service.create_server_group(options)
           merge_attributes(data)
           true

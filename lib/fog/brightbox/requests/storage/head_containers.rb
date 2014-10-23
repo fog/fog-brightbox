@@ -2,7 +2,6 @@ module Fog
   module Storage
     class Brightbox
       class Real
-
         # List number of containers and total bytes stored
         #
         # ==== Returns
@@ -13,12 +12,11 @@ module Fog
         def head_containers
           request(
             :expects  => 204,
-            :method   => 'HEAD',
-            :path     => '',
-            :query    => {'format' => 'json'}
+            :method   => "HEAD",
+            :path     => "",
+            :query    => { "format" => "json" }
           )
         end
-
       end
     end
   end

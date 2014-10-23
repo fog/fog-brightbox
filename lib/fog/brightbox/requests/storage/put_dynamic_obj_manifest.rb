@@ -2,7 +2,6 @@ module Fog
   module Storage
     class Brightbox
       class Real
-
         # Create a new dynamic large object manifest
         #
         # Creates an object with a +X-Object-Manifest+ header that specifies the common prefix ("<container>/<prefix>")
@@ -28,15 +27,14 @@ module Fog
         # @see http://docs.brightbox.org/api/brightbox-object-storage/1.0/content/dynamic-large-object-creation.html
         def put_dynamic_obj_manifest(container, object, options = {})
           path = "#{Fog::Storage::Brightbox.escape(container)}/#{Fog::Storage::Brightbox.escape(object)}"
-          headers = {'X-Object-Manifest' => path}.merge(options)
+          headers = { "X-Object-Manifest" => path }.merge(options)
           request(
             :expects  => 201,
             :headers  => headers,
-            :method   => 'PUT',
+            :method   => "PUT",
             :path     => path
           )
         end
-
       end
     end
   end

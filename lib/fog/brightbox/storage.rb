@@ -7,19 +7,18 @@ require "fog/brightbox/storage/connection"
 module Fog
   module Storage
     class Brightbox < Fog::Service
-
-      requires   :brightbox_client_id,
-                 :brightbox_secret
+      requires :brightbox_client_id,
+               :brightbox_secret
       recognizes :persistent, :brightbox_service_name,
                  :brightbox_storage_url,
                  :brightbox_service_type, :brightbox_tenant,
                  :brightbox_region, :brightbox_temp_url_key
 
       model_path "fog/brightbox/models/storage"
-      model       :directory
-      collection  :directories
-      model       :file
-      collection  :files
+      model :directory
+      collection :directories
+      model :file
+      collection :files
 
       request_path "fog/brightbox/requests/storage"
       request :copy_object
@@ -43,7 +42,7 @@ module Fog
       request :put_static_obj_manifest
 
       class Mock
-        def initialize(options={})
+        def initialize(_options = {})
         end
       end
 
@@ -92,24 +91,22 @@ module Fog
         end
 
         def request(params, parse_json = true)
-          begin
-            authenticate if @config.must_authenticate?
-            connection.request(params, parse_json)
-          rescue Fog::Brightbox::Storage::AuthenticationRequired => error
-            if @config.managed_tokens?
-              @config.expire_tokens!
-              authenticate
-              retry
-            else # bad credentials
-              raise error
-            end
-          rescue Excon::Errors::HTTPStatusError => error
-            raise case error
-            when Excon::Errors::NotFound
-              Fog::Storage::Brightbox::NotFound.slurp(error)
-            else
-              error
-            end
+          authenticate if @config.must_authenticate?
+          connection.request(params, parse_json)
+        rescue Fog::Brightbox::Storage::AuthenticationRequired => error
+          if @config.managed_tokens?
+            @config.expire_tokens!
+            authenticate
+            retry
+          else # bad credentials
+            raise error
+          end
+        rescue Excon::Errors::HTTPStatusError => error
+          raise case error
+          when Excon::Errors::NotFound
+            Fog::Storage::Brightbox::NotFound.slurp(error)
+          else
+            error
           end
         end
 
@@ -156,9 +153,9 @@ module Fog
       end
 
       # CGI.escape, but without special treatment on spaces
-      def self.escape(str,extra_exclude_chars = "")
+      def self.escape(str, extra_exclude_chars = "")
         str.gsub(/([^a-zA-Z0-9_.-#{extra_exclude_chars}]+)/) do
-          "%" + $1.unpack("H2" * $1.bytesize).join("%").upcase
+          "%" + Regexp.last_match[1].unpack("H2" * Regexp.last_match[1].bytesize).join("%").upcase
         end
       end
     end

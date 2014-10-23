@@ -2,7 +2,6 @@ module Fog
   module Storage
     class Brightbox
       class Real
-
         # Get details for container and total bytes stored
         #
         # ==== Parameters
@@ -29,15 +28,14 @@ module Fog
         #       * 'last_modified'<~String> - Last modified timestamp
         #       * 'name'<~String> - Name of object
         def get_container(container, options = {})
-          options = options.reject {|key, value| value.nil?}
+          options = options.reject { |_key, value| value.nil? }
           request(
             :expects  => 200,
-            :method   => 'GET',
+            :method   => "GET",
             :path     => Fog::Storage::Brightbox.escape(container),
-            :query    => {'format' => 'json'}.merge!(options)
+            :query    => { "format" => "json" }.merge!(options)
           )
         end
-
       end
     end
   end

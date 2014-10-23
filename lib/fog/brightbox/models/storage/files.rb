@@ -1,12 +1,10 @@
-require 'fog/core/collection'
-require 'fog/brightbox/models/storage/file'
+require "fog/core/collection"
+require "fog/brightbox/models/storage/file"
 
 module Fog
   module Storage
     class Brightbox
-
       class Files < Fog::Collection
-
         attribute :directory
         attribute :limit
         attribute :marker
@@ -18,10 +16,10 @@ module Fog
         def all(options = {})
           requires :directory
           options = {
-            'limit'   => limit,
-            'marker'  => marker,
-            'path'    => path,
-            'prefix'  => prefix
+            "limit"   => limit,
+            "marker"  => marker,
+            "path"    => path,
+            "prefix"  => prefix
           }.merge!(options)
           merge_attributes(options)
           parent = directory.collection.get(
@@ -29,23 +27,23 @@ module Fog
             options
           )
           if parent
-            load(parent.files.map {|file| file.attributes})
+            load(parent.files.map { |file| file.attributes })
           else
             nil
           end
         end
 
-        alias :each_file_this_page :each
+        alias_method :each_file_this_page, :each
         def each
           if !block_given?
             self
           else
             subset = dup.all
 
-            subset.each_file_this_page {|f| yield f}
-            while subset.length == (subset.limit || 10000)
+            subset.each_file_this_page { |f| yield f }
+            while subset.length == (subset.limit || 10_000)
               subset = subset.all(:marker => subset.last.key)
-              subset.each_file_this_page {|f| yield f}
+              subset.each_file_this_page { |f| yield f }
             end
 
             self
@@ -55,10 +53,10 @@ module Fog
         def get(key, &block)
           requires :directory
           data = service.get_object(directory.key, key, &block)
-          file_data = data.headers.merge({
-            :body => data.body,
-            :key  => key
-          })
+          file_data = data.headers.merge(
+                                           :body => data.body,
+                                           :key  => key
+                                         )
           new(file_data)
         rescue Fog::Storage::Brightbox::NotFound
           nil
@@ -66,8 +64,8 @@ module Fog
 
         def get_url(key)
           requires :directory
-          if self.directory.public_url
-            "#{self.directory.public_url}/#{Fog::Storage::Brightbox.escape(key, '/')}"
+          if directory.public_url
+            "#{directory.public_url}/#{Fog::Storage::Brightbox.escape(key, "/")}"
           end
         end
 
@@ -81,12 +79,12 @@ module Fog
           service.get_object_https_url(directory.key, key, expires, options)
         end
 
-        def head(key, options = {})
+        def head(key, _options = {})
           requires :directory
           data = service.head_object(directory.key, key)
-          file_data = data.headers.merge({
-            :key => key
-          })
+          file_data = data.headers.merge(
+                                           :key => key
+                                         )
           new(file_data)
         rescue Fog::Storage::Brightbox::NotFound
           nil
@@ -96,9 +94,7 @@ module Fog
           requires :directory
           super({ :directory => directory }.merge!(attributes))
         end
-
       end
-
     end
   end
 end

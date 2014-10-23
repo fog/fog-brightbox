@@ -2,7 +2,6 @@ module Fog
   module Storage
     class Brightbox
       class Real
-
         # Get details for object
         #
         # ==== Parameters
@@ -12,7 +11,7 @@ module Fog
         def get_object(container, object, &block)
           params = {
             :expects  => 200,
-            :method   => 'GET',
+            :method   => "GET",
             :path     => "#{Fog::Storage::Brightbox.escape(container)}/#{Fog::Storage::Brightbox.escape(object)}"
           }
 
@@ -22,7 +21,6 @@ module Fog
 
           request(params, false)
         end
-
       end
     end
   end

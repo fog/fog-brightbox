@@ -4,7 +4,6 @@ module Fog
   module Compute
     class Brightbox
       class FirewallRule < Fog::Brightbox::Model
-
         identity :id
         attribute :url
         attribute :resource_type
@@ -23,7 +22,7 @@ module Fog
 
         # Sticking with existing Fog behaviour, save does not update but creates a new resource
         def save
-          raise Fog::Errors::Error.new('Resaving an existing object may create a duplicate') if persisted?
+          raise Fog::Errors::Error.new("Resaving an existing object may create a duplicate") if persisted?
           requires :firewall_policy_id
           options = {
             :firewall_policy => firewall_policy_id,
@@ -34,7 +33,7 @@ module Fog
             :destination => destination,
             :destination_port => destination_port,
             :icmp_type_name => icmp_type_name
-          }.delete_if { |k, v| v.nil? || v == "" }
+          }.delete_if { |_k, v| v.nil? || v == "" }
           data = service.create_firewall_rule(options)
           merge_attributes(data)
           true

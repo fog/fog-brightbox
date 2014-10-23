@@ -5,7 +5,6 @@ module Fog
     class Brightbox
       # @api private
       class Event < Fog::Brightbox::Model
-
         identity :id
         attribute :url
         attribute :resource_type
@@ -21,7 +20,6 @@ module Fog
         attribute :resource
         attribute :client
         attribute :user
-
       end
     end
   end

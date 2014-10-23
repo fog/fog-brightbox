@@ -4,7 +4,7 @@ module Fog
   module Compute
     class Brightbox
       class UserCollaboration < Fog::Brightbox::Model
-        identity  :id
+        identity :id
         attribute :status
         attribute :email
         attribute :role
@@ -14,7 +14,7 @@ module Fog
         attribute :inviter
 
         def account_id
-          account['id'] || account[:id]
+          account["id"] || account[:id]
         end
 
         def accept
@@ -37,7 +37,6 @@ module Fog
           merge_attributes(data)
           true
         end
-
       end
     end
   end

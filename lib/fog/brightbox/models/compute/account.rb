@@ -4,7 +4,6 @@ module Fog
   module Compute
     class Brightbox
       class Account < Fog::Brightbox::Model
-
         identity :id
         attribute :url
         attribute :resource_type

@@ -2,7 +2,6 @@ module Fog
   module Storage
     class Brightbox
       class Real
-
         # Delete a static large object.
         #
         # Deletes the SLO manifest +object+ and all segments that it references.
@@ -26,17 +25,16 @@ module Fog
         # @see http://docs.brightbox.org/api/brightbox-object-storage/1.0/content/static-large-objects.html
         def delete_static_large_object(container, object, options = {})
           response = request({
-            :expects  => 200,
-            :method   => 'DELETE',
-            :headers  => options.merge('Content-Type' => 'text/plain',
-                                       'Accept' => 'application/json'),
-            :path     => "#{Fog::Storage::Brightbox.escape(container)}/#{Fog::Storage::Brightbox.escape(object)}",
-            :query    => { 'multipart-manifest' => 'delete' }
-          }, false)
+                               :expects  => 200,
+                               :method   => "DELETE",
+                               :headers  => options.merge("Content-Type" => "text/plain",
+                                                          "Accept" => "application/json"),
+                               :path     => "#{Fog::Storage::Brightbox.escape(container)}/#{Fog::Storage::Brightbox.escape(object)}",
+                               :query    => { "multipart-manifest" => "delete" }
+                             }, false)
           response.body = Fog::JSON.decode(response.body)
           response
         end
-
       end
     end
   end

@@ -18,10 +18,10 @@ module Fog
         def request(params, parse_json = true)
           begin
             raise ArgumentError if params.nil?
-            request_params = params.merge({
-              :headers => request_headers(params),
-              :path => path_in_params(params)
-            })
+            request_params = params.merge(
+                                            :headers => request_headers(params),
+                                            :path => path_in_params(params)
+                                          )
             response = @connection.request(request_params)
           rescue Excon::Errors::Unauthorized => error
             raise AuthenticationRequired.slurp(error)
@@ -58,9 +58,9 @@ module Fog
         end
 
         def authenticated_headers
-          default_headers.merge({
-            "X-Auth-Token" => @config.latest_access_token
-          })
+          default_headers.merge(
+                                  "X-Auth-Token" => @config.latest_access_token
+                                )
         end
 
         def default_headers

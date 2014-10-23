@@ -12,7 +12,6 @@ module Fog
           return nil if identifier.nil? || identifier == ""
           wrapped_request("put", "/1.0/servers/#{identifier}/lock_resource", [200])
         end
-
       end
     end
   end

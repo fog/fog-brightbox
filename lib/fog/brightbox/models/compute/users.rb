@@ -1,12 +1,10 @@
-require 'fog/core/collection'
-require 'fog/brightbox/models/compute/user'
+require "fog/core/collection"
+require "fog/brightbox/models/compute/user"
 
 module Fog
   module Compute
     class Brightbox
-
       class Users < Fog::Collection
-
         model Fog::Compute::Brightbox::User
 
         def all
@@ -21,7 +19,6 @@ module Fog
           nil
         end
       end
-
     end
   end
 end

@@ -4,7 +4,7 @@ module Fog
   module Compute
     class Brightbox
       class Collaboration < Fog::Brightbox::Model
-        identity  :id
+        identity :id
         attribute :status
         attribute :email
         attribute :role
@@ -14,16 +14,16 @@ module Fog
         attribute :inviter
 
         def account_id
-          account['id'] || account[:id]
+          account["id"] || account[:id]
         end
 
         def save
-          raise Fog::Errors::Error.new('Resaving an existing object may create a duplicate') if identity
+          raise Fog::Errors::Error.new("Resaving an existing object may create a duplicate") if identity
 
           options = {
             :role => role,
             :email => email
-          }.delete_if { |k, v| v.nil? || v == "" }
+          }.delete_if { |_k, v| v.nil? || v == "" }
 
           data = service.create_collaboration(options)
           merge_attributes(data)

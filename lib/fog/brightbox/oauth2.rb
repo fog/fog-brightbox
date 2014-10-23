@@ -6,7 +6,6 @@
 module Fog
   module Brightbox
     module OAuth2
-
     # This builds the simplest form of requesting an access token
     # based on the arguments passed in
     #
@@ -24,10 +23,10 @@ module Fog
         :path => "/token",
         :expects  => 200,
         :headers  => {
-          'Authorization' => "Basic #{encoded_credentials}",
-          'Content-Type' => 'application/json'
+          "Authorization" => "Basic #{encoded_credentials}",
+          "Content-Type" => "application/json"
         },
-        :method   => 'POST',
+        :method   => "POST",
         :body     => Fog::JSON.encode(token_strategy.authorization_body_data)
       )
     end
@@ -154,7 +153,7 @@ module Fog
       end
     end
 
-    private
+      private
 
     # This updates the current credentials if passed a valid response
     #

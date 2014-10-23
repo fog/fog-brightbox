@@ -1,12 +1,10 @@
-require 'fog/core/collection'
-require 'fog/brightbox/models/compute/zone'
+require "fog/core/collection"
+require "fog/brightbox/models/compute/zone"
 
 module Fog
   module Compute
     class Brightbox
-
       class Zones < Fog::Collection
-
         model Fog::Compute::Brightbox::Zone
 
         def all
@@ -21,9 +19,7 @@ module Fog
         rescue Excon::Errors::NotFound
           nil
         end
-
       end
-
     end
   end
 end

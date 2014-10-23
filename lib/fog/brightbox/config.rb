@@ -53,12 +53,12 @@ module Fog
 
       # @return [OAuth2::CredentialSet]
       def credentials
-        @credentials ||= OAuth2::CredentialSet.new(client_id, client_secret, {
-          :username => username,
-          :password => password,
-          :access_token => cached_access_token,
-          :refresh_token => cached_refresh_token
-        })
+        @credentials ||= OAuth2::CredentialSet.new(client_id, client_secret,
+                                                   :username => username,
+                                                   :password => password,
+                                                   :access_token => cached_access_token,
+                                                   :refresh_token => cached_refresh_token
+                                                   )
       end
 
       # @return [Boolean]
@@ -94,16 +94,14 @@ module Fog
 
       def storage_management_url
         @storage_management_url ||= if @options.key?(:brightbox_storage_management_url)
-          URI.parse(@options[:brightbox_storage_management_url])
+                                      URI.parse(@options[:brightbox_storage_management_url])
         else
           nil
         end
       end
 
       # @param [URI] management_url The URI to use for management requests.
-      def storage_management_url=(management_url)
-        @storage_management_url = management_url
-      end
+      attr_writer :storage_management_url
 
       # @return [String] The configured identifier of the API client or user application.
       def client_id

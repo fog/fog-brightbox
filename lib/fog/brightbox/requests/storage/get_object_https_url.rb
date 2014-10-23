@@ -1,9 +1,7 @@
 module Fog
   module Storage
     class Brightbox
-
       class Real
-
         # Get an expiring object https url from Cloud Files
         #
         # ==== Parameters
@@ -35,24 +33,23 @@ module Fog
         # ==== See Also
         # http://docs.rackspace.com/files/api/v1/cf-devguide/content/Create_TempURL-d1a444.html
         def create_temp_url(container, object, expires, method, options = {})
-          raise ArgumentError, "Insufficient parameters specified." unless (container && object && expires && method)
+          raise ArgumentError, "Insufficient parameters specified." unless container && object && expires && method
           raise ArgumentError, "Storage must be instantiated with the :brightbox_temp_url_key option" if @brightbox_temp_url_key.nil?
 
           scheme = options[:scheme] || @scheme
 
           # POST not allowed
-          allowed_methods = %w{GET PUT HEAD}
+          allowed_methods = %w(GET PUT HEAD)
           unless allowed_methods.include?(method)
-            raise ArgumentError.new("Invalid method '#{method}' specified. Valid methods are: #{allowed_methods.join(', ')}")
+            raise ArgumentError.new("Invalid method '#{method}' specified. Valid methods are: #{allowed_methods.join(", ")}")
           end
 
-
           expires        = expires.to_i
-          object_path_escaped   = "#{@path}/#{Fog::Storage::Brightbox.escape(container)}/#{Fog::Storage::Brightbox.escape(object,"/")}"
+          object_path_escaped   = "#{@path}/#{Fog::Storage::Brightbox.escape(container)}/#{Fog::Storage::Brightbox.escape(object, "/")}"
           object_path_unescaped = "#{@path}/#{Fog::Storage::Brightbox.escape(container)}/#{object}"
           string_to_sign = "#{method}\n#{expires}\n#{object_path_unescaped}"
 
-          hmac = Fog::HMAC.new('sha1', @brightbox_temp_url_key)
+          hmac = Fog::HMAC.new("sha1", @brightbox_temp_url_key)
           sig  = sig_to_hex(hmac.sign(string_to_sign))
 
           temp_url_options = {
@@ -77,9 +74,7 @@ module Fog
             h.size == 1 ? "0#{h}" : h
           }.join
         end
-
       end
-
     end
   end
 end

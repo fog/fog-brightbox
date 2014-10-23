@@ -2,7 +2,6 @@ module Fog
   module Storage
     class Brightbox
       class Real
-
         # Deletes multiple objects or containers with a single request.
         #
         # To delete objects from a single container, +container+ may be provided
@@ -50,17 +49,16 @@ module Fog
           end.join("\n")
 
           response = request({
-            :expects  => 200,
-            :method   => 'DELETE',
-            :headers  => options.merge('Content-Type' => 'text/plain',
-                                       'Accept' => 'application/json'),
-            :body     => body,
-            :query    => { 'bulk-delete' => true }
-          }, false)
+                               :expects  => 200,
+                               :method   => "DELETE",
+                               :headers  => options.merge("Content-Type" => "text/plain",
+                                                          "Accept" => "application/json"),
+                               :body     => body,
+                               :query    => { "bulk-delete" => true }
+                             }, false)
           response.body = Fog::JSON.decode(response.body)
           response
         end
-
       end
     end
   end

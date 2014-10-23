@@ -2,7 +2,6 @@ module Fog
   module Storage
     class Brightbox
       class Real
-
         # Create a new object
         #
         # When passed a block, it will make a chunked request, calling
@@ -30,7 +29,7 @@ module Fog
             :expects    => 201,
             :idempotent => !params[:request_block],
             :headers    => headers,
-            :method     => 'PUT',
+            :method     => "PUT",
             :path       => "#{Fog::Storage::Brightbox.escape(container)}/#{Fog::Storage::Brightbox.escape(object)}"
           )
 

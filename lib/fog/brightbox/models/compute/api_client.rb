@@ -13,12 +13,12 @@ module Fog
         attribute :account_id
 
         def save
-          raise Fog::Errors::Error.new('Resaving an existing object may create a duplicate') if persisted?
+          raise Fog::Errors::Error.new("Resaving an existing object may create a duplicate") if persisted?
           options = {
             :name => name,
             :description => description,
             :permissions_group => permissions_group
-          }.delete_if { |k, v| v.nil? || v == "" }
+          }.delete_if { |_k, v| v.nil? || v == "" }
           data = service.create_api_client(options)
           merge_attributes(data)
           true

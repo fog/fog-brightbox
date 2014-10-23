@@ -19,7 +19,6 @@ module Fog
         def list_events(options = {})
           wrapped_request("get", "/1.0/events", [200], options)
         end
-
       end
     end
   end

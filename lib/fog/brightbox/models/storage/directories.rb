@@ -1,18 +1,13 @@
-require 'fog/core/collection'
-require 'fog/brightbox/models/storage/directory'
+require "fog/core/collection"
+require "fog/brightbox/models/storage/directory"
 
 module Fog
   module Storage
     class Brightbox
-
       class Directories < Fog::Collection
-
         model Fog::Storage::Brightbox::Directory
 
-        HEADER_ATTRIBUTES = [
-          'X-Container-Bytes-Used', 'X-Container-Object-Count', 'X-Container-Read',
-          'X-Container-Write'
-        ]
+        HEADER_ATTRIBUTES = %w(X-Container-Bytes-Used X-Container-Object-Count X-Container-Read X-Container-Write)
 
         def all
           data = service.get_containers.body
@@ -37,9 +32,7 @@ module Fog
         rescue Fog::Storage::Brightbox::NotFound
           nil
         end
-
       end
-
     end
   end
 end

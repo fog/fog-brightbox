@@ -3,7 +3,6 @@ require "fog/brightbox/oauth2"
 module Fog
   module Brightbox
     module Compute
-
       # The Shared module consists of code that was duplicated between the Real
       # and Mock implementations.
       #
@@ -61,9 +60,7 @@ module Fog
 
         # Sets the scoped account for future requests
         # @param [String] scoped_account Identifier of the account to scope request to
-        def scoped_account=(scoped_account)
-          @scoped_account = scoped_account
-        end
+        attr_writer :scoped_account
 
         # This returns the account identifier that the request should be scoped by
         # based on the options passed to the request and current configuration

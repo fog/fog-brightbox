@@ -42,11 +42,11 @@ module Fog
         attribute :cloud_ip
 
         def ready?
-          status == 'active'
+          status == "active"
         end
 
         def save
-          raise Fog::Errors::Error.new('Resaving an existing object may create a duplicate') if persisted?
+          raise Fog::Errors::Error.new("Resaving an existing object may create a duplicate") if persisted?
           requires :nodes, :listeners, :healthcheck
           options = {
             :nodes => nodes,
@@ -58,7 +58,7 @@ module Fog
             :certificate_pem => certificate_pem,
             :certificate_private_key => certificate_private_key,
             :sslv3 => ssl3?
-          }.delete_if { |k, v| v.nil? || v == "" }
+          }.delete_if { |_k, v| v.nil? || v == "" }
           data = service.create_load_balancer(options)
           merge_attributes(data)
           true
@@ -103,7 +103,7 @@ module Fog
         end
 
         def ssl3?
-          !! attributes[:certificate_enable_ssl3]
+          !!attributes[:certificate_enable_ssl3]
         end
 
         private
