@@ -58,7 +58,7 @@ module Fog
                                                    :password => password,
                                                    :access_token => cached_access_token,
                                                    :refresh_token => cached_refresh_token
-                                                   )
+                                                  )
       end
 
       # @return [Boolean]
@@ -95,9 +95,9 @@ module Fog
       def storage_management_url
         @storage_management_url ||= if @options.key?(:brightbox_storage_management_url)
                                       URI.parse(@options[:brightbox_storage_management_url])
-        else
-          nil
-        end
+                                    else
+                                      nil
+                                    end
       end
 
       # @param [URI] management_url The URI to use for management requests.
