@@ -102,7 +102,6 @@ module Fog
                                     end
       end
 
-
       # @return [String] The configured identifier of the API client or user application.
       def client_id
         @options[:brightbox_client_id]
