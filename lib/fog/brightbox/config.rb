@@ -9,6 +9,8 @@ module Fog
     # is told a token has expired then another will not retry it.
     #
     class Config
+      attr_writer :storage_management_url
+
       # Creates a new set of configuration settings based on the options provided.
       #
       # @param [Hash] options The configuration settings
@@ -100,8 +102,6 @@ module Fog
                                     end
       end
 
-      # @param [URI] management_url The URI to use for management requests.
-      attr_writer :storage_management_url
 
       # @return [String] The configured identifier of the API client or user application.
       def client_id

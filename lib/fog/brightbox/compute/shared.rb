@@ -9,6 +9,8 @@ module Fog
       module Shared
         include Fog::Brightbox::OAuth2
 
+        attr_writer :scoped_account
+
         API_URL = "https://api.gb1.brightbox.com/"
 
         # Creates a new instance of the Brightbox Compute service
@@ -57,10 +59,6 @@ module Fog
 
           @token_management    = @config.managed_tokens?
         end
-
-        # Sets the scoped account for future requests
-        # @param [String] scoped_account Identifier of the account to scope request to
-        attr_writer :scoped_account
 
         # This returns the account identifier that the request should be scoped by
         # based on the options passed to the request and current configuration
