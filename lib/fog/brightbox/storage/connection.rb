@@ -8,10 +8,10 @@ module Fog
         def initialize(config)
           @config = config
 
-          unless management_url
-            raise ManagementUrlUnknown
-          else
+          if management_url
             @connection = super(management_url.to_s, persistent?, connection_options)
+          else
+            raise ManagementUrlUnknown
           end
         end
 
