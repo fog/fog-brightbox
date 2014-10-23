@@ -17,9 +17,9 @@ module Fog
         def get(key, options = {})
           data = service.get_container(key, options)
           directory = new(:key => key)
-          for key, value in data.headers
-            if HEADER_ATTRIBUTES.include?(key)
-              directory.merge_attributes(key => value)
+          data.headers.each do |header, value|
+            if HEADER_ATTRIBUTES.include?(header)
+              directory.merge_attributes(header => value)
             end
           end
           directory.files.merge_attributes(options)
