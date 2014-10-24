@@ -21,6 +21,8 @@ describe Fog::Compute::Brightbox::Server do
 
   describe "when snapshotting withi no options" do
     it "returns the server" do
+      skip if RUBY_VERSION < "1.9"
+
       stub_request(:post, "http://localhost/1.0/servers/srv-12345/snapshot?account_id=").
         with(:headers => { "Authorization" => "OAuth FAKECACHEDTOKEN" }).
         to_return(:status => 202, :body => %q({"id": "srv-12345"}), :headers => {})
@@ -32,6 +34,8 @@ describe Fog::Compute::Brightbox::Server do
 
   describe "when snapshotting with link option" do
     it "returns the new image" do
+      skip if RUBY_VERSION < "1.9"
+
       link = "<https://api.gb1.brightbox.com/1.0/images/img-12345>; rel=snapshot"
 
       stub_request(:post, "http://localhost/1.0/servers/srv-12345/snapshot").
