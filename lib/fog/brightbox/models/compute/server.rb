@@ -69,9 +69,15 @@ module Fog
           attributes[:flavor_id] = incoming_flavour_id
         end
 
-        def snapshot
+        def snapshot(return_snapshot = false)
           requires :identity
-          service.snapshot_server(identity)
+          response, snapshot_id = service.snapshot_server(identity, :return_link => return_snapshot)
+
+          if return_snapshot
+            service.images.get(snapshot_id)
+          else
+            response
+          end
         end
 
         # Issues a hard reset to the server (or an OS level reboot command)

@@ -67,10 +67,17 @@ module Fog
           state == "active"
         end
 
-        def snapshot
+        def snapshot(return_snapshot = false)
           requires :identity
-          merge_attributes(service.snapshot_database_server(identity))
-          true
+
+          response, snapshot_id = service.snapshot_database_server(identity, :return_link => return_snapshot)
+          merge_attributes(response)
+
+          if return_snapshot
+            service.database_snapshots.get(snapshot_id)
+          else
+            true
+          end
         end
 
         def destroy
