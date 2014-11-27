@@ -39,6 +39,12 @@ and its modules:
 * http://fog.io/
 * http://rubydoc.info/gems/fog/
 
+### Ruby 1.8.7
+
+If you are still using Ruby 1.8.7 in production, see `gemfiles/Gemfile.1.8.7`
+for a gemfile of 1.8.7 compatible version of dependencies you may need to
+specify in your application's `Gemfile`
+
 ## Contributing
 
 `fog` modules are kept within the main repo.
