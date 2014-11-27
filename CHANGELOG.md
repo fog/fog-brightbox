@@ -1,3 +1,20 @@
+### 0.7.0 / 2014-11-27
+
+Enhancements:
+
+* Can read `Link` headers returned from snapshot actions
+* Optionally allow return or `Snapshot` objects from snapshot actions.
+
+Bug fixes:
+
+* Ignore select directories from version control.
+* Removed duplicate spec_helper
+* Addition of style rules using `rubocop`
+* Automated clean up of style rules
+* Be pessimistic about `inflecto` gem.
+  Next release of Inflecto gem will introduce 1.9 constraint so we need to be
+  pessimistic about the version to depend on for now.
+
 ### 0.6.1 / 2014-10-22
 
 Bug fixes:
