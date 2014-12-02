@@ -44,8 +44,10 @@ module Fog
         def path_in_params(params)
           if params.respond_to?(:key?) && params.key?(:path)
             URI.join(@config.storage_management_url.to_s + "/", params[:path]).path
-          else
+          elsif @config.storage_management_url.respond_to?(:path)
             @config.storage_management_url.path
+          else
+            URI.parse(@config.storage_management_url).path
           end
         end
 
