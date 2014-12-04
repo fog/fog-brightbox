@@ -34,7 +34,12 @@ module Fog
         # http://docs.rackspace.com/files/api/v1/cf-devguide/content/Create_TempURL-d1a444.html
         def create_temp_url(container, object, expires, method, options = {})
           raise ArgumentError, "Insufficient parameters specified." unless container && object && expires && method
-          raise ArgumentError, "Storage must be instantiated with the :brightbox_temp_url_key option" if @brightbox_temp_url_key.nil?
+          raise ArgumentError, "Storage must be instantiated with the :brightbox_temp_url_key option" if @config.storage_temp_key.nil?
+
+          @scheme = management_url.scheme
+          @host = management_url.host
+          @port = management_url.port
+          @path = management_url.path
 
           scheme = options[:scheme] || @scheme
 
@@ -44,18 +49,18 @@ module Fog
             raise ArgumentError.new("Invalid method '#{method}' specified. Valid methods are: #{allowed_methods.join(", ")}")
           end
 
-          expires        = expires.to_i
+          expires = expires.to_i
           object_path_escaped   = "#{@path}/#{Fog::Storage::Brightbox.escape(container)}/#{Fog::Storage::Brightbox.escape(object, "/")}"
           object_path_unescaped = "#{@path}/#{Fog::Storage::Brightbox.escape(container)}/#{object}"
           string_to_sign = "#{method}\n#{expires}\n#{object_path_unescaped}"
 
-          hmac = Fog::HMAC.new("sha1", @brightbox_temp_url_key)
+          hmac = Fog::HMAC.new("sha1", @config.storage_temp_key)
           sig  = sig_to_hex(hmac.sign(string_to_sign))
 
           temp_url_options = {
             :scheme => scheme,
             :host => @host,
-            :port => @port,
+            #:port => @port,
             :path => object_path_escaped,
             :query => URI.encode_www_form(
               :temp_url_sig => sig,
