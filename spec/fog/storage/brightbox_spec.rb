@@ -296,7 +296,7 @@ describe Fog::Storage::Brightbox do
     end
     let(:container) { "container" }
     let(:object) { "file.ext" }
-    let(:expiry_time) { Time.new(2012) }
+    let(:expiry_time) { Time.utc(2012) }
     let(:request_method) { "GET" }
 
     it "returns the key" do
