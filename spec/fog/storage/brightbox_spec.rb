@@ -266,4 +266,57 @@ describe Fog::Storage::Brightbox do
       pass
     end
   end
+
+  describe "when not initialised with temporary URL key" do
+    let(:settings) do
+      {
+        :brightbox_client_id => "cli-12345",
+        :brightbox_secret => "12345"
+      }
+    end
+
+    it "returns nil" do
+      assert_nil config.storage_temp_key
+    end
+
+    it "fails to generate temporary URLs" do
+      assert_raises(ArgumentError) { service.create_temp_url("container", "object", Time.now, "GET") }
+    end
+  end
+
+  describe "when initialised with temporary URL key" do
+    before { skip unless RUBY_VERSION > "1.9.3" }
+    let(:temp_url_key) { "1234567890" }
+    let(:settings) do
+      {
+        :brightbox_client_id => "cli-12345",
+        :brightbox_secret => "12345",
+        :brightbox_storage_management_url => "https://example.brightbox.com",
+        :brightbox_temp_url_key => temp_url_key
+      }
+    end
+    let(:container) { "container" }
+    let(:object) { "file.ext" }
+    let(:expiry_time) { Time.utc(2012) }
+    let(:request_method) { "GET" }
+
+    it "returns the key" do
+      assert_equal temp_url_key, config.storage_temp_key
+    end
+
+    it "can generate temporary HTTPS URLs" do
+      assert_equal "https://example.brightbox.com/container/file.ext?temp_url_sig=86dcfd2cf9d501936abab2badc152e90d6b3b133&temp_url_expires=1325376000",
+        service.create_temp_url(container, object, expiry_time, request_method, :scheme => "https")
+    end
+
+    it "can generate temporary HTTP URLs" do
+      assert_equal "http://example.brightbox.com/container/file.ext?temp_url_sig=86dcfd2cf9d501936abab2badc152e90d6b3b133&temp_url_expires=1325376000",
+        service.create_temp_url(container, object, expiry_time, request_method, :scheme => "http")
+    end
+
+    it "can generate temporary HTTP URLs on non standard ports" do
+      assert_equal "http://example.brightbox.com:401/container/file.ext?temp_url_sig=86dcfd2cf9d501936abab2badc152e90d6b3b133&temp_url_expires=1325376000",
+        service.create_temp_url(container, object, expiry_time, request_method, :scheme => "http", :port => 401)
+    end
+  end
 end
