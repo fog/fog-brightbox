@@ -1,3 +1,9 @@
+### 0.7.1 / 2014-12-05
+
+Bug fixes:
+
+* Fixed implementation of `Storage#create_temp_url` (except on Ruby 1.8.7)
+
 ### 0.7.0 / 2014-11-27
 
 Enhancements:
