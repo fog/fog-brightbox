@@ -285,6 +285,7 @@ describe Fog::Storage::Brightbox do
   end
 
   describe "when initialised with temporary URL key" do
+    before { skip unless RUBY_VERSION > "1.9.3" }
     let(:temp_url_key) { "1234567890" }
     let(:settings) do
       {
