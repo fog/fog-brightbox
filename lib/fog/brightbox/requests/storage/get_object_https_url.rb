@@ -29,6 +29,7 @@ module Fog
         # @return [String] url for object
         #
         # @raise [ArgumentError] if +storage_temp_key+ is not set in configuration
+        # @raise [ArgumentError] if +method+ is not valid
         #
         # @see http://docs.rackspace.com/files/api/v1/cf-devguide/content/Create_TempURL-d1a444.html
         #
