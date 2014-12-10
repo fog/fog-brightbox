@@ -1,10 +1,10 @@
-# This module covers Brightbox's partial implementation of OAuth 2.0
-# and enables fog clients to implement several authentictication strategies
-#
-# @see http://tools.ietf.org/html/draft-ietf-oauth-v2-10
-#
 module Fog
   module Brightbox
+    # This module covers Brightbox's partial implementation of OAuth 2.0
+    # and enables fog clients to implement several authentictication strategies
+    #
+    # @see http://tools.ietf.org/html/draft-ietf-oauth-v2-10
+    #
     module OAuth2
       # This builds the simplest form of requesting an access token
       # based on the arguments passed in

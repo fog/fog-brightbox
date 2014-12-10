@@ -238,4 +238,20 @@ describe Fog::Brightbox::Config do
       refute @config.user_credentials?
     end
   end
+
+  describe "when setting management_url with URI" do
+    it "sets it correctly" do
+      uri = URI.parse("https://example.com")
+      @config = Fog::Brightbox::Config.new
+      @config.storage_management_url = uri
+      assert_equal @config.storage_management_url, uri
+    end
+  end
+
+  describe "when setting management_url with String" do
+    it "raises ArgumentError" do
+      uri = "http://example.com/wrong"
+      assert_raises(ArgumentError) { Fog::Brightbox::Config.new.storage_management_url = uri }
+    end
+  end
 end
