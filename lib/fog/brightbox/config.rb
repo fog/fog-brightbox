@@ -9,8 +9,6 @@ module Fog
     # is told a token has expired then another will not retry it.
     #
     class Config
-      attr_writer :storage_management_url
-
       # Creates a new set of configuration settings based on the options provided.
       #
       # @param [Hash] options The configuration settings
@@ -94,12 +92,25 @@ module Fog
         URI.parse(@options[:brightbox_storage_url] || "https://orbit.brightbox.com")
       end
 
+      # The {#storage_management_url} is based on the {#storage_url} and the account details used when
+      # autheticating. This is normally automatically discovered within the servive but can be
+      # overridden in the {Config}
+      #
+      # @return [URI] if the URL is configured
+      # @return [nil] if the URL is not configured
       def storage_management_url
         @storage_management_url ||= if @options.key?(:brightbox_storage_management_url)
                                       URI.parse(@options[:brightbox_storage_management_url])
                                     else
                                       nil
                                     end
+      end
+
+      # @param [URI] management_url The +URI+ to use for management requests.
+      # @raise [ArgumentError] if non +URI+ object passed
+      def storage_management_url=(management_url)
+        raise ArgumentError unless management_url.kind_of?(URI)
+        @storage_management_url = management_url
       end
 
       # @return [String] The configured identifier of the API client or user application.
