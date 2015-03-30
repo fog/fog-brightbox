@@ -1,5 +1,5 @@
 require "spec_helper"
-require "fog/brightbox/models/compute/zone"
+require "fog/compute/brightbox/models/zone"
 
 describe Fog::Compute::Brightbox::Zone do
   include ModelSetup

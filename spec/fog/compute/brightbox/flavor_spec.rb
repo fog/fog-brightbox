@@ -1,5 +1,5 @@
 require "spec_helper"
-require "fog/brightbox/models/compute/flavor"
+require "fog/compute/brightbox/models/flavor"
 
 describe Fog::Compute::Brightbox::Flavor do
   include ModelSetup

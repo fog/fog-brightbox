@@ -1,5 +1,5 @@
 require "spec_helper"
-require "fog/brightbox/models/compute/api_client"
+require "fog/compute/brightbox/models/api_client"
 
 describe Fog::Compute::Brightbox::ApiClient do
   include ModelSetup

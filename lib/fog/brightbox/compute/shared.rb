@@ -1,5 +1,3 @@
-require "fog/brightbox/oauth2"
-
 module Fog
   module Brightbox
     module Compute

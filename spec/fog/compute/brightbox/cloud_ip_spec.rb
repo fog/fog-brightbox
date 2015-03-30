@@ -1,5 +1,5 @@
 require "spec_helper"
-require "fog/brightbox/models/compute/cloud_ip"
+require "fog/compute/brightbox/models/cloud_ip"
 
 describe Fog::Compute::Brightbox::CloudIp do
   include ModelSetup

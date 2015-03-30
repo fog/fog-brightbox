@@ -1,5 +1,5 @@
 require "spec_helper"
-require "fog/brightbox/models/compute/server"
+require "fog/compute/brightbox/models/server"
 
 describe Fog::Compute::Brightbox::Server do
   include ModelSetup

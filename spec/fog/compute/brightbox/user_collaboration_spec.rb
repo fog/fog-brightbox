@@ -1,5 +1,5 @@
 require "spec_helper"
-require "fog/brightbox/models/compute/user_collaboration"
+require "fog/compute/brightbox/models/user_collaboration"
 
 describe Fog::Compute::Brightbox::UserCollaboration do
   include ModelSetup
