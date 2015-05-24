@@ -1,5 +1,5 @@
 require "spec_helper"
-require "fog/brightbox/models/compute/event"
+require "fog/compute/brightbox/models/event"
 
 describe Fog::Compute::Brightbox::Event do
   include ModelSetup

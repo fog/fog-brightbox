@@ -1,5 +1,5 @@
 require "spec_helper"
-require "fog/brightbox/models/compute/database_type"
+require "fog/compute/brightbox/models/database_type"
 
 describe Fog::Compute::Brightbox::DatabaseType do
   include ModelSetup
