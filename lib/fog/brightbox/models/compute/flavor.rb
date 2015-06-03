@@ -20,7 +20,7 @@ module Fog
         attribute :ram
 
         def bits
-          0 # This is actually based on the Image type used. 32bit or 64bit Images are supported
+          64 # This is actually based on the Image type used. 32bit or 64bit Images are supported
         end
       end
     end
