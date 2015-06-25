@@ -1,6 +1,4 @@
-require "minitest/autorun"
-require "webmock/minitest"
-require "fog/brightbox"
+require "spec_helper"
 
 describe Fog::Storage::Brightbox do
   include StockStorageResponses
