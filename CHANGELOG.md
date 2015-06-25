@@ -1,3 +1,15 @@
+### 0.7.2 / 2015-06-25
+
+Bug fixes:
+
+* Error if management URL is not `URI` to prevent errors when a `String` given.
+* `Server#bits` returns "64" as a placeholder rather than "0".
+* Fixed requires in specs so can they can all run independently.
+
+Changes:
+
+* Fixed some indentation problems.
+
 ### 0.7.1 / 2014-12-05
 
 Bug fixes:
