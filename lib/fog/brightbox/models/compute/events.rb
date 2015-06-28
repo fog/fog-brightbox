@@ -1,4 +1,3 @@
-require "fog/core/collection"
 require "fog/brightbox/models/compute/event"
 
 module Fog

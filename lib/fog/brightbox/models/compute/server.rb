@@ -1,6 +1,4 @@
 require "fog/compute/models/server"
-require "fog/brightbox/compute/resource_locking"
-require "fog/brightbox/model_helper"
 
 module Fog
   module Compute
