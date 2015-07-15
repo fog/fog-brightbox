@@ -1,3 +1,10 @@
+### 0.8.0 / 2015-07-16
+
+Changes:
+
+* Add `CloudIp#fqdn` attribute
+* Use relative paths and reduce requires
+
 ### 0.7.2 / 2015-06-25
 
 Bug fixes:
