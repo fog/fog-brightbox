@@ -1,4 +1,4 @@
-require "fog/brightbox/models/storage/file"
+require "fog-brightbox/models/storage/file"
 
 module Fog
   module Storage

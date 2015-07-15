@@ -8,13 +8,13 @@ module Fog
                  :brightbox_service_type, :brightbox_tenant,
                  :brightbox_region, :brightbox_temp_url_key
 
-      model_path "fog/brightbox/models/storage"
+      model_path "fog-brightbox/models/storage"
       model :directory
       collection :directories
       model :file
       collection :files
 
-      request_path "fog/brightbox/requests/storage"
+      request_path "fog-brightbox/requests/storage"
       request :copy_object
       request :delete_container
       request :delete_object

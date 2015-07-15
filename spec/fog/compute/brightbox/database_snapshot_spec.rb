@@ -1,5 +1,5 @@
 require "spec_helper"
-require "fog/brightbox/models/compute/database_snapshot"
+require "fog-brightbox/models/compute/database_snapshot"
 
 describe Fog::Compute::Brightbox::DatabaseSnapshot do
   include ModelSetup

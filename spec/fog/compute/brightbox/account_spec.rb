@@ -1,5 +1,5 @@
 require "spec_helper"
-require "fog/brightbox/models/compute/account"
+require "fog-brightbox/models/compute/account"
 
 describe Fog::Compute::Brightbox::Account do
   include ModelSetup

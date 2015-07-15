@@ -1,4 +1,4 @@
-require "fog/brightbox/models/compute/database_snapshot"
+require "fog-brightbox/models/compute/database_snapshot"
 
 module Fog
   module Compute

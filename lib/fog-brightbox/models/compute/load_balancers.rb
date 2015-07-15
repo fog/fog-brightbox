@@ -1,4 +1,4 @@
-require "fog/brightbox/models/compute/load_balancer"
+require "fog-brightbox/models/compute/load_balancer"
 
 module Fog
   module Compute

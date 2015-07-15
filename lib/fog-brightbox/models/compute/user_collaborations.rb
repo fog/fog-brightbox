@@ -1,4 +1,4 @@
-require "fog/brightbox/models/compute/user_collaboration"
+require "fog-brightbox/models/compute/user_collaboration"
 
 module Fog
   module Compute

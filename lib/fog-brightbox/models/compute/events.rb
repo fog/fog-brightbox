@@ -1,4 +1,4 @@
-require "fog/brightbox/models/compute/event"
+require "fog-brightbox/models/compute/event"
 
 module Fog
   module Compute

@@ -1,5 +1,5 @@
 require "spec_helper"
-require "fog/brightbox/models/compute/load_balancer"
+require "fog-brightbox/models/compute/load_balancer"
 
 describe Fog::Compute::Brightbox::LoadBalancer do
   include ModelSetup

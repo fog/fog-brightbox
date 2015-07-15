@@ -1,4 +1,4 @@
-require "fog/brightbox/models/compute/cloud_ip"
+require "fog-brightbox/models/compute/cloud_ip"
 
 module Fog
   module Compute

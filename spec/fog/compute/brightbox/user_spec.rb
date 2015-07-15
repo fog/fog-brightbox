@@ -1,5 +1,5 @@
 require "spec_helper"
-require "fog/brightbox/models/compute/user"
+require "fog-brightbox/models/compute/user"
 
 describe Fog::Compute::Brightbox::User do
   include ModelSetup

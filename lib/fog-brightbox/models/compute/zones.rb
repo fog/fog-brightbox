@@ -1,19 +1,19 @@
-require "fog/brightbox/models/compute/firewall_policy"
+require "fog-brightbox/models/compute/zone"
 
 module Fog
   module Compute
     class Brightbox
-      class FirewallPolicies < Fog::Collection
-        model Fog::Compute::Brightbox::FirewallPolicy
+      class Zones < Fog::Collection
+        model Fog::Compute::Brightbox::Zone
 
         def all
-          data = service.list_firewall_policies
+          data = service.list_zones
           load(data)
         end
 
         def get(identifier)
           return nil if identifier.nil? || identifier == ""
-          data = service.get_firewall_policy(identifier)
+          data = service.get_zone(identifier)
           new(data)
         rescue Excon::Errors::NotFound
           nil

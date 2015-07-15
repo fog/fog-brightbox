@@ -1,4 +1,4 @@
-require "fog/brightbox/models/compute/firewall_rule"
+require "fog-brightbox/models/compute/firewall_rule"
 
 module Fog
   module Compute
