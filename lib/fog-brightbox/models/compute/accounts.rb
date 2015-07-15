@@ -1,19 +1,19 @@
-require "fog/brightbox/models/compute/server_group"
+require "fog-brightbox/models/compute/account"
 
 module Fog
   module Compute
     class Brightbox
-      class ServerGroups < Fog::Collection
-        model Fog::Compute::Brightbox::ServerGroup
+      class Accounts < Fog::Collection
+        model Fog::Compute::Brightbox::Account
 
         def all
-          data = service.list_server_groups
+          data = service.list_accounts
           load(data)
         end
 
         def get(identifier)
           return nil if identifier.nil? || identifier == ""
-          data = service.get_server_group(identifier)
+          data = service.get_account(identifier)
           new(data)
         rescue Excon::Errors::NotFound
           nil

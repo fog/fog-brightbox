@@ -1,4 +1,4 @@
-require "fog/brightbox/models/compute/database_server"
+require "fog-brightbox/models/compute/database_server"
 
 module Fog
   module Compute

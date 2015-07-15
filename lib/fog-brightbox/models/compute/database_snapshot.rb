@@ -1,4 +1,4 @@
-require "fog/brightbox/compute/resource_locking"
+require "fog-brightbox/compute/resource_locking"
 
 module Fog
   module Compute

@@ -1,5 +1,5 @@
 require "spec_helper"
-require "fog/brightbox/models/compute/firewall_policy"
+require "fog-brightbox/models/compute/firewall_policy"
 
 describe Fog::Compute::Brightbox::FirewallPolicy do
   include ModelSetup

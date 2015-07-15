@@ -1,5 +1,5 @@
 require "minitest/autorun"
-require "fog/brightbox"
+require "fog-brightbox"
 
 describe Fog::Brightbox::Storage::Config do
   describe "when required arguments are included" do

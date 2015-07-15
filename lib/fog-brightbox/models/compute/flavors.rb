@@ -1,18 +1,18 @@
-require "fog/brightbox/models/compute/image"
+require "fog-brightbox/models/compute/flavor"
 
 module Fog
   module Compute
     class Brightbox
-      class Images < Fog::Collection
-        model Fog::Compute::Brightbox::Image
+      class Flavors < Fog::Collection
+        model Fog::Compute::Brightbox::Flavor
 
         def all
-          data = service.list_images
+          data = service.list_server_types
           load(data)
         end
 
         def get(identifier)
-          data = service.get_image(identifier)
+          data = service.get_server_type(identifier)
           new(data)
         rescue Excon::Errors::NotFound
           nil

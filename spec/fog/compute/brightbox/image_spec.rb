@@ -1,5 +1,5 @@
 require "spec_helper"
-require "fog/brightbox/models/compute/image"
+require "fog-brightbox/models/compute/image"
 
 describe Fog::Compute::Brightbox::Image do
   include ModelSetup

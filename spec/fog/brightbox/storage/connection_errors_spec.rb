@@ -1,6 +1,6 @@
 require "minitest/autorun"
 require "webmock/minitest"
-require "fog/brightbox"
+require "fog-brightbox"
 
 describe Fog::Brightbox::Storage::Connection do
   let(:config) { Fog::Brightbox::Config.new(settings) }

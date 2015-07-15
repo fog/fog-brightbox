@@ -1,4 +1,4 @@
-require "fog/brightbox/models/compute/api_client"
+require "fog-brightbox/models/compute/api_client"
 
 module Fog
   module Compute

@@ -19,7 +19,7 @@ module Fog
       # Excon connection settings
       recognizes :persistent
 
-      model_path "fog/brightbox/models/compute"
+      model_path "fog-brightbox/models/compute"
       collection :accounts
       model :account
       collection :applications
@@ -59,7 +59,7 @@ module Fog
       collection :user_collaborations
       model :user_collaboration
 
-      request_path "fog/brightbox/requests/compute"
+      request_path "fog-brightbox/requests/compute"
       request :accept_user_collaboration
       request :activate_console_server
       request :add_listeners_load_balancer
