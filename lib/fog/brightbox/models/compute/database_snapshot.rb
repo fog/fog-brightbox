@@ -1,4 +1,3 @@
-require "fog/brightbox/model"
 require "fog/brightbox/compute/resource_locking"
 
 module Fog

@@ -1,5 +1,3 @@
-require "fog/brightbox/model"
-
 module Fog
   module Compute
     class Brightbox

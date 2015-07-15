@@ -1,6 +1,3 @@
-require "fog/core/connection"
-require "fog/brightbox/storage/errors"
-
 module Fog
   module Brightbox
     module Storage

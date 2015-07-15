@@ -1,5 +1,3 @@
-require "fog/brightbox/oauth2"
-
 module Fog
   module Brightbox
     # The {Fog::Brightbox::Config} class is designed to encapsulate a group of settings for reuse

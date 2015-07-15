@@ -1,9 +1,3 @@
-require "fog/brightbox/core"
-require "fog/brightbox/storage/errors"
-require "fog/brightbox/storage/config"
-require "fog/brightbox/storage/authentication_request"
-require "fog/brightbox/storage/connection"
-
 module Fog
   module Storage
     class Brightbox < Fog::Service
