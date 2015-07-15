@@ -12,6 +12,7 @@ module Fog
 
         attribute :reverse_dns
         attribute :public_ip
+        attribute :fqdn
 
         # Links - to be replaced
         attribute :account_id, :aliases => "account", :squash => "id"
