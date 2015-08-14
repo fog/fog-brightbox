@@ -216,8 +216,7 @@ class Brightbox
           "name"            => Fog::Nullable::String,
           "created_at"      => String,
           "default"         => Fog::Boolean,
-          "description"     => Fog::Nullable::String,
-          "created_at"      => String
+          "description"     => Fog::Nullable::String
         }
 
         SERVER_TYPE = {
@@ -394,8 +393,7 @@ class Brightbox
           "virtual_size"    => Integer,
           "disk_size"       => Integer,
           "min_ram"         => Fog::Nullable::Integer,
-          "ancestor"        => Fog::Brightbox::Nullable::Image,
-          "username"        => Fog::Nullable::String
+          "ancestor"        => Fog::Brightbox::Nullable::Image
         }
 
         LOAD_BALANCER = {
@@ -443,7 +441,6 @@ class Brightbox
           "name"            => Fog::Nullable::String,
           "description"     => Fog::Nullable::String,
           "default"         => Fog::Boolean,
-          "created_at"      => String,
           "account"         => Brightbox::Compute::Formats::Nested::ACCOUNT,
           "servers"         => [Brightbox::Compute::Formats::Nested::SERVER],
           "firewall_policy" => Fog::Brightbox::Nullable::FirewallPolicy
@@ -657,7 +654,6 @@ class Brightbox
           "disk_size"       => Integer,
           "min_ram"         => Fog::Nullable::Integer,
           "ancestor"        => Fog::Brightbox::Nullable::Image,
-          "username"        => Fog::Nullable::String,
           "licence_name"    => Fog::Nullable::String
         }
 
@@ -724,7 +720,6 @@ class Brightbox
           "name"            => String,
           "description"     => Fog::Nullable::String,
           "default"         => Fog::Boolean,
-          "created_at"      => String,
           "account"         => Brightbox::Compute::Formats::Nested::ACCOUNT,
           "servers"         => [Brightbox::Compute::Formats::Nested::SERVER],
           "firewall_policy" => Fog::Brightbox::Nullable::FirewallPolicy
