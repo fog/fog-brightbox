@@ -66,7 +66,7 @@ Shindo.tests("Fog::Brightbox::OAuth2", ["brightbox"]) do
 
     tests("#authorization_body_data") do
       authorization_body_data = strategy.authorization_body_data
-      test("grant_type == none") { authorization_body_data["grant_type"] == "none" }
+      test("grant_type == client_credentials") { authorization_body_data["grant_type"] == "client_credentials" }
       test("client_id == #{@client_id}") { authorization_body_data["client_id"] == @client_id }
     end
   end

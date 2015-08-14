@@ -113,13 +113,13 @@ module Fog
       end
 
       # This implements client based authentication/authorization
-      # based on the existing trust relationship using the `none`
-      # grant type.
+      # based on the existing trust relationship using the
+      # `client_credentials` grant type.
       #
       class ClientCredentialsStrategy < GrantTypeStrategy
         def authorization_body_data
           {
-            "grant_type" => "none",
+            "grant_type" => "client_credentials",
             "client_id"  => @credentials.client_id
           }
         end
