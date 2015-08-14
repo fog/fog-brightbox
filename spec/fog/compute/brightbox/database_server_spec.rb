@@ -24,7 +24,7 @@ describe Fog::Compute::Brightbox::DatabaseServer do
       skip if RUBY_VERSION < "1.9"
 
       stub_request(:post, "http://localhost/1.0/database_servers/dbs-12345/snapshot?account_id=").
-        with(:headers => { "Authorization" => "OAuth FAKECACHEDTOKEN" }).
+        with(:headers => { "Authorization" => "Bearer FAKECACHEDTOKEN" }).
         to_return(:status => 202, :body => %q({"id": "dbs-12345"}), :headers => {})
 
       @database_server = Fog::Compute::Brightbox::DatabaseServer.new(:service => service, :id => "dbs-12345")
@@ -39,11 +39,11 @@ describe Fog::Compute::Brightbox::DatabaseServer do
       link = "<https://api.gb1.brightbox.com/1.0/database_snapshots/dbi-12345>; rel=snapshot"
 
       stub_request(:post, "http://localhost/1.0/database_servers/dbs-12345/snapshot").
-        with(:headers => { "Authorization" => "OAuth FAKECACHEDTOKEN" }).
+        with(:headers => { "Authorization" => "Bearer FAKECACHEDTOKEN" }).
         to_return(:status => 202, :body => "{}", :headers => { "Link" => link })
 
       stub_request(:get, "http://localhost/1.0/database_snapshots/dbi-12345?account_id=").
-        with(:headers => { "Authorization" => "OAuth FAKECACHEDTOKEN" }).
+        with(:headers => { "Authorization" => "Bearer FAKECACHEDTOKEN" }).
         to_return(:status => 200, :body => %q({"id": "dbs-12345"}))
       @database_server = Fog::Compute::Brightbox::DatabaseServer.new(:service => service, :id => "dbs-12345")
       assert_kind_of Fog::Compute::Brightbox::DatabaseSnapshot, @database_server.snapshot(true)
