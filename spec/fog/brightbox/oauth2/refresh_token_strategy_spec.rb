@@ -21,8 +21,8 @@ describe Fog::Brightbox::OAuth2::RefreshTokenStrategy do
   it "tests #authorization_body_data" do
     authorization_body_data = @strategy.authorization_body_data
     assert_equal "refresh_token", authorization_body_data["grant_type"]
-    assert_equal @client_id, authorization_body_data["client_id"]
     assert_equal @refresh_token, authorization_body_data["refresh_token"]
+    refute_includes authorization_body_data, "client_id"
   end
 
   it "tests #headers" do

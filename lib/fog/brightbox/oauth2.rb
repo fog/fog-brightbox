@@ -126,7 +126,6 @@ module Fog
         def authorization_body_data
           {
             "grant_type" => "client_credentials",
-            "client_id"  => @credentials.client_id
           }
         end
       end
@@ -139,7 +138,6 @@ module Fog
         def authorization_body_data
           {
             "grant_type" => "password",
-            "client_id"  => @credentials.client_id,
             "username"   => @credentials.username,
             "password"   => @credentials.password
           }
@@ -153,7 +151,6 @@ module Fog
         def authorization_body_data
           {
             "grant_type"    => "refresh_token",
-            "client_id"     => @credentials.client_id,
             "refresh_token" => @credentials.refresh_token
           }
         end

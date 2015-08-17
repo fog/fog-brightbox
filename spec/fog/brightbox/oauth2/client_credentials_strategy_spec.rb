@@ -19,7 +19,7 @@ describe Fog::Brightbox::OAuth2::ClientCredentialsStrategy do
   it "tests #authorization_body_data" do
     authorization_body_data = @strategy.authorization_body_data
     assert_equal "client_credentials", authorization_body_data["grant_type"]
-    assert_equal @client_id, authorization_body_data["client_id"]
+    refute_includes authorization_body_data, "client_id"
   end
 
   it "tests #headers" do
