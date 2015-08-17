@@ -16,16 +16,10 @@ module Fog
       def request_access_token(connection, credentials)
         token_strategy = credentials.best_grant_strategy
 
-        header_content = "#{credentials.client_id}:#{credentials.client_secret}"
-        encoded_credentials = Base64.encode64(header_content).chomp
-
         connection.request(
           :path => "/token",
           :expects  => 200,
-          :headers  => {
-            "Authorization" => "Basic #{encoded_credentials}",
-            "Content-Type" => "application/json"
-          },
+          :headers  => token_strategy.headers,
           :method   => "POST",
           :body     => Fog::JSON.encode(token_strategy.authorization_body_data)
         )
@@ -109,6 +103,18 @@ module Fog
 
         def authorization_body_data
           raise "Not implemented"
+        end
+
+        def authorization_header
+          header_content = "#{@credentials.client_id}:#{@credentials.client_secret}"
+          "Basic #{Base64.encode64(header_content).chomp}"
+        end
+
+        def headers
+          {
+            "Authorization" => authorization_header,
+            "Content-Type" => "application/json"
+          }
         end
       end
 

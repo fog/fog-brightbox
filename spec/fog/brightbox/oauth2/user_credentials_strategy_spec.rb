@@ -20,11 +20,21 @@ describe Fog::Brightbox::OAuth2::UserCredentialsStrategy do
     assert @strategy.respond_to?(:authorization_body_data)
   end
 
+  it "tests #respond_to?(:headers) returns true"  do
+    assert @strategy.respond_to?(:headers)
+  end
+
   it "tests #authorization_body_data" do
     authorization_body_data = @strategy.authorization_body_data
     assert_equal "password", authorization_body_data["grant_type"]
     assert_equal @client_id, authorization_body_data["client_id"]
     assert_equal @username, authorization_body_data["username"]
     assert_equal @password, authorization_body_data["password"]
+  end
+
+  it "tests #headers" do
+    headers = @strategy.headers
+    assert_equal "Basic YXBwLTEyMzQ1Ol9fbWFzaGVkX2tleXNfMTIzX18=", headers["Authorization"]
+    assert_equal "application/json", headers["Content-Type"]
   end
 end
