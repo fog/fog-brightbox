@@ -24,7 +24,7 @@ describe Fog::Compute::Brightbox::Server do
       skip if RUBY_VERSION < "1.9"
 
       stub_request(:post, "http://localhost/1.0/servers/srv-12345/snapshot?account_id=").
-        with(:headers => { "Authorization" => "OAuth FAKECACHEDTOKEN" }).
+        with(:headers => { "Authorization" => "Bearer FAKECACHEDTOKEN" }).
         to_return(:status => 202, :body => %q({"id": "srv-12345"}), :headers => {})
 
       @server = Fog::Compute::Brightbox::Server.new(:service => service, :id => "srv-12345")
@@ -39,11 +39,11 @@ describe Fog::Compute::Brightbox::Server do
       link = "<https://api.gb1.brightbox.com/1.0/images/img-12345>; rel=snapshot"
 
       stub_request(:post, "http://localhost/1.0/servers/srv-12345/snapshot").
-        with(:headers => { "Authorization" => "OAuth FAKECACHEDTOKEN" }).
+        with(:headers => { "Authorization" => "Bearer FAKECACHEDTOKEN" }).
         to_return(:status => 202, :body => "{}", :headers => { "Link" => link })
 
       stub_request(:get, "http://localhost/1.0/images/img-12345?account_id=").
-        with(:headers => { "Authorization" => "OAuth FAKECACHEDTOKEN" }).
+        with(:headers => { "Authorization" => "Bearer FAKECACHEDTOKEN" }).
         to_return(:status => 200, :body => %q({"id": "img-12345"}))
       @server = Fog::Compute::Brightbox::Server.new(:service => service, :id => "srv-12345")
       assert_kind_of Fog::Compute::Brightbox::Image, @server.snapshot(true)

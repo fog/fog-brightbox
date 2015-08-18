@@ -16,16 +16,10 @@ module Fog
       def request_access_token(connection, credentials)
         token_strategy = credentials.best_grant_strategy
 
-        header_content = "#{credentials.client_id}:#{credentials.client_secret}"
-        encoded_credentials = Base64.encode64(header_content).chomp
-
         connection.request(
           :path => "/token",
           :expects  => 200,
-          :headers  => {
-            "Authorization" => "Basic #{encoded_credentials}",
-            "Content-Type" => "application/json"
-          },
+          :headers  => token_strategy.headers,
           :method   => "POST",
           :body     => Fog::JSON.encode(token_strategy.authorization_body_data)
         )
@@ -110,17 +104,28 @@ module Fog
         def authorization_body_data
           raise "Not implemented"
         end
+
+        def authorization_header
+          header_content = "#{@credentials.client_id}:#{@credentials.client_secret}"
+          "Basic #{Base64.encode64(header_content).chomp}"
+        end
+
+        def headers
+          {
+            "Authorization" => authorization_header,
+            "Content-Type" => "application/json"
+          }
+        end
       end
 
       # This implements client based authentication/authorization
-      # based on the existing trust relationship using the `none`
-      # grant type.
+      # based on the existing trust relationship using the
+      # `client_credentials` grant type.
       #
       class ClientCredentialsStrategy < GrantTypeStrategy
         def authorization_body_data
           {
-            "grant_type" => "none",
-            "client_id"  => @credentials.client_id
+            "grant_type" => "client_credentials",
           }
         end
       end
@@ -133,7 +138,6 @@ module Fog
         def authorization_body_data
           {
             "grant_type" => "password",
-            "client_id"  => @credentials.client_id,
             "username"   => @credentials.username,
             "password"   => @credentials.password
           }
@@ -147,7 +151,6 @@ module Fog
         def authorization_body_data
           {
             "grant_type"    => "refresh_token",
-            "client_id"     => @credentials.client_id,
             "refresh_token" => @credentials.refresh_token
           }
         end
