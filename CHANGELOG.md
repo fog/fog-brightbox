@@ -1,3 +1,21 @@
+### 0.9.0 / 2015-08-18
+
+Changes:
+
+* Updated the OAuth model to better reflect the final OAuth 2.0 spec. This is
+  not a breaking change since the server side component remain backwards
+  compatible so usage of the `fog` API should not have changed.
+* Updated `travis.yml` to use faster container architecture.
+* Moved `shindo` tests into repo from main `fog` gem. These act as acceptance
+  tests against real environments.
+* Moved OAuth module specs from Shindo to Minispec.
+
+Bug fixes:
+
+* Use `Authorization: Bearer` scheme rather than draft value of "Token"
+* Use `client_credentials` grant type rather than draft value of "none"
+* Remove duplicate scheme keys causing warnings in Shindo tests
+
 ### 0.8.0 / 2015-07-16
 
 Changes:
