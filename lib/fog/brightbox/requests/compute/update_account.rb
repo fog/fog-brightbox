@@ -16,6 +16,7 @@ module Fog
         #   @option options [String] :country_code ISO 3166-1 two letter code (example: `GB`)
         #   @option options [String] :vat_registration_number Must be a valid EU VAT number or `nil`
         #   @option options [String] :telephone_number Valid International telephone number in E.164 format prefixed with `+`
+        #   @option options [Boolean] :nested passed through with the API request. When true nested resources are expanded.
         #
         # @overload update_account(options)
         #   @deprecated Use {Fog::Compute::Brightbox::Real#update_scoped_account} instead
@@ -30,6 +31,7 @@ module Fog
         #   @option options [String] :country_code ISO 3166-1 two letter code (example: `GB`)
         #   @option options [String] :vat_registration_number Must be a valid EU VAT number or `nil`
         #   @option options [String] :telephone_number Valid International telephone number in E.164 format prefixed with `+`
+        #   @option options [Boolean] :nested passed through with the API request. When true nested resources are expanded.
         #
         # @return [Hash] if successful Hash version of JSON object
         # @return [NilClass] if no options were passed

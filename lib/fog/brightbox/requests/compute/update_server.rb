@@ -9,6 +9,7 @@ module Fog
         # @option options [String] :name Editable label
         # @option options [String] :user_data User defined metadata
         # @option options [Boolean] :compatibility_mode Server needs to be shutdown and restarted for changes to this to take effect
+        # @option options [Boolean] :nested passed through with the API request. When true nested resources are expanded.
         #
         # @return [Hash] if successful Hash version of JSON object
         # @return [NilClass] if no options were passed

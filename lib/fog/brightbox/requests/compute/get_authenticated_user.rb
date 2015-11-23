@@ -6,8 +6,8 @@ module Fog
         #
         # @return [Hash] The JSON response parsed to a Hash
         #
-        def get_authenticated_user
-          wrapped_request("get", "/1.0/user", [200])
+        def get_authenticated_user(options = {})
+          wrapped_request("get", "/1.0/user", [200], options)
         end
       end
     end
