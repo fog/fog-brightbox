@@ -2,7 +2,7 @@ Shindo.tests("Fog::Compute[:brightbox] | account requests", ["brightbox"]) do
   tests("success") do
     tests("#list_accounts") do
       pending if Fog.mocking?
-      result = Fog::Compute[:brightbox].list_accounts
+      result = Fog::Compute[:brightbox].list_accounts(:nested => true)
       data_matches_schema(Brightbox::Compute::Formats::Collection::ACCOUNTS, :allow_extra_keys => true) { result }
     end
 
