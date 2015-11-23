@@ -8,6 +8,7 @@ module Fog
         # @param [Hash] options
         # @option options [String] :name
         # @option options [String] :description
+        # @option options [String] :permissions_group
         #
         # @return [Hash] if successful Hash version of JSON object
         # @return [NilClass] if no options were passed

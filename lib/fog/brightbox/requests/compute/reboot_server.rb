@@ -2,7 +2,7 @@ module Fog
   module Compute
     class Brightbox
       class Real
-        # Shuts down and resets the server without disconnecting the console.
+        # Issues a 'soft' reboot to the server however the OS may ignore it. The console remains connected.
         #
         # @param [String] identifier Unique reference to identify the resource
         #
