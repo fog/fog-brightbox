@@ -10,6 +10,7 @@ module Fog
         # @option options [Array] :allow_access ...
         # @option options [String] :snapshot
         # @option options [String] :zone
+        # @option options [Boolean] :nested passed through with the API request. When true nested resources are expanded.
         #
         # @return [Hash] if successful Hash version of JSON object
         # @return [NilClass] if no options were passed

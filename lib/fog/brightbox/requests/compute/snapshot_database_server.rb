@@ -5,6 +5,7 @@ module Fog
         # @param [String] identifier Unique reference to identify the resource
         # @param [Hash] options
         # @option options [Boolean] :return_link Return the Link header as a second return value
+        # @option options [Boolean] :nested passed through with the API request. When true nested resources are expanded.
         #
         # @return [Hash] if successful Hash version of JSON object
         #

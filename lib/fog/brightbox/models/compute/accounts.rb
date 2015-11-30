@@ -6,8 +6,8 @@ module Fog
       class Accounts < Fog::Collection
         model Fog::Compute::Brightbox::Account
 
-        def all
-          data = service.list_accounts
+        def all(options = {})
+          data = service.list_accounts(options)
           load(data)
         end
 

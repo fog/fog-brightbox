@@ -9,6 +9,7 @@ module Fog
         # @param [Hash] options
         # @option options [String] :email Email address of user to invite
         # @option options [String] :role Role to grant to the user. Currently only `admin`
+        # @option options [Boolean] :nested passed through with the API request. When true nested resources are expanded.
         #
         # @return [Hash] if successful Hash version of JSON object
         # @return [NilClass] if no options were passed

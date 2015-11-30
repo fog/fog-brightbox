@@ -7,6 +7,7 @@ module Fog
         # @param [String] identifier Unique reference to identify the resource
         # @param [Hash] options
         # @option options [Array] :listeners Array of Listener parameters. Timeout is optional and specified in milliseconds.
+        # @option options [Boolean] :nested passed through with the API request. When true nested resources are expanded.
         #
         # @return [Hash] if successful Hash version of JSON object
         # @return [NilClass] if no options were passed

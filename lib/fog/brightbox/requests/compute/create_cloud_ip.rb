@@ -8,6 +8,7 @@ module Fog
         # @option options [String] :reverse_dns Reverse DNS hostname
         # @option options [String] :name Name for Cloud IP
         # @option options [Array] :port_translators Port on which external clients connect and port on which your service is listening.
+        # @option options [Boolean] :nested passed through with the API request. When true nested resources are expanded.
         #
         # @return [Hash] if successful Hash version of JSON object
         # @return [NilClass] if no options were passed

@@ -10,6 +10,7 @@ module Fog
         # @option options [String] :limit Limit of pagination
         # @option options [String] :offset Offset of pagination
         # @option options [String] :resource_id Filter events for given resource_id
+        # @option options [Boolean] :nested passed through with the API request. When true nested resources are expanded.
         #
         # @return [Hash] if successful Hash version of JSON object
         # @return [NilClass] if no options were passed

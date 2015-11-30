@@ -13,6 +13,7 @@ module Fog
         # @option options [String] :zone Zone in which to create new Server
         # @option options [String] :user_data
         # @option options [Array] :server_groups Array of server groups to add server to
+        # @option options [Boolean] :nested passed through with the API request. When true nested resources are expanded.
         #
         # @return [Hash] if successful Hash version of JSON object
         # @return [NilClass] if no options were passed

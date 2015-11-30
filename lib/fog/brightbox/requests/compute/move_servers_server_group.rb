@@ -9,6 +9,7 @@ module Fog
         # @option options [Array<Hash>] :servers Array of Hashes containing
         #   +{"server" => server_id}+ for each server to remove
         # @option options [String] :destination ServerGroup to move servers to
+        # @option options [Boolean] :nested passed through with the API request. When true nested resources are expanded.
         #
         # @return [Hash] if successful Hash version of JSON object
         # @return [NilClass] if no options were passed

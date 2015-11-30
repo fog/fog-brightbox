@@ -8,6 +8,7 @@ module Fog
         # @param [Hash] options
         # @option options [String] :name
         # @option options [String] :description
+        # @option options [Boolean] :nested passed through with the API request. When true nested resources are expanded.
         #
         # @return [Hash] if successful Hash version of JSON object
         # @return [NilClass] if no options were passed
