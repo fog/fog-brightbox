@@ -1,3 +1,15 @@
+### 0.10.0 / 2015-11-30
+
+Changes:
+
+* Updated auto-generated documentation for requests
+* Added `options` to all requests. Select options are passed through to the API
+  to alter behaviour for all requests.
+* Allow requests to use `nested=false` option to collapse nested (or children)
+  resources from the JSON which is faster to render and less content.
+* Make `list_accounts` default to `nested=false` because it is very slow for
+  large accounts and the nested resources are rarely used.
+
 ### 0.9.0 / 2015-08-18
 
 Changes:
