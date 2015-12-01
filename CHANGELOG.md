@@ -1,3 +1,9 @@
+### 0.10.1 / 2015-12-01
+
+Bug fixes:
+
+* Do not add `nested` option as body content, only query if present.
+
 ### 0.10.0 / 2015-11-30
 
 Changes:
