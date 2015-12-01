@@ -287,7 +287,7 @@ module Fog
           # Select the account to scope for this request
           account = scoped_account(parameters.fetch(:account_id, nil))
           query.merge!(:account_id => account) if account
-          query.merge!(:nested => parameters[:nested]) if parameters.key?(:nested)
+          query.merge!(:nested => parameters.delete(:nested)) if parameters.key?(:nested)
           request_options[:query] = query unless query.empty?
 
           request_options[:body] = Fog::JSON.encode(parameters) unless parameters.empty?
