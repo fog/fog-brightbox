@@ -55,6 +55,10 @@ Shindo.tests("Fog::Compute[:brightbox] | server requests", ["brightbox"]) do
       data_matches_schema(Brightbox::Compute::Formats::Full::SERVER, :allow_extra_keys => true) { result }
     end
 
+    unless Fog.mocking?
+      Fog::Compute[:brightbox].servers.get(server_id).wait_for { ready? }
+    end
+
     tests("#shutdown_server('#{server_id}')") do
       pending if Fog.mocking?
       result = Fog::Compute[:brightbox].shutdown_server(server_id)
