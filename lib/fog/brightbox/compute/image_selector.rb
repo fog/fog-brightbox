@@ -22,8 +22,6 @@ module Fog
         # * Latest by name (alphanumeric sort)
         # * Latest by creation date
         #
-        # @note This performs a live query against the API
-        #
         # @return [String] if image matches containing the identifier
         # @return [NilClass] if no image matches
         #
@@ -36,7 +34,23 @@ module Fog
             # Reverse sort so "raring" > "precise" and "13.10" > "13.04"
             b["name"].downcase <=> a["name"].downcase
           end.first["id"]
-        rescue
+        rescue StandardError
+          nil
+        end
+
+        # Returns current identifier of the smallest official image
+        #
+        # @return [String] if image matches containing the identifier
+        # @return [NilClass] if no image matches
+        #
+        def official_minimal
+          @images.select do |img|
+            img["official"] == true &&
+            img["virtual_size"] != 0
+          end.sort_by do |img|
+            img["disk_size"]
+          end.first["id"]
+        rescue StandardError
           nil
         end
       end

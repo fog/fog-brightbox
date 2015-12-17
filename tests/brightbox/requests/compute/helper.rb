@@ -13,10 +13,8 @@ class Brightbox
       # @return [String,NilClass] the most suitable test image's identifier or nil
       def self.image_id
         return @image_id unless @image_id.nil?
-        image = select_testing_image_from_api
-        @image_id = image["id"]
-      rescue
-        @image_id = nil
+        images = Fog::Compute[:brightbox].list_images
+        @image_id = Fog::Brightbox::Compute::ImageSelector.new(images).official_minimal
       end
 
       # Prepare a test server, wait for it to be usable but raise if it fails
@@ -28,14 +26,6 @@ class Brightbox
           ready?
         end
         server
-      end
-
-      private
-
-      def self.select_testing_image_from_api
-        images = Fog::Compute[:brightbox].list_images
-        raise "No available images!" if images.empty?
-        images.select { |img| img["official"] && img["virtual_size"] != 0 }.sort_by { |img| img["disk_size"] }.first || images.first
       end
     end
   end
