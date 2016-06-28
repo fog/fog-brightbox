@@ -21,6 +21,10 @@ module Fog
         attribute :maintenance_weekday
         attribute :maintenance_hour
 
+        # This is a crontab formatted string e.g. "* 5 * * 0"
+        attribute :snapshots_schedule, :type => :string
+        attribute :snapshots_schedule_next_at, :type => :time
+
         attribute :created_at, :type => :time
         attribute :updated_at, :type => :time
         attribute :deleted_at, :type => :time
