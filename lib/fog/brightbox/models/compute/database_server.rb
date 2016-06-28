@@ -40,8 +40,6 @@ module Fog
 
           options[:allow_access] = allow_access if allow_access
 
-          # These may be nil which sets them to default values upstream
-          # TODO: Dirty track the values so we don't send them when already nil
           options[:maintenance_weekday] = maintenance_weekday
           options[:maintenance_hour] = maintenance_hour
 
