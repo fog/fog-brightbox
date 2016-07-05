@@ -1,3 +1,19 @@
+### 0.11.0 / 2016-07-05
+
+Enchancements:
+
+* Exposed fields on database servers related to automatic scheduled snapshots.
+
+Bug fixes:
+
+* Removed an error spec broken by Excon v0.50 undergoing a change of error
+  namespace breaking loading of the specs at present.
+
+Changes:
+
+* Stop testing Ruby 1.8.7 due to bitrot, the dependencies are creating more
+  issues than needed.
+
 ### 0.10.1 / 2015-12-01
 
 Bug fixes:
