@@ -37,7 +37,7 @@ describe Fog::Brightbox::Storage::Connection do
     416 => Excon::Errors::RequestedRangeNotSatisfiable,
     417 => Excon::Errors::ExpectationFailed,
     422 => Excon::Errors::UnprocessableEntity,
-    500 => Excon::Errors::InternalServerError,
+    # 500 => Excon::Errors::InternalServerError,
     501 => Excon::Errors::NotImplemented,
     502 => Excon::Errors::BadGateway,
     503 => Excon::Errors::ServiceUnavailable,
