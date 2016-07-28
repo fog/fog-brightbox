@@ -20,12 +20,16 @@ module Fog
         attribute :telephone_number
         attribute :verified_telephone
         attribute :verified_ip
+        attribute :servers_used
         attribute :ram_limit
         attribute :ram_used
         attribute :cloud_ips_limit
         attribute :cloud_ips_used
         attribute :load_balancers_limit
         attribute :load_balancers_used
+        attribute :dbs_servers_used
+        attribute :dbs_ram_limit
+        attribute :dbs_ram_used
         attribute :library_ftp_host
         attribute :library_ftp_user
         # This is always returned as nil unless after a call to reset_ftp_password
