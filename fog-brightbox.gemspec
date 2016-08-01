@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.description   = %q(Module for the 'fog' gem to support Brightbox Cloud)
   spec.summary       = %q(This library can be used as a module for `fog` or as standalone provider
                         to use the Brightbox Cloud in applications)
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/fog/fog-brightbox"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($INPUT_RECORD_SEPARATOR)
