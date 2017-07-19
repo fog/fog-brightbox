@@ -1,5 +1,7 @@
 source "https://rubygems.org"
 
+# Some other dependencies are clashing on this
+gem "public_suffix", "~> 1.4.6"
 gem "net-ssh", "< 3.0"
 
 gemspec :path => ".."
