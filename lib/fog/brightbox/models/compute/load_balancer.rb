@@ -29,6 +29,9 @@ module Fog
         attribute :certificate_subject
         attribute :certificate_enable_ssl3
 
+        # List of domains for ACME
+        attribute :domains
+
         # Times
         attribute :created_at, :type => :time
         attribute :deleted_at, :type => :time
@@ -51,6 +54,7 @@ module Fog
             :healthcheck => healthcheck,
             :policy => policy,
             :name => name,
+            :domains => domains,
             :buffer_size => buffer_size,
             :certificate_pem => certificate_pem,
             :certificate_private_key => certificate_private_key,
