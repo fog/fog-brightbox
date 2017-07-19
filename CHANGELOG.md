@@ -1,6 +1,17 @@
+### 0.12.0 / 2017-07-19
+
+Enhancements:
+
+* Exposed `domains` field on load balancers to support Let's Encrypt via models
+
+Bug fixes:
+
+* Ruby 1.9 Gemfile was locked down against `webmock` and `public_suffix`
+  dropping support for Ruby 2.0
+
 ### 0.11.0 / 2016-07-05
 
-Enchancements:
+Enhancements:
 
 * Exposed fields on database servers related to automatic scheduled snapshots.
 
