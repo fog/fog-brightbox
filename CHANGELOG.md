@@ -1,3 +1,11 @@
+### 0.13.0 / 2017-08-01
+
+Enhancements:
+
+* Added `cloud_ip` argument to server creation to request an immediate mapping
+  when a server build has completed. Either to a known cloud IP using its
+  identifier or by using `true` to allocate a new IP for the operation.
+
 ### 0.12.0 / 2017-07-19
 
 Enhancements:
