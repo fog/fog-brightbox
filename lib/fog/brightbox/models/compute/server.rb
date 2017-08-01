@@ -32,6 +32,7 @@ module Fog
         attribute :image_id,    :aliases => "image",        :squash => "id"
 
         attribute :snapshots
+        attribute :cloud_ip # Creation option only
         attribute :cloud_ips
         attribute :interfaces
         attribute :server_groups
@@ -186,6 +187,7 @@ module Fog
           }.delete_if { |_k, v| v.nil? || v == "" }
 
           options.merge!(:server_type => flavor_id) unless flavor_id.nil? || flavor_id == ""
+          options.merge!(:cloud_ip => cloud_ip) unless cloud_ip.nil? || cloud_ip == ""
 
           data = service.create_server(options)
           merge_attributes(data)
