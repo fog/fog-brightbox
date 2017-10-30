@@ -4,6 +4,8 @@ rvm:
   - 2.2.0
   - 2.1.5
   - 2.0.0
+before_install:
+  - gem install bundler
 matrix:
   include:
     - rvm: 1.9.3
