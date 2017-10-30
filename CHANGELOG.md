@@ -1,3 +1,11 @@
+### 0.14.0 / 2017-10-30
+
+Enhancements:
+
+* Added `public_ipv6` and `public_ipv4` attributes to `CloudIp` model to access
+  both types of exposed IP addresses. The deprecated `public_ip` attribute
+  remains.
+
 ### 0.13.0 / 2017-08-01
 
 Enhancements:
