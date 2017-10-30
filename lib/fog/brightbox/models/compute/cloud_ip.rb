@@ -12,6 +12,8 @@ module Fog
 
         attribute :reverse_dns
         attribute :public_ip
+        attribute :public_ipv4
+        attribute :public_ipv6
         attribute :fqdn
 
         # Links - to be replaced
