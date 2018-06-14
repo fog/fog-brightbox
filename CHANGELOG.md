@@ -1,3 +1,14 @@
+### 0.15.0 / 2018-06-14
+
+Bug fixes:
+
+* Attempting to generate a temporary URL for a storage object would fail with
+  unclear message. Now a `Fog::Brightbox::Storage::ManagementUrlUnknown` is
+  raised instead. It must be either configured OR an authentication request
+  made before so the management URL is received from the server.
+* `:brightbox_storage_management_url` is now whitelisted to be passed in to the
+  configuration to avoid the authentication previously required.
+
 ### 0.14.0 / 2017-10-30
 
 Enhancements:
