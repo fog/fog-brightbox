@@ -317,4 +317,26 @@ describe Fog::Storage::Brightbox do
         service.create_temp_url(container, object, expiry_time, request_method, :scheme => "http", :port => 401)
     end
   end
+
+  describe "when initialised without management URL" do
+    before { skip unless RUBY_VERSION > "1.9.3" }
+    let(:temp_url_key) { "1234567890" }
+    let(:settings) do
+      {
+        :brightbox_client_id => "cli-12345",
+        :brightbox_secret => "12345",
+        :brightbox_temp_url_key => temp_url_key
+      }
+    end
+    let(:container) { "container" }
+    let(:object) { "file.ext" }
+    let(:expiry_time) { Time.utc(2012) }
+    let(:request_method) { "GET" }
+
+    it "raises an error" do
+      assert_raises Fog::Brightbox::Storage::ManagementUrlUnknown do
+        service.create_temp_url(container, object, expiry_time, request_method, :scheme => "https")
+      end
+    end
+  end
 end
