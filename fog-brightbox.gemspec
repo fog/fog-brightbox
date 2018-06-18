@@ -23,7 +23,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "fog-core", "~> 2.0"
   spec.add_dependency "fog-json"
-  spec.add_dependency "inflecto", "~> 0.0.2"
+  spec.add_dependency "dry-inflector"
 
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "minitest"
