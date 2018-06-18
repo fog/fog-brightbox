@@ -1,3 +1,13 @@
+### Master
+
+Major Changes:
+
+* Gem version has been changed 1.0 to reflect breaking changes.
+* Ruby versions 1.9 is longer supported as per fog-core v2.
+* Ruby versions 2.0 and 2.1 are no longer supported by Brightbox although a
+  hard value has not been used in the gemspec to avoid issues with `fog`
+* `inflecto` is replaced by `dry-inflector`
+
 ### 0.15.0 / 2018-06-14
 
 Bug fixes:
