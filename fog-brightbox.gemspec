@@ -21,7 +21,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "fog-core"
   spec.add_dependency "fog-json"
-  spec.add_dependency "inflecto"
+  spec.add_dependency "dry-inflector"
   spec.add_dependency "mime-types"
 
   spec.add_development_dependency "bundler"
