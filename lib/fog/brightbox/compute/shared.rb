@@ -151,8 +151,7 @@ module Fog
         # @return [NilClass] if no image is found or an error occurs
         #
         def default_image
-          return @default_image_id unless @default_image_id.nil?
-          @default_image_id = @config.default_image_id || select_default_image
+          @default_image_id ||= (@config.default_image_id || select_default_image)
         end
 
         private
