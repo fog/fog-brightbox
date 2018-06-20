@@ -8,6 +8,7 @@ module Fog
         # @param [Hash] options
         # @option options [String] :name Editable label
         # @option options [String] :user_data User defined metadata
+        # @option options [Array] :server_groups Array of server groups to update server to being a member of. This replaces any existing groups
         # @option options [Boolean] :compatibility_mode Server needs to be shutdown and restarted for changes to this to take effect
         # @option options [Boolean] :nested passed through with the API request. When true nested resources are expanded.
         #

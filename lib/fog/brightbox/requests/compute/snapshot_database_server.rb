@@ -2,6 +2,8 @@ module Fog
   module Compute
     class Brightbox
       class Real
+        # Requests a snapshot of the database server to be made for restoring back to when it was made. The identifier of the new snapshot is returned by the response in a Link header
+        #
         # @param [String] identifier Unique reference to identify the resource
         # @param [Hash] options
         # @option options [Boolean] :return_link Return the Link header as a second return value

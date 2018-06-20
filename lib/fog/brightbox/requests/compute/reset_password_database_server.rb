@@ -2,6 +2,8 @@ module Fog
   module Compute
     class Brightbox
       class Real
+        # This requests the admin password for the database server is reset. The new `admin_password` is only returned in the JSON response to this request.
+        #
         # @param [String] identifier Unique reference to identify the resource
         # @param [Hash] options
         # @option options [Boolean] :nested passed through with the API request. When true nested resources are expanded.

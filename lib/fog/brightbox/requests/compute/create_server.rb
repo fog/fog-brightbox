@@ -13,6 +13,7 @@ module Fog
         # @option options [String] :zone Zone in which to create new Server
         # @option options [String] :user_data
         # @option options [Array] :server_groups Array of server groups to add server to
+        # @option options [String] :cloud_ip A Cloud IP that should be mapped as soon as the server is built. Either `true` to allocate a new Cloud IP or the identifier of an unmapped Cloud IP to reserve
         # @option options [Boolean] :nested passed through with the API request. When true nested resources are expanded.
         #
         # @return [Hash] if successful Hash version of JSON object
