@@ -14,14 +14,6 @@ module Fog
           return nil if identifier.nil? || identifier == ""
           wrapped_request("delete", "/1.0/database_servers/#{identifier}", [202], options)
         end
-
-        # Old format of the delete request.
-        #
-        # @deprecated Use +#delete_database_server+ instead
-        #
-        def destroy_database_server(identifier)
-          delete_database_server(identifier)
-        end
       end
     end
   end

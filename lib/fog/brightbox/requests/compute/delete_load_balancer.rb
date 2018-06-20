@@ -16,14 +16,6 @@ module Fog
           return nil if identifier.nil? || identifier == ""
           wrapped_request("delete", "/1.0/load_balancers/#{identifier}", [202], options)
         end
-
-        # Old format of the delete request.
-        #
-        # @deprecated Use +#delete_load_balancer+ instead
-        #
-        def destroy_load_balancer(identifier)
-          delete_load_balancer(identifier)
-        end
       end
     end
   end

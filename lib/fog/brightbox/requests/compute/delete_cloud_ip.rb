@@ -16,14 +16,6 @@ module Fog
           return nil if identifier.nil? || identifier == ""
           wrapped_request("delete", "/1.0/cloud_ips/#{identifier}", [200], options)
         end
-
-        # Old format of the delete request.
-        #
-        # @deprecated Use +#delete_cloud_ip+ instead
-        #
-        def destroy_cloud_ip(identifier)
-          delete_cloud_ip(identifier)
-        end
       end
     end
   end

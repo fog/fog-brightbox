@@ -16,14 +16,6 @@ module Fog
           return nil if identifier.nil? || identifier == ""
           wrapped_request("delete", "/1.0/user/collaborations/#{identifier}", [200], options)
         end
-
-        # Old format of the delete request.
-        #
-        # @deprecated Use +#delete_user_collaboration+ instead
-        #
-        def destroy_user_collaboration(identifier)
-          delete_user_collaboration(identifier)
-        end
       end
     end
   end
