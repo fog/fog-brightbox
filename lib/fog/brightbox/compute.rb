@@ -214,39 +214,19 @@ module Fog
         # Makes an API request to the given path using passed options or those
         # set with the service setup
         #
-        # @todo Standard Fog behaviour is to return the Excon::Response but
-        #   this was unintentionally changed to be the Hash version of the
-        #   data in the body. This loses access to some details and should
-        #   be corrected in a backwards compatible manner
+        # @param [Hash] params Excon compatible options
+        # @option params [String] :body text to be sent over a socket
+        # @option params [Hash<Symbol, String>] :headers The default headers to supply in a request
+        # @option params [String] :host The destination host's reachable DNS name or IP, in the form of a String
+        # @option params [String] :path appears after 'scheme://host:port/'
+        # @option params [Fixnum] :port The port on which to connect, to the destination host
+        # @option params [Hash]   :query appended to the 'scheme://host:port/path/' in the form of '?key=value'
+        # @option params [String] :scheme The protocol; 'https' causes OpenSSL to be used
+        # @return [Excon::Response]
+        # @see https://github.com/geemus/excon/blob/master/lib/excon/connection.rb
         #
-        # @overload request(params)
-        #   @param [Hash] params Excon compatible options
-        #   @option params [String] :body text to be sent over a socket
-        #   @option params [Hash<Symbol, String>] :headers The default headers to supply in a request
-        #   @option params [String] :host The destination host's reachable DNS name or IP, in the form of a String
-        #   @option params [String] :path appears after 'scheme://host:port/'
-        #   @option params [Fixnum] :port The port on which to connect, to the destination host
-        #   @option params [Hash]   :query appended to the 'scheme://host:port/path/' in the form of '?key=value'
-        #   @option params [String] :scheme The protocol; 'https' causes OpenSSL to be used
-        #   @return [Excon::Response]
-        #   @see https://github.com/geemus/excon/blob/master/lib/excon/connection.rb
-        #
-        # @overload request(method, path, expected_responses, params = {})
-        #   @param [String] method HTTP method to use for the request
-        #   @param [String] path   The absolute path for the request
-        #   @param [Array<Fixnum>] expected_responses HTTP response codes that have been successful
-        #   @param [Hash] params Keys and values for JSON
-        #   @option params [String] :account_id The scoping account if required
-        #   @deprecated #request with multiple arguments is deprecated
-        #     since it is inconsistent with original fog version.
-        #   @return [Hash]
         def request(*args)
-          if args.size == 1
-            authenticated_request(*args)
-          else
-            Fog::Logger.deprecation("#request with multiple parameters is deprecated, use #wrapped_request instead [light_black](#{caller.first})[/]")
-            wrapped_request(*args)
-          end
+          authenticated_request(*args)
         end
 
         # Makes a request but with seperated arguments and parses the response to a hash
