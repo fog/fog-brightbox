@@ -1,6 +1,11 @@
 module Fog
-  module Compute
-    class Brightbox < Fog::Service
+  module Brightbox
+    class Compute < Fog::Service
+      autoload :Config, File.expand_path("../compute/config", __FILE__)
+      autoload :ImageSelector, File.expand_path("../compute/image_selector", __FILE__)
+      autoload :ResourceLocking, File.expand_path("../compute/resource_locking", __FILE__)
+      autoload :Shared, File.expand_path("../compute/shared", __FILE__)
+
       # Client credentials
       requires :brightbox_client_id, :brightbox_secret
 

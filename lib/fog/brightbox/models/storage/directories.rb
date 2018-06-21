@@ -1,10 +1,10 @@
 require "fog/brightbox/models/storage/directory"
 
 module Fog
-  module Storage
-    class Brightbox
+  module Brightbox
+    class Storage
       class Directories < Fog::Collection
-        model Fog::Storage::Brightbox::Directory
+        model Fog::Brightbox::Storage::Directory
 
         HEADER_ATTRIBUTES = %w(X-Container-Bytes-Used X-Container-Object-Count X-Container-Read X-Container-Write)
 
@@ -28,7 +28,7 @@ module Fog
             directory.files << directory.files.new(file)
           end
           directory
-        rescue Fog::Storage::Brightbox::NotFound
+        rescue Fog::Brightbox::Storage::NotFound
           nil
         end
       end

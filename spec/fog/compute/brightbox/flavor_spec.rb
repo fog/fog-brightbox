@@ -1,7 +1,7 @@
 require "spec_helper"
 require "fog/brightbox/models/compute/flavor"
 
-describe Fog::Compute::Brightbox::Flavor do
+describe Fog::Brightbox::Compute::Flavor do
   include ModelSetup
 
   subject { service.flavors.new }

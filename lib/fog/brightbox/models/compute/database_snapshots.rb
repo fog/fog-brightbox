@@ -1,10 +1,10 @@
 require "fog/brightbox/models/compute/database_snapshot"
 
 module Fog
-  module Compute
-    class Brightbox
+  module Brightbox
+    class Compute
       class DatabaseSnapshots < Fog::Collection
-        model Fog::Compute::Brightbox::DatabaseSnapshot
+        model Fog::Brightbox::Compute::DatabaseSnapshot
 
         def all
           data = service.list_database_snapshots

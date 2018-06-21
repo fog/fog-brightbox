@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class Brightbox
+  module Brightbox
+    class Compute
       class Real
         # Release the cloud IP address from the account's ownership.
         #

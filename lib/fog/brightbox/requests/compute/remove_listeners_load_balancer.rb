@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class Brightbox
+  module Brightbox
+    class Compute
       class Real
         # Removes a number of listeners from a load balancer to cease balancing across nodes for those settings.
         #

@@ -1,8 +1,8 @@
 require "fog/brightbox/compute/resource_locking"
 
 module Fog
-  module Compute
-    class Brightbox
+  module Brightbox
+    class Compute
       class DatabaseSnapshot < Fog::Brightbox::Model
         include Fog::Brightbox::Compute::ResourceLocking
 

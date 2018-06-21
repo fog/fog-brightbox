@@ -1,6 +1,13 @@
 module Fog
-  module Storage
-    class Brightbox < Fog::Service
+  module Brightbox
+    class Storage < Fog::Service
+      autoload :AuthenticationRequest, File.expand_path("../storage/authentication_request", __FILE__)
+      autoload :AuthenticationRequired, File.expand_path("../storage/authentication_required", __FILE__)
+      autoload :Connection, File.expand_path("../storage/connection", __FILE__)
+      autoload :Config, File.expand_path("../storage/config", __FILE__)
+      autoload :ManagementUrlUnknown, File.expand_path("../storage/management_url_unknown", __FILE__)
+      autoload :NotFound, File.expand_path("../storage/not_found", __FILE__)
+
       requires :brightbox_client_id,
                :brightbox_secret
       recognizes :persistent, :brightbox_service_name,
@@ -99,7 +106,7 @@ module Fog
         rescue Excon::Errors::HTTPStatusError => error
           raise case error
                 when Excon::Errors::NotFound
-                  Fog::Storage::Brightbox::NotFound.slurp(error)
+                  Fog::Brightbox::Storage::NotFound.slurp(error)
                 else
                   error
                 end
@@ -161,8 +168,8 @@ module Fog
           destination_url.scheme = options[:scheme] if options[:scheme]
           destination_url.port = options[:port] if options[:port]
 
-          object_path_escaped = "#{object_path}/#{Fog::Storage::Brightbox.escape(container)}/#{Fog::Storage::Brightbox.escape(object, "/")}"
-          object_path_unescaped = "#{object_path}/#{Fog::Storage::Brightbox.escape(container)}/#{object}"
+          object_path_escaped = "#{object_path}/#{Fog::Brightbox::Storage.escape(container)}/#{Fog::Brightbox::Storage.escape(object, "/")}"
+          object_path_unescaped = "#{object_path}/#{Fog::Brightbox::Storage.escape(container)}/#{object}"
 
           expiry_timestamp = expires_at.to_i
           string_to_sign = [method, expiry_timestamp, object_path_unescaped].join("\n")

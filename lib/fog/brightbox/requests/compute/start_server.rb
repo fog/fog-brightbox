@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class Brightbox
+  module Brightbox
+    class Compute
       class Real
         # Will issue a start request for the server to become active.
         #

@@ -1,6 +1,6 @@
 module Fog
-  module Storage
-    class Brightbox
+  module Brightbox
+    class Storage
       class Real
         # Create a new container
         #
@@ -15,7 +15,7 @@ module Fog
           request(
             :expects  => [201, 202],
             :method   => "PUT",
-            :path     => Fog::Storage::Brightbox.escape(name),
+            :path     => Fog::Brightbox::Storage.escape(name),
             :headers  => headers
           )
         end

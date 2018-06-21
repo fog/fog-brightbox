@@ -1,5 +1,5 @@
 class Brightbox
-  module Compute
+  class Compute
     module TestSupport
       # Find a suitable image for testing with
       # For speed of server building we're using an empty image

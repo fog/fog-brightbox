@@ -1,10 +1,10 @@
 require "fog/brightbox/models/compute/server_group"
 
 module Fog
-  module Compute
-    class Brightbox
+  module Brightbox
+    class Compute
       class ServerGroups < Fog::Collection
-        model Fog::Compute::Brightbox::ServerGroup
+        model Fog::Brightbox::Compute::ServerGroup
 
         def all
           data = service.list_server_groups

@@ -1,6 +1,6 @@
 module Fog
   module Brightbox
-    module Compute
+    class Compute
       # The Shared module consists of code that was duplicated between the Real
       # and Mock implementations.
       #
@@ -79,11 +79,11 @@ module Fog
         # * For User applications this is the account specified by either +account_id+
         #   option on the service or the +brightbox_account+ setting in your configuration
         #
-        # @return [Fog::Compute::Brightbox::Account]
+        # @return [Fog::Brightbox::Compute::Account]
         #
         def account
           account_data = get_scoped_account.merge(:service => self)
-          Fog::Compute::Brightbox::Account.new(account_data)
+          Fog::Brightbox::Compute::Account.new(account_data)
         end
 
         # Returns true if authentication is being performed as a user

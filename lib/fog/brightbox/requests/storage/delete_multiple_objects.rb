@@ -1,6 +1,6 @@
 module Fog
-  module Storage
-    class Brightbox
+  module Brightbox
+    class Storage
       class Real
         # Deletes multiple objects or containers with a single request.
         #

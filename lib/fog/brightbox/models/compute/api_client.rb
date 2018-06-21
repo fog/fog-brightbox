@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class Brightbox
+  module Brightbox
+    class Compute
       class ApiClient < Fog::Brightbox::Model
         identity :id
         attribute :name

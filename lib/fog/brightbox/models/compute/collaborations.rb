@@ -1,10 +1,10 @@
 require "fog/brightbox/models/compute/collaboration"
 
 module Fog
-  module Compute
-    class Brightbox
+  module Brightbox
+    class Compute
       class Collaborations < Fog::Collection
-        model Fog::Compute::Brightbox::Collaboration
+        model Fog::Brightbox::Compute::Collaboration
 
         def all
           data = service.list_collaborations
@@ -25,7 +25,7 @@ module Fog
         # @param [String] email The email address to use for the invitation
         # @param [String] role The role being granted. Only (+admin+ is
         #   currently supported
-        # @return [Fog::Compute::Brightbox::Collaboration]
+        # @return [Fog::Brightbox::Compute::Collaboration]
         #
         def invite(email, role)
           return nil if email.nil? || email == ""

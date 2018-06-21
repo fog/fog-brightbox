@@ -1,7 +1,7 @@
 require "spec_helper"
 require "fog/brightbox/models/compute/cloud_ip"
 
-describe Fog::Compute::Brightbox::CloudIp do
+describe Fog::Brightbox::Compute::CloudIp do
   include ModelSetup
 
   subject { service.cloud_ips.new }

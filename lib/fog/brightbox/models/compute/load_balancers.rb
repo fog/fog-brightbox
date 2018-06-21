@@ -1,10 +1,10 @@
 require "fog/brightbox/models/compute/load_balancer"
 
 module Fog
-  module Compute
-    class Brightbox
+  module Brightbox
+    class Compute
       class LoadBalancers < Fog::Collection
-        model Fog::Compute::Brightbox::LoadBalancer
+        model Fog::Brightbox::Compute::LoadBalancer
 
         def all
           data = service.list_load_balancers

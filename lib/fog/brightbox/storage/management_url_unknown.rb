@@ -1,6 +1,6 @@
 module Fog
   module Brightbox
-    module Storage
+    class Storage
       class ManagementUrlUnknown < Fog::Errors::Error
       end
     end

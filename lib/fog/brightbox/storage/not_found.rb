@@ -1,7 +1,7 @@
 module Fog
   module Brightbox
     class Storage
-      class AuthenticationRequired < Fog::Errors::Error
+      class NotFound < Fog::Errors::Error
       end
     end
   end

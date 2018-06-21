@@ -1,7 +1,7 @@
 require "spec_helper"
 require "fog/brightbox/models/compute/account"
 
-describe Fog::Compute::Brightbox::Account do
+describe Fog::Brightbox::Compute::Account do
   include ModelSetup
 
   subject { service.accounts.new }

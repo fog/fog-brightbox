@@ -1,8 +1,8 @@
 require "fog/compute/models/server"
 
 module Fog
-  module Compute
-    class Brightbox
+  module Brightbox
+    class Compute
       class Server < Fog::Compute::Server
         include Fog::Brightbox::ModelHelper
         include Fog::Brightbox::Compute::ResourceLocking

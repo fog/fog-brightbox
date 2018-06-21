@@ -2,7 +2,7 @@ require "delegate"
 
 module Fog
   module Brightbox
-    module Compute
+    class Compute
       class Config < SimpleDelegator
         def initialize(config)
           super

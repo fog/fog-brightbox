@@ -1,6 +1,6 @@
 module Fog
-  module Storage
-    class Brightbox
+  module Brightbox
+    class Storage
       class Real
         # Get an expiring object https url from Cloud Files
         #

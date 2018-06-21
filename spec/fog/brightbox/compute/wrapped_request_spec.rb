@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe Fog::Compute::Brightbox do
+describe Fog::Brightbox::Compute do
   describe "#wrapped_request" do
     describe "when nested option passed as true" do
       before do
@@ -9,7 +9,7 @@ describe Fog::Compute::Brightbox do
           :brightbox_secret => "1234567890",
           :brightbox_access_token => "TESTVALUE"
         }
-        @service = Fog::Compute::Brightbox.new(@options)
+        @service = Fog::Brightbox::Compute.new(@options)
       end
 
       it "makes correct request" do
@@ -30,7 +30,7 @@ describe Fog::Compute::Brightbox do
           :brightbox_secret => "1234567890",
           :brightbox_access_token => "TESTVALUE"
         }
-        @service = Fog::Compute::Brightbox.new(@options)
+        @service = Fog::Brightbox::Compute.new(@options)
       end
 
       it "makes correct request" do
@@ -51,7 +51,7 @@ describe Fog::Compute::Brightbox do
           :brightbox_secret => "1234567890",
           :brightbox_access_token => "TESTVALUE"
         }
-        @service = Fog::Compute::Brightbox.new(@options)
+        @service = Fog::Brightbox::Compute.new(@options)
       end
 
       it "makes correct request" do

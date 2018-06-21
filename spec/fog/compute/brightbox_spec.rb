@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe Fog::Compute::Brightbox do
+describe Fog::Brightbox::Compute do
   describe "when global config is available" do
     before do
       @arguments = {
@@ -19,7 +19,7 @@ describe Fog::Compute::Brightbox do
       end
 
       Fog.stub :credentials, @credential_guard do
-        @service = Fog::Compute::Brightbox.new(@arguments)
+        @service = Fog::Brightbox::Compute.new(@arguments)
       end
     end
 
@@ -40,7 +40,7 @@ describe Fog::Compute::Brightbox do
     it "raises an error" do
       Fog.stub :credentials, {} do
         assert_raises ArgumentError do
-          Fog::Compute::Brightbox.new({})
+          Fog::Brightbox::Compute.new({})
         end
       end
     end
@@ -53,7 +53,7 @@ describe Fog::Compute::Brightbox do
         :brightbox_secret => "1234567890"
       }
       @config = Fog::Brightbox::Config.new(@options)
-      @service = Fog::Compute::Brightbox.new(@config)
+      @service = Fog::Brightbox::Compute.new(@config)
       pass
     end
   end
@@ -62,7 +62,7 @@ describe Fog::Compute::Brightbox do
     it "raises ArgumentError"do
       @config = Fog::Brightbox::Config.new({})
       assert_raises ArgumentError do
-        @service = Fog::Compute::Brightbox.new(@config)
+        @service = Fog::Brightbox::Compute.new(@config)
       end
     end
   end

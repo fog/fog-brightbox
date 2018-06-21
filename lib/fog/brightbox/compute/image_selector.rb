@@ -1,6 +1,6 @@
 module Fog
   module Brightbox
-    module Compute
+    class Compute
       #
       # This selects the preferred image to use based on a number of
       # conditions
@@ -8,7 +8,7 @@ module Fog
       class ImageSelector
         # Prepares a selector with the API output
         #
-        # @param [Array<Hash>] images hash matching API output for {Fog::Compute::Brightbox#list_images}
+        # @param [Array<Hash>] images hash matching API output for {Fog::Brightbox::Compute#list_images}
         #
         def initialize(images)
           @images = images

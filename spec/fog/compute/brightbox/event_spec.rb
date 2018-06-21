@@ -1,7 +1,7 @@
 require "spec_helper"
 require "fog/brightbox/models/compute/event"
 
-describe Fog::Compute::Brightbox::Event do
+describe Fog::Brightbox::Compute::Event do
   include ModelSetup
 
   subject { service.events.new }

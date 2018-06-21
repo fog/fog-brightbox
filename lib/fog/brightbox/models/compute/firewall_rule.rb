@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class Brightbox
+  module Brightbox
+    class Compute
       class FirewallRule < Fog::Brightbox::Model
         identity :id
         attribute :url

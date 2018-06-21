@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class Brightbox
+  module Brightbox
+    class Compute
       class Real
         # Removes a number of server from the server group and adds them to another server group given in parameters.
         #

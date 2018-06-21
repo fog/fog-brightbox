@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class Brightbox
+  module Brightbox
+    class Compute
       class Collaboration < Fog::Brightbox::Model
         identity :id
         attribute :status

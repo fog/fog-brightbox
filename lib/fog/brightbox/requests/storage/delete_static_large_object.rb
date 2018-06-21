@@ -1,6 +1,6 @@
 module Fog
-  module Storage
-    class Brightbox
+  module Brightbox
+    class Storage
       class Real
         # Delete a static large object.
         #
@@ -29,7 +29,7 @@ module Fog
                                :method   => "DELETE",
                                :headers  => options.merge("Content-Type" => "text/plain",
                                                           "Accept" => "application/json"),
-                               :path     => "#{Fog::Storage::Brightbox.escape(container)}/#{Fog::Storage::Brightbox.escape(object)}",
+                               :path     => "#{Fog::Brightbox::Storage.escape(container)}/#{Fog::Brightbox::Storage.escape(object)}",
                                :query    => { "multipart-manifest" => "delete" }
                              }, false)
           response.body = Fog::JSON.decode(response.body)

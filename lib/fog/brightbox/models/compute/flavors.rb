@@ -1,10 +1,10 @@
 require "fog/brightbox/models/compute/flavor"
 
 module Fog
-  module Compute
-    class Brightbox
+  module Brightbox
+    class Compute
       class Flavors < Fog::Collection
-        model Fog::Compute::Brightbox::Flavor
+        model Fog::Brightbox::Compute::Flavor
 
         def all
           data = service.list_server_types

@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class Brightbox
+  module Brightbox
+    class Compute
       # A server group is a collection of servers
       #
       # Certain actions can accept a server group and affect all members

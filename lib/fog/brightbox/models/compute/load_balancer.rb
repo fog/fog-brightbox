@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class Brightbox
+  module Brightbox
+    class Compute
       class LoadBalancer < Fog::Brightbox::Model
         include Fog::Brightbox::Compute::ResourceLocking
 

@@ -1,6 +1,6 @@
 module Fog
-  module Storage
-    class Brightbox
+  module Brightbox
+    class Storage
       class Real
         # Copy object
         #
@@ -16,7 +16,7 @@ module Fog
                     :expects  => 201,
                     :headers  => headers,
                     :method   => "PUT",
-                    :path     => "#{Fog::Storage::Brightbox.escape(target_container_name)}/#{Fog::Storage::Brightbox.escape(target_object_name)}"
+                    :path     => "#{Fog::Brightbox::Storage.escape(target_container_name)}/#{Fog::Brightbox::Storage.escape(target_object_name)}"
                   )
         end
       end

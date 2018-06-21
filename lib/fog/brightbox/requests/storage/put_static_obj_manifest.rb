@@ -1,6 +1,6 @@
 module Fog
-  module Storage
-    class Brightbox
+  module Brightbox
+    class Storage
       class Real
         # Create a new static large object manifest.
         #
@@ -33,7 +33,7 @@ module Fog
         # @param segments [Array<Hash>] Segment data for the object.
         # @param options [Hash] Config headers for +object+.
         #
-        # @raise [Fog::Storage::Brightbox::NotFound] HTTP 404
+        # @raise [Fog::Brightbox::Storage::NotFound] HTTP 404
         # @raise [Excon::Errors::BadRequest] HTTP 400
         # @raise [Excon::Errors::Unauthorized] HTTP 401
         # @raise [Excon::Errors::HTTPStatusError]
@@ -45,7 +45,7 @@ module Fog
             :method   => "PUT",
             :headers  => options,
             :body     => Fog::JSON.encode(segments),
-            :path     => "#{Fog::Storage::Brightbox.escape(container)}/#{Fog::Storage::Brightbox.escape(object)}",
+            :path     => "#{Fog::Brightbox::Storage.escape(container)}/#{Fog::Brightbox::Storage.escape(object)}",
             :query    => { "multipart-manifest" => "put" }
           )
         end

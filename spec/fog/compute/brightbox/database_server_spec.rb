@@ -1,7 +1,7 @@
 require "spec_helper"
 require "fog/brightbox/models/compute/database_server"
 
-describe Fog::Compute::Brightbox::DatabaseServer do
+describe Fog::Brightbox::Compute::DatabaseServer do
   include ModelSetup
   include SupportsResourceLocking
 
@@ -26,7 +26,7 @@ describe Fog::Compute::Brightbox::DatabaseServer do
              :headers => { "Authorization" => "Bearer FAKECACHEDTOKEN" }).
         to_return(:status => 202, :body => %q({"id": "dbs-12345"}), :headers => {})
 
-      @database_server = Fog::Compute::Brightbox::DatabaseServer.new(:service => service, :id => "dbs-12345")
+      @database_server = Fog::Brightbox::Compute::DatabaseServer.new(:service => service, :id => "dbs-12345")
       assert @database_server.snapshot
     end
   end
@@ -43,8 +43,8 @@ describe Fog::Compute::Brightbox::DatabaseServer do
         with(:query => hash_including(:account_id),
              :headers => { "Authorization" => "Bearer FAKECACHEDTOKEN" }).
         to_return(:status => 200, :body => %q({"id": "dbs-12345"}))
-      @database_server = Fog::Compute::Brightbox::DatabaseServer.new(:service => service, :id => "dbs-12345")
-      assert_kind_of Fog::Compute::Brightbox::DatabaseSnapshot, @database_server.snapshot(true)
+      @database_server = Fog::Brightbox::Compute::DatabaseServer.new(:service => service, :id => "dbs-12345")
+      assert_kind_of Fog::Brightbox::Compute::DatabaseSnapshot, @database_server.snapshot(true)
     end
   end
 end

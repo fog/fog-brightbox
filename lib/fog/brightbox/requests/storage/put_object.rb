@@ -1,6 +1,6 @@
 module Fog
-  module Storage
-    class Brightbox
+  module Brightbox
+    class Storage
       class Real
         # Create a new object
         #
@@ -30,7 +30,7 @@ module Fog
             :idempotent => !params[:request_block],
             :headers    => headers,
             :method     => "PUT",
-            :path       => "#{Fog::Storage::Brightbox.escape(container)}/#{Fog::Storage::Brightbox.escape(object)}"
+            :path       => "#{Fog::Brightbox::Storage.escape(container)}/#{Fog::Brightbox::Storage.escape(object)}"
           )
 
           request(params)

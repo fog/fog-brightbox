@@ -1,10 +1,10 @@
 require "fog/brightbox/models/compute/firewall_rule"
 
 module Fog
-  module Compute
-    class Brightbox
+  module Brightbox
+    class Compute
       class FirewallRules < Fog::Collection
-        model Fog::Compute::Brightbox::FirewallRule
+        model Fog::Brightbox::Compute::FirewallRule
 
         def get(identifier)
           return nil if identifier.nil? || identifier == ""

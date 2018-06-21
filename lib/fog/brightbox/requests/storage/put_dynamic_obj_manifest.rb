@@ -1,6 +1,6 @@
 module Fog
-  module Storage
-    class Brightbox
+  module Brightbox
+    class Storage
       class Real
         # Create a new dynamic large object manifest
         #
@@ -12,21 +12,21 @@ module Fog
         # All segments must be stored in the same container, but may be in a different container than the manifest object.
         # The default +X-Object-Manifest+ header is set to "+container+/+object+", but may be overridden in +options+
         # to specify the prefix and/or the container where segments were stored.
-        # If overridden, names should be CGI escaped (excluding spaces) if needed (see {Fog::Storage::Brightbox.escape}).
+        # If overridden, names should be CGI escaped (excluding spaces) if needed (see {Fog::Brightbox::Storage.escape}).
         #
         # @param container [String] Name for container where +object+ will be stored. Should be < 256 bytes and must not contain '/'
         # @param object [String] Name for manifest object.
         # @param options [Hash] Config headers for +object+.
         # @option options [String] 'X-Object-Manifest' ("container/object") "<container>/<prefix>" for segment objects.
         #
-        # @raise [Fog::Storage::Brightbox::NotFound] HTTP 404
+        # @raise [Fog::Brightbox::Storage::NotFound] HTTP 404
         # @raise [Excon::Errors::BadRequest] HTTP 400
         # @raise [Excon::Errors::Unauthorized] HTTP 401
         # @raise [Excon::Errors::HTTPStatusError]
         #
         # @see http://docs.brightbox.org/api/brightbox-object-storage/1.0/content/dynamic-large-object-creation.html
         def put_dynamic_obj_manifest(container, object, options = {})
-          path = "#{Fog::Storage::Brightbox.escape(container)}/#{Fog::Storage::Brightbox.escape(object)}"
+          path = "#{Fog::Brightbox::Storage.escape(container)}/#{Fog::Brightbox::Storage.escape(object)}"
           headers = { "X-Object-Manifest" => path }.merge(options)
           request(
             :expects  => 201,

@@ -1,16 +1,16 @@
 require "spec_helper"
 
-describe Fog::Storage::Brightbox do
+describe Fog::Brightbox::Storage do
   include StockStorageResponses
 
   let(:config) { Fog::Brightbox::Config.new(settings) }
-  let(:service) { Fog::Storage::Brightbox.new(config) }
+  let(:service) { Fog::Brightbox::Storage.new(config) }
 
   describe "when created without required arguments" do
     it "raises an error" do
       Fog.stub :credentials, {} do
         assert_raises ArgumentError do
-          Fog::Storage::Brightbox.new({})
+          Fog::Brightbox::Storage.new({})
         end
       end
     end
@@ -35,7 +35,7 @@ describe Fog::Storage::Brightbox do
 
     it "raises ArgumentError" do
       assert_raises ArgumentError do
-        Fog::Storage::Brightbox.new(config)
+        Fog::Brightbox::Storage.new(config)
       end
     end
   end

@@ -22,7 +22,7 @@ describe Fog::Brightbox::Storage::Connection do
     401 => Fog::Brightbox::Storage::AuthenticationRequired,
     402 => Excon::Errors::PaymentRequired,
     403 => Excon::Errors::Forbidden,
-    404 => Fog::Storage::Brightbox::NotFound,
+    404 => Fog::Brightbox::Storage::NotFound,
     405 => Excon::Errors::MethodNotAllowed,
     406 => Excon::Errors::NotAcceptable,
     407 => Excon::Errors::ProxyAuthenticationRequired,

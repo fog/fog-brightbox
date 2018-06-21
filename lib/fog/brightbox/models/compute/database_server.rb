@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class Brightbox
+  module Brightbox
+    class Compute
       class DatabaseServer < Fog::Brightbox::Model
         include Fog::Brightbox::Compute::ResourceLocking
 

@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class Brightbox
+  module Brightbox
+    class Compute
       class Real
         # Unmaps a cloud IP address from its current destination making it available to remap. This remains in the account's pool of addresses.
         #

@@ -95,14 +95,14 @@ describe Fog::Brightbox::Storage::Connection do
   end
 
   describe "when container is not found" do
-    it "raises Fog::Storage::Brightbox::NotFound" do
+    it "raises Fog::Brightbox::Storage::NotFound" do
       stub_request(:get, "https://files.gb2.brightbox.com/v1/acc-12345/fnord").
         to_return(:status => 404,
                   :body => "<html><h1>Not Found</h1><p>The resource could not be found.</p></html>",
                   :headers => {
                     "Content-Type" => "text/html"
                   })
-      assert_raises(Fog::Storage::Brightbox::NotFound) { connection.request(params) }
+      assert_raises(Fog::Brightbox::Storage::NotFound) { connection.request(params) }
     end
   end
 

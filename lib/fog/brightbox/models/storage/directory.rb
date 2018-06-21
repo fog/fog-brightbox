@@ -1,8 +1,8 @@
 require "fog/brightbox/models/storage/files"
 
 module Fog
-  module Storage
-    class Brightbox
+  module Brightbox
+    class Storage
       class Directory < Fog::Model
         identity :key, :aliases => "name"
 
@@ -21,7 +21,7 @@ module Fog
 
         def files
           @files ||= begin
-            Fog::Storage::Brightbox::Files.new(
+            Fog::Brightbox::Storage::Files.new(
               :directory    => self,
               :service   => service
             )

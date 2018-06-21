@@ -1,6 +1,6 @@
 module Fog
-  module Storage
-    class Brightbox
+  module Brightbox
+    class Storage
       class File < Fog::Model
         identity :key,             :aliases => "name"
 

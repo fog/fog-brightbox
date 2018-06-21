@@ -16,7 +16,7 @@ module ModelSetup
       end
 
       let(:config) { Fog::Brightbox::Config.new(configuration) }
-      let(:service) { Fog::Compute::Brightbox.new(config) }
+      let(:service) { Fog::Brightbox::Compute.new(config) }
     end
   end
 end

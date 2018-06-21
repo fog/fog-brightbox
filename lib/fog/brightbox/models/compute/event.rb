@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class Brightbox
+  module Brightbox
+    class Compute
       # @api private
       class Event < Fog::Brightbox::Model
         identity :id

@@ -1,10 +1,10 @@
 require "fog/brightbox/models/compute/account"
 
 module Fog
-  module Compute
-    class Brightbox
+  module Brightbox
+    class Compute
       class Accounts < Fog::Collection
-        model Fog::Compute::Brightbox::Account
+        model Fog::Brightbox::Compute::Account
 
         def all(options = {})
           data = service.list_accounts(options)

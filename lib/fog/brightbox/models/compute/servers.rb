@@ -1,10 +1,10 @@
 require "fog/brightbox/models/compute/server"
 
 module Fog
-  module Compute
-    class Brightbox
+  module Brightbox
+    class Compute
       class Servers < Fog::Collection
-        model Fog::Compute::Brightbox::Server
+        model Fog::Brightbox::Compute::Server
 
         def all
           data = service.list_servers
@@ -26,7 +26,7 @@ module Fog
         # @option options [String] zone_id   Identifer for preferred zone to locate server in
         # @option options [Array<String>] server_groups List of group identifiers for the server to join
         #
-        # @return Fog::Compute::Brightbox::Server
+        # @return Fog::Brightbox::Compute::Server
         #
         def bootstrap(options = {})
           server = create(options)

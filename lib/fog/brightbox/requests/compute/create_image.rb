@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class Brightbox
+  module Brightbox
+    class Compute
       class Real
         # Create a new image for the account by registering it against an image stored within the Brightbox cloud image library.
         #

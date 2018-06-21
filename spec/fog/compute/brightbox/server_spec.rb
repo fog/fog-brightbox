@@ -1,7 +1,7 @@
 require "spec_helper"
 require "fog/brightbox/models/compute/server"
 
-describe Fog::Compute::Brightbox::Server do
+describe Fog::Brightbox::Compute::Server do
   include ModelSetup
   include SupportsResourceLocking
 
@@ -26,7 +26,7 @@ describe Fog::Compute::Brightbox::Server do
              :headers => { "Authorization" => "Bearer FAKECACHEDTOKEN" }).
         to_return(:status => 202, :body => %q({"id": "srv-12345"}), :headers => {})
 
-      @server = Fog::Compute::Brightbox::Server.new(:service => service, :id => "srv-12345")
+      @server = Fog::Brightbox::Compute::Server.new(:service => service, :id => "srv-12345")
       assert_kind_of Hash, @server.snapshot
     end
   end
@@ -43,8 +43,8 @@ describe Fog::Compute::Brightbox::Server do
         with(:query => hash_including(:account_id),
              :headers => { "Authorization" => "Bearer FAKECACHEDTOKEN" }).
         to_return(:status => 200, :body => %q({"id": "img-12345"}))
-      @server = Fog::Compute::Brightbox::Server.new(:service => service, :id => "srv-12345")
-      assert_kind_of Fog::Compute::Brightbox::Image, @server.snapshot(true)
+      @server = Fog::Brightbox::Compute::Server.new(:service => service, :id => "srv-12345")
+      assert_kind_of Fog::Brightbox::Compute::Image, @server.snapshot(true)
     end
   end
 end
