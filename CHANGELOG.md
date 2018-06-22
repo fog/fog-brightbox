@@ -1,3 +1,9 @@
+### 0.15.1 / 2018-06-22
+
+Bug fixes:
+
+* Remove pessimistic dependency versions.
+
 ### 0.15.0 / 2018-06-14
 
 Bug fixes:
