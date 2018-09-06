@@ -11,9 +11,6 @@ module Fog
   module Brightbox
     extend Fog::Provider
 
-    service(:compute, "Compute")
-    service(:storage, "Storage")
-
     module Compute
       autoload :Config, File.expand_path("../brightbox/compute/config", __FILE__)
       autoload :ImageSelector, File.expand_path("../brightbox/compute/image_selector", __FILE__)
@@ -34,6 +31,9 @@ module Fog
     autoload :Model, File.expand_path("../brightbox/model", __FILE__)
     autoload :ModelHelper, File.expand_path("../brightbox/model_helper", __FILE__)
     autoload :OAuth2, File.expand_path("../brightbox/oauth2", __FILE__)
+
+    service(:compute, "Compute")
+    service(:storage, "Storage")
   end
 
   module Compute
