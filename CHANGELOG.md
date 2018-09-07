@@ -1,3 +1,11 @@
+### 0.16.1 / 2018-09-07
+
+Bug fixes:
+
+* Fix ordering issue between declaration of fog services and `autoload` modules.
+  Changes in `fog-core` would reference modules before available in autoload so
+  caused a name error.
+
 ### 0.16.0 / 2018-09-04
 
 Changes:
