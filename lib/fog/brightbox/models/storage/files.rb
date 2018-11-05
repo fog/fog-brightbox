@@ -1,8 +1,8 @@
 require "fog/brightbox/models/storage/file"
 
 module Fog
-  module Storage
-    class Brightbox
+  module Brightbox
+    class Storage
       class Files < Fog::Collection
         attribute :directory
         attribute :limit
@@ -10,7 +10,7 @@ module Fog
         attribute :path
         attribute :prefix
 
-        model Fog::Storage::Brightbox::File
+        model Fog::Brightbox::Storage::File
 
         def all(options = {})
           requires :directory
@@ -57,14 +57,14 @@ module Fog
                                            :key  => key
                                          )
           new(file_data)
-        rescue Fog::Storage::Brightbox::NotFound
+        rescue Fog::Brightbox::Storage::NotFound
           nil
         end
 
         def get_url(key)
           requires :directory
           if directory.public_url
-            "#{directory.public_url}/#{Fog::Storage::Brightbox.escape(key, "/")}"
+            "#{directory.public_url}/#{Fog::Brightbox::Storage.escape(key, "/")}"
           end
         end
 
@@ -85,7 +85,7 @@ module Fog
                                            :key => key
                                          )
           new(file_data)
-        rescue Fog::Storage::Brightbox::NotFound
+        rescue Fog::Brightbox::Storage::NotFound
           nil
         end
 

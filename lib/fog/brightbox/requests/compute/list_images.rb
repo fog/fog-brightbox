@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class Brightbox
+  module Brightbox
+    class Compute
       class Real
         # Lists summary details of images available for use by the Account. It includes those available to all customers
         #

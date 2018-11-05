@@ -2,7 +2,7 @@ require "delegate"
 
 module Fog
   module Brightbox
-    module Storage
+    class Storage
       class Config < SimpleDelegator
         def initialize(config)
           super

@@ -1,10 +1,10 @@
 require "fog/brightbox/models/compute/application"
 
 module Fog
-  module Compute
-    class Brightbox
+  module Brightbox
+    class Compute
       class Applications < Fog::Collection
-        model Fog::Compute::Brightbox::Application
+        model Fog::Brightbox::Compute::Application
 
         def all
           data = service.list_applications

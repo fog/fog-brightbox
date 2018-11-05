@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class Brightbox
+  module Brightbox
+    class Compute
       class Real
         # Issues a 'hard' reboot request to the server which can not be ignored by the OS. The console remains connected.
         #

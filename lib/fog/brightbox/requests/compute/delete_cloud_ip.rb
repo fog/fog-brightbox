@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class Brightbox
+  module Brightbox
+    class Compute
       class Real
         # Release the cloud IP address from the account's ownership.
         #
@@ -15,14 +15,6 @@ module Fog
         def delete_cloud_ip(identifier, options = {})
           return nil if identifier.nil? || identifier == ""
           wrapped_request("delete", "/1.0/cloud_ips/#{identifier}", [200], options)
-        end
-
-        # Old format of the delete request.
-        #
-        # @deprecated Use +#delete_cloud_ip+ instead
-        #
-        def destroy_cloud_ip(identifier)
-          delete_cloud_ip(identifier)
         end
       end
     end

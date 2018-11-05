@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class Brightbox
+  module Brightbox
+    class Compute
       class LoadBalancer < Fog::Brightbox::Model
         include Fog::Brightbox::Compute::ResourceLocking
 
@@ -67,7 +67,7 @@ module Fog
 
         def destroy
           requires :identity
-          service.destroy_load_balancer(identity)
+          service.delete_load_balancer(identity)
           true
         end
 

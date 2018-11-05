@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class Brightbox
+  module Brightbox
+    class Compute
       class Real
         # Requests a snapshot of the database server to be made for restoring back to when it was made. The identifier of the new snapshot is returned by the response in a Link header
         #

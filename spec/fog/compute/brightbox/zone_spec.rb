@@ -1,7 +1,7 @@
 require "spec_helper"
 require "fog/brightbox/models/compute/zone"
 
-describe Fog::Compute::Brightbox::Zone do
+describe Fog::Brightbox::Compute::Zone do
   include ModelSetup
 
   subject { service.zones.new }

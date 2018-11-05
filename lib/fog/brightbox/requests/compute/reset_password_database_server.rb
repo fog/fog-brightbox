@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class Brightbox
+  module Brightbox
+    class Compute
       class Real
         # This requests the admin password for the database server is reset. The new `admin_password` is only returned in the JSON response to this request.
         #

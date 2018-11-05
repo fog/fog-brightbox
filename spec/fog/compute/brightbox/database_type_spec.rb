@@ -1,7 +1,7 @@
 require "spec_helper"
 require "fog/brightbox/models/compute/database_type"
 
-describe Fog::Compute::Brightbox::DatabaseType do
+describe Fog::Brightbox::Compute::DatabaseType do
   include ModelSetup
 
   subject { service.database_types.new }

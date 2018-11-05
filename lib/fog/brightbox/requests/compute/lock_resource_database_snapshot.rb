@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class Brightbox
+  module Brightbox
+    class Compute
       class Real
         # @param [String] identifier Unique reference to identify the resource
         # @param [Hash] options

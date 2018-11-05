@@ -1,6 +1,6 @@
 module Fog
   module Brightbox
-    module Storage
+    class Storage
       class AuthenticationRequest
         attr_accessor :access_token, :management_url
         attr_accessor :user, :tenant

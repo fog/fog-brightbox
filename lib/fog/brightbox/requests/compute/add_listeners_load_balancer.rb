@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class Brightbox
+  module Brightbox
+    class Compute
       class Real
         # Adds a number of listeners to the load balancer to enable balancing across nodes for those settings.
         #

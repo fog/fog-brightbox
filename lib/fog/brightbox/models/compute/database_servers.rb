@@ -1,10 +1,10 @@
 require "fog/brightbox/models/compute/database_server"
 
 module Fog
-  module Compute
-    class Brightbox
+  module Brightbox
+    class Compute
       class DatabaseServers < Fog::Collection
-        model Fog::Compute::Brightbox::DatabaseServer
+        model Fog::Brightbox::Compute::DatabaseServer
 
         def all
           data = service.list_database_servers

@@ -31,8 +31,8 @@ Shindo.tests("Fog::Compute[:brightbox] | firewall policy requests", ["brightbox"
       returns("Fog test policy B") { result["name"] }
     end
 
-    tests("#destroy_firewall_policy('#{@firewall_policy_id}')") do
-      result = Fog::Compute[:brightbox].destroy_firewall_policy(@firewall_policy_id)
+    tests("#delete_firewall_policy('#{@firewall_policy_id}')") do
+      result = Fog::Compute[:brightbox].delete_firewall_policy(@firewall_policy_id)
       data_matches_schema(Brightbox::Compute::Formats::Full::FIREWALL_POLICY, :allow_extra_keys => true) { result }
     end
   end

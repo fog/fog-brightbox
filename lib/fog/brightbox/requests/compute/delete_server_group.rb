@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class Brightbox
+  module Brightbox
+    class Compute
       class Real
         # Destroy the server group if not in use.
         #
@@ -15,14 +15,6 @@ module Fog
         def delete_server_group(identifier, options = {})
           return nil if identifier.nil? || identifier == ""
           wrapped_request("delete", "/1.0/server_groups/#{identifier}", [202], options)
-        end
-
-        # Old format of the delete request.
-        #
-        # @deprecated Use +#delete_server_group+ instead
-        #
-        def destroy_server_group(identifier)
-          delete_server_group(identifier)
         end
       end
     end

@@ -1,6 +1,6 @@
 module Fog
-  module Storage
-    class Brightbox
+  module Brightbox
+    class Storage
       class Real
         # Set the account wide Temp URL Key. This is a secret key that's
         # used to generate signed expiring URLs.

@@ -1,10 +1,10 @@
 require "fog/brightbox/models/compute/user_collaboration"
 
 module Fog
-  module Compute
-    class Brightbox
+  module Brightbox
+    class Compute
       class UserCollaborations < Fog::Collection
-        model Fog::Compute::Brightbox::UserCollaboration
+        model Fog::Brightbox::Compute::UserCollaboration
 
         def all
           data = service.list_user_collaborations
@@ -21,7 +21,7 @@ module Fog
 
         def destroy
           requires :identity
-          service.destroy_user_collaboration(identity)
+          service.delete_user_collaboration(identity)
           true
         end
       end

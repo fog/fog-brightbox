@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class Brightbox
+  module Brightbox
+    class Compute
       class CloudIp < Fog::Brightbox::Model
         identity :id
         attribute :url
@@ -53,7 +53,7 @@ module Fog
 
         def destroy
           requires :identity
-          service.destroy_cloud_ip(identity)
+          service.delete_cloud_ip(identity)
         end
 
         def destination_id

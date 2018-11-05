@@ -32,8 +32,8 @@ Shindo.tests("Fog::Compute[:brightbox] | database snapshot requests", ["brightbo
       data_matches_schema(Brightbox::Compute::Formats::Full::DATABASE_SNAPSHOT, :allow_extra_keys => true) { result }
     end
 
-    tests("#destroy_database_snapshot('#{@database_snapshot_id}')") do
-      result = service.destroy_database_snapshot(@database_snapshot_id)
+    tests("#delete_database_snapshot('#{@database_snapshot_id}')") do
+      result = service.delete_database_snapshot(@database_snapshot_id)
       data_matches_schema(Brightbox::Compute::Formats::Full::DATABASE_SNAPSHOT, :allow_extra_keys => true) { result }
     end
   end

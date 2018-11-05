@@ -54,9 +54,9 @@ Shindo.tests("Fog::Compute[:brightbox] | cloud ip requests", ["brightbox"]) do
       result = Fog::Compute[:brightbox].update_cloud_ip(@cloud_ip_id, :reverse_dns => "")
     end
 
-    tests("#destroy_cloud_ip('#{@cloud_ip_id}')") do
+    tests("#delete_cloud_ip('#{@cloud_ip_id}')") do
       pending if Fog.mocking?
-      result = Fog::Compute[:brightbox].destroy_cloud_ip(@cloud_ip_id)
+      result = Fog::Compute[:brightbox].delete_cloud_ip(@cloud_ip_id)
       data_matches_schema(Brightbox::Compute::Formats::Full::CLOUD_IP, :allow_extra_keys => true) { result }
     end
 

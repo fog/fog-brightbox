@@ -1,7 +1,7 @@
 require "spec_helper"
 require "fog/brightbox/models/compute/load_balancer"
 
-describe Fog::Compute::Brightbox::LoadBalancer do
+describe Fog::Brightbox::Compute::LoadBalancer do
   include ModelSetup
   include SupportsResourceLocking
 

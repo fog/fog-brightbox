@@ -1,10 +1,10 @@
 require "fog/brightbox/models/compute/image"
 
 module Fog
-  module Compute
-    class Brightbox
+  module Brightbox
+    class Compute
       class Images < Fog::Collection
-        model Fog::Compute::Brightbox::Image
+        model Fog::Brightbox::Compute::Image
 
         def all
           data = service.list_images

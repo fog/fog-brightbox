@@ -1,10 +1,10 @@
 require "fog/brightbox/models/compute/api_client"
 
 module Fog
-  module Compute
-    class Brightbox
+  module Brightbox
+    class Compute
       class ApiClients < Fog::Collection
-        model Fog::Compute::Brightbox::ApiClient
+        model Fog::Brightbox::Compute::ApiClient
 
         def all
           data = service.list_api_clients

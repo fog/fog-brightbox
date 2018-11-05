@@ -46,7 +46,7 @@ Hash.send :include, Fog::Brightbox::Nullable::Zone
 NilClass.send :include, Fog::Brightbox::Nullable::Zone
 
 class Brightbox
-  module Compute
+  class Compute
     module Formats
       module Struct
         CIP_PORT_TRANSLATOR = {

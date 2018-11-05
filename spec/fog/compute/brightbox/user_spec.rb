@@ -1,7 +1,7 @@
 require "spec_helper"
 require "fog/brightbox/models/compute/user"
 
-describe Fog::Compute::Brightbox::User do
+describe Fog::Brightbox::Compute::User do
   include ModelSetup
 
   subject { service.users.new }

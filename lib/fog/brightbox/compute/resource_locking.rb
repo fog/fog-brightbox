@@ -1,6 +1,6 @@
 module Fog
   module Brightbox
-    module Compute
+    class Compute
       module ResourceLocking
         def locked?
           if attributes.key?("locked") || attributes.key?(:locked)

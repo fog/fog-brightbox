@@ -1,10 +1,10 @@
 require "fog/brightbox/models/compute/user"
 
 module Fog
-  module Compute
-    class Brightbox
+  module Brightbox
+    class Compute
       class Users < Fog::Collection
-        model Fog::Compute::Brightbox::User
+        model Fog::Brightbox::Compute::User
 
         def all
           data = service.list_users

@@ -1,6 +1,6 @@
 module Fog
-  module Storage
-    class Brightbox
+  module Brightbox
+    class Storage
       class Real
         # Delete an existing container
         #
@@ -11,7 +11,7 @@ module Fog
           request(
             :expects  => 204,
             :method   => "DELETE",
-            :path     => Fog::Storage::Brightbox.escape(name)
+            :path     => Fog::Brightbox::Storage.escape(name)
           )
         end
       end

@@ -1,10 +1,10 @@
 require "fog/brightbox/models/compute/firewall_policy"
 
 module Fog
-  module Compute
-    class Brightbox
+  module Brightbox
+    class Compute
       class FirewallPolicies < Fog::Collection
-        model Fog::Compute::Brightbox::FirewallPolicy
+        model Fog::Brightbox::Compute::FirewallPolicy
 
         def all
           data = service.list_firewall_policies

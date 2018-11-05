@@ -11,20 +11,8 @@ module Fog
   module Brightbox
     extend Fog::Provider
 
-    module Compute
-      autoload :Config, File.expand_path("../brightbox/compute/config", __FILE__)
-      autoload :ImageSelector, File.expand_path("../brightbox/compute/image_selector", __FILE__)
-      autoload :ResourceLocking, File.expand_path("../brightbox/compute/resource_locking", __FILE__)
-      autoload :Shared, File.expand_path("../brightbox/compute/shared", __FILE__)
-    end
-
-    module Storage
-      autoload :AuthenticationRequest, File.expand_path("../brightbox/storage/authentication_request", __FILE__)
-      autoload :AuthenticationRequired, File.expand_path("../brightbox/storage/authentication_required", __FILE__)
-      autoload :Connection, File.expand_path("../brightbox/storage/connection", __FILE__)
-      autoload :Config, File.expand_path("../brightbox/storage/config", __FILE__)
-      autoload :ManagementUrlUnknown, File.expand_path("../brightbox/storage/management_url_unknown", __FILE__)
-    end
+    autoload :Compute, File.expand_path("../brightbox/compute", __FILE__)
+    autoload :Storage, File.expand_path("../brightbox/storage", __FILE__)
 
     autoload :Config, File.expand_path("../brightbox/config", __FILE__)
     autoload :LinkHelper, File.expand_path("../brightbox/link_helper", __FILE__)
@@ -34,13 +22,5 @@ module Fog
 
     service(:compute, "Compute")
     service(:storage, "Storage")
-  end
-
-  module Compute
-    autoload :Brightbox, File.expand_path("../brightbox/compute", __FILE__)
-  end
-
-  module Storage
-    autoload :Brightbox, File.expand_path("../brightbox/storage", __FILE__)
   end
 end

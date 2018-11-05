@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class Brightbox
+  module Brightbox
+    class Compute
       class ApiClient < Fog::Brightbox::Model
         identity :id
         attribute :name
@@ -24,7 +24,7 @@ module Fog
 
         def destroy
           requires :identity
-          service.destroy_api_client(identity)
+          service.delete_api_client(identity)
           true
         end
 

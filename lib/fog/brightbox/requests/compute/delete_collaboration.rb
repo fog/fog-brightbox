@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class Brightbox
+  module Brightbox
+    class Compute
       class Real
         # Cancels or completes the collaboration
         #
@@ -15,14 +15,6 @@ module Fog
         def delete_collaboration(identifier, options = {})
           return nil if identifier.nil? || identifier == ""
           wrapped_request("delete", "/1.0/collaborations/#{identifier}", [200], options)
-        end
-
-        # Old format of the delete request.
-        #
-        # @deprecated Use +#delete_collaboration+ instead
-        #
-        def destroy_collaboration(identifier)
-          delete_collaboration(identifier)
         end
       end
     end

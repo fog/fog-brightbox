@@ -39,11 +39,10 @@ and its modules:
 * http://fog.io/
 * http://rubydoc.info/gems/fog/
 
-### Ruby 1.8.7
+### Ruby version support
 
-If you are still using Ruby 1.8.7 in production, see `gemfiles/Gemfile.1.8.7`
-for a gemfile of 1.8.7 compatible version of dependencies you may need to
-specify in your application's `Gemfile`
+As required by the main `fog-core` library, support for Ruby 1.9 was dropped in
+`v1.0.0` of this gem.
 
 ## Contributing
 

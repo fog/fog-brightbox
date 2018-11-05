@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class Brightbox
+  module Brightbox
+    class Compute
       class FirewallPolicy < Fog::Brightbox::Model
         identity :id
         attribute :url
@@ -50,7 +50,7 @@ module Fog
 
         def destroy
           requires :identity
-          service.destroy_firewall_policy(identity)
+          service.delete_firewall_policy(identity)
           true
         end
       end

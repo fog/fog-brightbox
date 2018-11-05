@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class Brightbox
+  module Brightbox
+    class Compute
       class Real
         # @param [Hash] options
         # @option options [Boolean] :nested passed through with the API request. When true nested resources are expanded.

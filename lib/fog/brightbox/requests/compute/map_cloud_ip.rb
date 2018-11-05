@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class Brightbox
+  module Brightbox
+    class Compute
       class Real
         # Maps (or points) a cloud IP address at a server's interface or a load balancer to allow them to respond to public requests.
         #

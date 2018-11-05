@@ -20,9 +20,9 @@ Shindo.tests("Fog::Compute[:brightbox] | collaboration requests", ["brightbox"])
       formats(Brightbox::Compute::Formats::Full::COLLABORATION, false) { result }
     end
 
-    tests("#destroy_collaboration") do
+    tests("#delete_collaboration") do
       pending if Fog.mocking?
-      result = Fog::Compute[:brightbox].destroy_collaboration(@collaboration_id)
+      result = Fog::Compute[:brightbox].delete_collaboration(@collaboration_id)
       formats(Brightbox::Compute::Formats::Full::COLLABORATION, false) { result }
     end
   end

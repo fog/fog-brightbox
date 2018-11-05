@@ -1,10 +1,10 @@
 require "fog/brightbox/models/compute/database_type"
 
 module Fog
-  module Compute
-    class Brightbox
+  module Brightbox
+    class Compute
       class DatabaseTypes < Fog::Collection
-        model Fog::Compute::Brightbox::DatabaseType
+        model Fog::Brightbox::Compute::DatabaseType
 
         def all
           data = service.list_database_types

@@ -1,16 +1,16 @@
 require "spec_helper"
 
-describe Fog::Storage::Brightbox do
+describe Fog::Brightbox::Storage do
   include StockStorageResponses
 
   let(:config) { Fog::Brightbox::Config.new(settings) }
-  let(:service) { Fog::Storage::Brightbox.new(config) }
+  let(:service) { Fog::Brightbox::Storage.new(config) }
 
   describe "when created without required arguments" do
     it "raises an error" do
       Fog.stub :credentials, {} do
         assert_raises ArgumentError do
-          Fog::Storage::Brightbox.new({})
+          Fog::Brightbox::Storage.new({})
         end
       end
     end
@@ -35,7 +35,7 @@ describe Fog::Storage::Brightbox do
 
     it "raises ArgumentError" do
       assert_raises ArgumentError do
-        Fog::Storage::Brightbox.new(config)
+        Fog::Brightbox::Storage.new(config)
       end
     end
   end
@@ -283,7 +283,6 @@ describe Fog::Storage::Brightbox do
   end
 
   describe "when initialised with temporary URL key" do
-    before { skip unless RUBY_VERSION > "1.9.3" }
     let(:temp_url_key) { "1234567890" }
     let(:settings) do
       {
@@ -319,7 +318,6 @@ describe Fog::Storage::Brightbox do
   end
 
   describe "when initialised without management URL" do
-    before { skip unless RUBY_VERSION > "1.9.3" }
     let(:temp_url_key) { "1234567890" }
     let(:settings) do
       {

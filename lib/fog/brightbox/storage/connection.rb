@@ -1,6 +1,6 @@
 module Fog
   module Brightbox
-    module Storage
+    class Storage
       class Connection < Fog::Core::Connection
         def initialize(config)
           @config = config
@@ -23,7 +23,7 @@ module Fog
           rescue Excon::Errors::Unauthorized => error
             raise AuthenticationRequired.slurp(error)
           rescue Excon::Errors::NotFound => error
-            raise Fog::Storage::Brightbox::NotFound.slurp(error)
+            raise Fog::Brightbox::Storage::NotFound.slurp(error)
           rescue Excon::Errors::HTTPStatusError => error
             raise error
           end

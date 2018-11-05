@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class Brightbox
+  module Brightbox
+    class Compute
       class Collaboration < Fog::Brightbox::Model
         identity :id
         attribute :status
@@ -37,7 +37,7 @@ module Fog
 
         def destroy
           requires :identity
-          data = service.destroy_collaboration(identity)
+          data = service.delete_collaboration(identity)
           merge_attributes(data)
           true
         end

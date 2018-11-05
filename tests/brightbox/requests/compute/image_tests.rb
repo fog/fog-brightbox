@@ -34,8 +34,8 @@ Shindo.tests("Fog::Compute[:brightbox] | image requests", ["brightbox"]) do
     # end
 
     ## Same as other tests - can't be deleting them unless part of the test run
-    # tests("#destroy_server('#{@image_id}')") do
-    #   result = Fog::Compute[:brightbox].destroy_image(@image_id)
+    # tests("#delete_image('#{@image_id}')") do
+    #   result = Fog::Compute[:brightbox].delete_image(@image_id)
     #   formats(Brightbox::Compute::Formats::Full::IMAGE) { result }
     # end
   end

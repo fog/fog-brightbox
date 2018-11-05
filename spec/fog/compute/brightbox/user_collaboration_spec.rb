@@ -1,7 +1,7 @@
 require "spec_helper"
 require "fog/brightbox/models/compute/user_collaboration"
 
-describe Fog::Compute::Brightbox::UserCollaboration do
+describe Fog::Brightbox::Compute::UserCollaboration do
   include ModelSetup
 
   subject { service.user_collaborations.new }

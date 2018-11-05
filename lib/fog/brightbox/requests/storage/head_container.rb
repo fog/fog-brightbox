@@ -1,6 +1,6 @@
 module Fog
-  module Storage
-    class Brightbox
+  module Brightbox
+    class Storage
       class Real
         # List number of objects and total bytes stored
         #
@@ -16,7 +16,7 @@ module Fog
           request(
             :expects  => 204,
             :method   => "HEAD",
-            :path     => Fog::Storage::Brightbox.escape(container),
+            :path     => Fog::Brightbox::Storage.escape(container),
             :query    => { "format" => "json" }
           )
         end

@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class Brightbox
+  module Brightbox
+    class Compute
       class Real
         # Invites the given email address to collaborate with the specified account. Existing users
         # will be able to accept the collaboration whilst those without a Brightbox account will be

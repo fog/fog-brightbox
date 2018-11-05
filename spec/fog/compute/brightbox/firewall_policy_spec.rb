@@ -1,7 +1,7 @@
 require "spec_helper"
 require "fog/brightbox/models/compute/firewall_policy"
 
-describe Fog::Compute::Brightbox::FirewallPolicy do
+describe Fog::Brightbox::Compute::FirewallPolicy do
   include ModelSetup
 
   subject { service.firewall_policies.new }

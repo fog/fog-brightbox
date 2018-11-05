@@ -1,7 +1,7 @@
 require "spec_helper"
 require "fog/brightbox/models/compute/application"
 
-describe Fog::Compute::Brightbox::Application do
+describe Fog::Brightbox::Compute::Application do
   include ModelSetup
 
   subject { service.applications.new }

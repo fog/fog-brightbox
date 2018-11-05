@@ -1,6 +1,6 @@
 module Fog
-  module Storage
-    class Brightbox
+  module Brightbox
+    class Storage
       class Real
         # Get details for container and total bytes stored
         #
@@ -32,7 +32,7 @@ module Fog
           request(
             :expects  => 200,
             :method   => "GET",
-            :path     => Fog::Storage::Brightbox.escape(container),
+            :path     => Fog::Brightbox::Storage.escape(container),
             :query    => { "format" => "json" }.merge!(options)
           )
         end

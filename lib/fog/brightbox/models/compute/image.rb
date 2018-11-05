@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class Brightbox
+  module Brightbox
+    class Compute
       class Image < Fog::Brightbox::Model
         include Fog::Brightbox::Compute::ResourceLocking
 
@@ -53,7 +53,7 @@ module Fog
 
         def destroy
           requires :identity
-          service.destroy_image(identity)
+          service.delete_image(identity)
           true
         end
       end

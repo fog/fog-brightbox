@@ -1,10 +1,10 @@
 require "fog/brightbox/models/compute/cloud_ip"
 
 module Fog
-  module Compute
-    class Brightbox
+  module Brightbox
+    class Compute
       class CloudIps < Fog::Collection
-        model Fog::Compute::Brightbox::CloudIp
+        model Fog::Brightbox::Compute::CloudIp
 
         def all
           data = service.list_cloud_ips

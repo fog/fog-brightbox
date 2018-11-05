@@ -1,10 +1,10 @@
 require "fog/brightbox/models/compute/zone"
 
 module Fog
-  module Compute
-    class Brightbox
+  module Brightbox
+    class Compute
       class Zones < Fog::Collection
-        model Fog::Compute::Brightbox::Zone
+        model Fog::Brightbox::Compute::Zone
 
         def all
           data = service.list_zones

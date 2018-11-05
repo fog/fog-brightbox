@@ -1,7 +1,7 @@
 require "spec_helper"
 require "fog/brightbox/models/compute/api_client"
 
-describe Fog::Compute::Brightbox::ApiClient do
+describe Fog::Brightbox::Compute::ApiClient do
   include ModelSetup
 
   subject { service.api_clients.new }

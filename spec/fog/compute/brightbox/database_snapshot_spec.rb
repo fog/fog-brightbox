@@ -1,7 +1,7 @@
 require "spec_helper"
 require "fog/brightbox/models/compute/database_snapshot"
 
-describe Fog::Compute::Brightbox::DatabaseSnapshot do
+describe Fog::Brightbox::Compute::DatabaseSnapshot do
   include ModelSetup
   include SupportsResourceLocking
 

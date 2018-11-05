@@ -35,8 +35,8 @@ Shindo.tests("Fog::Compute[:brightbox] | database server requests", ["brightbox"
       test("new password is visible") { !result["admin_password"].nil? }
     end
 
-    tests("#destroy_database_server('#{@database_server_id}')") do
-      result = Fog::Compute[:brightbox].destroy_database_server(@database_server_id)
+    tests("#delete_database_server('#{@database_server_id}')") do
+      result = Fog::Compute[:brightbox].delete_database_server(@database_server_id)
       data_matches_schema(Brightbox::Compute::Formats::Full::DATABASE_SERVER, :allow_extra_keys => true) { result }
     end
   end

@@ -1,6 +1,6 @@
 module Fog
-  module Compute
-    class Brightbox
+  module Brightbox
+    class Compute
       class Real
         # Destroy the image.
         #
@@ -15,14 +15,6 @@ module Fog
         def delete_image(identifier, options = {})
           return nil if identifier.nil? || identifier == ""
           wrapped_request("delete", "/1.0/images/#{identifier}", [202], options)
-        end
-
-        # Old format of the delete request.
-        #
-        # @deprecated Use +#delete_image+ instead
-        #
-        def destroy_image(identifier)
-          delete_image(identifier)
         end
       end
     end

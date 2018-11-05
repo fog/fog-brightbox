@@ -1,7 +1,7 @@
 require "spec_helper"
 require "fog/brightbox/models/compute/server_group"
 
-describe Fog::Compute::Brightbox::ServerGroup do
+describe Fog::Brightbox::Compute::ServerGroup do
   include ModelSetup
 
   subject { service.server_groups.new }
