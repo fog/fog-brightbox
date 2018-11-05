@@ -10,6 +10,7 @@ Major Changes:
   did not require identifiers and were treated as the authenticated user.
 * Remove deprecated `Compute#request` multiple argument version.
 * Remove deprecated `#destroy_(resource)` requests.
+* Fix `#destroy_(resource)` references in models.
 
 ### 0.16.0 / 2018-09-04
 

@@ -53,7 +53,7 @@ module Fog
 
         def destroy
           requires :identity
-          service.destroy_image(identity)
+          service.delete_image(identity)
           true
         end
       end

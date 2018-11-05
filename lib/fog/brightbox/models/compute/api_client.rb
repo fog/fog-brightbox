@@ -24,7 +24,7 @@ module Fog
 
         def destroy
           requires :identity
-          service.destroy_api_client(identity)
+          service.delete_api_client(identity)
           true
         end
 

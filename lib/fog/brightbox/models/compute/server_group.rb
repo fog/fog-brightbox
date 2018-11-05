@@ -76,7 +76,7 @@ module Fog
 
         def destroy
           requires :identity
-          service.destroy_server_group(identity)
+          service.delete_server_group(identity)
           true
         end
 

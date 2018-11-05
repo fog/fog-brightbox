@@ -67,7 +67,7 @@ module Fog
 
         def destroy
           requires :identity
-          service.destroy_load_balancer(identity)
+          service.delete_load_balancer(identity)
           true
         end
 

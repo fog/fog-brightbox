@@ -76,9 +76,9 @@ Shindo.tests("Fog::Compute[:brightbox] | server requests", ["brightbox"]) do
       @snapshot.destroy
     end
 
-    tests("#destroy_server('#{server_id}')") do
+    tests("#delete_server('#{server_id}')") do
       pending if Fog.mocking?
-      result = Fog::Compute[:brightbox].destroy_server(server_id)
+      result = Fog::Compute[:brightbox].delete_server(server_id)
       data_matches_schema(Brightbox::Compute::Formats::Full::SERVER, :allow_extra_keys => true) { result }
     end
   end

@@ -85,9 +85,9 @@ Shindo.tests("Fog::Compute[:brightbox] | load balancer requests", ["brightbox"])
       data_matches_schema(Brightbox::Compute::Formats::Full::LOAD_BALANCER, :allow_extra_keys => true) { result }
     end
 
-    tests("#destroy_load_balancer('#{@load_balancer_id}')") do
+    tests("#delete_load_balancer('#{@load_balancer_id}')") do
       pending if Fog.mocking?
-      result = Fog::Compute[:brightbox].destroy_load_balancer(@load_balancer_id)
+      result = Fog::Compute[:brightbox].delete_load_balancer(@load_balancer_id)
       data_matches_schema(Brightbox::Compute::Formats::Full::LOAD_BALANCER, :allow_extra_keys => true) { result }
     end
 

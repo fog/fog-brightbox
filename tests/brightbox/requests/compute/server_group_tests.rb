@@ -61,9 +61,9 @@ Shindo.tests("Fog::Compute[:brightbox] | server group requests", ["brightbox"]) 
       test("group is emptied") { result["servers"].empty? }
     end
 
-    tests("#destroy_server_group('#{@server_group_id}')") do
+    tests("#delete_server_group('#{@server_group_id}')") do
       pending if Fog.mocking?
-      result = Fog::Compute[:brightbox].destroy_server_group(@server_group_id)
+      result = Fog::Compute[:brightbox].delete_server_group(@server_group_id)
       data_matches_schema(Brightbox::Compute::Formats::Full::SERVER_GROUP, :allow_extra_keys => true) { result }
     end
 

@@ -39,7 +39,7 @@ module Fog
 
         def destroy
           requires :identity
-          service.destroy_firewall_rule(identity)
+          service.delete_firewall_rule(identity)
           true
         end
       end

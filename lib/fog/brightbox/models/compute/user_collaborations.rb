@@ -21,7 +21,7 @@ module Fog
 
         def destroy
           requires :identity
-          service.destroy_user_collaboration(identity)
+          service.delete_user_collaboration(identity)
           true
         end
       end

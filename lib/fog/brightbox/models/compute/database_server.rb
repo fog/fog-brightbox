@@ -81,7 +81,7 @@ module Fog
 
         def destroy
           requires :identity
-          merge_attributes(service.destroy_database_server(identity))
+          merge_attributes(service.delete_database_server(identity))
           true
         end
 

@@ -31,7 +31,7 @@ module Fog
 
         def destroy
           requires :identity
-          data = service.destroy_user_collaboration(identity)
+          data = service.delete_user_collaboration(identity)
           merge_attributes(data)
           true
         end

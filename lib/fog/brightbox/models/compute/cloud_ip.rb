@@ -53,7 +53,7 @@ module Fog
 
         def destroy
           requires :identity
-          service.destroy_cloud_ip(identity)
+          service.delete_cloud_ip(identity)
         end
 
         def destination_id
