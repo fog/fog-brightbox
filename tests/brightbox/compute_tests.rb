@@ -9,8 +9,8 @@ end
 Shindo.tests("Fog::Compute.new", ["brightbox"]) do
   tests("service options") do
     {
-      :brightbox_api_url => "https://example.com",
-      :brightbox_auth_url => "https://example.com",
+      :brightbox_api_url => "https://example.test",
+      :brightbox_auth_url => "https://example.test",
       :brightbox_client_id => "app-12345",
       :brightbox_secret => "12345abdef6789",
       :brightbox_username => "user-12345",
