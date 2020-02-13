@@ -220,7 +220,7 @@ describe Fog::Brightbox::Config do
       @options = {
         :brightbox_client_id => "app-12345",
         :brightbox_secret => "12345",
-        :brightbox_username => "user@example.com",
+        :brightbox_username => "user@example.test",
         :brightbox_password => "12345"
       }
       @config = Fog::Brightbox::Config.new(@options)
@@ -241,7 +241,7 @@ describe Fog::Brightbox::Config do
 
   describe "when setting management_url with URI" do
     it "sets it correctly" do
-      uri = URI.parse("https://example.com")
+      uri = URI.parse("https://example.test")
       @config = Fog::Brightbox::Config.new
       @config.storage_management_url = uri
       assert_equal @config.storage_management_url, uri
@@ -250,7 +250,7 @@ describe Fog::Brightbox::Config do
 
   describe "when setting management_url with String" do
     it "raises ArgumentError" do
-      uri = "http://example.com/wrong"
+      uri = "http://example.test/wrong"
       assert_raises(ArgumentError) { Fog::Brightbox::Config.new.storage_management_url = uri }
     end
   end

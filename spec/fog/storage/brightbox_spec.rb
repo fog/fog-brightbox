@@ -89,7 +89,7 @@ describe Fog::Brightbox::Storage do
       {
         :brightbox_client_id => "app-12345",
         :brightbox_secret => "12345",
-        :brightbox_username => "user@example.com",
+        :brightbox_username => "user@example.test",
         :brightbox_password => "abcde",
         :brightbox_account => "acc-abcde"
       }
@@ -111,7 +111,7 @@ describe Fog::Brightbox::Storage do
       {
         :brightbox_client_id => "app-12345",
         :brightbox_secret => "12345",
-        :brightbox_username => "user@example.com",
+        :brightbox_username => "user@example.test",
         :brightbox_password => "abcde"
       }
     end
@@ -204,7 +204,7 @@ describe Fog::Brightbox::Storage do
       {
         :brightbox_client_id => "app-12345",
         :brightbox_secret => "12345",
-        :brightbox_username => "user@example.com",
+        :brightbox_username => "user@example.test",
         :brightbox_password => "12345",
         :brightbox_access_token => "1234567890abcdefghijklmnopqrstuvwxyz",
         :brightbox_refresh_token => "1234567890abcdefghijklmnopqrstuvwxyz",
@@ -221,7 +221,7 @@ describe Fog::Brightbox::Storage do
 
       # The reauthentication
       stub_request(:get, "https://files.gb2.brightbox.com/v1").
-        with(:headers => { "X-Auth-User" => "user@example.com", "X-Auth-Key" => "12345" }).
+        with(:headers => { "X-Auth-User" => "user@example.test", "X-Auth-Key" => "12345" }).
         to_return(authorized_response)
 
       # Repeated request

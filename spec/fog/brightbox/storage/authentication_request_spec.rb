@@ -47,7 +47,7 @@ describe Fog::Brightbox::Storage::AuthenticationRequest do
       stub_request(:get, "https://orbit.brightbox.com/v1").
         with(:headers => {
                "Host" => "orbit.brightbox.com:443",
-               "X-Auth-User" => "user@example.com",
+               "X-Auth-User" => "user@example.test",
                "X-Auth-Key" => "abcde"
              }).to_return(authorized_response)
     end
@@ -56,7 +56,7 @@ describe Fog::Brightbox::Storage::AuthenticationRequest do
       settings = {
         :brightbox_client_id => "app-12345",
         :brightbox_secret => "12345",
-        :brightbox_username => "user@example.com",
+        :brightbox_username => "user@example.test",
         :brightbox_password => "abcde"
       }
       @config = Fog::Brightbox::Config.new(settings)
@@ -70,7 +70,7 @@ describe Fog::Brightbox::Storage::AuthenticationRequest do
       stub_request(:get, "https://orbit.brightbox.com/v1").
         with(:headers => {
                "Host" => "orbit.brightbox.com:443",
-               "X-Auth-User" => "user@example.com",
+               "X-Auth-User" => "user@example.test",
                "X-Auth-Key" => "abcde"
              }).to_return(unauthorized_response)
     end
@@ -79,7 +79,7 @@ describe Fog::Brightbox::Storage::AuthenticationRequest do
       settings = {
         :brightbox_client_id => "app-12345",
         :brightbox_secret => "12345",
-        :brightbox_username => "user@example.com",
+        :brightbox_username => "user@example.test",
         :brightbox_password => "abcde"
       }
       @config = Fog::Brightbox::Config.new(settings)
