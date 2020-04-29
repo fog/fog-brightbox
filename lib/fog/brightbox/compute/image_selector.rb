@@ -28,6 +28,7 @@ module Fog
         def latest_ubuntu
           @images.select do |img|
             img["official"] == true &&
+              img["status"] == "available" &&
               img["arch"] == "i686" &&
               img["name"] =~ /ubuntu/i
           end.sort do |a, b|
@@ -46,7 +47,8 @@ module Fog
         def official_minimal
           @images.select do |img|
             img["official"] == true &&
-            img["virtual_size"] != 0
+              img["status"] == "available" &&
+              img["virtual_size"] != 0
           end.sort_by do |img|
             img["disk_size"]
           end.first["id"]
