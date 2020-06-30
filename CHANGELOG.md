@@ -1,3 +1,21 @@
+### 1.1.0 / 2020-06-30
+
+Changes:
+
+* Add Ruby 2.6 and 2.7 to Travis CI testing matrix.
+* Remove bundler installation step from Travis CI.
+* Use `example.test` for testing domains rather than `example.com` to avoid
+  leaking routable traffic.
+* Add `FOG_TEST_COLLABORATOR_EMAIL` to enable ENV based setting of email
+  address when using the tests for integation tests.`
+
+Bug fixes:
+
+* Add `status` check to `ImageSelector` so that unavailable images were not
+  selected for use automatically and causing failures in tests.
+* Fix creating database servers from snapshots by adding the `snapshot_id`
+  attribute ensuring the value is not filtered when using the model.
+
 ### 1.0.0 / 2018-10-05
 
 Major Changes:
