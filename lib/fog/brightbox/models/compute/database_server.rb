@@ -34,6 +34,8 @@ module Fog
         attribute :flavor_id, "alias" => "database_server_type", :squash => "id"
         attribute :zone_id, "alias" => "zone", :squash => "id"
 
+        attribute :snapshot_id
+
         attribute :cloud_ips
 
         def save
@@ -54,6 +56,7 @@ module Fog
             options[:version] = database_version if database_version
             options[:database_type] = flavor_id if flavor_id
             options[:zone] = zone_id if zone_id
+            options[:snapshot] = snapshot_id if snapshot_id
 
             data = create_database_server(options)
           end
