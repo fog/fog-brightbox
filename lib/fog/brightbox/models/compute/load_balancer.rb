@@ -18,6 +18,8 @@ module Fog
         attribute :healthcheck
         attribute :listeners
 
+        attribute :ssl_minimum_version
+
         # These SSL attributes act only as setters. You can not read certs or keys via the API
         attribute :certificate_pem
         attribute :certificate_private_key
@@ -58,6 +60,7 @@ module Fog
             :buffer_size => buffer_size,
             :certificate_pem => certificate_pem,
             :certificate_private_key => certificate_private_key,
+            :ssl_minimum_version => ssl_minimum_version,
             :sslv3 => ssl3?
           }.delete_if { |_k, v| v.nil? || v == "" }
           data = service.create_load_balancer(options)
