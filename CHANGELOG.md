@@ -1,3 +1,10 @@
+### 1.2.0 / 2020-11-16
+
+Changes:
+
+* Add `LoadBalancer#ssl_minimum_version` attribute to configure the TLS/SSL
+  version supported by the load balancer.
+
 ### 1.1.0 / 2020-06-30
 
 Changes:
