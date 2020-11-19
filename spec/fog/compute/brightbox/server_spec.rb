@@ -19,7 +19,49 @@ describe Fog::Brightbox::Compute::Server do
     end
   end
 
-  describe "when snapshotting withi no options" do
+  describe "when creating" do
+    describe "with required image_id" do
+      it "sends correct JSON" do
+        options = {
+          image_id: "img-12345"
+        }
+
+        stub_request(:post, "http://localhost/1.0/servers").
+          with(:query => hash_including(:account_id),
+               :headers => { "Authorization" => "Bearer FAKECACHEDTOKEN",
+                             "Content-Type": "application/json" },
+                             :body => hash_including(:image => "img-12345")).
+        to_return(:status => 202, :body => %q({"id":"srv-12345"}), :headers => {})
+
+        @server = Fog::Brightbox::Compute::Server.new({ :service => service }.merge(options))
+        assert @server.save
+      end
+    end
+
+    describe "with additional disk_encrypted" do
+      it "sends correct JSON" do
+        options = {
+          image_id: "img-12345",
+          disk_encrypted: true
+        }
+
+        stub_request(:post, "http://localhost/1.0/servers").
+          with(:query => hash_including(:account_id),
+               :headers => { "Authorization" => "Bearer FAKECACHEDTOKEN",
+                             "Content-Type": "application/json" },
+                             :body => hash_including(:disk_encrypted => true)).
+          to_return(:status => 202,
+                    :body => %q({"id":"srv-12345","disk_encrypted":true}),
+                    :headers => {})
+
+        @server = Fog::Brightbox::Compute::Server.new({ :service => service }.merge(options))
+        assert @server.save
+        assert @server.disk_encrypted
+      end
+    end
+  end
+
+  describe "when snapshotting with no options" do
     it "returns the server" do
       stub_request(:post, "http://localhost/1.0/servers/srv-12345/snapshot").
         with(:query => hash_including(:account_id),
