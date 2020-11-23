@@ -29,7 +29,7 @@ describe Fog::Brightbox::Compute::Server do
         stub_request(:post, "http://localhost/1.0/servers").
           with(:query => hash_including(:account_id),
                :headers => { "Authorization" => "Bearer FAKECACHEDTOKEN",
-                             "Content-Type": "application/json" },
+                             "Content-Type" => "application/json" },
                              :body => hash_including(:image => "img-12345")).
         to_return(:status => 202, :body => %q({"id":"srv-12345"}), :headers => {})
 
@@ -48,7 +48,7 @@ describe Fog::Brightbox::Compute::Server do
         stub_request(:post, "http://localhost/1.0/servers").
           with(:query => hash_including(:account_id),
                :headers => { "Authorization" => "Bearer FAKECACHEDTOKEN",
-                             "Content-Type": "application/json" },
+                             "Content-Type" => "application/json" },
                              :body => hash_including(:disk_encrypted => true)).
           to_return(:status => 202,
                     :body => %q({"id":"srv-12345","disk_encrypted":true}),
