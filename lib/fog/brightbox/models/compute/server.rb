@@ -21,6 +21,8 @@ module Fog
         attribute :fqdn
         attribute :console_token
 
+        attribute :disk_encrypted
+
         # Times
         attribute :created_at, :type => :time
         attribute :started_at, :type => :time
@@ -188,6 +190,7 @@ module Fog
 
           options.merge!(:server_type => flavor_id) unless flavor_id.nil? || flavor_id == ""
           options.merge!(:cloud_ip => cloud_ip) unless cloud_ip.nil? || cloud_ip == ""
+          options.merge!(:disk_encrypted => disk_encrypted) if disk_encrypted
 
           data = service.create_server(options)
           merge_attributes(data)
