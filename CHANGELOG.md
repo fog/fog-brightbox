@@ -1,3 +1,10 @@
+### 1.3.0 / 2020-11-24
+
+Changes:
+
+* Add `Server#disk_encrypted` attribute to support creation of servers with
+  LUKS based encryption at rest.
+
 ### 1.2.0 / 2020-11-16
 
 Changes:
