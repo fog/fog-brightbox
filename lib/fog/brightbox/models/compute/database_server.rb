@@ -49,6 +49,9 @@ module Fog
           options[:maintenance_weekday] = maintenance_weekday
           options[:maintenance_hour] = maintenance_hour
 
+          options[:snapshots_schedule] = snapshots_schedule
+          options[:snapshots_schedule] = nil if snapshots_schedule == ""
+
           if persisted?
             data = update_database_server(options)
           else
