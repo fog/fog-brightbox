@@ -1,3 +1,11 @@
+### 1.4.1 / 2021-04-20
+
+Bug fixes:
+
+* Fix passing `snapshots_schedule` to database servers as the value was being
+  omitted in the model layer. This was preventing creating without a schedule
+  causing the default behaviour.
+
 ### 1.4.0 / 2021-02-17
 
 Changes:
