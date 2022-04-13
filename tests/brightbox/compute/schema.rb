@@ -252,6 +252,29 @@ class Brightbox
           "inviter"         => Brightbox::Compute::Formats::Nested::USER
         }
 
+        VOLUME = {
+          "id"              => String,
+          "resource_type"   => String,
+          "url"             => String,
+          "status"          => String,
+          "name"            => Fog::Nullable::String,
+          "delete_with_server" => Fog::Boolean,
+          "description"     => Fog::Nullable::String,
+          "boot"            => Fog::Boolean,
+          "encrypted"       => Fog::Boolean,
+          "filesystem_label" => Fog::Nullable::String,
+          "filesystem_type" => Fog::Nullable::String,
+          "locked"          => Fog::Boolean,
+          "serial"          => String,
+          "size"            => Integer,
+          "source"          => Fog::Nullable::String,
+          "source_type"     => String,
+          "storage_type"    => String,
+          "created_at"      => String,
+          "updated_at"      => String,
+          "deleted_at"      => Fog::Nullable::String
+        }
+
         ZONE = {
           "id"              => String,
           "resource_type"   => String,
@@ -482,6 +505,29 @@ class Brightbox
           "inviter"         => Brightbox::Compute::Formats::Nested::USER
         }
 
+        VOLUME = {
+          "id"              => String,
+          "resource_type"   => String,
+          "url"             => String,
+          "status"          => String,
+          "name"            => Fog::Nullable::String,
+          "delete_with_server" => Fog::Boolean,
+          "description"     => Fog::Nullable::String,
+          "boot"            => Fog::Boolean,
+          "encrypted"       => Fog::Boolean,
+          "filesystem_label" => Fog::Nullable::String,
+          "filesystem_type" => Fog::Nullable::String,
+          "locked"          => Fog::Boolean,
+          "serial"          => String,
+          "size"            => Integer,
+          "source"          => Fog::Nullable::String,
+          "source_type"     => String,
+          "storage_type"    => String,
+          "created_at"      => String,
+          "updated_at"      => String,
+          "deleted_at"      => Fog::Nullable::String
+        }
+
         ZONE = {
           "id"              => String,
           "resource_type"   => String,
@@ -706,6 +752,7 @@ class Brightbox
           "snapshots"       => [Brightbox::Compute::Formats::Nested::IMAGE],
           "server_groups"   => [Brightbox::Compute::Formats::Nested::SERVER_GROUP],
           "interfaces"      => [Brightbox::Compute::Formats::Nested::INTERFACE],
+          "volumes"         => [Brightbox::Compute::Formats::Nested::VOLUME],
           "zone"            => Fog::Brightbox::Nullable::Zone,
           "licence_name"    => Fog::Nullable::String,
           "username"        => Fog::Nullable::String,
@@ -763,6 +810,32 @@ class Brightbox
           "inviter"         => Brightbox::Compute::Formats::Nested::USER
         }
 
+        VOLUME = {
+          "id"              => String,
+          "resource_type"   => String,
+          "url"             => String,
+          "status"          => String,
+          "name"            => Fog::Nullable::String,
+          "delete_with_server" => Fog::Boolean,
+          "description"     => Fog::Nullable::String,
+          "boot"            => Fog::Boolean,
+          "encrypted"       => Fog::Boolean,
+          "filesystem_label" => Fog::Nullable::String,
+          "filesystem_type" => Fog::Nullable::String,
+          "locked"          => Fog::Boolean,
+          "serial"          => String,
+          "size"            => Integer,
+          "source"          => Fog::Nullable::String,
+          "source_type"     => String,
+          "storage_type"    => String,
+          "created_at"      => String,
+          "updated_at"      => String,
+          "deleted_at"      => Fog::Nullable::String,
+          "account"         => Brightbox::Compute::Formats::Nested::ACCOUNT,
+          "image"           => Fog::Brightbox::Nullable::Image,
+          "server"          => Fog::Brightbox::Nullable::Server
+        }
+
         ZONE = {
           "id"              => String,
           "resource_type"   => String,
@@ -787,6 +860,7 @@ class Brightbox
         SERVER_GROUPS = [Brightbox::Compute::Formats::Collected::SERVER_GROUP]
         SERVER_TYPES = [Brightbox::Compute::Formats::Collected::SERVER_TYPE]
         USERS = [Brightbox::Compute::Formats::Collected::USER]
+        VOLUMES = [Brightbox::Compute::Formats::Collected::VOLUME]
         ZONES = [Brightbox::Compute::Formats::Collected::ZONE]
       end
     end
