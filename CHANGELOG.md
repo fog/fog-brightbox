@@ -1,3 +1,12 @@
+### 1.5.0 / 2022-06-09
+
+Changes:
+
+* Added support for `Volume` resources. These are dynamic, network attached
+  volumes. Servers with `nbs` (Network Block Storage) types can be created
+  from volumes. Additional volumes can be attached to a server. The volumes
+  can be quickly copied and resized.
+
 ### 1.4.2 / 2022-06-09
 
 Bug fixes:
