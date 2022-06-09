@@ -7,6 +7,8 @@ module Fog
         include Fog::Brightbox::ModelHelper
         include Fog::Brightbox::Compute::ResourceLocking
 
+        attr_accessor :volume_id
+
         identity :id
         attribute :resource_type
         attribute :url
@@ -38,6 +40,7 @@ module Fog
         attribute :cloud_ips
         attribute :interfaces
         attribute :server_groups
+        attribute :volumes
         attribute :zone
         attribute :server_type
 
@@ -181,7 +184,6 @@ module Fog
           raise Fog::Errors::Error.new("Resaving an existing object may create a duplicate") if persisted?
           requires :image_id
           options = {
-            :image => image_id,
             :name => name,
             :zone => zone_id,
             :user_data => user_data,
@@ -191,6 +193,12 @@ module Fog
           options.merge!(:server_type => flavor_id) unless flavor_id.nil? || flavor_id == ""
           options.merge!(:cloud_ip => cloud_ip) unless cloud_ip.nil? || cloud_ip == ""
           options.merge!(:disk_encrypted => disk_encrypted) if disk_encrypted
+
+          if volume_id
+            options.merge!(:volumes => [:volume => volume_id])
+          else
+            options.merge!(:image => image_id)
+          end
 
           data = service.create_server(options)
           merge_attributes(data)

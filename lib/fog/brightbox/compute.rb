@@ -63,6 +63,8 @@ module Fog
       model :user
       collection :user_collaborations
       model :user_collaboration
+      collection :volumes
+      model :volume
 
       request_path "fog/brightbox/requests/compute"
       request :accept_user_collaboration
@@ -72,7 +74,9 @@ module Fog
       request :add_servers_server_group
       request :apply_to_firewall_policy
       request :accept_user_collaboration
+      request :attach_volume
       request :remove_firewall_policy
+      request :copy_volume
       request :create_api_client
       request :create_application
       request :create_cloud_ip
@@ -84,6 +88,7 @@ module Fog
       request :create_database_server
       request :create_server
       request :create_server_group
+      request :create_volume
       request :delete_api_client
       request :delete_application
       request :delete_cloud_ip
@@ -97,6 +102,8 @@ module Fog
       request :delete_server
       request :delete_server_group
       request :delete_user_collaboration
+      request :delete_volume
+      request :detach_volume
       request :get_account
       request :get_api_client
       request :get_application
@@ -117,6 +124,7 @@ module Fog
       request :get_server_type
       request :get_user
       request :get_user_collaboration
+      request :get_volume
       request :get_zone
       request :list_accounts
       request :list_api_clients
@@ -135,12 +143,14 @@ module Fog
       request :list_servers
       request :list_users
       request :list_user_collaborations
+      request :list_volumes
       request :list_zones
       request :lock_resource_database_server
       request :lock_resource_database_snapshot
       request :lock_resource_image
       request :lock_resource_load_balancer
       request :lock_resource_server
+      request :lock_resource_volume
       request :map_cloud_ip
       request :move_servers_server_group
       request :reboot_server
@@ -156,6 +166,7 @@ module Fog
       request :reset_secret_application
       request :reset_server
       request :resend_collaboration
+      request :resize_volume
       request :reject_user_collaboration
       request :shutdown_server
       request :snapshot_database_server
@@ -167,6 +178,7 @@ module Fog
       request :unlock_resource_image
       request :unlock_resource_load_balancer
       request :unlock_resource_server
+      request :unlock_resource_volume
       request :unmap_cloud_ip
       request :update_account
       request :update_api_client
@@ -182,6 +194,7 @@ module Fog
       request :update_server
       request :update_server_group
       request :update_user
+      request :update_volume
 
       # The Mock Service allows you to run a fake instance of the Service
       # which makes no real connections.
