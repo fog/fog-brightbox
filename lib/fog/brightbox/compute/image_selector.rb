@@ -29,11 +29,11 @@ module Fog
           @images.select do |img|
             img["official"] == true &&
               img["status"] == "available" &&
-              img["arch"] == "i686" &&
+              img["arch"] == "x86_64" &&
               img["name"] =~ /ubuntu/i
           end.sort do |a, b|
-            # Reverse sort so "raring" > "precise" and "13.10" > "13.04"
-            b["name"].downcase <=> a["name"].downcase
+            # Reverse sort so "22.10" > "22.04"
+            NameSorter.new(b["name"]).version <=> NameSorter.new(a["name"]).version
           end.first["id"]
         rescue StandardError
           nil
@@ -54,6 +54,31 @@ module Fog
           end.first["id"]
         rescue StandardError
           nil
+        end
+
+        class NameSorter
+          PATTERN = /\A(?<ubuntu>.*?)-(?<codename>.*?)-(?<version>[\d\.]*?)-(?<arch>.*?)/
+
+          def initialize(name)
+            @name = name
+            @matches = name.match(PATTERN)
+          end
+
+          def arch
+            @matches[:arch] || ""
+          end
+
+          def codename
+            @matches[:codename] || ""
+          end
+
+          def ubuntu?
+            @name.start_with?("ubuntu")
+          end
+
+          def version
+            @matches[:version] || ""
+          end
         end
       end
     end
