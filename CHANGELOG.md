@@ -1,3 +1,17 @@
+### 1.4.2 / 2022-06-09
+
+Bug fixes:
+
+* `Fog::Brightbox::Compute::ImageSelector#latest_ubuntu` was fixed to resolve
+  two bugs that prevented the latest version being found since Xenial:
+  * The filtering for `i686` was missing later release which are only available
+    as `x86_64` images following support being dropped upstream. The filter is
+    now swapped to only match 64bit releases.
+  * The reverse name sorting failed when the Ubuntu codenames returned to the
+    start of the alphabet so `xenial` (16.04) would appear above `bionic`
+    (18.04) or `jammy` (22.04). The names are now split and the version used
+    instead for the sorting.
+
 ### 1.4.1 / 2021-04-20
 
 Bug fixes:
