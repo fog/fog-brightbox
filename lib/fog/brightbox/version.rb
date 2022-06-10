@@ -1,5 +1,5 @@
 module Fog
   module Brightbox
-    VERSION = "1.5.0.rc1"
+    VERSION = "1.5.0"
   end
 end
