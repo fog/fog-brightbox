@@ -39,21 +39,15 @@ module Fog
           @persistent          = @config.connection_persistent?
           @connection          = Fog::Core::Connection.new(@api_url, @persistent, @connection_options)
 
-          # Authentication options
-          client_id            = @config.client_id
-          client_secret        = @config.client_secret
-
-          username             = @config.username
-          password             = @config.password
           @configured_account  = @config.account
           # Request account can be changed at anytime and changes behaviour of future requests
           @scoped_account      = @configured_account
 
-          credential_options   = { :username => username, :password => password }
-          @credentials         = CredentialSet.new(client_id, client_secret, credential_options)
+          @two_factor          = @config.two_factor?
+          @one_time_password   = @config.one_time_password
 
           # If existing tokens have been cached, allow continued use of them in the service
-          @credentials.update_tokens(@config.cached_access_token, @config.cached_refresh_token)
+          credentials.update_tokens(@config.cached_access_token, @config.cached_refresh_token)
 
           @token_management    = @config.managed_tokens?
         end
@@ -71,6 +65,12 @@ module Fog
         # Resets the scoped account back to intially configured one
         def scoped_account_reset
           @scoped_account = @configured_account
+        end
+
+        def credentials
+          client_id = @config.client_id
+          client_secret = @config.client_secret
+          @credentials ||= CredentialSet.new(client_id, client_secret, credential_options)
         end
 
         # Returns the scoped account being used for requests
@@ -122,7 +122,7 @@ module Fog
         def get_access_token
           begin
             get_access_token!
-          rescue Excon::Errors::Unauthorized, Excon::Errors::BadRequest
+          rescue Fog::Brightbox::OAuth2::TwoFactorMissingError, Excon::Errors::Unauthorized, Excon::Errors::BadRequest
             @credentials.update_tokens(nil, nil)
           end
           @credentials.access_token
@@ -154,7 +154,23 @@ module Fog
           @default_image_id ||= (@config.default_image_id || select_default_image)
         end
 
+        def two_factor?
+          @two_factor || false
+        end
+
         private
+
+        # This returns a formatted set of options for the credentials for this service
+        #
+        # @return [Hash]
+        def credential_options
+          {
+            username: @config.username,
+            password: @config.password
+          }.tap do |opts|
+            opts[:one_time_password] = @one_time_password if two_factor?
+          end
+        end
 
         # This makes a request of the API based on the configured setting for
         # token management.

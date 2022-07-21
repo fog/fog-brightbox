@@ -9,7 +9,9 @@ describe Fog::Brightbox::Compute, "#get_access_token" do
       brightbox_client_id: "app-12345",
       brightbox_secret: "1234567890",
       brightbox_username: "jason.null@brightbox.com",
-      brightbox_password: "HR4life"
+      brightbox_password: "HR4life",
+      brightbox_support_two_factor: true,
+      brightbox_one_time_password: "123456"
     }
     @service = Fog::Brightbox::Compute.new(@options)
   end
@@ -18,6 +20,8 @@ describe Fog::Brightbox::Compute, "#get_access_token" do
     describe "and authenticates correctly" do
       before do
         stub_authentication_request(auth_correct: true)
+
+        assert @service.two_factor?
       end
 
       describe "without !" do
@@ -42,6 +46,8 @@ describe Fog::Brightbox::Compute, "#get_access_token" do
     describe "and authenticates incorrectly" do
       before do
         stub_authentication_request(auth_correct: false)
+
+        assert @service.two_factor?
       end
 
       describe "without !" do
@@ -72,6 +78,8 @@ describe Fog::Brightbox::Compute, "#get_access_token" do
         before do
           stub_authentication_request(auth_correct: true,
                                       two_factor_user: true)
+
+          assert @service.two_factor?
         end
 
         describe "without !" do
@@ -87,7 +95,7 @@ describe Fog::Brightbox::Compute, "#get_access_token" do
           it "raises an error" do
             begin
               @service.get_access_token!
-            rescue Excon::Error::Unauthorized
+            rescue Fog::Brightbox::OAuth2::TwoFactorMissingError
               assert_nil @service.access_token
               assert_nil @service.refresh_token
             end
@@ -97,30 +105,28 @@ describe Fog::Brightbox::Compute, "#get_access_token" do
 
       describe "with OTP" do
         before do
-          skip "Requires implementation"
-
           stub_authentication_request(auth_correct: true,
                                       two_factor_user: true,
                                       otp_sent: true)
+
+          assert @service.two_factor?
         end
 
         describe "without !" do
-          it "returns nil" do
-            assert_nil @service.get_access_token
+          it "updates credentials" do
+            token = @service.get_access_token
+            assert_equal "0987654321", token
 
-            assert_nil @service.access_token
-            assert_nil @service.refresh_token
+            assert_equal token, @service.access_token
           end
         end
 
         describe "with !" do
-          it "raises an error" do
-            begin
-              @service.get_access_token!
-            rescue Excon::Error::Unauthorized
-              assert_nil @service.access_token
-              assert_nil @service.refresh_token
-            end
+          it "updates credentials" do
+            token = @service.get_access_token!
+            assert_equal "0987654321", token
+
+            assert_equal token, @service.access_token
           end
         end
       end
@@ -130,6 +136,8 @@ describe Fog::Brightbox::Compute, "#get_access_token" do
       before do
         stub_authentication_request(auth_correct: false,
                                     two_factor_user: true)
+
+        assert @service.two_factor?
       end
 
       describe "without !" do
@@ -145,7 +153,7 @@ describe Fog::Brightbox::Compute, "#get_access_token" do
         it "raises an error" do
           begin
             @service.get_access_token!
-          rescue Excon::Error::Unauthorized
+          rescue Fog::Brightbox::OAuth2::TwoFactorMissingError
             assert_nil @service.access_token
             assert_nil @service.refresh_token
           end
@@ -154,24 +162,88 @@ describe Fog::Brightbox::Compute, "#get_access_token" do
     end
 
     describe "without 2FA support enabled" do
-      it do
-        stub_authentication_request(auth_correct: false,
-                                    two_factor_user: true)
+      before do
+        @options = {
+          brightbox_client_id: "app-12345",
+          brightbox_secret: "1234567890",
+          brightbox_username: "jason.null@brightbox.com",
+          brightbox_password: "HR4life",
+          brightbox_support_two_factor: false,
+          brightbox_one_time_password: "123456"
+        }
+        @service = Fog::Brightbox::Compute.new(@options)
 
-        assert_nil @service.get_access_token
+        refute @service.two_factor?
+      end
 
-        assert_nil @service.access_token
-        assert_nil @service.refresh_token
+      describe "without !" do
+        it "returns nil" do
+          stub_authentication_request(auth_correct: false,
+                                      two_factor_user: true)
+
+          assert_nil @service.get_access_token
+
+          assert_nil @service.access_token
+          assert_nil @service.refresh_token
+        end
+      end
+
+      describe "with !" do
+        describe "when authentication incorrect" do
+          it "raises an error" do
+            stub_authentication_request(auth_correct: false,
+                                        two_factor_user: true,
+                                        otp_sent: true)
+
+            begin
+              @service.get_access_token!
+            rescue Excon::Error::Unauthorized
+              assert_nil @service.access_token
+              assert_nil @service.refresh_token
+            end
+          end
+        end
+
+        describe "with missing OTP" do
+          before do
+            @options = {
+              brightbox_client_id: "app-12345",
+              brightbox_secret: "1234567890",
+              brightbox_username: "jason.null@brightbox.com",
+              brightbox_password: "HR4life",
+              brightbox_support_two_factor: false
+            }
+            @service = Fog::Brightbox::Compute.new(@options)
+
+            refute @service.two_factor?
+          end
+
+          it "raises an error" do
+            stub_authentication_request(auth_correct: true,
+                                        two_factor_user: true,
+                                        otp_sent: false)
+
+            begin
+              @service.get_access_token!
+            rescue Excon::Error::Unauthorized
+              assert_nil @service.access_token
+              assert_nil @service.refresh_token
+            end
+          end
+        end
       end
     end
   end
 
   # @param auth_correct [Boolean] Treat username/password as correct
   # @param two_factor_user [Boolean] Is user protected by 2FA on server
-  # @param otp_sent [Boolean] The OTP code
+  # @param otp_sent [Boolean] Is an OTP sent in the request?
   def stub_authentication_request(auth_correct:,
                                   two_factor_user: false,
                                   otp_sent: nil)
+
+    two_factor_supported = @service.two_factor?
+
     request = {
       headers: {
         "Authorization" => "Basic YXBwLTEyMzQ1OjEyMzQ1Njc4OTA=",
@@ -183,7 +255,9 @@ describe Fog::Brightbox::Compute, "#get_access_token" do
         password: "HR4life"
       }.to_json
     }.tap do |req|
-      if otp_sent
+      # Only expect the header if the service should send it
+      # Without this, we stub a request that demands an OTP but it is not sent
+      if two_factor_supported && otp_sent
         req[:headers]["X-Brightbox-OTP"] = "123456"
       end
     end
