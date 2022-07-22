@@ -1,3 +1,25 @@
+### 1.6.0 / 2022-07-25
+
+Changes:
+
+* Added support to opt-in to support Brightbox 2FA within clients.
+
+Two Factor Authentication (2FA) support:
+
+Passing `brightbox_support_two_factor` into a configuration will raise a new
+error when user authentication has failed BUT the presence of the
+`X-Brightbox-OTP: required` HTTP header is found.
+
+This new error `Fog::Brightbox::OAuth2::TwoFactorMissingError` can be handled
+differently by the client and the second factor can be prompted for or
+recovered from a secure keychain.
+
+Without opting in, the previous error `Excon::Errors::Unauthorized` is raised.
+
+To send the OTP, the `brightbox_one_time_password` can be passed into a
+configuration object or one_time_password can be passed to a credentials
+object.
+
 ### 1.5.0 / 2022-06-09
 
 Changes:
