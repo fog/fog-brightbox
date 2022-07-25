@@ -6,6 +6,10 @@ module Fog
     # @see http://tools.ietf.org/html/draft-ietf-oauth-v2-10
     #
     module OAuth2
+      TWO_FACTOR_HEADER = "X-Brightbox-OTP".freeze
+
+      class TwoFactorMissingError < StandardError; end
+
       # This builds the simplest form of requesting an access token
       # based on the arguments passed in
       #
@@ -13,16 +17,38 @@ module Fog
       # @param [CredentialSet] credentials
       #
       # @return [Excon::Response]
+      # @raise [Excon::Errors::Unauthorized] if the credentials are rejected by the server
+      # @raise [Fog::Brightbox::OAuth2::TwoFactorMissingError] if opted in to 2FA and server reports header is required
       def request_access_token(connection, credentials)
         token_strategy = credentials.best_grant_strategy
 
-        connection.request(
-          :path => "/token",
-          :expects  => 200,
-          :headers  => token_strategy.headers,
-          :method   => "POST",
-          :body     => Fog::JSON.encode(token_strategy.authorization_body_data)
-        )
+        if two_factor?
+          # When 2FA opt-in is set, we can expect 401 responses as well
+          response = connection.request(
+            :path => "/token",
+            :expects  => [200, 401],
+            :headers  => token_strategy.headers,
+            :method   => "POST",
+            :body     => Fog::JSON.encode(token_strategy.authorization_body_data)
+          )
+
+          if response.status == 401 && response.headers[Fog::Brightbox::OAuth2::TWO_FACTOR_HEADER] == "required"
+            raise TwoFactorMissingError
+          elsif response.status == 401
+            raise Excon::Errors.status_error({ expects: 200 }, status: 401)
+          else
+            response
+          end
+        else
+          # Use classic behaviour and return Excon::
+          connection.request(
+            :path => "/token",
+            :expects  => 200,
+            :headers  => token_strategy.headers,
+            :method   => "POST",
+            :body     => Fog::JSON.encode(token_strategy.authorization_body_data)
+          )
+        end
       end
 
       # Encapsulates credentials required to request access tokens from the
@@ -33,12 +59,14 @@ module Fog
       class CredentialSet
         attr_reader :client_id, :client_secret, :username, :password
         attr_reader :access_token, :refresh_token, :expires_in
+        attr_reader :one_time_password
         #
         # @param [String] client_id
         # @param [String] client_secret
         # @param [Hash] options
         # @option options [String] :username
         # @option options [String] :password
+        # @option options [String] :one_time_password One Time Password for Two Factor authentication
         #
         def initialize(client_id, client_secret, options = {})
           @client_id     = client_id
@@ -48,6 +76,7 @@ module Fog
           @access_token  = options[:access_token]
           @refresh_token = options[:refresh_token]
           @expires_in    = options[:expires_in]
+          @one_time_password = options[:one_time_password]
         end
 
         # Returns true if user details are available
@@ -141,6 +170,17 @@ module Fog
             "username"   => @credentials.username,
             "password"   => @credentials.password
           }
+        end
+
+        def headers
+          {
+            "Authorization" => authorization_header,
+            "Content-Type" => "application/json"
+          }.tap do |headers|
+            if @credentials.one_time_password
+              headers[TWO_FACTOR_HEADER] = @credentials.one_time_password
+            end
+          end
         end
       end
 

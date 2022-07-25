@@ -33,6 +33,10 @@ module Fog
       #   Set to specify the client secret to use for requests.
       # @option options [String] :brightbox_token_management (true)
       #   Set to specify if the service should handle expired tokens or raise an error instead.
+      # @option options [Boolean] :brightbox_support_two_factor
+      #   Set to enable two factor authentication (2FA) for this configuration/user
+      # @option options [String] :brightbox_one_time_password
+      #   Set to pass through the current one time password when using 2FA
       # @option options [String] :brightbox_username
       #   Set to specify your user account. Either user identifier (+usr-12345+) or email address
       #   may be used.
@@ -225,6 +229,14 @@ module Fog
 
       def storage_temp_key
         @options[:brightbox_temp_url_key]
+      end
+
+      def two_factor?
+        @options[:brightbox_support_two_factor] || false
+      end
+
+      def one_time_password
+        @options[:brightbox_one_time_password]
       end
     end
   end

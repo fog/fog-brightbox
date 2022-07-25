@@ -21,6 +21,10 @@ module Fog
       # Automatic token management
       recognizes :brightbox_token_management
 
+      # Two Factor Authentication support (2FA)
+      recognizes :brightbox_support_two_factor
+      recognizes :brightbox_one_time_password
+
       # Excon connection settings
       recognizes :persistent
 

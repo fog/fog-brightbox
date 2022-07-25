@@ -37,4 +37,24 @@ describe Fog::Brightbox::OAuth2::UserCredentialsStrategy do
     assert_equal "Basic YXBwLTEyMzQ1Ol9fbWFzaGVkX2tleXNfMTIzX18=", headers["Authorization"]
     assert_equal "application/json", headers["Content-Type"]
   end
+
+  describe "when 2FA OTP is included" do
+    before do
+      options = {
+        username: @username,
+        password: @password,
+        one_time_password: "123456"
+      }
+
+      @credentials = Fog::Brightbox::OAuth2::CredentialSet.new(@client_id, @client_secret, options)
+      @strategy = Fog::Brightbox::OAuth2::UserCredentialsStrategy.new(@credentials)
+    end
+
+    it "tests #headers" do
+      headers = @strategy.headers
+      assert_equal "Basic YXBwLTEyMzQ1Ol9fbWFzaGVkX2tleXNfMTIzX18=", headers["Authorization"]
+      assert_equal "application/json", headers["Content-Type"]
+      assert_equal "123456", headers["X-Brightbox-OTP"]
+    end
+  end
 end
