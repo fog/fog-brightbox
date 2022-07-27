@@ -15,6 +15,7 @@ module Fog
         attribute :created_at, type: :time
 
         # Links
+        attribute :affects
         attribute :resource
         attribute :client
         attribute :user

@@ -14,14 +14,14 @@ module Fog
 
         attribute :admin_username
         attribute :admin_password
-
         attribute :allow_access
-
         attribute :database_engine
         attribute :database_version
+        attribute :maintenance_hour #, type: :integer
+        attribute :maintenance_weekday #, type: :integer
+        attribute :source
 
-        attribute :maintenance_weekday
-        attribute :maintenance_hour
+        attribute :snapshots_retention, type: :string
 
         # This is a crontab formatted string e.g. "* 5 * * 0"
         attribute :snapshots_schedule, type: :string
@@ -33,12 +33,14 @@ module Fog
         attribute :deleted_at, type: :time
 
         # Links
-        attribute :flavor_id, "alias" => "database_server_type", squash: "id"
-        attribute :zone_id, "alias" => "zone", squash: "id"
+        attribute :flavor_id, alias: "database_server_type", squash: "id"
+        attribute :zone_id, alias: "zone", squash: "id"
 
-        attribute :snapshot_id
-
+        attribute :account
         attribute :cloud_ips
+
+        # Generated from snapshot action and not a real attribute
+        attribute :snapshot_id
 
         def save
           options = {

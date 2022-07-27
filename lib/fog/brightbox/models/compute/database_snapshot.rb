@@ -17,12 +17,18 @@ module Fog
         attribute :database_engine
         attribute :database_version
 
-        attribute :size
+        attribute :size, type: :integer
+        attribute :source
+        attribute :source_trigger
 
         # Timestamps
         attribute :created_at, type: :time
         attribute :updated_at, type: :time
         attribute :deleted_at, type: :time
+
+        # Links
+        attribute :account
+        attribute :account_id, aliases: "account", squash: "id"
 
         def save
           options = {

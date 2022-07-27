@@ -8,7 +8,6 @@ module Fog
 
         attribute :name
         attribute :status
-        attribute :description
 
         attribute :handle
 
@@ -16,6 +15,7 @@ module Fog
         attribute :cores
         attribute :disk, aliases: "disk_size"
         attribute :ram
+        attribute :storage_type
 
         def bits
           64 # This is actually based on the Image type used. 32bit or 64bit Images are supported

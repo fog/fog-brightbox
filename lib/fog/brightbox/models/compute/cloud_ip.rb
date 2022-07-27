@@ -10,11 +10,12 @@ module Fog
         attribute :status
         attribute :description
 
-        attribute :reverse_dns
+        attribute :fqdn
+        attribute :mode
         attribute :public_ip
         attribute :public_ipv4
         attribute :public_ipv6
-        attribute :fqdn
+        attribute :reverse_dns
 
         # Links
         attribute :account_id, aliases: "account", squash: "id"

@@ -8,12 +8,12 @@ module Fog
 
         attribute :description
 
-        attribute :source
-        attribute :source_port
         attribute :destination
         attribute :destination_port
-        attribute :protocol
         attribute :icmp_type_name
+        attribute :protocol
+        attribute :source
+        attribute :source_port
 
         # Timestamps
         attribute :created_at, type: :time

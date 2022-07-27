@@ -10,20 +10,20 @@ module Fog
 
         attribute :name
         attribute :state, aliases: "status"
-
         attribute :description
+
         attribute :filesystem_label
         attribute :filesystem_type
         attribute :serial
-        attribute :size
+        attribute :size, type: :integer
         attribute :source
         attribute :source_type
         attribute :storage_type
 
         # Boolean flags
-        attribute :boot
-        attribute :delete_with_server
-        attribute :encrypted
+        attribute :boot, type: :boolean
+        attribute :delete_with_server, type: :boolean
+        attribute :encrypted, type: :boolean
 
         # Timestamps
         attribute :created_at, type: :time

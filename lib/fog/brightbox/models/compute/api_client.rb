@@ -8,14 +8,15 @@ module Fog
 
         attribute :name
         attribute :description
-        attribute :permissions_group
+
         attribute :secret
+        attribute :permissions_group
 
         # Timestamps
         attribute :revoked_at, type: :time
 
         # Links
-        attribute :account_id
+        attribute :account_id, aliases: "account", squash: "id"
 
         def save
           raise Fog::Errors::Error.new("Resaving an existing object may create a duplicate") if persisted?

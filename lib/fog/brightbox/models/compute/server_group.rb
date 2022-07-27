@@ -11,14 +11,17 @@ module Fog
 
         attribute :name
         attribute :description
+        attribute :fqdn
 
-        # Boolean flags
-        attribute :default
+        # Booleans
+        attribute :default, type: :boolean
 
         # Timestamps
         attribute :created_at, type: :time
 
         # Links
+        attribute :account_id, aliases: "account", squash: "id"
+        attribute :firewall_policy_id, aliases: "firewall_policy", squash: "id"
         attribute :server_ids, aliases: "servers"
 
         def save

@@ -10,13 +10,15 @@ module Fog
         attribute :description
 
         # Boolean flags
-        attribute :default
+        attribute :default, type: :boolean
 
         # Timestamps
         attribute :created_at, type: :time
 
         # Links
+        attribute :account_id, aliases: "account", squash: "id"
         attribute :server_group_id, aliases: "server_group", squash: "id"
+
         attribute :rules
 
         # Sticking with existing Fog behaviour, save does not update but creates a new resource

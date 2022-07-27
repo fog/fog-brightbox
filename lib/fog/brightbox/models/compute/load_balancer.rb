@@ -11,7 +11,7 @@ module Fog
         attribute :name
         attribute :status
 
-        attribute :buffer_size
+        attribute :buffer_size, type: :integer
 
         attribute :policy
         attribute :nodes
@@ -34,14 +34,18 @@ module Fog
         # List of domains for ACME
         attribute :domains
 
+        # Booleans
+        attribute :https_redirect, type: :boolean
+
         # Timestamps
         attribute :created_at, type: :time
         attribute :deleted_at, type: :time
 
         # Links
         attribute :account
-        attribute :server
-        attribute :cloud_ip
+
+        attribute :nodes
+        attribute :cloud_ips
 
         def ready?
           status == "active"

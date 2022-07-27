@@ -6,10 +6,9 @@ module Fog
         attribute :resource_type
         attribute :url
 
-        attribute :status
-        attribute :handle
-
         attribute :description
+        attribute :handle
+        attribute :status
       end
     end
   end
