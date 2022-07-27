@@ -37,6 +37,8 @@ module Fog
       model :api_client
       collection :collaborations
       model :collaboration
+      collection :config_maps
+      model :config_map
       collection :servers
       model :server
       collection :server_groups
@@ -85,6 +87,7 @@ module Fog
       request :create_application
       request :create_cloud_ip
       request :create_collaboration
+      request :create_config_map
       request :create_firewall_policy
       request :create_firewall_rule
       request :create_image
@@ -97,6 +100,7 @@ module Fog
       request :delete_application
       request :delete_cloud_ip
       request :delete_collaboration
+      request :delete_config_map
       request :delete_firewall_policy
       request :delete_firewall_rule
       request :delete_image
@@ -114,6 +118,7 @@ module Fog
       request :get_authenticated_user
       request :get_cloud_ip
       request :get_collaboration
+      request :get_config_map
       request :get_firewall_policy
       request :get_firewall_rule
       request :get_image
@@ -135,6 +140,7 @@ module Fog
       request :list_applications
       request :list_cloud_ips
       request :list_collaborations
+      request :list_config_maps
       request :list_events
       request :list_firewall_policies
       request :list_images
@@ -188,6 +194,7 @@ module Fog
       request :update_api_client
       request :update_application
       request :update_cloud_ip
+      request :update_config_map
       request :update_firewall_policy
       request :update_firewall_rule
       request :update_image
