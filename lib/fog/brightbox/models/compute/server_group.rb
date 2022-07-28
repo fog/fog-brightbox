@@ -11,9 +11,14 @@ module Fog
 
         attribute :name
         attribute :description
+
+        # Boolean flags
         attribute :default
+
+        # Timestamps
         attribute :created_at, type: :time
 
+        # Links
         attribute :server_ids, aliases: "servers"
 
         def save

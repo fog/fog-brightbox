@@ -20,11 +20,12 @@ module Fog
         attribute :source_type
         attribute :storage_type
 
+        # Boolean flags
         attribute :boot
         attribute :delete_with_server
         attribute :encrypted
 
-        # Times
+        # Timestamps
         attribute :created_at, type: :time
         attribute :updated_at, type: :time
         attribute :deleted_at, type: :time

@@ -23,17 +23,18 @@ module Fog
         attribute :fqdn
         attribute :console_token
 
+        # Boolean flags
         attribute :disk_encrypted
 
-        # Times
+        # Timestamps
         attribute :created_at, type: :time
         attribute :started_at, type: :time
         attribute :console_token_expires, type: :time
         attribute :deleted_at, type: :time
 
-        # Links - to be replaced
-        attribute :account_id,  aliases: "account",      squash: "id"
-        attribute :image_id,    aliases: "image",        squash: "id"
+        # Links
+        attribute :account_id, aliases: "account", squash: "id"
+        attribute :image_id, aliases: "image", squash: "id"
 
         attribute :snapshots
         attribute :cloud_ip # Creation option only

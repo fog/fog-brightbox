@@ -8,9 +8,13 @@ module Fog
 
         attribute :name
         attribute :description
-        attribute :secret
-        attribute :revoked_at, type: :time
         attribute :permissions_group
+        attribute :secret
+
+        # Timestamps
+        attribute :revoked_at, type: :time
+
+        # Links
         attribute :account_id
 
         def save

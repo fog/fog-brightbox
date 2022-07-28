@@ -15,6 +15,8 @@ module Fog
         attribute :admin_username
         attribute :admin_password
 
+        attribute :allow_access
+
         attribute :database_engine
         attribute :database_version
 
@@ -25,12 +27,12 @@ module Fog
         attribute :snapshots_schedule, type: :string
         attribute :snapshots_schedule_next_at, type: :time
 
+        # Timestamps
         attribute :created_at, type: :time
         attribute :updated_at, type: :time
         attribute :deleted_at, type: :time
 
-        attribute :allow_access
-
+        # Links
         attribute :flavor_id, "alias" => "database_server_type", squash: "id"
         attribute :zone_id, "alias" => "zone", squash: "id"
 

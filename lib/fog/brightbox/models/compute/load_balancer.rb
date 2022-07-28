@@ -34,11 +34,11 @@ module Fog
         # List of domains for ACME
         attribute :domains
 
-        # Times
+        # Timestamps
         attribute :created_at, type: :time
         attribute :deleted_at, type: :time
 
-        # Links - to be replaced
+        # Links
         attribute :account
         attribute :server
         attribute :cloud_ip

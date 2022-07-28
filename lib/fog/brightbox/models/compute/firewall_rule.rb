@@ -14,8 +14,11 @@ module Fog
         attribute :destination_port
         attribute :protocol
         attribute :icmp_type_name
+
+        # Timestamps
         attribute :created_at, type: :time
 
+        # Links
         attribute :firewall_policy_id, aliases: "firewall_policy", squash: "id"
 
         # Sticking with existing Fog behaviour, save does not update but creates a new resource

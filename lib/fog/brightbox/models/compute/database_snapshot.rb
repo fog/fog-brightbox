@@ -19,6 +19,7 @@ module Fog
 
         attribute :size
 
+        # Timestamps
         attribute :created_at, type: :time
         attribute :updated_at, type: :time
         attribute :deleted_at, type: :time

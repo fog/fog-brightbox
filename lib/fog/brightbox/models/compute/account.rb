@@ -39,11 +39,11 @@ module Fog
         attribute :valid_credit_card
         attribute :telephone_verified
 
-        # Times
+        # Timestamps
         attribute :created_at, type: :time
         attribute :verified_at, type: :time
 
-        # Links - to be replaced
+        # Links
         attribute :owner_id, aliases: "owner", squash: "id"
         attribute :clients
         attribute :images

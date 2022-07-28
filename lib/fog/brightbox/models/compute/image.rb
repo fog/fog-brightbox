@@ -25,10 +25,10 @@ module Fog
         attribute :official
         attribute :compatibility_mode
 
-        # Times
+        # Timestamps
         attribute :created_at, type: :time
 
-        # Links - to be replaced
+        # Links
         attribute :ancestor_id, aliases: "ancestor", squash: "id"
         attribute :owner_id, aliases: "owner", squash: "id"
 

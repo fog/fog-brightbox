@@ -11,10 +11,10 @@ module Fog
         attribute :message
         attribute :short_message
 
-        # Times
+        # Timestamps
         attribute :created_at, type: :time
 
-        # Links - to be replaced
+        # Links
         attribute :resource
         attribute :client
         attribute :user
