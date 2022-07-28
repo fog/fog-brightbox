@@ -24,7 +24,6 @@ module Fog
         attribute :server_group, :alias => "server_group", :squash => "id"
         attribute :database_server, :alias => "database_server", :squash => "id"
         attribute :port_translators
-        attribute :name
 
         # Attempt to map or point the Cloud IP to the destination resource.
         #
