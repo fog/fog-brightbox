@@ -3,7 +3,9 @@ module Fog
     class Compute
       class Application < Fog::Brightbox::Model
         identity :id
+        attribute :resource_type
         attribute :url
+
         attribute :name
         attribute :secret
 

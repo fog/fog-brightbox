@@ -7,8 +7,8 @@ module Fog
         include Fog::Brightbox::Compute::ResourceLocking
 
         identity :id
-        attribute :url
         attribute :resource_type
+        attribute :url
 
         attribute :name
         attribute :description

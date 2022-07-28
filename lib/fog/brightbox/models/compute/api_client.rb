@@ -3,6 +3,9 @@ module Fog
     class Compute
       class ApiClient < Fog::Brightbox::Model
         identity :id
+        attribute :resource_type
+        attribute :url
+
         attribute :name
         attribute :description
         attribute :secret

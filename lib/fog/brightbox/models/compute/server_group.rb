@@ -6,9 +6,9 @@ module Fog
       # Certain actions can accept a server group and affect all members
       class ServerGroup < Fog::Brightbox::Model
         identity :id
-
-        attribute :url
         attribute :resource_type
+        attribute :url
+
         attribute :name
         attribute :description
         attribute :default

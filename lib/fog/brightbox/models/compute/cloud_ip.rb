@@ -3,8 +3,8 @@ module Fog
     class Compute
       class CloudIp < Fog::Brightbox::Model
         identity :id
-        attribute :url
         attribute :resource_type
+        attribute :url
 
         attribute :name
         attribute :status

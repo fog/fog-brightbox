@@ -3,6 +3,9 @@ module Fog
     class Compute
       class Collaboration < Fog::Brightbox::Model
         identity :id
+        attribute :resource_type
+        attribute :url
+
         attribute :status
         attribute :email
         attribute :role

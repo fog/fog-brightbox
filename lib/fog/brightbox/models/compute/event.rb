@@ -4,8 +4,8 @@ module Fog
       # @api private
       class Event < Fog::Brightbox::Model
         identity :id
-        attribute :url
         attribute :resource_type
+        attribute :url
 
         attribute :action
         attribute :message
