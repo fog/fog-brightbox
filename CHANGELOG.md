@@ -1,3 +1,12 @@
+### 1.7.0 / 2022-07-28
+
+Changes:
+
+* Adds support for `ConfigMaps` which are simple key/value stores for configuring
+  other resources.
+* Updated the API models to include the latest set of attributes defined in the
+  Brightbox API enabling them to be referenced.
+
 ### 1.6.0 / 2022-07-25
 
 Changes:
