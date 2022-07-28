@@ -15,7 +15,7 @@ module Fog
         attribute :messaging_pref
 
         # Links - to be replaced
-        attribute :account_id, :aliases => "default_account", :squash => "id"
+        attribute :account_id, aliases: "default_account", squash: "id"
         attribute :accounts
 
         def save

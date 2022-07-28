@@ -14,7 +14,7 @@ module Fog
         attribute :url
 
         attribute :name
-        attribute :state,       :aliases => "status"
+        attribute :state,       aliases: "status"
 
         attribute :hostname
         attribute :fqdn
@@ -26,14 +26,14 @@ module Fog
         attribute :disk_encrypted
 
         # Times
-        attribute :created_at, :type => :time
-        attribute :started_at, :type => :time
-        attribute :console_token_expires, :type => :time
-        attribute :deleted_at, :type => :time
+        attribute :created_at, type: :time
+        attribute :started_at, type: :time
+        attribute :console_token_expires, type: :time
+        attribute :deleted_at, type: :time
 
         # Links - to be replaced
-        attribute :account_id,  :aliases => "account",      :squash => "id"
-        attribute :image_id,    :aliases => "image",        :squash => "id"
+        attribute :account_id,  aliases: "account",      squash: "id"
+        attribute :image_id,    aliases: "image",        squash: "id"
 
         attribute :snapshots
         attribute :cloud_ip # Creation option only

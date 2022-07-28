@@ -14,7 +14,7 @@ module Fog
 
         attribute :bits
         attribute :cores
-        attribute :disk, :aliases => "disk_size"
+        attribute :disk, aliases: "disk_size"
         attribute :ram
 
         def bits

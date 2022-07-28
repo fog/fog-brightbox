@@ -26,11 +26,11 @@ module Fog
         attribute :compatibility_mode
 
         # Times
-        attribute :created_at, :type => :time
+        attribute :created_at, type: :time
 
         # Links - to be replaced
-        attribute :ancestor_id, :aliases => "ancestor", :squash => "id"
-        attribute :owner_id, :aliases => "owner", :squash => "id"
+        attribute :ancestor_id, aliases: "ancestor", squash: "id"
+        attribute :owner_id, aliases: "owner", squash: "id"
 
         def ready?
           status == "available"

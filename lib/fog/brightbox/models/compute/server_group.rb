@@ -12,9 +12,9 @@ module Fog
         attribute :name
         attribute :description
         attribute :default
-        attribute :created_at, :type => :time
+        attribute :created_at, type: :time
 
-        attribute :server_ids, :aliases => "servers"
+        attribute :server_ids, aliases: "servers"
 
         def save
           options = {

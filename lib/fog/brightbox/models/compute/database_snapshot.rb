@@ -12,16 +12,16 @@ module Fog
 
         attribute :name
         attribute :description
-        attribute :state, :aliases => "status"
+        attribute :state, aliases: "status"
 
         attribute :database_engine
         attribute :database_version
 
         attribute :size
 
-        attribute :created_at, :type => :time
-        attribute :updated_at, :type => :time
-        attribute :deleted_at, :type => :time
+        attribute :created_at, type: :time
+        attribute :updated_at, type: :time
+        attribute :deleted_at, type: :time
 
         def save
           options = {

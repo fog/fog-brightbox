@@ -40,11 +40,11 @@ module Fog
         attribute :telephone_verified
 
         # Times
-        attribute :created_at, :type => :time
-        attribute :verified_at, :type => :time
+        attribute :created_at, type: :time
+        attribute :verified_at, type: :time
 
         # Links - to be replaced
-        attribute :owner_id, :aliases => "owner", :squash => "id"
+        attribute :owner_id, aliases: "owner", squash: "id"
         attribute :clients
         attribute :images
         attribute :servers

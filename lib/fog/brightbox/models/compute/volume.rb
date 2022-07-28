@@ -9,7 +9,7 @@ module Fog
         attribute :url
 
         attribute :name
-        attribute :state, :aliases => "status"
+        attribute :state, aliases: "status"
 
         attribute :description
         attribute :filesystem_label
@@ -25,14 +25,14 @@ module Fog
         attribute :encrypted
 
         # Times
-        attribute :created_at, :type => :time
-        attribute :updated_at, :type => :time
-        attribute :deleted_at, :type => :time
+        attribute :created_at, type: :time
+        attribute :updated_at, type: :time
+        attribute :deleted_at, type: :time
 
         # Links
-        attribute :account_id, :aliases => "account", :squash => "id"
-        attribute :image_id, :aliases => "image", :squash => "id"
-        attribute :server_id, :aliases => "server", :squash => "id"
+        attribute :account_id, aliases: "account", squash: "id"
+        attribute :image_id, aliases: "image", squash: "id"
+        attribute :server_id, aliases: "server", squash: "id"
 
         def attach(server)
           requires :identity

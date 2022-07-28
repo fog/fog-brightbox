@@ -12,7 +12,7 @@ module Fog
         attribute :short_message
 
         # Times
-        attribute :created_at, :type => :time
+        attribute :created_at, type: :time
 
         # Links - to be replaced
         attribute :resource

@@ -35,8 +35,8 @@ module Fog
         attribute :domains
 
         # Times
-        attribute :created_at, :type => :time
-        attribute :deleted_at, :type => :time
+        attribute :created_at, type: :time
+        attribute :deleted_at, type: :time
 
         # Links - to be replaced
         attribute :account

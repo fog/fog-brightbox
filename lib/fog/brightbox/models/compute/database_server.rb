@@ -10,7 +10,7 @@ module Fog
 
         attribute :name
         attribute :description
-        attribute :state, :aliases => "status"
+        attribute :state, aliases: "status"
 
         attribute :admin_username
         attribute :admin_password
@@ -22,17 +22,17 @@ module Fog
         attribute :maintenance_hour
 
         # This is a crontab formatted string e.g. "* 5 * * 0"
-        attribute :snapshots_schedule, :type => :string
-        attribute :snapshots_schedule_next_at, :type => :time
+        attribute :snapshots_schedule, type: :string
+        attribute :snapshots_schedule_next_at, type: :time
 
-        attribute :created_at, :type => :time
-        attribute :updated_at, :type => :time
-        attribute :deleted_at, :type => :time
+        attribute :created_at, type: :time
+        attribute :updated_at, type: :time
+        attribute :deleted_at, type: :time
 
         attribute :allow_access
 
-        attribute :flavor_id, "alias" => "database_server_type", :squash => "id"
-        attribute :zone_id, "alias" => "zone", :squash => "id"
+        attribute :flavor_id, "alias" => "database_server_type", squash: "id"
+        attribute :zone_id, "alias" => "zone", squash: "id"
 
         attribute :snapshot_id
 

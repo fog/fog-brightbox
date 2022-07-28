@@ -9,7 +9,7 @@ module Fog
         attribute :name
         attribute :description
 
-        attribute :disk, :aliases => "disk_size"
+        attribute :disk, aliases: "disk_size"
         attribute :ram
       end
     end

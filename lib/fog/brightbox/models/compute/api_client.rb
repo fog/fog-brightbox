@@ -9,7 +9,7 @@ module Fog
         attribute :name
         attribute :description
         attribute :secret
-        attribute :revoked_at, :type => :time
+        attribute :revoked_at, type: :time
         attribute :permissions_group
         attribute :account_id
 
