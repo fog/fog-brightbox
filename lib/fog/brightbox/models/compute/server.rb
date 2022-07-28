@@ -14,35 +14,37 @@ module Fog
         attribute :url
 
         attribute :name
-        attribute :state,       :aliases => "status"
+        attribute :state, aliases: "status"
 
-        attribute :hostname
-        attribute :fqdn
-        attribute :user_data
+        attribute :console_token
         attribute :console_url
         attribute :fqdn
-        attribute :console_token
+        attribute :hostname
+        attribute :user_data
 
-        attribute :disk_encrypted
+        # Boolean flags
+        attribute :compatibility_mode, type: :boolean
+        attribute :disk_encrypted, type: :boolean
 
-        # Times
-        attribute :created_at, :type => :time
-        attribute :started_at, :type => :time
-        attribute :console_token_expires, :type => :time
-        attribute :deleted_at, :type => :time
+        # Timestamps
+        attribute :created_at, type: :time
+        attribute :started_at, type: :time
+        attribute :console_token_expires, type: :time
+        attribute :deleted_at, type: :time
 
-        # Links - to be replaced
-        attribute :account_id,  :aliases => "account",      :squash => "id"
-        attribute :image_id,    :aliases => "image",        :squash => "id"
+        # Links
+        attribute :account_id, aliases: "account", squash: "id"
+        attribute :image_id, aliases: "image", squash: "id"
 
-        attribute :snapshots
+        attribute :server_type
+        attribute :zone
         attribute :cloud_ip # Creation option only
+
         attribute :cloud_ips
         attribute :interfaces
         attribute :server_groups
+        attribute :snapshots
         attribute :volumes
-        attribute :zone
-        attribute :server_type
 
         def initialize(attributes = {})
           # Call super first to initialize the service object for our default image

@@ -5,13 +5,13 @@ module Fog
         include Fog::Brightbox::Compute::ResourceLocking
 
         identity :id
-        attribute :url
         attribute :resource_type
+        attribute :url
 
         attribute :name
         attribute :status
 
-        attribute :buffer_size
+        attribute :buffer_size, type: :integer
 
         attribute :policy
         attribute :nodes
@@ -34,14 +34,18 @@ module Fog
         # List of domains for ACME
         attribute :domains
 
-        # Times
-        attribute :created_at, :type => :time
-        attribute :deleted_at, :type => :time
+        # Booleans
+        attribute :https_redirect, type: :boolean
 
-        # Links - to be replaced
+        # Timestamps
+        attribute :created_at, type: :time
+        attribute :deleted_at, type: :time
+
+        # Links
         attribute :account
-        attribute :server
-        attribute :cloud_ip
+
+        attribute :nodes
+        attribute :cloud_ips
 
         def ready?
           status == "active"

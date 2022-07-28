@@ -3,13 +3,12 @@ module Fog
     class Compute
       class Zone < Fog::Brightbox::Model
         identity :id
-        attribute :url
         attribute :resource_type
-
-        attribute :status
-        attribute :handle
+        attribute :url
 
         attribute :description
+        attribute :handle
+        attribute :status
       end
     end
   end

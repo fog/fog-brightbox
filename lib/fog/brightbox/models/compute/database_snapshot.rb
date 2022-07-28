@@ -7,21 +7,28 @@ module Fog
         include Fog::Brightbox::Compute::ResourceLocking
 
         identity :id
-        attribute :url
         attribute :resource_type
+        attribute :url
 
         attribute :name
         attribute :description
-        attribute :state, :aliases => "status"
+        attribute :state, aliases: "status"
 
         attribute :database_engine
         attribute :database_version
 
-        attribute :size
+        attribute :size, type: :integer
+        attribute :source
+        attribute :source_trigger
 
-        attribute :created_at, :type => :time
-        attribute :updated_at, :type => :time
-        attribute :deleted_at, :type => :time
+        # Timestamps
+        attribute :created_at, type: :time
+        attribute :updated_at, type: :time
+        attribute :deleted_at, type: :time
+
+        # Links
+        attribute :account
+        attribute :account_id, aliases: "account", squash: "id"
 
         def save
           options = {

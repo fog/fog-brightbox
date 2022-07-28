@@ -3,14 +3,17 @@ module Fog
     class Compute
       class DatabaseType < Fog::Brightbox::Model
         identity :id
-        attribute :url
         attribute :resource_type
+        attribute :url
 
         attribute :name
         attribute :description
 
-        attribute :disk, :aliases => "disk_size"
-        attribute :ram
+        attribute :disk, aliases: "disk_size", type: :integer
+        attribute :ram, type: :integer
+
+        # Boolean flags
+        attribute :default, type: :boolean
       end
     end
   end

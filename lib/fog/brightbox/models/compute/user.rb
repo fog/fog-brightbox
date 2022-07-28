@@ -11,12 +11,17 @@ module Fog
         attribute :ssh_key
 
         # Boolean flags
-        attribute :email_verified
-        attribute :messaging_pref
+        attribute :email_verified, type: :boolean
 
-        # Links - to be replaced
-        attribute :account_id, :aliases => "default_account", :squash => "id"
+        # Timestamps
+        attribute :created_at, type: :time
+
+        # Links
+        attribute :account_id, aliases: "default_account", squash: "id"
         attribute :accounts
+
+        # Deprecated
+        attribute :messaging_pref, type: :boolean
 
         def save
           requires :identity

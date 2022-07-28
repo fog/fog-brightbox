@@ -5,34 +5,35 @@ module Fog
         include Fog::Brightbox::Compute::ResourceLocking
 
         identity :id
-        attribute :url
         attribute :resource_type
+        attribute :url
 
         attribute :name
-        attribute :state, :aliases => "status"
-
+        attribute :state, aliases: "status"
         attribute :description
+
         attribute :filesystem_label
         attribute :filesystem_type
         attribute :serial
-        attribute :size
+        attribute :size, type: :integer
         attribute :source
         attribute :source_type
         attribute :storage_type
 
-        attribute :boot
-        attribute :delete_with_server
-        attribute :encrypted
+        # Boolean flags
+        attribute :boot, type: :boolean
+        attribute :delete_with_server, type: :boolean
+        attribute :encrypted, type: :boolean
 
-        # Times
-        attribute :created_at, :type => :time
-        attribute :updated_at, :type => :time
-        attribute :deleted_at, :type => :time
+        # Timestamps
+        attribute :created_at, type: :time
+        attribute :updated_at, type: :time
+        attribute :deleted_at, type: :time
 
         # Links
-        attribute :account_id, :aliases => "account", :squash => "id"
-        attribute :image_id, :aliases => "image", :squash => "id"
-        attribute :server_id, :aliases => "server", :squash => "id"
+        attribute :account_id, aliases: "account", squash: "id"
+        attribute :image_id, aliases: "image", squash: "id"
+        attribute :server_id, aliases: "server", squash: "id"
 
         def attach(server)
           requires :identity

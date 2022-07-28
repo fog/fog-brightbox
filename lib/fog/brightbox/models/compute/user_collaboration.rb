@@ -3,10 +3,21 @@ module Fog
     class Compute
       class UserCollaboration < Fog::Brightbox::Model
         identity :id
+        # resource_type is buggy for this resource
+        attribute :url
+
         attribute :status
+
         attribute :email
         attribute :role
         attribute :role_label
+
+        # Timestamps
+        attribute :created_at, type: :time
+        attribute :started_at, type: :time
+        attribute :finished_at, type: :time
+
+        # Links
         attribute :account
         attribute :user
         attribute :inviter

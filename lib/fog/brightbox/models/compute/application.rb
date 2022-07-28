@@ -3,9 +3,17 @@ module Fog
     class Compute
       class Application < Fog::Brightbox::Model
         identity :id
+        attribute :resource_type
         attribute :url
+
         attribute :name
+        attribute :description
         attribute :secret
+
+        # Timestamps
+        attribute :created_at, type: :time
+        attribute :updated_at, type: :time
+        attribute :revoked_at, type: :time
 
         def save
           raise Fog::Errors::Error.new("Resaving an existing object may create a duplicate") if persisted?

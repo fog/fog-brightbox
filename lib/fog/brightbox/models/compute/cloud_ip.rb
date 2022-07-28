@@ -3,28 +3,28 @@ module Fog
     class Compute
       class CloudIp < Fog::Brightbox::Model
         identity :id
-        attribute :url
         attribute :resource_type
+        attribute :url
 
         attribute :name
         attribute :status
         attribute :description
 
-        attribute :reverse_dns
+        attribute :fqdn
+        attribute :mode
         attribute :public_ip
         attribute :public_ipv4
         attribute :public_ipv6
-        attribute :fqdn
+        attribute :reverse_dns
 
-        # Links - to be replaced
-        attribute :account_id, :aliases => "account", :squash => "id"
-        attribute :interface_id, :aliases => "interface", :squash => "id"
-        attribute :server_id, :aliases => "server", :squash => "id"
-        attribute :load_balancer, :alias => "load_balancer", :squash => "id"
-        attribute :server_group, :alias => "server_group", :squash => "id"
-        attribute :database_server, :alias => "database_server", :squash => "id"
+        # Links
+        attribute :account_id, aliases: "account", squash: "id"
+        attribute :interface_id, aliases: "interface", squash: "id"
+        attribute :server_id, aliases: "server", squash: "id"
+        attribute :load_balancer, :alias => "load_balancer", squash: "id"
+        attribute :server_group, :alias => "server_group", squash: "id"
+        attribute :database_server, :alias => "database_server", squash: "id"
         attribute :port_translators
-        attribute :name
 
         # Attempt to map or point the Cloud IP to the destination resource.
         #

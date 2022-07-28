@@ -3,20 +3,23 @@ module Fog
     class Compute
       class FirewallRule < Fog::Brightbox::Model
         identity :id
-        attribute :url
         attribute :resource_type
+        attribute :url
 
         attribute :description
 
-        attribute :source
-        attribute :source_port
         attribute :destination
         attribute :destination_port
-        attribute :protocol
         attribute :icmp_type_name
-        attribute :created_at, :type => :time
+        attribute :protocol
+        attribute :source
+        attribute :source_port
 
-        attribute :firewall_policy_id, :aliases => "firewall_policy", :squash => "id"
+        # Timestamps
+        attribute :created_at, type: :time
+
+        # Links
+        attribute :firewall_policy_id, aliases: "firewall_policy", squash: "id"
 
         # Sticking with existing Fog behaviour, save does not update but creates a new resource
         def save

@@ -5,32 +5,34 @@ module Fog
         include Fog::Brightbox::Compute::ResourceLocking
 
         identity :id
-        attribute :url
         attribute :resource_type
+        attribute :url
 
         attribute :name
-        attribute :username
         attribute :status
         attribute :description
 
-        attribute :source
-        attribute :source_type
         attribute :arch
-        attribute :virtual_size
-        attribute :disk_size
+        attribute :disk_size, type: :integer
         attribute :licence_name
+        attribute :min_ram, type: :integer
+        attribute :source
+        attribute :source_trigger
+        attribute :source_type
+        attribute :username
+        attribute :virtual_size, type: :integer
 
         # Boolean flags
-        attribute :public
-        attribute :official
-        attribute :compatibility_mode
+        attribute :compatibility_mode, type: :boolean
+        attribute :official, type: :boolean
+        attribute :public, type: :boolean
 
-        # Times
-        attribute :created_at, :type => :time
+        # Timestamps
+        attribute :created_at, type: :time
 
-        # Links - to be replaced
-        attribute :ancestor_id, :aliases => "ancestor", :squash => "id"
-        attribute :owner_id, :aliases => "owner", :squash => "id"
+        # Links
+        attribute :ancestor_id, aliases: "ancestor", squash: "id"
+        attribute :owner_id, aliases: "owner", squash: "id"
 
         def ready?
           status == "available"

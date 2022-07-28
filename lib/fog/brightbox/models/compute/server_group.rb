@@ -6,15 +6,23 @@ module Fog
       # Certain actions can accept a server group and affect all members
       class ServerGroup < Fog::Brightbox::Model
         identity :id
-
-        attribute :url
         attribute :resource_type
+        attribute :url
+
         attribute :name
         attribute :description
-        attribute :default
-        attribute :created_at, :type => :time
+        attribute :fqdn
 
-        attribute :server_ids, :aliases => "servers"
+        # Booleans
+        attribute :default, type: :boolean
+
+        # Timestamps
+        attribute :created_at, type: :time
+
+        # Links
+        attribute :account_id, aliases: "account", squash: "id"
+        attribute :firewall_policy_id, aliases: "firewall_policy", squash: "id"
+        attribute :server_ids, aliases: "servers"
 
         def save
           options = {

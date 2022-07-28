@@ -4,17 +4,18 @@ module Fog
       # @api private
       class Event < Fog::Brightbox::Model
         identity :id
-        attribute :url
         attribute :resource_type
+        attribute :url
 
         attribute :action
         attribute :message
         attribute :short_message
 
-        # Times
-        attribute :created_at, :type => :time
+        # Timestamps
+        attribute :created_at, type: :time
 
-        # Links - to be replaced
+        # Links
+        attribute :affects
         attribute :resource
         attribute :client
         attribute :user
