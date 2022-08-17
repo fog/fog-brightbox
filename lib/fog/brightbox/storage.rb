@@ -215,7 +215,8 @@ module Fog
 
       # CGI.escape, but without special treatment on spaces
       def self.escape(str, extra_exclude_chars = "")
-        str.gsub(/([^a-zA-Z0-9_.-#{extra_exclude_chars}]+)/) do
+        # Includes fix to Regexp so "-" is correctly handled by placing last
+        str.gsub(/([^a-zA-Z0-9_.#{extra_exclude_chars}-]+)/) do
           "%" + Regexp.last_match[1].unpack("H2" * Regexp.last_match[1].bytesize).join("%").upcase
         end
       end
