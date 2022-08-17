@@ -31,8 +31,8 @@ module Fog
         attr_writer :public
 
         def public_url
-          # raise NotImplementedError
-          ""
+          requires :key
+          @public_url ||= [service.management_url , Fog::Brightbox::Storage.escape(key, "/")].join("/")
         end
 
         def save
