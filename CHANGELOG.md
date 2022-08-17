@@ -1,3 +1,9 @@
+### 1.7.1 / 2022-08-17
+
+Bug fixes:
+
+* Implement `Storage::Directory#public_url` to allow generation of `File` public URLs correctly.
+
 ### 1.7.0 / 2022-07-28
 
 Changes:
