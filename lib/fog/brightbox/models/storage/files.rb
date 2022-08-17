@@ -63,9 +63,9 @@ module Fog
 
         def get_url(key)
           requires :directory
-          if directory.public_url
-            "#{directory.public_url}/#{Fog::Brightbox::Storage.escape(key, "/")}"
-          end
+          return unless directory.public_url
+
+          ::File.join(directory.public_url, Fog::Brightbox::Storage.escape(key, "/"))
         end
 
         def get_http_url(key, expires, options = {})

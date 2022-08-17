@@ -32,7 +32,8 @@ module Fog
 
         def public_url
           requires :key
-          @public_url ||= [service.management_url , Fog::Brightbox::Storage.escape(key, "/")].join("/")
+          @public_url ||= ::File.join(service.management_url.to_s,
+                                      Fog::Brightbox::Storage.escape(key, "/"))
         end
 
         def save
