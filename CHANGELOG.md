@@ -1,4 +1,12 @@
+### 1.7.3 / 2022-08-17
+
+Bug fixes:
+
+* Fix to deduplicate forward slashes in `Storage::File#public_url` when object keys are prefixed with "/"
+
 ### 1.7.2 / 2022-08-17
+
+Bug fixes:
 
 * Fix in `Storage.escape` regexp which failed to handle dashes correctly and broke generated URLs.
 
