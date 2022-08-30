@@ -20,7 +20,7 @@ describe Fog::Brightbox::Compute::Server do
   end
 
   describe "when creating" do
-    describe "with required image_id" do
+    describe "with image_id" do
       it "sends correct JSON" do
         options = {
           image_id: "img-12345"
@@ -31,6 +31,33 @@ describe Fog::Brightbox::Compute::Server do
                :headers => { "Authorization" => "Bearer FAKECACHEDTOKEN",
                              "Content-Type" => "application/json" },
                              :body => hash_including(:image => "img-12345")).
+        to_return(:status => 202, :body => %q({"id":"srv-12345"}), :headers => {})
+
+        @server = Fog::Brightbox::Compute::Server.new({ :service => service }.merge(options))
+        assert @server.save
+      end
+    end
+
+    describe "with image_id and custom size" do
+      it "sends correct JSON" do
+        options = {
+          image_id: "img-12345",
+          volume_size: 25_000
+        }
+        expected_args = {
+          volumes: [
+            {
+              image: "img-12345",
+              size: 25_000
+            }
+          ]
+        }
+
+        stub_request(:post, "http://localhost/1.0/servers").
+          with(:query => hash_including(:account_id),
+               :headers => { "Authorization" => "Bearer FAKECACHEDTOKEN",
+                             "Content-Type" => "application/json" },
+                             :body => hash_including(expected_args)).
         to_return(:status => 202, :body => %q({"id":"srv-12345"}), :headers => {})
 
         @server = Fog::Brightbox::Compute::Server.new({ :service => service }.merge(options))
@@ -58,6 +85,27 @@ describe Fog::Brightbox::Compute::Server do
         assert @server.save
         assert @server.disk_encrypted
       end
+    end
+  end
+
+  describe "with volume_id" do
+    it "sends correct JSON" do
+      options = {
+        volume_id: "vol-12345"
+      }
+      expected_args = {
+        volumes: [{ volume: "vol-12345" }]
+      }
+
+      stub_request(:post, "http://localhost/1.0/servers").
+        with(:query => hash_including(:account_id),
+             :headers => { "Authorization" => "Bearer FAKECACHEDTOKEN",
+                           "Content-Type" => "application/json" },
+                           :body => hash_including(expected_args)).
+      to_return(:status => 202, :body => %q({"id":"srv-12345"}), :headers => {})
+
+      @server = Fog::Brightbox::Compute::Server.new({ :service => service }.merge(options))
+      assert @server.save
     end
   end
 

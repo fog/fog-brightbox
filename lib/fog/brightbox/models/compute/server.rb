@@ -8,6 +8,7 @@ module Fog
         include Fog::Brightbox::Compute::ResourceLocking
 
         attr_accessor :volume_id
+        attr_accessor :volume_size
 
         identity :id
         attribute :resource_type
@@ -197,7 +198,16 @@ module Fog
           options.merge!(:disk_encrypted => disk_encrypted) if disk_encrypted
 
           if volume_id
-            options.merge!(:volumes => [:volume => volume_id])
+            options.merge!(:volumes => [{ volume: volume_id }])
+          elsif volume_size
+            options.merge!(
+              volumes: [
+                {
+                  image: image_id,
+                  size: volume_size
+                }
+              ]
+            )
           else
             options.merge!(:image => image_id)
           end
