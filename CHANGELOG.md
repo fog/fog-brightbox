@@ -1,3 +1,9 @@
+### 1.8.0 / 2022-08-31
+
+Changes:
+
+* Allow custom `volume_size` in server creation where supported
+
 ### 1.7.3 / 2022-08-17
 
 Bug fixes:
