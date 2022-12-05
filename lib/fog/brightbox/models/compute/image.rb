@@ -14,13 +14,16 @@ module Fog
 
         attribute :arch
         attribute :disk_size, type: :integer
+        attribute :http_url
         attribute :licence_name
         attribute :min_ram, type: :integer
+        attribute :server
         attribute :source
         attribute :source_trigger
         attribute :source_type
         attribute :username
         attribute :virtual_size, type: :integer
+        attribute :volume
 
         # Boolean flags
         attribute :compatibility_mode, type: :boolean
@@ -40,13 +43,16 @@ module Fog
 
         def save
           raise Fog::Errors::Error.new("Resaving an existing object may create a duplicate") if persisted?
-          requires :source, :arch
+
           options = {
-            :source => source,
             :arch => arch,
+            :description => description,
+            :http_url => http_url,
             :name => name,
+            :server => server,
+            :source => source,
             :username => username,
-            :description => description
+            :volume => volume
           }.delete_if { |_k, v| v.nil? || v == "" }
           data = service.create_image(options)
           merge_attributes(data)
