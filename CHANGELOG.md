@@ -1,3 +1,10 @@
+### 1.8.1 / 2022-12-05
+
+Bug fixes:
+
+* Remove outdated check for required arguments in `Image.create` model which
+  prevented using newer arguments in the latest API version
+
 ### 1.8.0 / 2022-08-31
 
 Changes:
