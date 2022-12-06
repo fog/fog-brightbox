@@ -39,8 +39,8 @@ module Fog
         def save
           requires :key
           options = {
-            "read_permissions" => read_permissions,
-            "write_permissions" => write_permissions
+            read_permissions: read_permissions,
+            write_permissions: write_permissions
           }
           service.put_container(key, options)
           true
