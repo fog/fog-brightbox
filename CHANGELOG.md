@@ -1,3 +1,10 @@
+### 1.8.2 / 2022-12-06
+
+Bug fixes:
+
+* Fix issue in storage directory `#save` that prevented creating and updating
+  permissions/ACL on Orbit containers correctly
+
 ### 1.8.1 / 2022-12-05
 
 Bug fixes:
