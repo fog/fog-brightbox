@@ -1,9 +1,17 @@
-Changes:
+### 1.9.0 / 2023-01-09
+
+Enhancements:
 
 * Expose read-only `Volume.zone` attribute on model to report which zone the
   volume was allocated to
 * Add `boot` argument to `Volume#attach` to allow changing the boot volume of
   inactive servers via the model API by passing through to the API request
+
+Changes:
+
+* Fix Github actions `setup-ruby` version to pick up bug fixes in running tests
+  caused by the older templates mismatching Ruby/Bundler versions
+* Correct CHANGELOG for mixed references of "enhancements" and minor "changes"
 
 ### 1.8.2 / 2022-12-06
 
@@ -21,7 +29,7 @@ Bug fixes:
 
 ### 1.8.0 / 2022-08-31
 
-Changes:
+Enhancements:
 
 * Allow custom `volume_size` in server creation where supported
 
@@ -45,7 +53,7 @@ Bug fixes:
 
 ### 1.7.0 / 2022-07-28
 
-Changes:
+Enhancements:
 
 * Adds support for `ConfigMaps` which are simple key/value stores for configuring
   other resources.
@@ -54,7 +62,7 @@ Changes:
 
 ### 1.6.0 / 2022-07-25
 
-Changes:
+Enhancements:
 
 * Added support to opt-in to support Brightbox 2FA within clients.
 
@@ -76,7 +84,7 @@ object.
 
 ### 1.5.0 / 2022-06-09
 
-Changes:
+Enhancements:
 
 * Added support for `Volume` resources. These are dynamic, network attached
   volumes. Servers with `nbs` (Network Block Storage) types can be created
@@ -107,20 +115,20 @@ Bug fixes:
 
 ### 1.4.0 / 2021-02-17
 
-Changes:
+Enhancements:
 
 * Relax dependencies to allow Ruby 3.0 to be used.
 
 ### 1.3.0 / 2020-11-24
 
-Changes:
+Enhancements:
 
 * Add `Server#disk_encrypted` attribute to support creation of servers with
   LUKS based encryption at rest.
 
 ### 1.2.0 / 2020-11-16
 
-Changes:
+Enhancements:
 
 * Add `LoadBalancer#ssl_minimum_version` attribute to configure the TLS/SSL
   version supported by the load balancer.
