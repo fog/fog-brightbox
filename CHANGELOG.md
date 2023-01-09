@@ -2,6 +2,8 @@ Changes:
 
 * Expose read-only `Volume.zone` attribute on model to report which zone the
   volume was allocated to
+* Add `boot` argument to `Volume#attach` to allow changing the boot volume of
+  inactive servers via the model API by passing through to the API request
 
 ### 1.8.2 / 2022-12-06
 
