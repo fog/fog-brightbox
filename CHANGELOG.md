@@ -1,3 +1,8 @@
+Changes:
+
+* Expose read-only `Volume.zone` attribute on model to report which zone the
+  volume was allocated to
+
 ### 1.8.2 / 2022-12-06
 
 Bug fixes:

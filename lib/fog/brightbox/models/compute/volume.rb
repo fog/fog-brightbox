@@ -34,6 +34,7 @@ module Fog
         attribute :account_id, aliases: "account", squash: "id"
         attribute :image_id, aliases: "image", squash: "id"
         attribute :server_id, aliases: "server", squash: "id"
+        attribute :zone_id, aliases: "zone", squash: "id"
 
         def attach(server)
           requires :identity
