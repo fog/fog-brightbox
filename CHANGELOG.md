@@ -1,3 +1,9 @@
+### 1.9.1 / 2023-01-10
+
+Bug fixes:
+
+* Allow `encrypted` parameter in `Volume#save` to allow it to propagate from
+  the model to the API request
 ### 1.9.0 / 2023-01-09
 
 Enhancements:
