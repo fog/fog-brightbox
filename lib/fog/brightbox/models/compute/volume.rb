@@ -126,6 +126,7 @@ module Fog
             options = {
               :delete_with_server => delete_with_server,
               :description => description,
+              :encrypted => encrypted,
               :filesystem_label => filesystem_label,
               :filesystem_type => filesystem_type,
               :name => name,
