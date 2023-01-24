@@ -1,3 +1,9 @@
+### 1.10.0 / 2023-01-24
+
+Enhancements:
+
+* Add `ConfigMap#save` and `#destroy` methods to allow model updates
+
 ### 1.9.1 / 2023-01-10
 
 Bug fixes:
