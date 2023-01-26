@@ -60,9 +60,7 @@ Shindo.tests("Fog::Compute[:brightbox] | cloud ip requests", ["brightbox"]) do
       data_matches_schema(Brightbox::Compute::Formats::Full::CLOUD_IP, allow_extra_keys: true) { result }
     end
 
-    unless Fog.mocking?
-      @server.destroy
-    end
+    @server.destroy unless Fog.mocking?
   end
 
   tests("failure") do

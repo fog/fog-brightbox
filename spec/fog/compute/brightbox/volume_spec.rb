@@ -117,7 +117,7 @@ describe Fog::Brightbox::Compute::Volume do
                          "Content-Type" => "application/json" },
               body: hash_including(server: "srv-12345"))
         .to_return(status: 202,
-                   body: %q({"id":"vol-12345","status":"attached"}),
+                   body: '{"id":"vol-12345","status":"attached"}',
                    headers: {})
 
       subject.attach(server)
@@ -147,7 +147,7 @@ describe Fog::Brightbox::Compute::Volume do
                          "Content-Type" => "application/json" },
               body: hash_including(delete_with_server: true))
         .to_return(status: 202,
-                   body: %q({"id":"vol-abcde","delete_with_server":true,"name":"Copy of vol-12345 (Impish Image)","status":"detached"}),
+                   body: '{"id":"vol-abcde","delete_with_server":true,"name":"Copy of vol-12345 (Impish Image)","status":"detached"}',
                    headers: {})
 
       copy = subject.copy(delete_with_server: true)
@@ -171,7 +171,7 @@ describe Fog::Brightbox::Compute::Volume do
               headers: { "Authorization" => "Bearer FAKECACHEDTOKEN",
                          "Content-Type" => "application/json" })
         .to_return(status: 202,
-                   body: %q({"id":"vol-12345","status":"detached"}),
+                   body: '{"id":"vol-12345","status":"detached"}',
                    headers: {})
 
       subject.detach
@@ -190,7 +190,7 @@ describe Fog::Brightbox::Compute::Volume do
               headers: { "Authorization" => "Bearer FAKECACHEDTOKEN",
                          "Content-Type" => "application/json" })
         .to_return(status: 202,
-                   body: %q({"id":"vol-12345","status":"deleting"}),
+                   body: '{"id":"vol-12345","status":"deleting"}',
                    headers: {})
 
       subject.destroy
@@ -237,7 +237,7 @@ describe Fog::Brightbox::Compute::Volume do
                          "Content-Type" => "application/json" },
               body: hash_including(from: 40_000, to: 50_000))
         .to_return(status: 202,
-                   body: %q({"id":"vol-12345","size": 50000}),
+                   body: '{"id":"vol-12345","size": 50000}',
                    headers: {})
 
       subject.resize(to: 50_000)
@@ -282,7 +282,7 @@ describe Fog::Brightbox::Compute::Volume do
                              "Content-Type" => "application/json" },
                   body: hash_including(filesystem_type: "ext4"))
             .to_return(status: 202,
-                       body: %q({"id":"vol-12345","image":{"id":"img-blank"}}),
+                       body: '{"id":"vol-12345","image":{"id":"img-blank"}}',
                        headers: {})
 
           @volume = Fog::Brightbox::Compute::Volume.new({ service: service }.merge(options))
@@ -306,7 +306,7 @@ describe Fog::Brightbox::Compute::Volume do
                              "Content-Type" => "application/json" },
                   body: hash_including(image: "img-12345"))
             .to_return(status: 202,
-                       body: %q({"id":"vol-12345","image":{"id":"img-12345"}}),
+                       body: '{"id":"vol-12345","image":{"id":"img-12345"}}',
                        headers: {})
 
           @volume = Fog::Brightbox::Compute::Volume.new({ service: service }.merge(options))
@@ -337,7 +337,7 @@ describe Fog::Brightbox::Compute::Volume do
                                      name: "New name",
                                      serial: "NewSerial"))
           .to_return(status: 202,
-                     body: %q({"id":"vol-12345"}),
+                     body: '{"id":"vol-12345"}',
                      headers: {})
 
         subject.save

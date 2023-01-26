@@ -31,7 +31,7 @@ describe Fog::Brightbox::Compute::Server do
                 headers: { "Authorization" => "Bearer FAKECACHEDTOKEN",
                            "Content-Type" => "application/json" },
                 body: hash_including(image: "img-12345"))
-          .to_return(status: 202, body: %q({"id":"srv-12345"}), headers: {})
+          .to_return(status: 202, body: '{"id":"srv-12345"}', headers: {})
 
         @server = Fog::Brightbox::Compute::Server.new({ service: service }.merge(options))
         assert @server.save
@@ -58,7 +58,7 @@ describe Fog::Brightbox::Compute::Server do
                 headers: { "Authorization" => "Bearer FAKECACHEDTOKEN",
                            "Content-Type" => "application/json" },
                 body: hash_including(expected_args))
-          .to_return(status: 202, body: %q({"id":"srv-12345"}), headers: {})
+          .to_return(status: 202, body: '{"id":"srv-12345"}', headers: {})
 
         @server = Fog::Brightbox::Compute::Server.new({ service: service }.merge(options))
         assert @server.save
@@ -78,7 +78,7 @@ describe Fog::Brightbox::Compute::Server do
                            "Content-Type" => "application/json" },
                 body: hash_including(disk_encrypted: true))
           .to_return(status: 202,
-                     body: %q({"id":"srv-12345","disk_encrypted":true}),
+                     body: '{"id":"srv-12345","disk_encrypted":true}',
                      headers: {})
 
         @server = Fog::Brightbox::Compute::Server.new({ service: service }.merge(options))
@@ -102,7 +102,7 @@ describe Fog::Brightbox::Compute::Server do
               headers: { "Authorization" => "Bearer FAKECACHEDTOKEN",
                          "Content-Type" => "application/json" },
               body: hash_including(expected_args))
-        .to_return(status: 202, body: %q({"id":"srv-12345"}), headers: {})
+        .to_return(status: 202, body: '{"id":"srv-12345"}', headers: {})
 
       @server = Fog::Brightbox::Compute::Server.new({ service: service }.merge(options))
       assert @server.save
@@ -114,7 +114,7 @@ describe Fog::Brightbox::Compute::Server do
       stub_request(:post, "http://localhost/1.0/servers/srv-12345/snapshot")
         .with(query: hash_including(:account_id),
               headers: { "Authorization" => "Bearer FAKECACHEDTOKEN" })
-        .to_return(status: 202, body: %q({"id": "srv-12345"}), headers: {})
+        .to_return(status: 202, body: '{"id": "srv-12345"}', headers: {})
 
       @server = Fog::Brightbox::Compute::Server.new(service: service, id: "srv-12345")
       assert_kind_of Hash, @server.snapshot
@@ -132,7 +132,7 @@ describe Fog::Brightbox::Compute::Server do
       stub_request(:get, "http://localhost/1.0/images/img-12345")
         .with(query: hash_including(:account_id),
               headers: { "Authorization" => "Bearer FAKECACHEDTOKEN" })
-        .to_return(status: 200, body: %q({"id": "img-12345"}))
+        .to_return(status: 200, body: '{"id": "img-12345"}')
       @server = Fog::Brightbox::Compute::Server.new(service: service, id: "srv-12345")
       assert_kind_of Fog::Brightbox::Compute::Image, @server.snapshot(true)
     end

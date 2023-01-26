@@ -25,14 +25,10 @@ module Fog
             directory.key,
             options
           )
-          if parent
-            load(parent.files.map { |file| file.attributes })
-          else
-            nil
-          end
+          load(parent.files.map(&:attributes)) if parent
         end
 
-        alias_method :each_file_this_page, :each
+        alias each_file_this_page each
         def each
           if !block_given?
             self

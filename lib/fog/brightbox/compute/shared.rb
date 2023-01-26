@@ -9,7 +9,7 @@ module Fog
 
         attr_writer :scoped_account
 
-        API_URL = "https://api.gb1.brightbox.com/"
+        API_URL = "https://api.gb1.brightbox.com/".freeze
 
         # Creates a new instance of the Brightbox Compute service
         #
@@ -23,11 +23,11 @@ module Fog
         #   of a {Brightbox::Config} object but may be a Hash.
         #
         def initialize(config)
-          if config.respond_to?(:config_service?) && config.config_service?
-            @config = config
-          else
-            @config = Fog::Brightbox::Config.new(config)
-          end
+          @config = if config.respond_to?(:config_service?) && config.config_service?
+                      config
+                    else
+                      Fog::Brightbox::Config.new(config)
+                    end
           @config = Fog::Brightbox::Compute::Config.new(@config)
 
           # Currently authentication and api endpoints are the same but may change

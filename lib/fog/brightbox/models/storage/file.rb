@@ -4,11 +4,11 @@ module Fog
       class File < Fog::Model
         identity :key, aliases: "name"
 
-        attribute :content_length,  aliases: %w(bytes Content-Length), type: :integer
-        attribute :content_type,    aliases: %w(content_type Content-Type)
-        attribute :content_disposition, aliases: %w(content_disposition Content-Disposition)
-        attribute :etag,            aliases: %w(hash Etag)
-        attribute :last_modified,   aliases: %w(last_modified Last-Modified), type: :time
+        attribute :content_length,  aliases: %w[bytes Content-Length], type: :integer
+        attribute :content_type,    aliases: %w[content_type Content-Type]
+        attribute :content_disposition, aliases: %w[content_disposition Content-Disposition]
+        attribute :etag,            aliases: %w[hash Etag]
+        attribute :last_modified,   aliases: %w[last_modified Last-Modified], type: :time
         attribute :access_control_allow_origin, aliases: ["Access-Control-Allow-Origin"]
         attribute :origin, aliases: ["Origin"]
 
@@ -133,7 +133,7 @@ module Fog
         def metadata_attributes
           if last_modified
             headers = service.head_object(directory.key, key).headers
-            headers.reject! { |k, _v| !metadata_attribute?(k) }
+            headers.select! { |k, _v| metadata_attribute?(k) }
           else
             {}
           end
@@ -148,7 +148,7 @@ module Fog
         end
 
         def update_attributes_from(data)
-          merge_attributes(data.headers.reject { |key, _value| %w(Content-Length Content-Type).include?(key) })
+          merge_attributes(data.headers.reject { |key, _value| %w[Content-Length Content-Type].include?(key) })
         end
       end
     end

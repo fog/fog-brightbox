@@ -120,8 +120,8 @@ module Fog
 
             data = service.update_volume(identity, options)
           else
-            raise Fog::Errors::Error.new("'image_id' and 'filesystem_type' are mutually exclusive") if image_id && filesystem_type
-            raise Fog::Errors::Error.new("'image_id' or 'filesystem_type' is required") unless image_id || filesystem_type
+            raise Fog::Errors::Error, "'image_id' and 'filesystem_type' are mutually exclusive" if image_id && filesystem_type
+            raise Fog::Errors::Error, "'image_id' or 'filesystem_type' is required" unless image_id || filesystem_type
 
             options = {
               delete_with_server: delete_with_server,

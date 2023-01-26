@@ -247,7 +247,7 @@ describe Fog::Brightbox::Compute, "#get_access_token" do
     request = {
       headers: {
         "Authorization" => "Basic YXBwLTEyMzQ1OjEyMzQ1Njc4OTA=",
-        "Content-Type" => "application/json",
+        "Content-Type" => "application/json"
       },
       body: {
         grant_type: "password",

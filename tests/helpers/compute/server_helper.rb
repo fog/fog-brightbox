@@ -7,7 +7,7 @@ def server_tests(connection, params = {}, mocks_implemented = true)
       !identity.nil? && identity == @instance.reload.identity
     end
 
-    responds_to([:ready?, :state])
+    responds_to(%i[ready? state])
     yield if block_given?
 
     tests("#reboot").succeeds do
@@ -16,8 +16,6 @@ def server_tests(connection, params = {}, mocks_implemented = true)
       @instance.reboot
     end
 
-    if !Fog.mocking? || mocks_implemented
-      @instance.wait_for { ready? }
-    end
+    @instance.wait_for { ready? } if !Fog.mocking? || mocks_implemented
   end
 end

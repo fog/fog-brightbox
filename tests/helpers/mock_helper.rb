@@ -2,9 +2,7 @@
 #
 # FOG_MOCK=true fog
 
-if ENV["FOG_MOCK"] == "true"
-  Fog.mock!
-end
+Fog.mock! if ENV["FOG_MOCK"] == "true"
 
 # if in mocked mode, fill in some fake credentials for us
 if Fog.mock?

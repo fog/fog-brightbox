@@ -87,7 +87,7 @@ module Fog
       def compute_url
         URI.parse(@options.fetch(:brightbox_api_url, "https://api.gb1.brightbox.com"))
       end
-      alias_method :api_url, :compute_url
+      alias api_url compute_url
 
       def storage_url
         URI.parse(@options[:brightbox_storage_url] || "https://orbit.brightbox.com")
@@ -102,15 +102,13 @@ module Fog
       def storage_management_url
         @storage_management_url ||= if @options.key?(:brightbox_storage_management_url)
                                       URI.parse(@options[:brightbox_storage_management_url])
-                                    else
-                                      nil
                                     end
       end
 
       # @param [URI] management_url The +URI+ to use for management requests.
       # @raise [ArgumentError] if non +URI+ object passed
       def storage_management_url=(management_url)
-        raise ArgumentError unless management_url.kind_of?(URI)
+        raise ArgumentError unless management_url.is_a?(URI)
         @storage_management_url = management_url
       end
 

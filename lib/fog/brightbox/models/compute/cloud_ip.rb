@@ -32,13 +32,13 @@ module Fog
         #
         def map(destination)
           requires :identity
-          if destination.respond_to?(:mapping_identity)
-            final_destination = destination.mapping_identity
-          elsif destination.respond_to?(:identity)
-            final_destination = destination.identity
-          else
-            final_destination = destination
-          end
+          final_destination = if destination.respond_to?(:mapping_identity)
+                                destination.mapping_identity
+                              elsif destination.respond_to?(:identity)
+                                destination.identity
+                              else
+                                destination
+                              end
           service.map_cloud_ip(identity, destination: final_destination)
         end
 

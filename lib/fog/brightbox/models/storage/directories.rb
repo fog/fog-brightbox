@@ -6,7 +6,7 @@ module Fog
       class Directories < Fog::Collection
         model Fog::Brightbox::Storage::Directory
 
-        HEADER_ATTRIBUTES = %w(X-Container-Bytes-Used X-Container-Object-Count X-Container-Read X-Container-Write)
+        HEADER_ATTRIBUTES = %w[X-Container-Bytes-Used X-Container-Object-Count X-Container-Read X-Container-Write].freeze
 
         def all
           data = service.get_containers.body

@@ -24,7 +24,7 @@ describe Fog::Brightbox::Compute::DatabaseServer do
       stub_request(:post, "http://localhost/1.0/database_servers/dbs-12345/snapshot")
         .with(query: hash_including(:account_id),
               headers: { "Authorization" => "Bearer FAKECACHEDTOKEN" })
-        .to_return(status: 202, body: %q({"id": "dbs-12345"}), headers: {})
+        .to_return(status: 202, body: '{"id": "dbs-12345"}', headers: {})
 
       @database_server = Fog::Brightbox::Compute::DatabaseServer.new(service: service, id: "dbs-12345")
       assert @database_server.snapshot
@@ -42,7 +42,7 @@ describe Fog::Brightbox::Compute::DatabaseServer do
       stub_request(:get, "http://localhost/1.0/database_snapshots/dbi-12345")
         .with(query: hash_including(:account_id),
               headers: { "Authorization" => "Bearer FAKECACHEDTOKEN" })
-        .to_return(status: 200, body: %q({"id": "dbs-12345"}))
+        .to_return(status: 200, body: '{"id": "dbs-12345"}')
       @database_server = Fog::Brightbox::Compute::DatabaseServer.new(service: service, id: "dbs-12345")
       assert_kind_of Fog::Brightbox::Compute::DatabaseSnapshot, @database_server.snapshot(true)
     end
@@ -54,7 +54,7 @@ describe Fog::Brightbox::Compute::DatabaseServer do
         .with(query: hash_including(:account_id),
               headers: { "Authorization" => "Bearer FAKECACHEDTOKEN" },
               body: hash_including(snapshot: "dbi-lv426"))
-        .to_return(status: 202, body: %q({"id": "dbs-12345"}))
+        .to_return(status: 202, body: '{"id": "dbs-12345"}')
 
       @database_server = Fog::Brightbox::Compute::DatabaseServer.new(service: service, snapshot_id: "dbi-lv426")
       @database_server.save

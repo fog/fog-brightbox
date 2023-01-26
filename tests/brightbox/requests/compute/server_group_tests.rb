@@ -67,9 +67,7 @@ Shindo.tests("Fog::Compute[:brightbox] | server group requests", ["brightbox"]) 
       data_matches_schema(Brightbox::Compute::Formats::Full::SERVER_GROUP, allow_extra_keys: true) { result }
     end
 
-    unless Fog.mocking?
-      @server.destroy
-    end
+    @server.destroy unless Fog.mocking?
   end
 
   tests("failure") do

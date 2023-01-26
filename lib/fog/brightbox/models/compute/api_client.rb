@@ -19,7 +19,7 @@ module Fog
         attribute :account_id, aliases: "account", squash: "id"
 
         def save
-          raise Fog::Errors::Error.new("Resaving an existing object may create a duplicate") if persisted?
+          raise Fog::Errors::Error, "Resaving an existing object may create a duplicate" if persisted?
           options = {
             name: name,
             description: description,

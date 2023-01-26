@@ -35,8 +35,6 @@ Shindo.tests("Fog::Compute[:brightbox] | firewall rule requests", ["brightbox"])
       data_matches_schema(Brightbox::Compute::Formats::Full::FIREWALL_RULE, allow_extra_keys: true) { result }
     end
 
-    unless Fog.mocking?
-      policy.destroy
-    end
+    policy.destroy unless Fog.mocking?
   end
 end

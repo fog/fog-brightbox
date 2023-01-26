@@ -16,7 +16,7 @@ module Fog
         attribute :revoked_at, type: :time
 
         def save
-          raise Fog::Errors::Error.new("Resaving an existing object may create a duplicate") if persisted?
+          raise Fog::Errors::Error, "Resaving an existing object may create a duplicate" if persisted?
           options = {
             name: name
           }.delete_if { |_k, v| v.nil? || v == "" }

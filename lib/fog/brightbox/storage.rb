@@ -44,17 +44,16 @@ module Fog
       request :put_static_obj_manifest
 
       class Mock
-        def initialize(_options = {})
-        end
+        def initialize(_options = {}); end
       end
 
       class Real
         def initialize(config)
-          if config.respond_to?(:config_service?) && config.config_service?
-            @config = config
-          else
-            @config = Fog::Brightbox::Config.new(config)
-          end
+          @config = if config.respond_to?(:config_service?) && config.config_service?
+                      config
+                    else
+                      Fog::Brightbox::Config.new(config)
+                    end
           @config = Fog::Brightbox::Storage::Config.new(@config)
 
           @temp_url_key = @config.storage_temp_key
@@ -152,9 +151,9 @@ module Fog
           raise ArgumentError, "Storage must be instantiated with the :brightbox_temp_url_key option" if @config.storage_temp_key.nil?
 
           # POST not allowed
-          allowed_methods = %w(GET PUT HEAD)
+          allowed_methods = %w[GET PUT HEAD]
           unless allowed_methods.include?(method)
-            raise ArgumentError.new("Invalid method '#{method}' specified. Valid methods are: #{allowed_methods.join(", ")}")
+            raise ArgumentError, "Invalid method '#{method}' specified. Valid methods are: #{allowed_methods.join(', ')}"
           end
 
           if management_url.nil?
@@ -168,7 +167,7 @@ module Fog
           destination_url.scheme = options[:scheme] if options[:scheme]
           destination_url.port = options[:port] if options[:port]
 
-          object_path_escaped = "#{object_path}/#{Fog::Brightbox::Storage.escape(container)}/#{Fog::Brightbox::Storage.escape(object, "/")}"
+          object_path_escaped = "#{object_path}/#{Fog::Brightbox::Storage.escape(container)}/#{Fog::Brightbox::Storage.escape(object, '/')}"
           object_path_unescaped = "#{object_path}/#{Fog::Brightbox::Storage.escape(container)}/#{object}"
 
           expiry_timestamp = expires_at.to_i
@@ -185,11 +184,11 @@ module Fog
         private
 
         def sig_to_hex(str)
-          str.unpack("C*").map { |c|
+          str.unpack("C*").map do |c|
             c.to_s(16)
-          }.map { |h|
+          end.map do |h|
             h.size == 1 ? "0#{h}" : h
-          }.join
+          end.join
         end
 
         def update_config_from_auth_response(response)

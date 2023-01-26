@@ -15,9 +15,7 @@ module Fog
             path: "#{Fog::Brightbox::Storage.escape(container)}/#{Fog::Brightbox::Storage.escape(object)}"
           }
 
-          if block_given?
-            params[:response_block] = block
-          end
+          params[:response_block] = block if block_given?
 
           request(params, false)
         end

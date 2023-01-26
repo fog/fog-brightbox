@@ -52,7 +52,7 @@ module Fog
         end
 
         def save
-          raise Fog::Errors::Error.new("Resaving an existing object may create a duplicate") if persisted?
+          raise Fog::Errors::Error, "Resaving an existing object may create a duplicate" if persisted?
           requires :nodes, :listeners, :healthcheck
           options = {
             nodes: nodes,
