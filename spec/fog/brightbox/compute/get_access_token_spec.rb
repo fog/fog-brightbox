@@ -271,32 +271,32 @@ describe Fog::Brightbox::Compute, "#get_access_token" do
     # * User does use 2FA and FAILS to send OTP
     #
     response = if two_factor_user && !otp_sent
-      # OTP required header
-      {
-        status: 401,
-        headers: {
-          "X-Brightbox-OTP" => "required"
-        },
-        body: { error: "invalid_client" }.to_json
-      }
-    elsif !auth_correct
-      # No OTP header
-      {
-        status: 401,
-        headers: {},
-        body: { error: "invalid_client" }.to_json
-      }
-    else
-      {
-        status: 200,
-        headers: {},
-        body: {
-          access_token: @new_access_token,
-          refresh_token: @new_refresh_token,
-          expires_in: 7200
-        }.to_json
-      }
-    end
+                 # OTP required header
+                 {
+                   status: 401,
+                   headers: {
+                     "X-Brightbox-OTP" => "required"
+                   },
+                   body: { error: "invalid_client" }.to_json
+                 }
+               elsif !auth_correct
+                 # No OTP header
+                 {
+                   status: 401,
+                   headers: {},
+                   body: { error: "invalid_client" }.to_json
+                 }
+               else
+                 {
+                   status: 200,
+                   headers: {},
+                   body: {
+                     access_token: @new_access_token,
+                     refresh_token: @new_refresh_token,
+                     expires_in: 7200
+                   }.to_json
+                 }
+               end
 
     stub_request(:post, "https://api.gb1.brightbox.com/token")
       .with(request)

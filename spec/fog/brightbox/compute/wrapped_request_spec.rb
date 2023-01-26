@@ -13,10 +13,10 @@ describe Fog::Brightbox::Compute do
       end
 
       it "makes correct request" do
-        stub_request(:get, "https://api.gb1.brightbox.com/1.0/accounts").
-          with(headers: { "Authorization"=>"Bearer TESTVALUE" },
-               query: { nested: "true" }).
-          to_return(status: 200, body: "", headers: {})
+        stub_request(:get, "https://api.gb1.brightbox.com/1.0/accounts")
+          .with(headers: { "Authorization" => "Bearer TESTVALUE" },
+                query: { nested: "true" })
+          .to_return(status: 200, body: "", headers: {})
 
         @service.wrapped_request("get", "/1.0/accounts", [200], nested: "true")
         pass
@@ -34,10 +34,10 @@ describe Fog::Brightbox::Compute do
       end
 
       it "makes correct request" do
-        stub_request(:get, "https://api.gb1.brightbox.com/1.0/accounts").
-          with(headers: { "Authorization"=>"Bearer TESTVALUE" },
-               query: { nested: "false" }).
-          to_return(status: 200, body: "", headers: {})
+        stub_request(:get, "https://api.gb1.brightbox.com/1.0/accounts")
+          .with(headers: { "Authorization" => "Bearer TESTVALUE" },
+                query: { nested: "false" })
+          .to_return(status: 200, body: "", headers: {})
 
         @service.wrapped_request("get", "/1.0/accounts", [200], nested: "false")
         pass
@@ -55,10 +55,10 @@ describe Fog::Brightbox::Compute do
       end
 
       it "makes correct request" do
-        stub_request(:get, "https://api.gb1.brightbox.com/1.0/accounts").
-          with(headers: { "Authorization"=>"Bearer TESTVALUE" },
-               query: {}).
-          to_return(status: 200, body: "", headers: {})
+        stub_request(:get, "https://api.gb1.brightbox.com/1.0/accounts")
+          .with(headers: { "Authorization" => "Bearer TESTVALUE" },
+                query: {})
+          .to_return(status: 200, body: "", headers: {})
 
         @service.wrapped_request("get", "/1.0/accounts", [200])
         pass

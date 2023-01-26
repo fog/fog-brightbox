@@ -42,14 +42,14 @@ describe Fog::Brightbox::Storage::Connection do
     let(:params) { {} }
 
     before do
-      stub_request(:get, "https://files.gb2.brightbox.com/v1/acc-12345").
-        with(headers: {
-               "Accept" => "application/json",
-               "Content-Type" => "application/json",
-               "X-Auth-Token" => valid_auth_token
-             }).to_return(status: 200, body: "{}", headers: {
-                            "Content-Type" => "application/json"
-                          })
+      stub_request(:get, "https://files.gb2.brightbox.com/v1/acc-12345")
+        .with(headers: {
+                "Accept" => "application/json",
+                "Content-Type" => "application/json",
+                "X-Auth-Token" => valid_auth_token
+              }).to_return(status: 200, body: "{}", headers: {
+                             "Content-Type" => "application/json"
+                           })
     end
 
     it "completes successfully" do
@@ -62,14 +62,14 @@ describe Fog::Brightbox::Storage::Connection do
 
   describe "when request should succeed" do
     before do
-      stub_request(:get, "https://files.gb2.brightbox.com/v1/acc-12345/fnord").
-        with(headers: {
-               "Accept" => "application/json",
-               "Content-Type" => "application/json",
-               "X-Auth-Token" => valid_auth_token
-             }).to_return(status: 200, body: "{}", headers: {
-                            "Content-Type" => "application/json"
-                          })
+      stub_request(:get, "https://files.gb2.brightbox.com/v1/acc-12345/fnord")
+        .with(headers: {
+                "Accept" => "application/json",
+                "Content-Type" => "application/json",
+                "X-Auth-Token" => valid_auth_token
+              }).to_return(status: 200, body: "{}", headers: {
+                             "Content-Type" => "application/json"
+                           })
     end
 
     it "completes successfully" do
@@ -86,8 +86,8 @@ describe Fog::Brightbox::Storage::Connection do
     end
 
     it "completes successfully" do
-      stub_request(:get, "https://files.gb2.brightbox.com/v1/acc-12345/fnord").
-        with(headers: { "X-Test" => "present" }).to_return(status: 200)
+      stub_request(:get, "https://files.gb2.brightbox.com/v1/acc-12345/fnord")
+        .with(headers: { "X-Test" => "present" }).to_return(status: 200)
 
       connection.request(params)
       pass
@@ -96,24 +96,24 @@ describe Fog::Brightbox::Storage::Connection do
 
   describe "when container is not found" do
     it "raises Fog::Brightbox::Storage::NotFound" do
-      stub_request(:get, "https://files.gb2.brightbox.com/v1/acc-12345/fnord").
-        to_return(status: 404,
-                  body: "<html><h1>Not Found</h1><p>The resource could not be found.</p></html>",
-                  headers: {
-                    "Content-Type" => "text/html"
-                  })
+      stub_request(:get, "https://files.gb2.brightbox.com/v1/acc-12345/fnord")
+        .to_return(status: 404,
+                   body: "<html><h1>Not Found</h1><p>The resource could not be found.</p></html>",
+                   headers: {
+                     "Content-Type" => "text/html"
+                   })
       assert_raises(Fog::Brightbox::Storage::NotFound) { connection.request(params) }
     end
   end
 
   describe "when request is not authenticated" do
     it "raises Fog::Brightbox::Storage::AuthenticationRequired" do
-      stub_request(:get, "https://files.gb2.brightbox.com/v1/acc-12345/fnord").
-        to_return(status: 401,
-                  body: "Authentication required",
-                  headers: {
-                    "Content-Type" => "text/plain"
-                  })
+      stub_request(:get, "https://files.gb2.brightbox.com/v1/acc-12345/fnord")
+        .to_return(status: 401,
+                   body: "Authentication required",
+                   headers: {
+                     "Content-Type" => "text/plain"
+                   })
       assert_raises(Fog::Brightbox::Storage::AuthenticationRequired) { connection.request(params) }
     end
   end

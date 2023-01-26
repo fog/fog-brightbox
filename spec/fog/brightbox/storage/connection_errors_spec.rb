@@ -45,8 +45,8 @@ describe Fog::Brightbox::Storage::Connection do
   }.each do |status, error|
     describe "when request responds with #{status}" do
       it "raises #{error}" do
-        stub_request(:get, "https://files.gb2.brightbox.com/v1/acc-12345/fnord").
-          to_return(status: status)
+        stub_request(:get, "https://files.gb2.brightbox.com/v1/acc-12345/fnord")
+          .to_return(status: status)
         assert_raises(error) { connection.request(params) }
       end
     end

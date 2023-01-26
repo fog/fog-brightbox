@@ -17,8 +17,8 @@ module Fog
         attribute :allow_access
         attribute :database_engine
         attribute :database_version
-        attribute :maintenance_hour #, type: :integer
-        attribute :maintenance_weekday #, type: :integer
+        attribute :maintenance_hour # , type: :integer
+        attribute :maintenance_weekday # , type: :integer
         attribute :source
 
         attribute :snapshots_retention, type: :string

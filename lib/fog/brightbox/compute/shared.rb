@@ -49,7 +49,7 @@ module Fog
           # If existing tokens have been cached, allow continued use of them in the service
           credentials.update_tokens(@config.cached_access_token, @config.cached_refresh_token)
 
-          @token_management    = @config.managed_tokens?
+          @token_management = @config.managed_tokens?
         end
 
         # This returns the account identifier that the request should be scoped by
@@ -95,7 +95,7 @@ module Fog
         # Returns true if an access token is set
         # @return [Boolean]
         def access_token_available?
-          !! @credentials.access_token
+          !!@credentials.access_token
         end
 
         # Returns the current access token or nil

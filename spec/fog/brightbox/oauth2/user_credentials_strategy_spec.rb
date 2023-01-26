@@ -16,11 +16,11 @@ describe Fog::Brightbox::OAuth2::UserCredentialsStrategy do
     @strategy = Fog::Brightbox::OAuth2::UserCredentialsStrategy.new(@credentials)
   end
 
-  it "tests #respond_to?(:authorization_body_data) returns true"  do
+  it "tests #respond_to?(:authorization_body_data) returns true" do
     assert @strategy.respond_to?(:authorization_body_data)
   end
 
-  it "tests #respond_to?(:headers) returns true"  do
+  it "tests #respond_to?(:headers) returns true" do
     assert @strategy.respond_to?(:headers)
   end
 

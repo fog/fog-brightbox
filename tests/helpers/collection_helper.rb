@@ -55,7 +55,8 @@ def collection_tests(collection, params = {}, mocks_implemented = true)
       end
 
       %w(
-        max_by min_by).each do |enum_method|
+        max_by min_by
+      ).each do |enum_method|
         if collection.respond_to?(enum_method)
           tests("##{enum_method}").succeeds do
             block_called = false

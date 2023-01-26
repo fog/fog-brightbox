@@ -19,11 +19,11 @@ describe Fog::Brightbox::Storage::Directory do
     let(:write_permissions) { "*:*" }
 
     before do
-      stub_request(:get, "https://orbit.brightbox.com/v1").
-        to_return(authorized_response)
+      stub_request(:get, "https://orbit.brightbox.com/v1")
+        .to_return(authorized_response)
 
-      stub_request(:put, "https://orbit.brightbox.com/v1/acc-12345/container-name").
-        to_return(status: 201)
+      stub_request(:put, "https://orbit.brightbox.com/v1/acc-12345/container-name")
+        .to_return(status: 201)
     end
 
     it do

@@ -16,9 +16,9 @@ module SupportsResourceLocking
       def test_lock_makes_request
         subject.id = "tst-12345"
 
-        stub_request(:put, "http://localhost/1.0/#{collection_name}/tst-12345/lock_resource").
-          with(query: hash_including(:account_id)).
-          to_return(status: 200, body: "{}", headers: {})
+        stub_request(:put, "http://localhost/1.0/#{collection_name}/tst-12345/lock_resource")
+          .with(query: hash_including(:account_id))
+          .to_return(status: 200, body: "{}", headers: {})
 
         subject.lock!
       end
@@ -30,9 +30,9 @@ module SupportsResourceLocking
       def test_unlock_makes_request
         subject.id = "tst-12345"
 
-        stub_request(:put, "http://localhost/1.0/#{collection_name}/tst-12345/unlock_resource").
-          with(query: hash_including(:account_id)).
-          to_return(status: 200, body: "{}", headers: {})
+        stub_request(:put, "http://localhost/1.0/#{collection_name}/tst-12345/unlock_resource")
+          .with(query: hash_including(:account_id))
+          .to_return(status: 200, body: "{}", headers: {})
 
         subject.unlock!
       end

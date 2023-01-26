@@ -53,9 +53,9 @@ module Fog
           requires :directory
           data = service.get_object(directory.key, key, &block)
           file_data = data.headers.merge(
-                                           body: data.body,
-                                           key: key
-                                         )
+            body: data.body,
+            key: key
+          )
           new(file_data)
         rescue Fog::Brightbox::Storage::NotFound
           nil
@@ -82,8 +82,8 @@ module Fog
           requires :directory
           data = service.head_object(directory.key, key)
           file_data = data.headers.merge(
-                                           key: key
-                                         )
+            key: key
+          )
           new(file_data)
         rescue Fog::Brightbox::Storage::NotFound
           nil

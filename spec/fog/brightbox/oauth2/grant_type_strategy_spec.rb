@@ -8,11 +8,11 @@ describe Fog::Brightbox::OAuth2::RefreshTokenStrategy do
     @strategy = Fog::Brightbox::OAuth2::GrantTypeStrategy.new(@credentials)
   end
 
-  it "tests #respond_to?(:authorization_body_data) returns true"  do
+  it "tests #respond_to?(:authorization_body_data) returns true" do
     assert @strategy.respond_to?(:authorization_body_data)
   end
 
-  it "tests #respond_to?(:headers) returns true"  do
+  it "tests #respond_to?(:headers) returns true" do
     assert @strategy.respond_to?(:headers)
   end
 

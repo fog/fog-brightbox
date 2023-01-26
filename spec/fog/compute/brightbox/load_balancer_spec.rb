@@ -33,10 +33,10 @@ describe Fog::Brightbox::Compute::LoadBalancer do
         nodes: []
       }
 
-      stub_request(:post, "http://localhost/1.0/load_balancers").
-        with(query: hash_including(:account_id),
-             headers: { "Authorization" => "Bearer FAKECACHEDTOKEN" }).
-        to_return(status: 202, body: %q({"id": "lba-12345"}), headers: {})
+      stub_request(:post, "http://localhost/1.0/load_balancers")
+        .with(query: hash_including(:account_id),
+              headers: { "Authorization" => "Bearer FAKECACHEDTOKEN" })
+        .to_return(status: 202, body: %q({"id": "lba-12345"}), headers: {})
 
       @load_balancer = Fog::Brightbox::Compute::LoadBalancer.new({ service: service }.merge(options))
       assert @load_balancer.save

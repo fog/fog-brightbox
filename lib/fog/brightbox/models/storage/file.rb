@@ -2,7 +2,7 @@ module Fog
   module Brightbox
     class Storage
       class File < Fog::Model
-        identity :key,             aliases: "name"
+        identity :key, aliases: "name"
 
         attribute :content_length,  aliases: %w(bytes Content-Length), type: :integer
         attribute :content_type,    aliases: %w(content_type Content-Type)
@@ -10,7 +10,7 @@ module Fog
         attribute :etag,            aliases: %w(hash Etag)
         attribute :last_modified,   aliases: %w(last_modified Last-Modified), type: :time
         attribute :access_control_allow_origin, aliases: ["Access-Control-Allow-Origin"]
-        attribute :origin,          aliases: ["Origin"]
+        attribute :origin, aliases: ["Origin"]
 
         def body
           attributes[:body] ||= if last_modified

@@ -59,8 +59,7 @@ module Fog
                                                    username: username,
                                                    password: password,
                                                    access_token: cached_access_token,
-                                                   refresh_token: cached_refresh_token
-                                                  )
+                                                   refresh_token: cached_refresh_token)
       end
 
       # @return [Boolean]
