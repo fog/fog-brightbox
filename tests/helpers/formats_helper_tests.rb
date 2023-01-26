@@ -4,7 +4,7 @@ Shindo.tests("test_helper", "meta") do
     data_matches_schema(:welcome => String) { data }
   end
 
-  tests('#data_matches_schema') do
+  tests("#data_matches_schema") do
     tests("when value matches schema expectation") do
       data_matches_schema("key" => String) { { "key" => "Value" } }
     end
@@ -45,16 +45,16 @@ Shindo.tests("test_helper", "meta") do
       data_matches_schema("time" => Time) { { "time" => Time.now } }
     end
 
-    tests('when key is missing but value should be NilClass (#1477)') do
+    tests("when key is missing but value should be NilClass (#1477)") do
       data_matches_schema({ "key" => NilClass }, :allow_optional_rules => true) { {} }
     end
 
-    tests('when key is missing but value is nullable (#1477)') do
+    tests("when key is missing but value is nullable (#1477)") do
       data_matches_schema({ "key" => Fog::Nullable::String }, :allow_optional_rules => true) { {} }
     end
   end
 
-  tests('#formats backwards compatible changes') do
+  tests("#formats backwards compatible changes") do
     tests("when value matches schema expectation") do
       formats("key" => String) { { "key" => "Value" } }
     end
@@ -95,11 +95,11 @@ Shindo.tests("test_helper", "meta") do
       formats("time" => Time) { { "time" => Time.now } }
     end
 
-    tests('when key is missing but value should be NilClass (#1477)') do
+    tests("when key is missing but value should be NilClass (#1477)") do
       formats("key" => NilClass) { {} }
     end
 
-    tests('when key is missing but value is nullable (#1477)') do
+    tests("when key is missing but value is nullable (#1477)") do
       formats({ "key" => Fog::Nullable::String }) { {} }
     end
   end

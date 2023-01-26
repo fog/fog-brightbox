@@ -14,7 +14,7 @@ describe Fog::Brightbox::Compute do
 
       it "makes correct request" do
         stub_request(:get, "https://api.gb1.brightbox.com/1.0/accounts").
-          with(:headers => {'Authorization'=>'Bearer TESTVALUE'},
+          with(:headers => {"Authorization"=>"Bearer TESTVALUE"},
                :query => { :nested => "true" }).
           to_return(:status => 200, :body => "", :headers => {})
 
@@ -35,7 +35,7 @@ describe Fog::Brightbox::Compute do
 
       it "makes correct request" do
         stub_request(:get, "https://api.gb1.brightbox.com/1.0/accounts").
-          with(:headers => {'Authorization'=>'Bearer TESTVALUE'},
+          with(:headers => {"Authorization"=>"Bearer TESTVALUE"},
                :query => { :nested => "false" }).
           to_return(:status => 200, :body => "", :headers => {})
 
@@ -56,7 +56,7 @@ describe Fog::Brightbox::Compute do
 
       it "makes correct request" do
         stub_request(:get, "https://api.gb1.brightbox.com/1.0/accounts").
-          with(:headers => {'Authorization'=>'Bearer TESTVALUE'},
+          with(:headers => {"Authorization"=>"Bearer TESTVALUE"},
                :query => {}).
           to_return(:status => 200, :body => "", :headers => {})
 

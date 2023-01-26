@@ -1,7 +1,7 @@
 Shindo.tests("Fog::Schema::DataValidator", "meta") do
   validator = Fog::Schema::DataValidator.new
 
-  tests('#validate') do
+  tests("#validate") do
     tests("returns true") do
       returns(true, "when value matches schema expectation") do
         validator.validate({ "key" => "Value" }, "key" => String)
@@ -43,11 +43,11 @@ Shindo.tests("Fog::Schema::DataValidator", "meta") do
         validator.validate({ "time" => Time.now }, "time" => Time)
       end
 
-      returns(true, 'when key is missing but value should be NilClass (#1477)') do
+      returns(true, "when key is missing but value should be NilClass (#1477)") do
         validator.validate({}, { "key" => NilClass }, :allow_optional_rules => true)
       end
 
-      returns(true, 'when key is missing but value is nullable (#1477)') do
+      returns(true, "when key is missing but value is nullable (#1477)") do
         validator.validate({}, { "key" => Fog::Nullable::String }, :allow_optional_rules => true)
       end
     end
@@ -89,11 +89,11 @@ Shindo.tests("Fog::Schema::DataValidator", "meta") do
         validator.validate({ "key" => { :nested_key => [] } }, "key" => { :nested_key => {} })
       end
 
-      returns(false, 'when key is missing but value should be NilClass (#1477)') do
+      returns(false, "when key is missing but value should be NilClass (#1477)") do
         validator.validate({}, { "key" => NilClass }, :allow_optional_rules => false)
       end
 
-      returns(false, 'when key is missing but value is nullable (#1477)') do
+      returns(false, "when key is missing but value is nullable (#1477)") do
         validator.validate({}, { "key" => Fog::Nullable::String }, :allow_optional_rules => false)
       end
     end
