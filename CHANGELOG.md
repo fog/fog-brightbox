@@ -1,3 +1,20 @@
+### 1.11.0 / 2023-01-26
+
+Enhancements:
+
+* Add `DatabaseServer#reset` and `#resize` methods
+* Added requests to support database server resets and resizing
+
+Bug fixes:
+
+* Remove duplicated request references
+* Fix test method declaration causing parsing error in Ruby 2.0
+
+Changes:
+
+* Added `rubocop` gem configured to Ruby 2.0
+* Cleaning up of codebase to fix various style and layout problems
+
 ### 1.10.0 / 2023-01-24
 
 Enhancements:
