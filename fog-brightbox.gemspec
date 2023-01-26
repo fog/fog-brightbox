@@ -1,4 +1,5 @@
 # coding: utf-8
+
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "fog/brightbox/version"
@@ -8,9 +9,9 @@ Gem::Specification.new do |spec|
   spec.version       = Fog::Brightbox::VERSION
   spec.authors       = ["Paul Thornthwaite"]
   spec.email         = ["tokengeek@gmail.com"]
-  spec.description   = %q(Module for the 'fog' gem to support Brightbox Cloud)
-  spec.summary       = %q(This library can be used as a module for `fog` or as standalone provider
-                        to use the Brightbox Cloud in applications)
+  spec.description   = "Module for the 'fog' gem to support Brightbox Cloud"
+  spec.summary       = "This library can be used as a module for `fog` or as standalone provider
+                        to use the Brightbox Cloud in applications"
   spec.homepage      = "https://github.com/fog/fog-brightbox"
   spec.license       = "MIT"
 
