@@ -54,16 +54,16 @@ module Fog
         end
 
         def zone_id
-          if t_zone_id = attributes[:zone_id]
-            t_zone_id
+          if attributes[:zone_id]
+            attributes[:zone_id]
           elsif zone
             zone[:id] || zone["id"]
           end
         end
 
         def flavor_id
-          if t_flavour_id = attributes[:flavor_id]
-            t_flavour_id
+          if attributes[:flavor_id]
+            attributes[:flavor_id]
           elsif server_type
             server_type[:id] || server_type["id"]
           end

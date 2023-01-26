@@ -31,7 +31,6 @@ module Fog
           true
         rescue StandardError => e
           raise Fog::Errors::Error, e.message
-          false
         end
 
         def destroy

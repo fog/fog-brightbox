@@ -3,7 +3,6 @@ Shindo.tests("Fog::Compute[:brightbox] | Server model", ["brightbox"]) do
 
   tests("success") do
     @server = Brightbox::Compute::TestSupport.get_test_server
-    server_id = @server.id
 
     tests("#dns_name") do
       returns("public.#{@server.fqdn}") { @server.dns_name }
