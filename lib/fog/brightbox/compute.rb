@@ -168,12 +168,14 @@ module Fog
       request :remove_nodes_load_balancer
       request :remove_servers_server_group
       request :resend_collaboration
+      request :reset_database_server
       request :reset_ftp_password_account
       request :reset_ftp_password_scoped_account
       request :reset_password_database_server
       request :reset_secret_api_client
       request :reset_secret_application
       request :reset_server
+      request :resize_database_server
       request :resize_volume
       request :shutdown_server
       request :snapshot_database_server

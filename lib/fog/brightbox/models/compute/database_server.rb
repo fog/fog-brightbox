@@ -95,9 +95,21 @@ module Fog
           true
         end
 
+        def reset
+          requires :identity
+          merge_attributes(service.reset_database_server(identity))
+          true
+        end
+
         def reset_password
           requires :identity
           merge_attributes(service.reset_password_database_server(identity))
+          true
+        end
+
+        def resize(new_type)
+          requires :identity
+          merge_attributes(service.resize_database_server(identity, new_type: new_type))
           true
         end
 
