@@ -79,20 +79,18 @@ module Fog
       request :add_nodes_load_balancer
       request :add_servers_server_group
       request :apply_to_firewall_policy
-      request :accept_user_collaboration
       request :attach_volume
-      request :remove_firewall_policy
       request :copy_volume
       request :create_api_client
       request :create_application
       request :create_cloud_ip
       request :create_collaboration
       request :create_config_map
+      request :create_database_server
       request :create_firewall_policy
       request :create_firewall_rule
       request :create_image
       request :create_load_balancer
-      request :create_database_server
       request :create_server
       request :create_server_group
       request :create_volume
@@ -101,12 +99,12 @@ module Fog
       request :delete_cloud_ip
       request :delete_collaboration
       request :delete_config_map
+      request :delete_database_server
+      request :delete_database_snapshot
       request :delete_firewall_policy
       request :delete_firewall_rule
       request :delete_image
       request :delete_load_balancer
-      request :delete_database_server
-      request :delete_database_snapshot
       request :delete_server
       request :delete_server_group
       request :delete_user_collaboration
@@ -119,14 +117,14 @@ module Fog
       request :get_cloud_ip
       request :get_collaboration
       request :get_config_map
+      request :get_database_server
+      request :get_database_snapshot
+      request :get_database_type
       request :get_firewall_policy
       request :get_firewall_rule
       request :get_image
       request :get_interface
       request :get_load_balancer
-      request :get_database_server
-      request :get_database_snapshot
-      request :get_database_type
       request :get_scoped_account
       request :get_server
       request :get_server_group
@@ -141,18 +139,18 @@ module Fog
       request :list_cloud_ips
       request :list_collaborations
       request :list_config_maps
+      request :list_database_servers
+      request :list_database_snapshots
+      request :list_database_types
       request :list_events
       request :list_firewall_policies
       request :list_images
       request :list_load_balancers
-      request :list_database_servers
-      request :list_database_snapshots
-      request :list_database_types
       request :list_server_groups
       request :list_server_types
       request :list_servers
-      request :list_users
       request :list_user_collaborations
+      request :list_users
       request :list_volumes
       request :list_zones
       request :lock_resource_database_server
@@ -165,6 +163,7 @@ module Fog
       request :move_servers_server_group
       request :reboot_server
       request :reject_user_collaboration
+      request :remove_firewall_policy
       request :remove_listeners_load_balancer
       request :remove_nodes_load_balancer
       request :remove_servers_server_group
@@ -175,9 +174,7 @@ module Fog
       request :reset_secret_api_client
       request :reset_secret_application
       request :reset_server
-      request :resend_collaboration
       request :resize_volume
-      request :reject_user_collaboration
       request :shutdown_server
       request :snapshot_database_server
       request :snapshot_server
@@ -195,12 +192,12 @@ module Fog
       request :update_application
       request :update_cloud_ip
       request :update_config_map
+      request :update_database_server
+      request :update_database_snapshot
       request :update_firewall_policy
       request :update_firewall_rule
       request :update_image
       request :update_load_balancer
-      request :update_database_server
-      request :update_database_snapshot
       request :update_scoped_account
       request :update_server
       request :update_server_group
