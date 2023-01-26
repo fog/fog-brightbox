@@ -238,7 +238,7 @@ describe Fog::Brightbox::Compute, "#get_access_token" do
   # @param auth_correct [Boolean] Treat username/password as correct
   # @param two_factor_user [Boolean] Is user protected by 2FA on server
   # @param otp_sent [Boolean] Is an OTP sent in the request?
-  def stub_authentication_request(auth_correct:,
+  def stub_authentication_request(auth_correct: true,
                                   two_factor_user: false,
                                   otp_sent: nil)
 
