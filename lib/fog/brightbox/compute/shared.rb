@@ -9,7 +9,7 @@ module Fog
 
         attr_writer :scoped_account
 
-        API_URL = "https://api.gb1.brightbox.com/"
+        API_URL = "https://api.gb1.brightbox.com/".freeze
 
         # Creates a new instance of the Brightbox Compute service
         #
@@ -23,11 +23,11 @@ module Fog
         #   of a {Brightbox::Config} object but may be a Hash.
         #
         def initialize(config)
-          if config.respond_to?(:config_service?) && config.config_service?
-            @config = config
-          else
-            @config = Fog::Brightbox::Config.new(config)
-          end
+          @config = if config.respond_to?(:config_service?) && config.config_service?
+                      config
+                    else
+                      Fog::Brightbox::Config.new(config)
+                    end
           @config = Fog::Brightbox::Compute::Config.new(@config)
 
           # Currently authentication and api endpoints are the same but may change
@@ -49,7 +49,7 @@ module Fog
           # If existing tokens have been cached, allow continued use of them in the service
           credentials.update_tokens(@config.cached_access_token, @config.cached_refresh_token)
 
-          @token_management    = @config.managed_tokens?
+          @token_management = @config.managed_tokens?
         end
 
         # This returns the account identifier that the request should be scoped by
@@ -82,7 +82,7 @@ module Fog
         # @return [Fog::Brightbox::Compute::Account]
         #
         def account
-          account_data = get_scoped_account.merge(:service => self)
+          account_data = get_scoped_account.merge(service: self)
           Fog::Brightbox::Compute::Account.new(account_data)
         end
 
@@ -95,7 +95,7 @@ module Fog
         # Returns true if an access token is set
         # @return [Boolean]
         def access_token_available?
-          !! @credentials.access_token
+          !!@credentials.access_token
         end
 
         # Returns the current access token or nil
@@ -212,7 +212,8 @@ module Fog
         # @return [Excon::Response]
         def authenticated_request(options)
           headers = options[:headers] || {}
-          headers.merge!("Authorization" => "Bearer #{@credentials.access_token}", "Content-Type" => "application/json")
+          headers["Authorization"] = "Bearer #{@credentials.access_token}"
+          headers["Content-Type"] = "application/json"
           options[:headers] = headers
           # TODO: This is just a wrapper around a call to Excon::Connection#request
           #   so can be extracted from Compute by passing in the connection,

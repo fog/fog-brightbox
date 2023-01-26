@@ -35,7 +35,7 @@ describe Fog::Brightbox::OAuth2::CredentialSet do
 
   describe "when using user credentials" do
     before do
-      options = { :username => @username, :password => @password }
+      options = { username: @username, password: @password }
       @credentials = Fog::Brightbox::OAuth2::CredentialSet.new(@client_id, @client_secret, options)
     end
 
@@ -59,10 +59,10 @@ describe Fog::Brightbox::OAuth2::CredentialSet do
   describe "when using refresh token" do
     before do
       options = {
-        :username => @username,
-        :access_token => @access_token,
-        :refresh_token => @refresh_token,
-        :expires_in => @expires_in
+        username: @username,
+        access_token: @access_token,
+        refresh_token: @refresh_token,
+        expires_in: @expires_in
       }
       @credentials = Fog::Brightbox::OAuth2::CredentialSet.new(@client_id, @client_secret, options)
     end

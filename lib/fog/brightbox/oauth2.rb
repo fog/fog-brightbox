@@ -25,11 +25,11 @@ module Fog
         if two_factor?
           # When 2FA opt-in is set, we can expect 401 responses as well
           response = connection.request(
-            :path => "/token",
-            :expects  => [200, 401],
-            :headers  => token_strategy.headers,
-            :method   => "POST",
-            :body     => Fog::JSON.encode(token_strategy.authorization_body_data)
+            path: "/token",
+            expects: [200, 401],
+            headers: token_strategy.headers,
+            method: "POST",
+            body: Fog::JSON.encode(token_strategy.authorization_body_data)
           )
 
           if response.status == 401 && response.headers[Fog::Brightbox::OAuth2::TWO_FACTOR_HEADER] == "required"
@@ -42,11 +42,11 @@ module Fog
         else
           # Use classic behaviour and return Excon::
           connection.request(
-            :path => "/token",
-            :expects  => 200,
-            :headers  => token_strategy.headers,
-            :method   => "POST",
-            :body     => Fog::JSON.encode(token_strategy.authorization_body_data)
+            path: "/token",
+            expects: 200,
+            headers: token_strategy.headers,
+            method: "POST",
+            body: Fog::JSON.encode(token_strategy.authorization_body_data)
           )
         end
       end
@@ -154,7 +154,7 @@ module Fog
       class ClientCredentialsStrategy < GrantTypeStrategy
         def authorization_body_data
           {
-            "grant_type" => "client_credentials",
+            "grant_type" => "client_credentials"
           }
         end
       end

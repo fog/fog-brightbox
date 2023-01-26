@@ -5,16 +5,16 @@ describe Fog::Brightbox::OAuth2::RefreshTokenStrategy do
     @client_id = "app-12345"
     @client_secret = "__mashed_keys_123__"
     @refresh_token = "ab4b39dddf909"
-    options = { :refresh_token => @refresh_token }
+    options = { refresh_token: @refresh_token }
     @credentials = Fog::Brightbox::OAuth2::CredentialSet.new(@client_id, @client_secret, options)
     @strategy = Fog::Brightbox::OAuth2::RefreshTokenStrategy.new(@credentials)
   end
 
-  it "tests #respond_to?(:authorization_body_data) returns true"  do
+  it "tests #respond_to?(:authorization_body_data) returns true" do
     assert @strategy.respond_to?(:authorization_body_data)
   end
 
-  it "tests #respond_to?(:headers) returns true"  do
+  it "tests #respond_to?(:headers) returns true" do
     assert @strategy.respond_to?(:headers)
   end
 

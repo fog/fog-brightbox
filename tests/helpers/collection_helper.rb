@@ -20,9 +20,7 @@ def collection_tests(collection, params = {}, mocks_implemented = true)
       collection.all
     end
 
-    if !Fog.mocking? || mocks_implemented
-      @identity = @instance.identity
-    end
+    @identity = @instance.identity if !Fog.mocking? || mocks_implemented
 
     tests("#get(#{@identity})").succeeds do
       pending if Fog.mocking? && !mocks_implemented
@@ -45,34 +43,29 @@ def collection_tests(collection, params = {}, mocks_implemented = true)
       end
 
       methods.each do |enum_method|
-        if collection.respond_to?(enum_method)
-          tests("##{enum_method}").succeeds do
-            block_called = false
-            collection.send(enum_method) { |_x| block_called = true }
-            block_called
-          end
+        next unless collection.respond_to?(enum_method)
+        tests("##{enum_method}").succeeds do
+          block_called = false
+          collection.send(enum_method) { |_x| block_called = true }
+          block_called
         end
       end
 
-      %w(
-        max_by min_by).each do |enum_method|
-        if collection.respond_to?(enum_method)
-          tests("##{enum_method}").succeeds do
-            block_called = false
-            collection.send(enum_method) { |_x| block_called = true; 0 }
-            block_called
-          end
+      %w[
+        max_by min_by
+      ].each do |enum_method|
+        next unless collection.respond_to?(enum_method)
+        tests("##{enum_method}").succeeds do
+          block_called = false
+          collection.send(enum_method) { |_x| block_called = true; 0 }
+          block_called
         end
       end
     end
 
-    if block_given?
-      yield(@instance)
-    end
+    yield(@instance) if block_given?
 
-    if !Fog.mocking? || mocks_implemented
-      @instance.destroy
-    end
+    @instance.destroy if !Fog.mocking? || mocks_implemented
   end
 
   tests("failure") do

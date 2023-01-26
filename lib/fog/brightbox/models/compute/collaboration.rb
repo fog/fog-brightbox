@@ -27,11 +27,11 @@ module Fog
         end
 
         def save
-          raise Fog::Errors::Error.new("Resaving an existing object may create a duplicate") if identity
+          raise Fog::Errors::Error, "Resaving an existing object may create a duplicate" if identity
 
           options = {
-            :role => role,
-            :email => email
+            role: role,
+            email: email
           }.delete_if { |_k, v| v.nil? || v == "" }
 
           data = service.create_collaboration(options)

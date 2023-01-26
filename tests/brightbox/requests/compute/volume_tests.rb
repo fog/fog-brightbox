@@ -8,12 +8,12 @@ Shindo.tests("Fog::Compute[:brightbox] | volume requests", ["brightbox"]) do
     tests("#create_volume(#{create_options.inspect})") do
       result = Fog::Compute[:brightbox].create_volume(create_options)
       @volume_id = result["id"]
-      data_matches_schema(Brightbox::Compute::Formats::Full::VOLUME, :allow_extra_keys => true) { result }
+      data_matches_schema(Brightbox::Compute::Formats::Full::VOLUME, allow_extra_keys: true) { result }
     end
 
     tests("#list_volumes") do
       result = Fog::Compute[:brightbox].list_volumes
-      data_matches_schema(Brightbox::Compute::Formats::Collection::VOLUMES, :allow_extra_keys => true) { result }
+      data_matches_schema(Brightbox::Compute::Formats::Collection::VOLUMES, allow_extra_keys: true) { result }
 
       test("#{@volume_id} is listed") do
         result.any? do |volume|
@@ -24,7 +24,7 @@ Shindo.tests("Fog::Compute[:brightbox] | volume requests", ["brightbox"]) do
 
     tests("#get_volume('#{@volume_id}')") do
       result = Fog::Compute[:brightbox].get_volume(@volume_id)
-      data_matches_schema(Brightbox::Compute::Formats::Full::VOLUME, :allow_extra_keys => true) { result }
+      data_matches_schema(Brightbox::Compute::Formats::Full::VOLUME, allow_extra_keys: true) { result }
     end
 
     update_options = {
@@ -32,7 +32,7 @@ Shindo.tests("Fog::Compute[:brightbox] | volume requests", ["brightbox"]) do
     }
     tests("#update_volume('#{@volume_id}', ...)") do
       result = Fog::Compute[:brightbox].update_volume(@volume_id, update_options)
-      data_matches_schema(Brightbox::Compute::Formats::Full::VOLUME, :allow_extra_keys => true) { result }
+      data_matches_schema(Brightbox::Compute::Formats::Full::VOLUME, allow_extra_keys: true) { result }
 
       test("name has updated") { result["name"] == "New name" }
     end
@@ -41,7 +41,7 @@ Shindo.tests("Fog::Compute[:brightbox] | volume requests", ["brightbox"]) do
 
     tests("#delete_volume('#{@volume_id}')") do
       result = Fog::Compute[:brightbox].delete_volume(@volume_id)
-      data_matches_schema(Brightbox::Compute::Formats::Full::VOLUME, :allow_extra_keys => true) { result }
+      data_matches_schema(Brightbox::Compute::Formats::Full::VOLUME, allow_extra_keys: true) { result }
     end
   end
 

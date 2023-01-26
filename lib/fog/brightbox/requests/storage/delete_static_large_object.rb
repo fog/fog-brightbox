@@ -25,12 +25,12 @@ module Fog
         # @see http://docs.brightbox.org/api/brightbox-object-storage/1.0/content/static-large-objects.html
         def delete_static_large_object(container, object, options = {})
           response = request({
-                               :expects  => 200,
-                               :method   => "DELETE",
-                               :headers  => options.merge("Content-Type" => "text/plain",
-                                                          "Accept" => "application/json"),
-                               :path     => "#{Fog::Brightbox::Storage.escape(container)}/#{Fog::Brightbox::Storage.escape(object)}",
-                               :query    => { "multipart-manifest" => "delete" }
+                               expects: 200,
+                               method: "DELETE",
+                               headers: options.merge("Content-Type" => "text/plain",
+                                                      "Accept" => "application/json"),
+                               path: "#{Fog::Brightbox::Storage.escape(container)}/#{Fog::Brightbox::Storage.escape(object)}",
+                               query: { "multipart-manifest" => "delete" }
                              }, false)
           response.body = Fog::JSON.decode(response.body)
           response

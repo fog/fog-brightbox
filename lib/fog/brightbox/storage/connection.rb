@@ -16,8 +16,8 @@ module Fog
           begin
             raise ArgumentError if params.nil?
             request_params = params.merge(
-              :headers => request_headers(params),
-              :path => path_in_params(params)
+              headers: request_headers(params),
+              path: path_in_params(params)
             )
             response = @connection.request(request_params)
           rescue Excon::Errors::Unauthorized => error

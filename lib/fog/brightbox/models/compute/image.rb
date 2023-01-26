@@ -42,17 +42,17 @@ module Fog
         end
 
         def save
-          raise Fog::Errors::Error.new("Resaving an existing object may create a duplicate") if persisted?
+          raise Fog::Errors::Error, "Resaving an existing object may create a duplicate" if persisted?
 
           options = {
-            :arch => arch,
-            :description => description,
-            :http_url => http_url,
-            :name => name,
-            :server => server,
-            :source => source,
-            :username => username,
-            :volume => volume
+            arch: arch,
+            description: description,
+            http_url: http_url,
+            name: name,
+            server: server,
+            source: source,
+            username: username,
+            volume: volume
           }.delete_if { |_k, v| v.nil? || v == "" }
           data = service.create_image(options)
           merge_attributes(data)

@@ -22,7 +22,7 @@ module Fog
                   service.update_config_map(identity, options)
                 else
                   # create
-                  raise Fog::Errors::Error.new("'data' is required") if data.nil? || data.empty?
+                  raise Fog::Errors::Error, "'data' is required" if data.nil? || data.empty?
                   options[:data] = payload
                   service.create_config_map(options)
                 end
@@ -30,8 +30,7 @@ module Fog
           merge_attributes(res)
           true
         rescue StandardError => e
-          raise Fog::Errors::Error.new(e.message)
-          false
+          raise Fog::Errors::Error, e.message
         end
 
         def destroy

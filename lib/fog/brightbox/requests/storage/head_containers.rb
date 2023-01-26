@@ -11,10 +11,10 @@ module Fog
         #     * 'X-Account-Bytes-Used'<~String> - Bytes used
         def head_containers
           request(
-            :expects  => 204,
-            :method   => "HEAD",
-            :path     => "",
-            :query    => { "format" => "json" }
+            expects: 204,
+            method: "HEAD",
+            path: "",
+            query: { "format" => "json" }
           )
         end
       end

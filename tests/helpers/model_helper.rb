@@ -7,9 +7,7 @@ def model_tests(collection, params = {}, mocks_implemented = true)
       @instance.save
     end
 
-    if block_given?
-      yield(@instance)
-    end
+    yield(@instance) if block_given?
 
     tests("#destroy").succeeds do
       pending if Fog.mocking? && !mocks_implemented

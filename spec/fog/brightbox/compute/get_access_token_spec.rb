@@ -238,7 +238,7 @@ describe Fog::Brightbox::Compute, "#get_access_token" do
   # @param auth_correct [Boolean] Treat username/password as correct
   # @param two_factor_user [Boolean] Is user protected by 2FA on server
   # @param otp_sent [Boolean] Is an OTP sent in the request?
-  def stub_authentication_request(auth_correct:,
+  def stub_authentication_request(auth_correct: true,
                                   two_factor_user: false,
                                   otp_sent: nil)
 
@@ -247,7 +247,7 @@ describe Fog::Brightbox::Compute, "#get_access_token" do
     request = {
       headers: {
         "Authorization" => "Basic YXBwLTEyMzQ1OjEyMzQ1Njc4OTA=",
-        "Content-Type" => "application/json",
+        "Content-Type" => "application/json"
       },
       body: {
         grant_type: "password",
@@ -271,32 +271,32 @@ describe Fog::Brightbox::Compute, "#get_access_token" do
     # * User does use 2FA and FAILS to send OTP
     #
     response = if two_factor_user && !otp_sent
-      # OTP required header
-      {
-        status: 401,
-        headers: {
-          "X-Brightbox-OTP" => "required"
-        },
-        body: { error: "invalid_client" }.to_json
-      }
-    elsif !auth_correct
-      # No OTP header
-      {
-        status: 401,
-        headers: {},
-        body: { error: "invalid_client" }.to_json
-      }
-    else
-      {
-        status: 200,
-        headers: {},
-        body: {
-          access_token: @new_access_token,
-          refresh_token: @new_refresh_token,
-          expires_in: 7200
-        }.to_json
-      }
-    end
+                 # OTP required header
+                 {
+                   status: 401,
+                   headers: {
+                     "X-Brightbox-OTP" => "required"
+                   },
+                   body: { error: "invalid_client" }.to_json
+                 }
+               elsif !auth_correct
+                 # No OTP header
+                 {
+                   status: 401,
+                   headers: {},
+                   body: { error: "invalid_client" }.to_json
+                 }
+               else
+                 {
+                   status: 200,
+                   headers: {},
+                   body: {
+                     access_token: @new_access_token,
+                     refresh_token: @new_refresh_token,
+                     expires_in: 7200
+                   }.to_json
+                 }
+               end
 
     stub_request(:post, "https://api.gb1.brightbox.com/token")
       .with(request)

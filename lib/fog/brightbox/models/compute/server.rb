@@ -54,16 +54,16 @@ module Fog
         end
 
         def zone_id
-          if t_zone_id = attributes[:zone_id]
-            t_zone_id
+          if attributes[:zone_id]
+            attributes[:zone_id]
           elsif zone
             zone[:id] || zone["id"]
           end
         end
 
         def flavor_id
-          if t_flavour_id = attributes[:flavor_id]
-            t_flavour_id
+          if attributes[:flavor_id]
+            attributes[:flavor_id]
           elsif server_type
             server_type[:id] || server_type["id"]
           end
@@ -79,7 +79,7 @@ module Fog
 
         def snapshot(return_snapshot = false)
           requires :identity
-          response, snapshot_id = service.snapshot_server(identity, :return_link => return_snapshot)
+          response, snapshot_id = service.snapshot_server(identity, return_link: return_snapshot)
 
           if return_snapshot
             service.images.get(snapshot_id)
@@ -184,32 +184,30 @@ module Fog
         end
 
         def save
-          raise Fog::Errors::Error.new("Resaving an existing object may create a duplicate") if persisted?
+          raise Fog::Errors::Error, "Resaving an existing object may create a duplicate" if persisted?
           requires :image_id
           options = {
-            :name => name,
-            :zone => zone_id,
-            :user_data => user_data,
-            :server_groups => server_groups
+            name: name,
+            zone: zone_id,
+            user_data: user_data,
+            server_groups: server_groups
           }.delete_if { |_k, v| v.nil? || v == "" }
 
-          options.merge!(:server_type => flavor_id) unless flavor_id.nil? || flavor_id == ""
-          options.merge!(:cloud_ip => cloud_ip) unless cloud_ip.nil? || cloud_ip == ""
-          options.merge!(:disk_encrypted => disk_encrypted) if disk_encrypted
+          options[:server_type] = flavor_id unless flavor_id.nil? || flavor_id == ""
+          options[:cloud_ip] = cloud_ip unless cloud_ip.nil? || cloud_ip == ""
+          options[:disk_encrypted] = disk_encrypted if disk_encrypted
 
           if volume_id
-            options.merge!(:volumes => [{ volume: volume_id }])
+            options[:volumes] = [{ volume: volume_id }]
           elsif volume_size
-            options.merge!(
-              volumes: [
-                {
-                  image: image_id,
-                  size: volume_size
-                }
-              ]
-            )
+            options[:volumes] = [
+              {
+                image: image_id,
+                size: volume_size
+              }
+            ]
           else
-            options.merge!(:image => image_id)
+            options[:image] = image_id
           end
 
           data = service.create_server(options)

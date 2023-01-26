@@ -8,19 +8,19 @@ describe Fog::Brightbox::OAuth2::UserCredentialsStrategy do
     @password      = "__mushed_keys_321__"
 
     options = {
-      :username => @username,
-      :password => @password
+      username: @username,
+      password: @password
     }
 
     @credentials = Fog::Brightbox::OAuth2::CredentialSet.new(@client_id, @client_secret, options)
     @strategy = Fog::Brightbox::OAuth2::UserCredentialsStrategy.new(@credentials)
   end
 
-  it "tests #respond_to?(:authorization_body_data) returns true"  do
+  it "tests #respond_to?(:authorization_body_data) returns true" do
     assert @strategy.respond_to?(:authorization_body_data)
   end
 
-  it "tests #respond_to?(:headers) returns true"  do
+  it "tests #respond_to?(:headers) returns true" do
     assert @strategy.respond_to?(:headers)
   end
 

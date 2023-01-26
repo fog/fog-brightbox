@@ -26,8 +26,8 @@ module Fog
 
         def save
           options = {
-            :name => name,
-            :description => description
+            name: name,
+            description: description
           }.delete_if { |_k, v| v.nil? || v == "" }
           data = service.create_server_group(options)
           merge_attributes(data)
@@ -48,7 +48,7 @@ module Fog
         def add_servers(identifiers)
           requires :identity
           options = {
-            :servers => server_references(identifiers)
+            servers: server_references(identifiers)
           }
           data = service.add_servers_server_group identity, options
           merge_attributes data
@@ -61,7 +61,7 @@ module Fog
         def remove_servers(identifiers)
           requires :identity
           options = {
-            :servers => server_references(identifiers)
+            servers: server_references(identifiers)
           }
           data = service.remove_servers_server_group identity, options
           merge_attributes data
@@ -75,8 +75,8 @@ module Fog
         def move_servers(identifiers, destination_group_id)
           requires :identity
           options = {
-            :servers => server_references(identifiers),
-            :destination => destination_group_id
+            servers: server_references(identifiers),
+            destination: destination_group_id
           }
           data = service.move_servers_server_group identity, options
           merge_attributes data

@@ -10,9 +10,9 @@ module Fog
         #
         def head_object(container, object)
           request({
-                    :expects  => 200,
-                    :method   => "HEAD",
-                    :path     => "#{Fog::Brightbox::Storage.escape(container)}/#{Fog::Brightbox::Storage.escape(object)}"
+                    expects: 200,
+                    method: "HEAD",
+                    path: "#{Fog::Brightbox::Storage.escape(container)}/#{Fog::Brightbox::Storage.escape(object)}"
                   }, false)
         end
       end

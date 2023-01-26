@@ -5,7 +5,7 @@ Shindo.tests("Fog::Compute[:brightbox] | collaboration requests", ["brightbox"])
 
     tests("#create_collaboration") do
       pending if Fog.mocking?
-      collaboration = Fog::Compute[:brightbox].create_collaboration(:email => @test_collaborator_email, :role => "admin")
+      collaboration = Fog::Compute[:brightbox].create_collaboration(email: @test_collaborator_email, role: "admin")
       @collaboration_id = collaboration["id"]
       formats(Brightbox::Compute::Formats::Full::COLLABORATION, false) { collaboration }
     end

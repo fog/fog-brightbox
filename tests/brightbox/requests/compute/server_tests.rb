@@ -7,9 +7,9 @@ Shindo.tests("Fog::Compute[:brightbox] | server requests", ["brightbox"]) do
 
     tests("#create_server(:image => '#{image_id}')") do
       pending if Fog.mocking?
-      result = Fog::Compute[:brightbox].create_server(:image => image_id)
+      result = Fog::Compute[:brightbox].create_server(image: image_id)
       server_id = result["id"]
-      data_matches_schema(Brightbox::Compute::Formats::Full::SERVER, :allow_extra_keys => true) { result }
+      data_matches_schema(Brightbox::Compute::Formats::Full::SERVER, allow_extra_keys: true) { result }
     end
 
     unless Fog.mocking?
@@ -19,25 +19,25 @@ Shindo.tests("Fog::Compute[:brightbox] | server requests", ["brightbox"]) do
     tests("#list_servers") do
       pending if Fog.mocking?
       result = Fog::Compute[:brightbox].list_servers
-      data_matches_schema(Brightbox::Compute::Formats::Collection::SERVERS, :allow_extra_keys => true) { result }
+      data_matches_schema(Brightbox::Compute::Formats::Collection::SERVERS, allow_extra_keys: true) { result }
     end
 
     tests("#get_server('#{server_id}')") do
       pending if Fog.mocking?
       result = Fog::Compute[:brightbox].get_server(server_id)
-      data_matches_schema(Brightbox::Compute::Formats::Full::SERVER, :allow_extra_keys => true) { result }
+      data_matches_schema(Brightbox::Compute::Formats::Full::SERVER, allow_extra_keys: true) { result }
     end
 
     tests("#update_server('#{server_id}')") do
       pending if Fog.mocking?
-      result = Fog::Compute[:brightbox].update_server(server_id, :name => "Fog@#{Time.now.iso8601}")
-      data_matches_schema(Brightbox::Compute::Formats::Full::SERVER, :allow_extra_keys => true) { result }
+      result = Fog::Compute[:brightbox].update_server(server_id, name: "Fog@#{Time.now.iso8601}")
+      data_matches_schema(Brightbox::Compute::Formats::Full::SERVER, allow_extra_keys: true) { result }
     end
 
     tests("#activate_console_server('#{server_id}')") do
       pending if Fog.mocking?
       result = Fog::Compute[:brightbox].activate_console_server(server_id)
-      data_matches_schema(Brightbox::Compute::Formats::Full::SERVER, :allow_extra_keys => true) { result }
+      data_matches_schema(Brightbox::Compute::Formats::Full::SERVER, allow_extra_keys: true) { result }
       test("has set 'console_url'") { !result["console_url"].empty? }
       test("has set 'console_token'") { !result["console_token"].empty? }
       test("has set 'console_token_expires'") { !result["console_token_expires"].empty? }
@@ -46,13 +46,13 @@ Shindo.tests("Fog::Compute[:brightbox] | server requests", ["brightbox"]) do
     tests("#stop_server('#{server_id}')") do
       pending if Fog.mocking?
       result = Fog::Compute[:brightbox].stop_server(server_id)
-      data_matches_schema(Brightbox::Compute::Formats::Full::SERVER, :allow_extra_keys => true) { result }
+      data_matches_schema(Brightbox::Compute::Formats::Full::SERVER, allow_extra_keys: true) { result }
     end
 
     tests("#start_server('#{server_id}')") do
       pending if Fog.mocking?
       result = Fog::Compute[:brightbox].start_server(server_id)
-      data_matches_schema(Brightbox::Compute::Formats::Full::SERVER, :allow_extra_keys => true) { result }
+      data_matches_schema(Brightbox::Compute::Formats::Full::SERVER, allow_extra_keys: true) { result }
     end
 
     unless Fog.mocking?
@@ -62,13 +62,13 @@ Shindo.tests("Fog::Compute[:brightbox] | server requests", ["brightbox"]) do
     tests("#shutdown_server('#{server_id}')") do
       pending if Fog.mocking?
       result = Fog::Compute[:brightbox].shutdown_server(server_id)
-      data_matches_schema(Brightbox::Compute::Formats::Full::SERVER, :allow_extra_keys => true) { result }
+      data_matches_schema(Brightbox::Compute::Formats::Full::SERVER, allow_extra_keys: true) { result }
     end
 
     tests("#snapshot_server('#{server_id}')") do
       pending if Fog.mocking?
       result = Fog::Compute[:brightbox].snapshot_server(server_id)
-      data_matches_schema(Brightbox::Compute::Formats::Full::SERVER, :allow_extra_keys => true) { result }
+      data_matches_schema(Brightbox::Compute::Formats::Full::SERVER, allow_extra_keys: true) { result }
       # Server should be exclusively for our test so assume we can delete the snapshot
       snapshot_id = result["snapshots"].first["id"]
       @snapshot = Fog::Compute[:brightbox].images.get(snapshot_id)
@@ -79,7 +79,7 @@ Shindo.tests("Fog::Compute[:brightbox] | server requests", ["brightbox"]) do
     tests("#delete_server('#{server_id}')") do
       pending if Fog.mocking?
       result = Fog::Compute[:brightbox].delete_server(server_id)
-      data_matches_schema(Brightbox::Compute::Formats::Full::SERVER, :allow_extra_keys => true) { result }
+      data_matches_schema(Brightbox::Compute::Formats::Full::SERVER, allow_extra_keys: true) { result }
     end
   end
 

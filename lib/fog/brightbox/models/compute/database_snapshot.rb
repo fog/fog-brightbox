@@ -32,8 +32,8 @@ module Fog
 
         def save
           options = {
-            :name => name,
-            :description => description
+            name: name,
+            description: description
           }
           data = update_database_snapshot(options)
           merge_attributes(data)

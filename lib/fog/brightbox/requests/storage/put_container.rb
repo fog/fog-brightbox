@@ -13,10 +13,10 @@ module Fog
           headers["X-Container-Write"] ||= options.delete(:write_permissions)
 
           request(
-            :expects  => [201, 202],
-            :method   => "PUT",
-            :path     => Fog::Brightbox::Storage.escape(name),
-            :headers  => headers
+            expects: [201, 202],
+            method: "PUT",
+            path: Fog::Brightbox::Storage.escape(name),
+            headers: headers
           )
         end
       end

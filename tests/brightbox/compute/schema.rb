@@ -53,13 +53,13 @@ class Brightbox
           "protocol" => String,
           "incoming" => Integer,
           "outgoing" => Integer
-        }
+        }.freeze
         LB_LISTENER = {
           "in"              => Integer,
           "out"             => Integer,
           "protocol"        => String,
           "timeout"         => Integer
-        }
+        }.freeze
         LB_HEALTHCHECK = {
           "type"            => String,
           "request"         => String,
@@ -68,7 +68,7 @@ class Brightbox
           "timeout"         => Integer,
           "threshold_up"    => Integer,
           "threshold_down"  => Integer
-        }
+        }.freeze
       end
 
       module Nested
@@ -78,7 +78,7 @@ class Brightbox
           "url"             => String,
           "id"              => String,
           "status"          => String
-        }
+        }.freeze
 
         API_CLIENT = {
           "id"              => String,
@@ -87,7 +87,7 @@ class Brightbox
           "name"            => String,
           "description"     => String,
           "revoked_at"      => Fog::Nullable::String
-        }
+        }.freeze
 
         CLOUD_IP = {
           "id"              => String,
@@ -97,7 +97,7 @@ class Brightbox
           "public_ip"       => String,
           "status"          => String,
           "reverse_dns"     => String
-        }
+        }.freeze
 
         DATABASE_SERVER = {
           "id"              => String,
@@ -110,7 +110,7 @@ class Brightbox
           "status"          => String,
           "created_at"      => String,
           "deleted_at"      => Fog::Nullable::String
-        }
+        }.freeze
 
         DATABASE_SNAPSHOT = {
           "id"              => String,
@@ -124,7 +124,7 @@ class Brightbox
           "created_at"      => String,
           "deleted_at"      => Fog::Nullable::String,
           "account"         => Brightbox::Compute::Formats::Nested::ACCOUNT
-        }
+        }.freeze
 
         DATABASE_SERVER_TYPE = {
           "id"              => String,
@@ -134,7 +134,7 @@ class Brightbox
           "description"     => String,
           "ram"             => Integer,
           "disk_size"       => Integer
-        }
+        }.freeze
 
         FIREWALL_POLICY = {
           "id"              => String,
@@ -144,7 +144,7 @@ class Brightbox
           "default"         => Fog::Boolean,
           "created_at"      => String,
           "description"     => Fog::Nullable::String
-        }
+        }.freeze
 
         FIREWALL_RULE = {
           "id"              => String,
@@ -158,7 +158,7 @@ class Brightbox
           "protocol"        => Fog::Nullable::String,
           "icmp_type_name"  => Fog::Nullable::String,
           "description"     => Fog::Nullable::String
-        }
+        }.freeze
 
         IMAGE = {
           "name"            => String,
@@ -174,7 +174,7 @@ class Brightbox
           "official"        => Fog::Boolean,
           "owner"           => String,
           "username"        => Fog::Nullable::String
-        }
+        }.freeze
 
         INTERFACE = {
           "resource_type"   => String,
@@ -183,7 +183,7 @@ class Brightbox
           "ipv4_address"    => String,
           "ipv6_address"    => Fog::Nullable::String,
           "mac_address"     => String
-        }
+        }.freeze
 
         LOAD_BALANCER = {
           "id"              => String,
@@ -193,7 +193,7 @@ class Brightbox
           "status"          => String,
           "created_at"      => String,
           "deleted_at"      => Fog::Nullable::String
-        }
+        }.freeze
 
         SERVER = {
           "id"              => String,
@@ -207,7 +207,7 @@ class Brightbox
           "started_at"      => Fog::Nullable::String,
           "deleted_at"      => Fog::Nullable::String,
           "username"        => Fog::Nullable::String
-        }
+        }.freeze
 
         SERVER_GROUP = {
           "id"              => String,
@@ -217,7 +217,7 @@ class Brightbox
           "created_at"      => String,
           "default"         => Fog::Boolean,
           "description"     => Fog::Nullable::String
-        }
+        }.freeze
 
         SERVER_TYPE = {
           "name"            => String,
@@ -229,7 +229,7 @@ class Brightbox
           "id"              => String,
           "ram"             => Integer,
           "status"          => String
-        }
+        }.freeze
 
         USER = {
           "id"              => String,
@@ -237,7 +237,7 @@ class Brightbox
           "url"             => String,
           "name"            => String,
           "email_address"   => String
-        }
+        }.freeze
 
         COLLABORATION = {
           "id"              => String,
@@ -250,7 +250,7 @@ class Brightbox
           "user"            => Fog::Brightbox::Nullable::User,
           "account"         => Brightbox::Compute::Formats::Nested::ACCOUNT,
           "inviter"         => Brightbox::Compute::Formats::Nested::USER
-        }
+        }.freeze
 
         VOLUME = {
           "id"              => String,
@@ -273,14 +273,14 @@ class Brightbox
           "created_at"      => String,
           "updated_at"      => String,
           "deleted_at"      => Fog::Nullable::String
-        }
+        }.freeze
 
         ZONE = {
           "id"              => String,
           "resource_type"   => String,
           "url"             => String,
           "handle"          => Fog::Nullable::String
-        }
+        }.freeze
       end
 
       module Collected
@@ -313,7 +313,7 @@ class Brightbox
           "firewall_policies" => [Brightbox::Compute::Formats::Nested::FIREWALL_POLICY],
           "images"          => [Brightbox::Compute::Formats::Nested::IMAGE],
           "zones"           => [Brightbox::Compute::Formats::Nested::ZONE]
-        }
+        }.freeze
 
         API_CLIENT = {
           "id"              => String,
@@ -323,14 +323,14 @@ class Brightbox
           "description"     => String,
           "revoked_at"      => Fog::Nullable::String,
           "account"         => Brightbox::Compute::Formats::Nested::ACCOUNT
-        }
+        }.freeze
 
         APPLICATION = {
           "id"              => String,
           "resource_type"   => String,
           "url"             => String,
           "name"            => Fog::Nullable::String
-        }
+        }.freeze
 
         CLOUD_IP = {
           "id"              => String,
@@ -346,7 +346,7 @@ class Brightbox
           "load_balancer"   => Fog::Brightbox::Nullable::LoadBalancer,
           "server"          => Fog::Brightbox::Nullable::Server,
           "server_group" => Fog::Brightbox::Nullable::ServerGroup
-        }
+        }.freeze
 
         DATABASE_SERVER = {
           "id"              => String,
@@ -359,7 +359,7 @@ class Brightbox
           "status"          => String,
           "created_at"      => String,
           "deleted_at"      => Fog::Nullable::String
-        }
+        }.freeze
 
         DATABASE_SNAPSHOT = {
           "id"              => String,
@@ -373,7 +373,7 @@ class Brightbox
           "created_at"      => String,
           "deleted_at"      => Fog::Nullable::String,
           "account"         => Brightbox::Compute::Formats::Nested::ACCOUNT
-        }
+        }.freeze
 
         DATABASE_SERVER_TYPE = {
           "id"              => String,
@@ -383,7 +383,7 @@ class Brightbox
           "description"     => String,
           "ram"             => Integer,
           "disk_size"       => Integer
-        }
+        }.freeze
 
         FIREWALL_POLICY = {
           "id"              => String,
@@ -395,7 +395,7 @@ class Brightbox
           "created_at"      => String,
           "server_group"    => Fog::Brightbox::Nullable::ServerGroup,
           "rules"           => [Brightbox::Compute::Formats::Nested::FIREWALL_RULE]
-        }
+        }.freeze
 
         IMAGE = {
           "name"            => String,
@@ -417,7 +417,7 @@ class Brightbox
           "disk_size"       => Integer,
           "min_ram"         => Fog::Nullable::Integer,
           "ancestor"        => Fog::Brightbox::Nullable::Image
-        }
+        }.freeze
 
         LOAD_BALANCER = {
           "id"              => String,
@@ -431,7 +431,7 @@ class Brightbox
           "account"         => Brightbox::Compute::Formats::Nested::ACCOUNT,
           "listeners"       => [Brightbox::Compute::Formats::Struct::LB_LISTENER],
           "nodes"           => [Brightbox::Compute::Formats::Nested::SERVER]
-        }
+        }.freeze
 
         SERVER = {
           "id"              => String,
@@ -454,7 +454,7 @@ class Brightbox
           "zone"            => Fog::Brightbox::Nullable::Zone,
           "username"        => Fog::Nullable::String,
           "compatibility_mode" => Fog::Boolean
-        }
+        }.freeze
 
         SERVER_GROUP = {
           "created_at"      => String,
@@ -467,7 +467,7 @@ class Brightbox
           "account"         => Brightbox::Compute::Formats::Nested::ACCOUNT,
           "servers"         => [Brightbox::Compute::Formats::Nested::SERVER],
           "firewall_policy" => Fog::Brightbox::Nullable::FirewallPolicy
-        }
+        }.freeze
 
         SERVER_TYPE = {
           "id"              => String,
@@ -479,7 +479,7 @@ class Brightbox
           "cores"           => Integer,
           "ram"             => Integer,
           "disk_size"       => Integer
-        }
+        }.freeze
 
         USER = {
           "id"              => String,
@@ -490,7 +490,7 @@ class Brightbox
           "email_verified"  => Fog::Boolean,
           "accounts"        => [Brightbox::Compute::Formats::Nested::ACCOUNT],
           "default_account" => NilClass
-        }
+        }.freeze
 
         COLLABORATION = {
           "id"              => String,
@@ -503,7 +503,7 @@ class Brightbox
           "user"            => Fog::Brightbox::Nullable::User,
           "account"         => Brightbox::Compute::Formats::Nested::ACCOUNT,
           "inviter"         => Brightbox::Compute::Formats::Nested::USER
-        }
+        }.freeze
 
         VOLUME = {
           "id"              => String,
@@ -526,14 +526,14 @@ class Brightbox
           "created_at"      => String,
           "updated_at"      => String,
           "deleted_at"      => Fog::Nullable::String
-        }
+        }.freeze
 
         ZONE = {
           "id"              => String,
           "resource_type"   => String,
           "url"             => String,
           "handle"          => Fog::Nullable::String
-        }
+        }.freeze
       end
 
       module Full
@@ -577,7 +577,7 @@ class Brightbox
           "firewall_policies" => [Brightbox::Compute::Formats::Nested::FIREWALL_POLICY],
           "images"          => [Brightbox::Compute::Formats::Nested::IMAGE],
           "zones"           => [Brightbox::Compute::Formats::Nested::ZONE]
-        }
+        }.freeze
 
         API_CLIENT = {
           "id"              => String,
@@ -588,7 +588,7 @@ class Brightbox
           "revoked_at"      => Fog::Nullable::String,
           "secret"          => Fog::Nullable::String,
           "account"         => Brightbox::Compute::Formats::Nested::ACCOUNT
-        }
+        }.freeze
 
         APPLICATION = {
           "id"              => String,
@@ -596,7 +596,7 @@ class Brightbox
           "url"             => String,
           "name"            => Fog::Nullable::String,
           "secret"          => Fog::Nullable::String
-        }
+        }.freeze
 
         CLOUD_IP = {
           "id"              => String,
@@ -612,7 +612,7 @@ class Brightbox
           "load_balancer"   => Fog::Brightbox::Nullable::LoadBalancer,
           "server"          => Fog::Brightbox::Nullable::Server,
           "server_group"    => Fog::Brightbox::Nullable::ServerGroup
-        }
+        }.freeze
 
         DATABASE_SERVER = {
           "id"              => String,
@@ -627,7 +627,7 @@ class Brightbox
           "status"          => String,
           "created_at"      => String,
           "deleted_at"      => Fog::Nullable::String
-        }
+        }.freeze
 
         DATABASE_SNAPSHOT = {
           "id"              => String,
@@ -641,7 +641,7 @@ class Brightbox
           "created_at"      => String,
           "deleted_at"      => Fog::Nullable::String,
           "account"         => Brightbox::Compute::Formats::Nested::ACCOUNT
-        }
+        }.freeze
 
         DATABASE_SERVER_TYPE = {
           "id"              => String,
@@ -651,7 +651,7 @@ class Brightbox
           "description"     => String,
           "ram"             => Integer,
           "disk_size"       => Integer
-        }
+        }.freeze
 
         FIREWALL_POLICY = {
           "id"              => String,
@@ -663,7 +663,7 @@ class Brightbox
           "created_at"      => String,
           "server_group"    => Fog::Brightbox::Nullable::ServerGroup,
           "rules"           => [Brightbox::Compute::Formats::Nested::FIREWALL_RULE]
-        }
+        }.freeze
 
         FIREWALL_RULE = {
           "id"              => String,
@@ -678,7 +678,7 @@ class Brightbox
           "icmp_type_name"  => Fog::Nullable::String,
           "description"     => Fog::Nullable::String,
           "firewall_policy" => Brightbox::Compute::Formats::Nested::FIREWALL_POLICY
-        }
+        }.freeze
 
         IMAGE = {
           "name"            => String,
@@ -701,7 +701,7 @@ class Brightbox
           "min_ram"         => Fog::Nullable::Integer,
           "ancestor"        => Fog::Brightbox::Nullable::Image,
           "licence_name"    => Fog::Nullable::String
-        }
+        }.freeze
 
         INTERFACE = {
           "resource_type"   => String,
@@ -711,7 +711,7 @@ class Brightbox
           "ipv6_address"    => Fog::Nullable::String,
           "mac_address"     => String,
           "server"          => Brightbox::Compute::Formats::Nested::SERVER
-        }
+        }.freeze
 
         LOAD_BALANCER = {
           "id"              => String,
@@ -728,7 +728,7 @@ class Brightbox
           "account"         => Brightbox::Compute::Formats::Nested::ACCOUNT,
           "nodes"           => [Brightbox::Compute::Formats::Nested::SERVER],
           "cloud_ips"       => [Brightbox::Compute::Formats::Nested::CLOUD_IP]
-        }
+        }.freeze
 
         SERVER = {
           "id"              => String,
@@ -757,7 +757,7 @@ class Brightbox
           "licence_name"    => Fog::Nullable::String,
           "username"        => Fog::Nullable::String,
           "compatibility_mode" => Fog::Boolean
-        }
+        }.freeze
 
         SERVER_GROUP = {
           "created_at"      => String,
@@ -770,7 +770,7 @@ class Brightbox
           "account"         => Brightbox::Compute::Formats::Nested::ACCOUNT,
           "servers"         => [Brightbox::Compute::Formats::Nested::SERVER],
           "firewall_policy" => Fog::Brightbox::Nullable::FirewallPolicy
-        }
+        }.freeze
 
         SERVER_TYPE = {
           "id"              => String,
@@ -782,7 +782,7 @@ class Brightbox
           "cores"           => Integer,
           "ram"             => Integer,
           "disk_size"       => Integer
-        }
+        }.freeze
 
         USER = {
           "id"              => String,
@@ -795,7 +795,7 @@ class Brightbox
           "default_account" => Fog::Brightbox::Nullable::Account,
           "ssh_key"         => Fog::Nullable::String,
           "messaging_pref"  => Fog::Boolean
-        }
+        }.freeze
 
         COLLABORATION = {
           "id"              => String,
@@ -808,7 +808,7 @@ class Brightbox
           "user"            => Fog::Brightbox::Nullable::User,
           "account"         => Brightbox::Compute::Formats::Nested::ACCOUNT,
           "inviter"         => Brightbox::Compute::Formats::Nested::USER
-        }
+        }.freeze
 
         VOLUME = {
           "id"              => String,
@@ -834,34 +834,34 @@ class Brightbox
           "account"         => Brightbox::Compute::Formats::Nested::ACCOUNT,
           "image"           => Fog::Brightbox::Nullable::Image,
           "server"          => Fog::Brightbox::Nullable::Server
-        }
+        }.freeze
 
         ZONE = {
           "id"              => String,
           "resource_type"   => String,
           "url"             => String,
           "handle"          => String
-        }
+        }.freeze
       end
 
       module Collection
-        ACCOUNTS = [Brightbox::Compute::Formats::Collected::ACCOUNT]
-        API_CLIENTS = [Brightbox::Compute::Formats::Collected::API_CLIENT]
-        APPLICATION = [Brightbox::Compute::Formats::Collected::APPLICATION]
-        CLOUD_IPS = [Brightbox::Compute::Formats::Collected::CLOUD_IP]
-        COLLABORATIONS = [Brightbox::Compute::Formats::Collected::COLLABORATION]
-        DATABASE_SERVERS = [Brightbox::Compute::Formats::Collected::DATABASE_SERVER]
-        DATABASE_SERVER_TYPES = [Brightbox::Compute::Formats::Collected::DATABASE_SERVER_TYPE]
-        DATABASE_SNAPSHOTS = [Brightbox::Compute::Formats::Collected::DATABASE_SNAPSHOT]
-        FIREWALL_POLICIES = [Brightbox::Compute::Formats::Collected::FIREWALL_POLICY]
-        IMAGES = [Brightbox::Compute::Formats::Collected::IMAGE]
-        LOAD_BALANCERS = [Brightbox::Compute::Formats::Collected::LOAD_BALANCER]
-        SERVERS = [Brightbox::Compute::Formats::Collected::SERVER]
-        SERVER_GROUPS = [Brightbox::Compute::Formats::Collected::SERVER_GROUP]
-        SERVER_TYPES = [Brightbox::Compute::Formats::Collected::SERVER_TYPE]
-        USERS = [Brightbox::Compute::Formats::Collected::USER]
-        VOLUMES = [Brightbox::Compute::Formats::Collected::VOLUME]
-        ZONES = [Brightbox::Compute::Formats::Collected::ZONE]
+        ACCOUNTS = [Brightbox::Compute::Formats::Collected::ACCOUNT].freeze
+        API_CLIENTS = [Brightbox::Compute::Formats::Collected::API_CLIENT].freeze
+        APPLICATION = [Brightbox::Compute::Formats::Collected::APPLICATION].freeze
+        CLOUD_IPS = [Brightbox::Compute::Formats::Collected::CLOUD_IP].freeze
+        COLLABORATIONS = [Brightbox::Compute::Formats::Collected::COLLABORATION].freeze
+        DATABASE_SERVERS = [Brightbox::Compute::Formats::Collected::DATABASE_SERVER].freeze
+        DATABASE_SERVER_TYPES = [Brightbox::Compute::Formats::Collected::DATABASE_SERVER_TYPE].freeze
+        DATABASE_SNAPSHOTS = [Brightbox::Compute::Formats::Collected::DATABASE_SNAPSHOT].freeze
+        FIREWALL_POLICIES = [Brightbox::Compute::Formats::Collected::FIREWALL_POLICY].freeze
+        IMAGES = [Brightbox::Compute::Formats::Collected::IMAGE].freeze
+        LOAD_BALANCERS = [Brightbox::Compute::Formats::Collected::LOAD_BALANCER].freeze
+        SERVERS = [Brightbox::Compute::Formats::Collected::SERVER].freeze
+        SERVER_GROUPS = [Brightbox::Compute::Formats::Collected::SERVER_GROUP].freeze
+        SERVER_TYPES = [Brightbox::Compute::Formats::Collected::SERVER_TYPE].freeze
+        USERS = [Brightbox::Compute::Formats::Collected::USER].freeze
+        VOLUMES = [Brightbox::Compute::Formats::Collected::VOLUME].freeze
+        ZONES = [Brightbox::Compute::Formats::Collected::ZONE].freeze
       end
     end
   end

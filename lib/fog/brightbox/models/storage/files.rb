@@ -25,14 +25,10 @@ module Fog
             directory.key,
             options
           )
-          if parent
-            load(parent.files.map { |file| file.attributes })
-          else
-            nil
-          end
+          load(parent.files.map(&:attributes)) if parent
         end
 
-        alias_method :each_file_this_page, :each
+        alias each_file_this_page each
         def each
           if !block_given?
             self
@@ -41,7 +37,7 @@ module Fog
 
             subset.each_file_this_page { |f| yield f }
             while subset.length == (subset.limit || 10_000)
-              subset = subset.all(:marker => subset.last.key)
+              subset = subset.all(marker: subset.last.key)
               subset.each_file_this_page { |f| yield f }
             end
 
@@ -53,9 +49,9 @@ module Fog
           requires :directory
           data = service.get_object(directory.key, key, &block)
           file_data = data.headers.merge(
-                                           :body => data.body,
-                                           :key  => key
-                                         )
+            body: data.body,
+            key: key
+          )
           new(file_data)
         rescue Fog::Brightbox::Storage::NotFound
           nil
@@ -82,8 +78,8 @@ module Fog
           requires :directory
           data = service.head_object(directory.key, key)
           file_data = data.headers.merge(
-                                           :key => key
-                                         )
+            key: key
+          )
           new(file_data)
         rescue Fog::Brightbox::Storage::NotFound
           nil
@@ -91,7 +87,7 @@ module Fog
 
         def new(attributes = {})
           requires :directory
-          super({ :directory => directory }.merge!(attributes))
+          super({ directory: directory }.merge!(attributes))
         end
       end
     end

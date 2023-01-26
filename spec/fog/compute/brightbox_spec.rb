@@ -4,13 +4,13 @@ describe Fog::Brightbox::Compute do
   describe "when global config is available" do
     before do
       @arguments = {
-        :brightbox_auth_url => "http://localhost",
-        :brightbox_api_url => "http://localhost",
-        :brightbox_client_id => "",
-        :brightbox_secret => "",
-        :brightbox_username => "",
-        :brightbox_password => "",
-        :brightbox_account => ""
+        brightbox_auth_url: "http://localhost",
+        brightbox_api_url: "http://localhost",
+        brightbox_client_id: "",
+        brightbox_secret: "",
+        brightbox_username: "",
+        brightbox_password: "",
+        brightbox_account: ""
       }
 
       @credential_guard = Minitest::Mock.new
@@ -49,8 +49,8 @@ describe Fog::Brightbox::Compute do
   describe "when created with a Config object" do
     it "does not error" do
       @options = {
-        :brightbox_client_id => "cli-12345",
-        :brightbox_secret => "1234567890"
+        brightbox_client_id: "cli-12345",
+        brightbox_secret: "1234567890"
       }
       @config = Fog::Brightbox::Config.new(@options)
       @service = Fog::Brightbox::Compute.new(@config)
@@ -59,7 +59,7 @@ describe Fog::Brightbox::Compute do
   end
 
   describe "when created with Config missing required settings" do
-    it "raises ArgumentError"do
+    it "raises ArgumentError" do
       @config = Fog::Brightbox::Config.new({})
       assert_raises ArgumentError do
         @service = Fog::Brightbox::Compute.new(@config)

@@ -16,7 +16,7 @@ describe Fog::Brightbox::Config do
   describe "when created with a Hash" do
     it "does not error" do
       @options = {
-        :brightbox_client_id => "cli-12345"
+        brightbox_client_id: "cli-12345"
       }
       @config = Fog::Brightbox::Config.new(@options)
       assert_instance_of Fog::Brightbox::Config, @config
@@ -25,7 +25,7 @@ describe Fog::Brightbox::Config do
 
   describe "when auth url options was passed" do
     it "returns the setting" do
-      @options = { :brightbox_auth_url => "https://api.gb1.brightbox.com" }
+      @options = { brightbox_auth_url: "https://api.gb1.brightbox.com" }
       @config = Fog::Brightbox::Config.new(@options)
       assert_instance_of URI::HTTPS, @config.auth_url
     end
@@ -41,7 +41,7 @@ describe Fog::Brightbox::Config do
 
   describe "when compute url options was passed" do
     it "returns the setting" do
-      @options = { :brightbox_api_url => "https://api.gb1.brightbox.com" }
+      @options = { brightbox_api_url: "https://api.gb1.brightbox.com" }
       @config = Fog::Brightbox::Config.new(@options)
       assert_instance_of URI::HTTPS, @config.compute_url
       assert_equal @config.compute_url, @config.api_url
@@ -59,7 +59,7 @@ describe Fog::Brightbox::Config do
 
   describe "when client id is passed" do
     it "returns the settings" do
-      @options = { :brightbox_client_id => "cli-12345" }
+      @options = { brightbox_client_id: "cli-12345" }
       @config = Fog::Brightbox::Config.new(@options)
       assert_equal "cli-12345", @config.client_id
     end
@@ -67,7 +67,7 @@ describe Fog::Brightbox::Config do
 
   describe "when client secret is passed" do
     it "returns the settings" do
-      @options = { :brightbox_secret => "secret" }
+      @options = { brightbox_secret: "secret" }
       @config = Fog::Brightbox::Config.new(@options)
       assert_equal "secret", @config.client_secret
     end
@@ -75,7 +75,7 @@ describe Fog::Brightbox::Config do
 
   describe "when username is passed" do
     it "returns the settings" do
-      @options = { :brightbox_username => "usr-12345" }
+      @options = { brightbox_username: "usr-12345" }
       @config = Fog::Brightbox::Config.new(@options)
       assert_equal "usr-12345", @config.username
     end
@@ -83,7 +83,7 @@ describe Fog::Brightbox::Config do
 
   describe "when password is passed" do
     it "returns the settings" do
-      @options = { :brightbox_password => "password" }
+      @options = { brightbox_password: "password" }
       @config = Fog::Brightbox::Config.new(@options)
       assert_equal "password", @config.password
     end
@@ -91,7 +91,7 @@ describe Fog::Brightbox::Config do
 
   describe "when account is passed" do
     it "returns the settings" do
-      @options = { :brightbox_account => "acc-12345" }
+      @options = { brightbox_account: "acc-12345" }
       @config = Fog::Brightbox::Config.new(@options)
       assert_equal "acc-12345", @config.account
     end
@@ -99,7 +99,7 @@ describe Fog::Brightbox::Config do
 
   describe "when account was passed but changed" do
     it "returns the new account" do
-      @options = { :brightbox_account => "acc-12345" }
+      @options = { brightbox_account: "acc-12345" }
       @config = Fog::Brightbox::Config.new(@options)
       @config.change_account("acc-abcde")
       assert_equal "acc-abcde", @config.account
@@ -108,7 +108,7 @@ describe Fog::Brightbox::Config do
 
   describe "when account was passed, changed and reset" do
     it "returns the original account" do
-      @options = { :brightbox_account => "acc-12345" }
+      @options = { brightbox_account: "acc-12345" }
       @config = Fog::Brightbox::Config.new(@options)
       @config.change_account("acc-abcde")
       @config.reset_account
@@ -119,12 +119,12 @@ describe Fog::Brightbox::Config do
   describe "when connection options are passed" do
     it "returns the settings" do
       @connection_settings = {
-        :headers => {
+        headers: {
           "Content-Type" => "application/json"
         }
       }
       @options = {
-        :connection_options => @connection_settings
+        connection_options: @connection_settings
       }
       @config = Fog::Brightbox::Config.new(@options)
       assert_equal @connection_settings, @config.connection_options
@@ -140,7 +140,7 @@ describe Fog::Brightbox::Config do
 
   describe "when persistent connection is requested" do
     it "returns true for the setting" do
-      @options = { :persistent => true }
+      @options = { persistent: true }
       @config = Fog::Brightbox::Config.new(@options)
       assert @config.connection_persistent?
     end
@@ -158,8 +158,8 @@ describe Fog::Brightbox::Config do
       @access_token = "1234567890abcdefghijklmnopqrstuvwxyz"
       @refresh_token = "1234567890abcdefghijklmnopqrstuvwxyz"
       @options = {
-        :brightbox_access_token => @access_token,
-        :brightbox_refresh_token => @refresh_token
+        brightbox_access_token: @access_token,
+        brightbox_refresh_token: @refresh_token
       }
       @config = Fog::Brightbox::Config.new(@options)
     end
@@ -194,7 +194,7 @@ describe Fog::Brightbox::Config do
 
   describe "when token management setting is disabled" do
     it "returns false" do
-      @options = { :brightbox_token_management => false }
+      @options = { brightbox_token_management: false }
       @config = Fog::Brightbox::Config.new(@options)
       refute @config.managed_tokens?
     end
@@ -202,7 +202,7 @@ describe Fog::Brightbox::Config do
 
   describe "when a default server image is configured" do
     it "returns the configured setting" do
-      @options = { :brightbox_default_image => "img-12345" }
+      @options = { brightbox_default_image: "img-12345" }
       @config = Fog::Brightbox::Config.new(@options)
       assert_equal "img-12345", @config.default_image_id
     end
@@ -218,10 +218,10 @@ describe Fog::Brightbox::Config do
   describe "when username and password are given" do
     it "user_credentials? returns true" do
       @options = {
-        :brightbox_client_id => "app-12345",
-        :brightbox_secret => "12345",
-        :brightbox_username => "user@example.test",
-        :brightbox_password => "12345"
+        brightbox_client_id: "app-12345",
+        brightbox_secret: "12345",
+        brightbox_username: "user@example.test",
+        brightbox_password: "12345"
       }
       @config = Fog::Brightbox::Config.new(@options)
       assert @config.user_credentials?
@@ -231,8 +231,8 @@ describe Fog::Brightbox::Config do
   describe "when no username is given" do
     it "user_credentials? returns false" do
       @options = {
-        :brightbox_client_id => "cli-12345",
-        :brightbox_secret => "12345"
+        brightbox_client_id: "cli-12345",
+        brightbox_secret: "12345"
       }
       @config = Fog::Brightbox::Config.new(@options)
       refute @config.user_credentials?

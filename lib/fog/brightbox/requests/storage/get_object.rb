@@ -10,14 +10,12 @@ module Fog
         #
         def get_object(container, object, &block)
           params = {
-            :expects  => 200,
-            :method   => "GET",
-            :path     => "#{Fog::Brightbox::Storage.escape(container)}/#{Fog::Brightbox::Storage.escape(object)}"
+            expects: 200,
+            method: "GET",
+            path: "#{Fog::Brightbox::Storage.escape(container)}/#{Fog::Brightbox::Storage.escape(object)}"
           }
 
-          if block_given?
-            params[:response_block] = block
-          end
+          params[:response_block] = block if block_given?
 
           request(params, false)
         end
