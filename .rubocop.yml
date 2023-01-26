@@ -17,5 +17,9 @@ Style/SignalException:
   # Valid values are: semantic, only_raise and only_fail
   EnforcedStyle: only_raise
 
+Style/SpecialGlobalVars:
+  # auto "correct" adds gem requirement
+  Enabled: false
+
 Style/StringLiterals:
   EnforcedStyle: double_quotes
