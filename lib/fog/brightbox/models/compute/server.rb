@@ -193,23 +193,21 @@ module Fog
             server_groups: server_groups
           }.delete_if { |_k, v| v.nil? || v == "" }
 
-          options.merge!(server_type: flavor_id) unless flavor_id.nil? || flavor_id == ""
-          options.merge!(cloud_ip: cloud_ip) unless cloud_ip.nil? || cloud_ip == ""
-          options.merge!(disk_encrypted: disk_encrypted) if disk_encrypted
+          options[:server_type] = flavor_id unless flavor_id.nil? || flavor_id == ""
+          options[:cloud_ip] = cloud_ip unless cloud_ip.nil? || cloud_ip == ""
+          options[:disk_encrypted] = disk_encrypted if disk_encrypted
 
           if volume_id
-            options.merge!(volumes: [{ volume: volume_id }])
+            options[:volumes] = [{ volume: volume_id }]
           elsif volume_size
-            options.merge!(
-              volumes: [
-                {
-                  image: image_id,
-                  size: volume_size
-                }
-              ]
-            )
+            options[:volumes] = [
+              {
+                image: image_id,
+                size: volume_size
+              }
+            ]
           else
-            options.merge!(image: image_id)
+            options[:image] = image_id
           end
 
           data = service.create_server(options)

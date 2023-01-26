@@ -212,7 +212,8 @@ module Fog
         # @return [Excon::Response]
         def authenticated_request(options)
           headers = options[:headers] || {}
-          headers.merge!("Authorization" => "Bearer #{@credentials.access_token}", "Content-Type" => "application/json")
+          headers["Authorization"] = "Bearer #{@credentials.access_token}"
+          headers["Content-Type"] = "application/json"
           options[:headers] = headers
           # TODO: This is just a wrapper around a call to Excon::Connection#request
           #   so can be extracted from Compute by passing in the connection,

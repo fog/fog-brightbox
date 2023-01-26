@@ -102,7 +102,7 @@ module Fog
 
           # The API requires the old "from" size to avoid acting on stale data
           # We can merge this and if the API rejects the request, the model was out of sync
-          options.merge!(from: size)
+          options[:from] = size
 
           data = service.resize_volume(identity, options)
           merge_attributes(data)
@@ -134,7 +134,7 @@ module Fog
               size: size
             }.delete_if { |_k, v| v.nil? || v == "" }
 
-            options.merge!(image: image_id) unless image_id.nil? || image_id == ""
+            options[:image] = image_id unless image_id.nil? || image_id == ""
 
             data = service.create_volume(options)
           end
