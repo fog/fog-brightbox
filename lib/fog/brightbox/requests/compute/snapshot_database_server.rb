@@ -22,7 +22,7 @@ module Fog
 
           if options[:return_link]
             request_parameters = {
-              :method => method, :path => path, :expects => expected
+              method: method, path: path, expects: expected
             }
             response = request(request_parameters)
             data = Fog::JSON.decode(response.body)

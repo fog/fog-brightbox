@@ -6,13 +6,13 @@ describe Fog::Brightbox::Storage::Connection do
   let(:config) { Fog::Brightbox::Config.new(settings) }
   let(:connection) { Fog::Brightbox::Storage::Connection.new(config) }
   let(:params) do
-    { :path => "fnord", :expects => [200] }
+    { path: "fnord", expects: [200] }
   end
   let(:settings) do
     {
-      :brightbox_client_id => "app-12345",
-      :brightbox_secret => "1234567890",
-      :brightbox_storage_management_url => "https://files.gb2.brightbox.com/v1/acc-12345"
+      brightbox_client_id: "app-12345",
+      brightbox_secret: "1234567890",
+      brightbox_storage_management_url: "https://files.gb2.brightbox.com/v1/acc-12345"
     }
   end
   let(:valid_auth_token) { "01234567890abcdefghijklmnopqrstuvwxyz" }
@@ -20,8 +20,8 @@ describe Fog::Brightbox::Storage::Connection do
   describe "when management URL is not available" do
     let(:settings) do
       {
-        :brightbox_client_id => "app-12345",
-        :brightbox_secret => "1234567890"
+        brightbox_client_id: "app-12345",
+        brightbox_secret: "1234567890"
       }
     end
 
@@ -43,11 +43,11 @@ describe Fog::Brightbox::Storage::Connection do
 
     before do
       stub_request(:get, "https://files.gb2.brightbox.com/v1/acc-12345").
-        with(:headers => {
+        with(headers: {
                "Accept" => "application/json",
                "Content-Type" => "application/json",
                "X-Auth-Token" => valid_auth_token
-             }).to_return(:status => 200, :body => "{}", :headers => {
+             }).to_return(status: 200, body: "{}", headers: {
                             "Content-Type" => "application/json"
                           })
     end
@@ -63,11 +63,11 @@ describe Fog::Brightbox::Storage::Connection do
   describe "when request should succeed" do
     before do
       stub_request(:get, "https://files.gb2.brightbox.com/v1/acc-12345/fnord").
-        with(:headers => {
+        with(headers: {
                "Accept" => "application/json",
                "Content-Type" => "application/json",
                "X-Auth-Token" => valid_auth_token
-             }).to_return(:status => 200, :body => "{}", :headers => {
+             }).to_return(status: 200, body: "{}", headers: {
                             "Content-Type" => "application/json"
                           })
     end
@@ -82,12 +82,12 @@ describe Fog::Brightbox::Storage::Connection do
 
   describe "when custom headers are passed" do
     let(:params) do
-      { :headers => { "X-Test" => "present" }, :path => "fnord" }
+      { headers: { "X-Test" => "present" }, path: "fnord" }
     end
 
     it "completes successfully" do
       stub_request(:get, "https://files.gb2.brightbox.com/v1/acc-12345/fnord").
-        with(:headers => { "X-Test" => "present" }).to_return(:status => 200)
+        with(headers: { "X-Test" => "present" }).to_return(status: 200)
 
       connection.request(params)
       pass
@@ -97,9 +97,9 @@ describe Fog::Brightbox::Storage::Connection do
   describe "when container is not found" do
     it "raises Fog::Brightbox::Storage::NotFound" do
       stub_request(:get, "https://files.gb2.brightbox.com/v1/acc-12345/fnord").
-        to_return(:status => 404,
-                  :body => "<html><h1>Not Found</h1><p>The resource could not be found.</p></html>",
-                  :headers => {
+        to_return(status: 404,
+                  body: "<html><h1>Not Found</h1><p>The resource could not be found.</p></html>",
+                  headers: {
                     "Content-Type" => "text/html"
                   })
       assert_raises(Fog::Brightbox::Storage::NotFound) { connection.request(params) }
@@ -109,9 +109,9 @@ describe Fog::Brightbox::Storage::Connection do
   describe "when request is not authenticated" do
     it "raises Fog::Brightbox::Storage::AuthenticationRequired" do
       stub_request(:get, "https://files.gb2.brightbox.com/v1/acc-12345/fnord").
-        to_return(:status => 401,
-                  :body => "Authentication required",
-                  :headers => {
+        to_return(status: 401,
+                  body: "Authentication required",
+                  headers: {
                     "Content-Type" => "text/plain"
                   })
       assert_raises(Fog::Brightbox::Storage::AuthenticationRequired) { connection.request(params) }

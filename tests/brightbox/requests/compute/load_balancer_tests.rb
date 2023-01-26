@@ -6,17 +6,17 @@ Shindo.tests("Fog::Compute[:brightbox] | load balancer requests", ["brightbox"])
     end
 
     create_options = {
-      :nodes => [{
-        :node => node_id
+      nodes: [{
+        node: node_id
       }],
-      :listeners => [{
-        :in       => 80,
-        :out      => 8080,
-        :protocol => "http"
+      listeners: [{
+        in: 80,
+        out: 8080,
+        protocol: "http"
       }],
-      :healthcheck => {
-        :type => "http",
-        :port => 80
+      healthcheck: {
+        type: "http",
+        port: 80
       }
     }
 
@@ -24,7 +24,7 @@ Shindo.tests("Fog::Compute[:brightbox] | load balancer requests", ["brightbox"])
       pending if Fog.mocking?
       result = Fog::Compute[:brightbox].create_load_balancer(create_options)
       @load_balancer_id = result["id"]
-      data_matches_schema(Brightbox::Compute::Formats::Full::LOAD_BALANCER, :allow_extra_keys => true) { result }
+      data_matches_schema(Brightbox::Compute::Formats::Full::LOAD_BALANCER, allow_extra_keys: true) { result }
     end
 
     unless Fog.mocking?
@@ -34,34 +34,34 @@ Shindo.tests("Fog::Compute[:brightbox] | load balancer requests", ["brightbox"])
     tests("#list_load_balancers()") do
       pending if Fog.mocking?
       result = Fog::Compute[:brightbox].list_load_balancers
-      data_matches_schema(Brightbox::Compute::Formats::Collection::LOAD_BALANCERS, :allow_extra_keys => true) { result }
+      data_matches_schema(Brightbox::Compute::Formats::Collection::LOAD_BALANCERS, allow_extra_keys: true) { result }
     end
 
     tests("#get_load_balancer('#{@load_balancer_id}')") do
       pending if Fog.mocking?
       result = Fog::Compute[:brightbox].get_load_balancer(@load_balancer_id)
-      data_matches_schema(Brightbox::Compute::Formats::Full::LOAD_BALANCER, :allow_extra_keys => true) { result }
+      data_matches_schema(Brightbox::Compute::Formats::Full::LOAD_BALANCER, allow_extra_keys: true) { result }
     end
 
-    update_options = { :name => "New name" }
+    update_options = { name: "New name" }
     tests("#update_load_balancer('#{@load_balancer_id}', #{update_options.inspect})") do
       pending if Fog.mocking?
       result = Fog::Compute[:brightbox].update_load_balancer(@load_balancer_id, update_options)
-      data_matches_schema(Brightbox::Compute::Formats::Full::LOAD_BALANCER, :allow_extra_keys => true) { result }
+      data_matches_schema(Brightbox::Compute::Formats::Full::LOAD_BALANCER, allow_extra_keys: true) { result }
     end
 
-    add_listeners_options = { :listeners => [{ :out => 28_080, :in => 8080, :protocol => "http" }] }
+    add_listeners_options = { listeners: [{ out: 28_080, in: 8080, protocol: "http" }] }
     tests("#add_listeners_load_balancer('#{@load_balancer_id}', #{add_listeners_options.inspect})") do
       pending if Fog.mocking?
       result = Fog::Compute[:brightbox].add_listeners_load_balancer(@load_balancer_id, add_listeners_options)
-      data_matches_schema(Brightbox::Compute::Formats::Full::LOAD_BALANCER, :allow_extra_keys => true) { result }
+      data_matches_schema(Brightbox::Compute::Formats::Full::LOAD_BALANCER, allow_extra_keys: true) { result }
     end
 
-    remove_listeners_options = { :listeners => [{ :out => 28_080, :in => 8080, :protocol => "http" }] }
+    remove_listeners_options = { listeners: [{ out: 28_080, in: 8080, protocol: "http" }] }
     tests("#remove_listeners_load_balancer('#{@load_balancer_id}', #{remove_listeners_options.inspect})") do
       pending if Fog.mocking?
       result = Fog::Compute[:brightbox].remove_listeners_load_balancer(@load_balancer_id, remove_listeners_options)
-      data_matches_schema(Brightbox::Compute::Formats::Full::LOAD_BALANCER, :allow_extra_keys => true) { result }
+      data_matches_schema(Brightbox::Compute::Formats::Full::LOAD_BALANCER, allow_extra_keys: true) { result }
     end
 
     unless Fog.mocking?
@@ -70,25 +70,25 @@ Shindo.tests("Fog::Compute[:brightbox] | load balancer requests", ["brightbox"])
     end
 
     # Can't remove the last node so we need to add a second...
-    add_nodes_options = { :nodes => [{ :node => second_node_id }] }
+    add_nodes_options = { nodes: [{ node: second_node_id }] }
     tests("#add_nodes_load_balancer('#{@load_balancer_id}', #{add_nodes_options.inspect})") do
       pending if Fog.mocking?
       result = Fog::Compute[:brightbox].add_nodes_load_balancer(@load_balancer_id, add_nodes_options)
-      data_matches_schema(Brightbox::Compute::Formats::Full::LOAD_BALANCER, :allow_extra_keys => true) { result }
+      data_matches_schema(Brightbox::Compute::Formats::Full::LOAD_BALANCER, allow_extra_keys: true) { result }
     end
 
     # ...before we can attempt to remove either
-    remove_nodes_options = { :nodes => [{ :node => node_id }] }
+    remove_nodes_options = { nodes: [{ node: node_id }] }
     tests("#remove_nodes_load_balancer('#{@load_balancer_id}', #{remove_nodes_options.inspect})") do
       pending if Fog.mocking?
       result = Fog::Compute[:brightbox].remove_nodes_load_balancer(@load_balancer_id, remove_nodes_options)
-      data_matches_schema(Brightbox::Compute::Formats::Full::LOAD_BALANCER, :allow_extra_keys => true) { result }
+      data_matches_schema(Brightbox::Compute::Formats::Full::LOAD_BALANCER, allow_extra_keys: true) { result }
     end
 
     tests("#delete_load_balancer('#{@load_balancer_id}')") do
       pending if Fog.mocking?
       result = Fog::Compute[:brightbox].delete_load_balancer(@load_balancer_id)
-      data_matches_schema(Brightbox::Compute::Formats::Full::LOAD_BALANCER, :allow_extra_keys => true) { result }
+      data_matches_schema(Brightbox::Compute::Formats::Full::LOAD_BALANCER, allow_extra_keys: true) { result }
     end
 
     unless Fog.mocking?

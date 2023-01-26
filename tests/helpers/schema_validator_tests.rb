@@ -12,7 +12,7 @@ Shindo.tests("Fog::Schema::DataValidator", "meta") do
       end
 
       returns(true, "when nested values match schema expectation") do
-        validator.validate({ "key" => { :nested_key => "Value" } }, "key" => { :nested_key => String })
+        validator.validate({ "key" => { nested_key: "Value" } }, "key" => { nested_key: String })
       end
 
       returns(true, "when collection of values all match schema expectation") do
@@ -24,7 +24,7 @@ Shindo.tests("Fog::Schema::DataValidator", "meta") do
       end
 
       returns(true, "when additional keys are passed and not strict") do
-        validator.validate({ "key" => "Value", :extra => "Bonus" }, { "key" => String }, :allow_extra_keys => true)
+        validator.validate({ "key" => "Value", :extra => "Bonus" }, { "key" => String }, allow_extra_keys: true)
       end
 
       returns(true, "when value is nil and schema expects NilClass") do
@@ -44,21 +44,21 @@ Shindo.tests("Fog::Schema::DataValidator", "meta") do
       end
 
       returns(true, "when key is missing but value should be NilClass (#1477)") do
-        validator.validate({}, { "key" => NilClass }, :allow_optional_rules => true)
+        validator.validate({}, { "key" => NilClass }, allow_optional_rules: true)
       end
 
       returns(true, "when key is missing but value is nullable (#1477)") do
-        validator.validate({}, { "key" => Fog::Nullable::String }, :allow_optional_rules => true)
+        validator.validate({}, { "key" => Fog::Nullable::String }, allow_optional_rules: true)
       end
     end
 
     tests("returns false") do
       returns(false, "when value does not match schema expectation") do
-        validator.validate({ "key" => nil }, { "key" => String })
+        validator.validate({ "key" => nil }, "key" => String)
       end
 
       returns(false, "when key formats do not match") do
-        validator.validate({ "key" => "Value" }, :key => String)
+        validator.validate({ "key" => "Value" }, key: String)
       end
 
       returns(false, "when additional keys are passed and strict") do
@@ -86,15 +86,15 @@ Shindo.tests("Fog::Schema::DataValidator", "meta") do
       end
 
       returns(false, "when a hash is expected but another data type is found") do
-        validator.validate({ "key" => { :nested_key => [] } }, "key" => { :nested_key => {} })
+        validator.validate({ "key" => { nested_key: [] } }, "key" => { nested_key: {} })
       end
 
       returns(false, "when key is missing but value should be NilClass (#1477)") do
-        validator.validate({}, { "key" => NilClass }, :allow_optional_rules => false)
+        validator.validate({}, { "key" => NilClass }, allow_optional_rules: false)
       end
 
       returns(false, "when key is missing but value is nullable (#1477)") do
-        validator.validate({}, { "key" => Fog::Nullable::String }, :allow_optional_rules => false)
+        validator.validate({}, { "key" => Fog::Nullable::String }, allow_optional_rules: false)
       end
     end
   end

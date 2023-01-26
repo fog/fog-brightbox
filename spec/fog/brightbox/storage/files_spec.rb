@@ -7,9 +7,9 @@ describe Fog::Brightbox::Storage::Files do
   describe "#get_url" do
     before do
       @options = {
-        :brightbox_client_id => "cli-12345",
-        :brightbox_secret => "1234567890",
-        :brightbox_storage_management_url => "https://management.url/v1/acc-12345"
+        brightbox_client_id: "cli-12345",
+        brightbox_secret: "1234567890",
+        brightbox_storage_management_url: "https://management.url/v1/acc-12345"
       }
       @service = Fog::Brightbox::Storage.new(@options)
     end
@@ -61,8 +61,8 @@ describe Fog::Brightbox::Storage::Files do
     describe "when no management URL" do
       before do
         @options = {
-          :brightbox_client_id => "cli-12345",
-          :brightbox_secret => "1234567890"
+          brightbox_client_id: "cli-12345",
+          brightbox_secret: "1234567890"
         }
         @service = Fog::Brightbox::Storage.new(@options)
       end

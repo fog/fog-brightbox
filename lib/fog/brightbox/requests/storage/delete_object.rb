@@ -10,9 +10,9 @@ module Fog
         #
         def delete_object(container, object)
           request(
-            :expects  => 204,
-            :method   => "DELETE",
-            :path     => "#{Fog::Brightbox::Storage.escape(container)}/#{Fog::Brightbox::Storage.escape(object)}"
+            expects: 204,
+            method: "DELETE",
+            path: "#{Fog::Brightbox::Storage.escape(container)}/#{Fog::Brightbox::Storage.escape(object)}"
           )
         end
       end

@@ -41,7 +41,7 @@ module Fog
 
             subset.each_file_this_page { |f| yield f }
             while subset.length == (subset.limit || 10_000)
-              subset = subset.all(:marker => subset.last.key)
+              subset = subset.all(marker: subset.last.key)
               subset.each_file_this_page { |f| yield f }
             end
 
@@ -53,8 +53,8 @@ module Fog
           requires :directory
           data = service.get_object(directory.key, key, &block)
           file_data = data.headers.merge(
-                                           :body => data.body,
-                                           :key  => key
+                                           body: data.body,
+                                           key: key
                                          )
           new(file_data)
         rescue Fog::Brightbox::Storage::NotFound
@@ -82,7 +82,7 @@ module Fog
           requires :directory
           data = service.head_object(directory.key, key)
           file_data = data.headers.merge(
-                                           :key => key
+                                           key: key
                                          )
           new(file_data)
         rescue Fog::Brightbox::Storage::NotFound
@@ -91,7 +91,7 @@ module Fog
 
         def new(attributes = {})
           requires :directory
-          super({ :directory => directory }.merge!(attributes))
+          super({ directory: directory }.merge!(attributes))
         end
       end
     end

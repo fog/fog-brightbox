@@ -8,8 +8,8 @@ describe Fog::Brightbox::OAuth2::UserCredentialsStrategy do
     @password      = "__mushed_keys_321__"
 
     options = {
-      :username => @username,
-      :password => @password
+      username: @username,
+      password: @password
     }
 
     @credentials = Fog::Brightbox::OAuth2::CredentialSet.new(@client_id, @client_secret, options)

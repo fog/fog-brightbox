@@ -102,7 +102,7 @@ module Fog
 
           # The API requires the old "from" size to avoid acting on stale data
           # We can merge this and if the API rejects the request, the model was out of sync
-          options.merge!(:from => size)
+          options.merge!(from: size)
 
           data = service.resize_volume(identity, options)
           merge_attributes(data)
@@ -112,10 +112,10 @@ module Fog
         def save
           if persisted?
             options = {
-              :delete_with_server => delete_with_server,
-              :description => description,
-              :name => name,
-              :serial => serial
+              delete_with_server: delete_with_server,
+              description: description,
+              name: name,
+              serial: serial
             }.delete_if { |_k, v| v.nil? || v == "" }
 
             data = service.update_volume(identity, options)
@@ -124,17 +124,17 @@ module Fog
             raise Fog::Errors::Error.new("'image_id' or 'filesystem_type' is required") unless image_id || filesystem_type
 
             options = {
-              :delete_with_server => delete_with_server,
-              :description => description,
-              :encrypted => encrypted,
-              :filesystem_label => filesystem_label,
-              :filesystem_type => filesystem_type,
-              :name => name,
-              :serial => serial,
-              :size => size
+              delete_with_server: delete_with_server,
+              description: description,
+              encrypted: encrypted,
+              filesystem_label: filesystem_label,
+              filesystem_type: filesystem_type,
+              name: name,
+              serial: serial,
+              size: size
             }.delete_if { |_k, v| v.nil? || v == "" }
 
-            options.merge!(:image => image_id) unless image_id.nil? || image_id == ""
+            options.merge!(image: image_id) unless image_id.nil? || image_id == ""
 
             data = service.create_volume(options)
           end

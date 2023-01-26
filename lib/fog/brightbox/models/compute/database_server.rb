@@ -44,8 +44,8 @@ module Fog
 
         def save
           options = {
-            :name => name,
-            :description => description
+            name: name,
+            description: description
           }
 
           options[:allow_access] = allow_access if allow_access
@@ -79,7 +79,7 @@ module Fog
         def snapshot(return_snapshot = false)
           requires :identity
 
-          response, snapshot_id = service.snapshot_database_server(identity, :return_link => return_snapshot)
+          response, snapshot_id = service.snapshot_database_server(identity, return_link: return_snapshot)
           merge_attributes(response)
 
           if return_snapshot

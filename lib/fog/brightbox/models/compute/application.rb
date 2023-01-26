@@ -18,7 +18,7 @@ module Fog
         def save
           raise Fog::Errors::Error.new("Resaving an existing object may create a duplicate") if persisted?
           options = {
-            :name => name
+            name: name
           }.delete_if { |_k, v| v.nil? || v == "" }
           data = service.create_application(options)
           merge_attributes(data)

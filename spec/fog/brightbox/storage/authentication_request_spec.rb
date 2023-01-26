@@ -6,7 +6,7 @@ describe Fog::Brightbox::Storage::AuthenticationRequest do
   describe "when initialised with blank config" do
     before do
       stub_request(:get, "https://orbit.brightbox.com/v1").
-        with(:headers => {
+        with(headers: {
                "Host" => "orbit.brightbox.com:443",
                "X-Auth-User" => "",
                "X-Auth-Key" => ""
@@ -24,7 +24,7 @@ describe Fog::Brightbox::Storage::AuthenticationRequest do
   describe "when initialised with API client details" do
     before do
       stub_request(:get, "https://orbit.brightbox.com/v1").
-        with(:headers => {
+        with(headers: {
                "Host" => "orbit.brightbox.com:443",
                "X-Auth-User" => "cli-12345",
                "X-Auth-Key" => "12345"
@@ -33,8 +33,8 @@ describe Fog::Brightbox::Storage::AuthenticationRequest do
 
     it "authenticates correctly" do
       settings = {
-        :brightbox_client_id => "cli-12345",
-        :brightbox_secret => "12345"
+        brightbox_client_id: "cli-12345",
+        brightbox_secret: "12345"
       }
       @config = Fog::Brightbox::Config.new(settings)
       @request = Fog::Brightbox::Storage::AuthenticationRequest.new(@config)
@@ -45,7 +45,7 @@ describe Fog::Brightbox::Storage::AuthenticationRequest do
   describe "when initialised with user details" do
     before do
       stub_request(:get, "https://orbit.brightbox.com/v1").
-        with(:headers => {
+        with(headers: {
                "Host" => "orbit.brightbox.com:443",
                "X-Auth-User" => "user@example.test",
                "X-Auth-Key" => "abcde"
@@ -54,10 +54,10 @@ describe Fog::Brightbox::Storage::AuthenticationRequest do
 
     it "authenticates correctly" do
       settings = {
-        :brightbox_client_id => "app-12345",
-        :brightbox_secret => "12345",
-        :brightbox_username => "user@example.test",
-        :brightbox_password => "abcde"
+        brightbox_client_id: "app-12345",
+        brightbox_secret: "12345",
+        brightbox_username: "user@example.test",
+        brightbox_password: "abcde"
       }
       @config = Fog::Brightbox::Config.new(settings)
       @request = Fog::Brightbox::Storage::AuthenticationRequest.new(@config)
@@ -68,7 +68,7 @@ describe Fog::Brightbox::Storage::AuthenticationRequest do
   describe "when initialised with bad user details" do
     before do
       stub_request(:get, "https://orbit.brightbox.com/v1").
-        with(:headers => {
+        with(headers: {
                "Host" => "orbit.brightbox.com:443",
                "X-Auth-User" => "user@example.test",
                "X-Auth-Key" => "abcde"
@@ -77,10 +77,10 @@ describe Fog::Brightbox::Storage::AuthenticationRequest do
 
     it "raises error" do
       settings = {
-        :brightbox_client_id => "app-12345",
-        :brightbox_secret => "12345",
-        :brightbox_username => "user@example.test",
-        :brightbox_password => "abcde"
+        brightbox_client_id: "app-12345",
+        brightbox_secret: "12345",
+        brightbox_username: "user@example.test",
+        brightbox_password: "abcde"
       }
       @config = Fog::Brightbox::Config.new(settings)
       @request = Fog::Brightbox::Storage::AuthenticationRequest.new(@config)

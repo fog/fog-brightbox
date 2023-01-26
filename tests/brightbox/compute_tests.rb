@@ -9,19 +9,19 @@ end
 Shindo.tests("Fog::Compute.new", ["brightbox"]) do
   tests("service options") do
     {
-      :brightbox_api_url => "https://example.test",
-      :brightbox_auth_url => "https://example.test",
-      :brightbox_client_id => "app-12345",
-      :brightbox_secret => "12345abdef6789",
-      :brightbox_username => "user-12345",
-      :brightbox_password => "password1234",
-      :brightbox_account => "acc-12345",
-      :brightbox_access_token => "12345abdef6789",
-      :brightbox_refresh_token => "12345abdef6789",
-      :brightbox_token_management => false
+      brightbox_api_url: "https://example.test",
+      brightbox_auth_url: "https://example.test",
+      brightbox_client_id: "app-12345",
+      brightbox_secret: "12345abdef6789",
+      brightbox_username: "user-12345",
+      brightbox_password: "password1234",
+      brightbox_account: "acc-12345",
+      brightbox_access_token: "12345abdef6789",
+      brightbox_refresh_token: "12345abdef6789",
+      brightbox_token_management: false
     }.each_pair do |option, sample|
       tests("recognises :#{option}").returns(true) do
-        options = { :provider => "Brightbox" }
+        options = { provider: "Brightbox" }
         options[option] = sample
         begin
           Fog::Compute.new(options)
@@ -34,7 +34,7 @@ Shindo.tests("Fog::Compute.new", ["brightbox"]) do
   end
 
   tests("automatic token management") do
-    service_options = { :provider => "Brightbox" }
+    service_options = { provider: "Brightbox" }
 
     tests("when enabled (default)") do
       service_options[:brightbox_token_management] = true
@@ -67,7 +67,7 @@ Shindo.tests("Fog::Compute.new", ["brightbox"]) do
   end
 
   tests("account scoping") do
-    service = Fog::Compute.new(:provider => "Brightbox")
+    service = Fog::Compute.new(provider: "Brightbox")
     configured_account = Fog.credentials[:brightbox_account]
     tests("when Fog.credentials are #{configured_account}") do
       test("#scoped_account == #{configured_account}") { service.scoped_account == configured_account }
@@ -86,7 +86,7 @@ Shindo.tests("Fog::Compute.new", ["brightbox"]) do
 
     optioned_account = "acc-56789"
     tests("when Compute instance created with :brightbox_account => #{optioned_account}") do
-      service = Fog::Compute.new(:provider => "Brightbox", :brightbox_account => optioned_account)
+      service = Fog::Compute.new(provider: "Brightbox", brightbox_account: optioned_account)
       test("#scoped_account == #{optioned_account}") { service.scoped_account == optioned_account }
     end
 

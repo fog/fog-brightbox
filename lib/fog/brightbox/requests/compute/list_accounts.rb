@@ -10,7 +10,7 @@ module Fog
         # @see https://api.gb1.brightbox.com/1.0/#account_list_accounts
         #
         def list_accounts(options = {})
-          options.merge!(:nested => "false") unless options.key?(:nested)
+          options.merge!(nested: "false") unless options.key?(:nested)
           wrapped_request("get", "/1.0/accounts", [200], options)
         end
       end

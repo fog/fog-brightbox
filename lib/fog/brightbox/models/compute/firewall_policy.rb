@@ -25,9 +25,9 @@ module Fog
         def save
           raise Fog::Errors::Error.new("Resaving an existing object may create a duplicate") if persisted?
           options = {
-            :server_group => server_group_id,
-            :name => name,
-            :description => description
+            server_group: server_group_id,
+            name: name,
+            description: description
           }.delete_if { |_k, v| v.nil? || v == "" }
           data = service.create_firewall_policy(options)
           merge_attributes(data)
@@ -37,7 +37,7 @@ module Fog
         def apply_to(server_group_id)
           requires :identity
           options = {
-            :server_group => server_group_id
+            server_group: server_group_id
           }
           data = service.apply_to_firewall_policy(identity, options)
           merge_attributes(data)
@@ -47,7 +47,7 @@ module Fog
         def remove(server_group_id)
           requires :identity
           options = {
-            :server_group => server_group_id
+            server_group: server_group_id
           }
           data = service.remove_firewall_policy(identity, options)
           merge_attributes(data)

@@ -56,10 +56,10 @@ module Fog
       # @return [OAuth2::CredentialSet]
       def credentials
         @credentials ||= OAuth2::CredentialSet.new(client_id, client_secret,
-                                                   :username => username,
-                                                   :password => password,
-                                                   :access_token => cached_access_token,
-                                                   :refresh_token => cached_refresh_token
+                                                   username: username,
+                                                   password: password,
+                                                   access_token: cached_access_token,
+                                                   refresh_token: cached_refresh_token
                                                   )
       end
 

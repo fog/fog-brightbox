@@ -10,7 +10,7 @@ Style/Encoding:
   Enabled: false
 
 Style/HashSyntax:
-  EnforcedStyle: hash_rockets
+  EnforcedStyle: ruby19_no_mixed_keys
 
 Style/SignalException:
   Description: 'Do not enforce use of fail when raising exceptions.'

@@ -11,8 +11,8 @@ describe Fog::Brightbox::Storage::Directory do
   describe ".create" do
     let(:settings) do
       {
-        :brightbox_client_id => "cli-12345",
-        :brightbox_secret => "fdkls"
+        brightbox_client_id: "cli-12345",
+        brightbox_secret: "fdkls"
       }
     end
     let(:read_permissions) { ".r:*" }

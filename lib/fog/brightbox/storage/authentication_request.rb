@@ -25,10 +25,10 @@ module Fog
           authentication_url = URI.parse(@config.storage_url.to_s)
           connection = Fog::Core::Connection.new(authentication_url.to_s)
           request_settings = {
-            :expects => [200, 204],
-            :headers => auth_headers,
-            :method => "GET",
-            :path => "v1"
+            expects: [200, 204],
+            headers: auth_headers,
+            method: "GET",
+            path: "v1"
           }
           connection.request(request_settings)
         end

@@ -178,7 +178,7 @@ module Fog
           sig = sig_to_hex(hmac.sign(string_to_sign))
 
           destination_url.path = object_path_escaped
-          destination_url.query = URI.encode_www_form(:temp_url_sig => sig, :temp_url_expires => expiry_timestamp)
+          destination_url.query = URI.encode_www_form(temp_url_sig: sig, temp_url_expires: expiry_timestamp)
           destination_url.to_s
         end
 

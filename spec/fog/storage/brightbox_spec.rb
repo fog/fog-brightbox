@@ -19,8 +19,8 @@ describe Fog::Brightbox::Storage do
   describe "when created with a Config object" do
     let(:settings) do
       {
-        :brightbox_client_id => "cli-12345",
-        :brightbox_secret => "1234567890"
+        brightbox_client_id: "cli-12345",
+        brightbox_secret: "1234567890"
       }
     end
 
@@ -43,8 +43,8 @@ describe Fog::Brightbox::Storage do
   describe "when created with a viable config" do
     let(:settings) do
       {
-        :brightbox_client_id => "cli-12345",
-        :brightbox_secret => "fdkls"
+        brightbox_client_id: "cli-12345",
+        brightbox_secret: "fdkls"
       }
     end
 
@@ -70,8 +70,8 @@ describe Fog::Brightbox::Storage do
   describe "when created with bad credentials" do
     let(:settings) do
       {
-        :brightbox_client_id => "cli-12345",
-        :brightbox_secret => "wrong"
+        brightbox_client_id: "cli-12345",
+        brightbox_secret: "wrong"
       }
     end
 
@@ -87,11 +87,11 @@ describe Fog::Brightbox::Storage do
   describe "when configured scoped to a specific account" do
     let(:settings) do
       {
-        :brightbox_client_id => "app-12345",
-        :brightbox_secret => "12345",
-        :brightbox_username => "user@example.test",
-        :brightbox_password => "abcde",
-        :brightbox_account => "acc-abcde"
+        brightbox_client_id: "app-12345",
+        brightbox_secret: "12345",
+        brightbox_username: "user@example.test",
+        brightbox_password: "abcde",
+        brightbox_account: "acc-abcde"
       }
     end
 
@@ -109,10 +109,10 @@ describe Fog::Brightbox::Storage do
   describe "when account is not configured" do
     let(:settings) do
       {
-        :brightbox_client_id => "app-12345",
-        :brightbox_secret => "12345",
-        :brightbox_username => "user@example.test",
-        :brightbox_password => "abcde"
+        brightbox_client_id: "app-12345",
+        brightbox_secret: "12345",
+        brightbox_username: "user@example.test",
+        brightbox_password: "abcde"
       }
     end
 
@@ -130,10 +130,10 @@ describe Fog::Brightbox::Storage do
   describe "when configured with existing token" do
     let(:settings) do
       {
-        :brightbox_client_id => "app-12345",
-        :brightbox_secret => "12345",
-        :brightbox_access_token => "1234567890abcdefghijklmnopqrstuvwxyz",
-        :brightbox_refresh_token => "1234567890abcdefghijklmnopqrstuvwxyz"
+        brightbox_client_id: "app-12345",
+        brightbox_secret: "12345",
+        brightbox_access_token: "1234567890abcdefghijklmnopqrstuvwxyz",
+        brightbox_refresh_token: "1234567890abcdefghijklmnopqrstuvwxyz"
       }
     end
 
@@ -149,11 +149,11 @@ describe Fog::Brightbox::Storage do
   describe "when configured with tokens and management_url" do
     let(:settings) do
       {
-        :brightbox_client_id => "app-12345",
-        :brightbox_secret => "12345",
-        :brightbox_access_token => "1234567890abcdefghijklmnopqrstuvwxyz",
-        :brightbox_refresh_token => "1234567890abcdefghijklmnopqrstuvwxyz",
-        :brightbox_storage_management_url => "https://files.gb2.brightbox.com/v1/acc-12345"
+        brightbox_client_id: "app-12345",
+        brightbox_secret: "12345",
+        brightbox_access_token: "1234567890abcdefghijklmnopqrstuvwxyz",
+        brightbox_refresh_token: "1234567890abcdefghijklmnopqrstuvwxyz",
+        brightbox_storage_management_url: "https://files.gb2.brightbox.com/v1/acc-12345"
       }
     end
 
@@ -177,12 +177,12 @@ describe Fog::Brightbox::Storage do
   describe "when configured with expired tokens" do
     let(:settings) do
       {
-        :brightbox_client_id => "app-12345",
-        :brightbox_secret => "12345",
-        :brightbox_access_token => "1234567890abcdefghijklmnopqrstuvwxyz",
-        :brightbox_refresh_token => "1234567890abcdefghijklmnopqrstuvwxyz",
-        :brightbox_storage_management_url => "https://files.gb2.brightbox.com/v1/acc-12345",
-        :brightbox_token_management => false
+        brightbox_client_id: "app-12345",
+        brightbox_secret: "12345",
+        brightbox_access_token: "1234567890abcdefghijklmnopqrstuvwxyz",
+        brightbox_refresh_token: "1234567890abcdefghijklmnopqrstuvwxyz",
+        brightbox_storage_management_url: "https://files.gb2.brightbox.com/v1/acc-12345",
+        brightbox_token_management: false
       }
     end
 
@@ -192,7 +192,7 @@ describe Fog::Brightbox::Storage do
         to_return(unauthorized_response)
     end
 
-    let(:params) { { :expects => [200], :path => "fnord" } }
+    let(:params) { { expects: [200], path: "fnord" } }
 
     it "raises Fog::Brightbox::Storage::AuthenticationRequired" do
       assert_raises(Fog::Brightbox::Storage::AuthenticationRequired) { service.request(params) }
@@ -202,35 +202,35 @@ describe Fog::Brightbox::Storage do
   describe "when configured with user details and expired tokens" do
     let(:settings) do
       {
-        :brightbox_client_id => "app-12345",
-        :brightbox_secret => "12345",
-        :brightbox_username => "user@example.test",
-        :brightbox_password => "12345",
-        :brightbox_access_token => "1234567890abcdefghijklmnopqrstuvwxyz",
-        :brightbox_refresh_token => "1234567890abcdefghijklmnopqrstuvwxyz",
-        :brightbox_storage_url => "https://files.gb2.brightbox.com",
-        :brightbox_storage_management_url => "https://files.gb2.brightbox.com/v1/acc-12345"
+        brightbox_client_id: "app-12345",
+        brightbox_secret: "12345",
+        brightbox_username: "user@example.test",
+        brightbox_password: "12345",
+        brightbox_access_token: "1234567890abcdefghijklmnopqrstuvwxyz",
+        brightbox_refresh_token: "1234567890abcdefghijklmnopqrstuvwxyz",
+        brightbox_storage_url: "https://files.gb2.brightbox.com",
+        brightbox_storage_management_url: "https://files.gb2.brightbox.com/v1/acc-12345"
       }
     end
 
     before do
       # Ongoing request but tokens are expired
       stub_request(:get, "https://files.gb2.brightbox.com/v1/acc-12345/fnord").
-        with(:headers => { "X-Auth-Token" => "1234567890abcdefghijklmnopqrstuvwxyz" }).
+        with(headers: { "X-Auth-Token" => "1234567890abcdefghijklmnopqrstuvwxyz" }).
         to_return(unauthorized_response)
 
       # The reauthentication
       stub_request(:get, "https://files.gb2.brightbox.com/v1").
-        with(:headers => { "X-Auth-User" => "user@example.test", "X-Auth-Key" => "12345" }).
+        with(headers: { "X-Auth-User" => "user@example.test", "X-Auth-Key" => "12345" }).
         to_return(authorized_response)
 
       # Repeated request
       stub_request(:get, "https://files.gb2.brightbox.com/v1/acc-12345/fnord").
-        with(:headers => { "X-Auth-Token" => "abcdefghijklmnopqrstuvwxyz1234567890" }).
-        to_return(:status => 200)
+        with(headers: { "X-Auth-Token" => "abcdefghijklmnopqrstuvwxyz1234567890" }).
+        to_return(status: 200)
     end
 
-    let(:params) { { :expects => [200], :path => "fnord" } }
+    let(:params) { { expects: [200], path: "fnord" } }
 
     it "authenticates again and retries" do
       service.request(params)
@@ -241,23 +241,23 @@ describe Fog::Brightbox::Storage do
   describe "when configured with client credentials" do
     let(:settings) do
       {
-        :brightbox_client_id => "cli-12345",
-        :brightbox_secret => "12345"
+        brightbox_client_id: "cli-12345",
+        brightbox_secret: "12345"
       }
     end
 
     before do
       # Initial authentication
       stub_request(:get, "https://orbit.brightbox.com/v1").
-        with(:headers => { "X-Auth-Key" => "12345", "X-Auth-User" => "cli-12345" }).
+        with(headers: { "X-Auth-Key" => "12345", "X-Auth-User" => "cli-12345" }).
         to_return(authorized_response)
 
       stub_request(:get, "https://orbit.brightbox.com/v1/acc-12345/fnord").
-        with(:headers => { "X-Auth-Token" => "abcdefghijklmnopqrstuvwxyz1234567890" }).
-        to_return(:status => 200)
+        with(headers: { "X-Auth-Token" => "abcdefghijklmnopqrstuvwxyz1234567890" }).
+        to_return(status: 200)
     end
 
-    let(:params) { { :expects => [200], :path => "fnord" } }
+    let(:params) { { expects: [200], path: "fnord" } }
 
     it "authenticates again and retries" do
       service.request(params)
@@ -268,8 +268,8 @@ describe Fog::Brightbox::Storage do
   describe "when not initialised with temporary URL key" do
     let(:settings) do
       {
-        :brightbox_client_id => "cli-12345",
-        :brightbox_secret => "12345"
+        brightbox_client_id: "cli-12345",
+        brightbox_secret: "12345"
       }
     end
 
@@ -286,10 +286,10 @@ describe Fog::Brightbox::Storage do
     let(:temp_url_key) { "1234567890" }
     let(:settings) do
       {
-        :brightbox_client_id => "cli-12345",
-        :brightbox_secret => "12345",
-        :brightbox_storage_management_url => "https://example.brightbox.com",
-        :brightbox_temp_url_key => temp_url_key
+        brightbox_client_id: "cli-12345",
+        brightbox_secret: "12345",
+        brightbox_storage_management_url: "https://example.brightbox.com",
+        brightbox_temp_url_key: temp_url_key
       }
     end
     let(:container) { "container" }
@@ -303,17 +303,17 @@ describe Fog::Brightbox::Storage do
 
     it "can generate temporary HTTPS URLs" do
       assert_equal "https://example.brightbox.com/container/file.ext?temp_url_sig=86dcfd2cf9d501936abab2badc152e90d6b3b133&temp_url_expires=1325376000",
-        service.create_temp_url(container, object, expiry_time, request_method, :scheme => "https")
+        service.create_temp_url(container, object, expiry_time, request_method, scheme: "https")
     end
 
     it "can generate temporary HTTP URLs" do
       assert_equal "http://example.brightbox.com/container/file.ext?temp_url_sig=86dcfd2cf9d501936abab2badc152e90d6b3b133&temp_url_expires=1325376000",
-        service.create_temp_url(container, object, expiry_time, request_method, :scheme => "http")
+        service.create_temp_url(container, object, expiry_time, request_method, scheme: "http")
     end
 
     it "can generate temporary HTTP URLs on non standard ports" do
       assert_equal "http://example.brightbox.com:401/container/file.ext?temp_url_sig=86dcfd2cf9d501936abab2badc152e90d6b3b133&temp_url_expires=1325376000",
-        service.create_temp_url(container, object, expiry_time, request_method, :scheme => "http", :port => 401)
+        service.create_temp_url(container, object, expiry_time, request_method, scheme: "http", port: 401)
     end
   end
 
@@ -321,9 +321,9 @@ describe Fog::Brightbox::Storage do
     let(:temp_url_key) { "1234567890" }
     let(:settings) do
       {
-        :brightbox_client_id => "cli-12345",
-        :brightbox_secret => "12345",
-        :brightbox_temp_url_key => temp_url_key
+        brightbox_client_id: "cli-12345",
+        brightbox_secret: "12345",
+        brightbox_temp_url_key: temp_url_key
       }
     end
     let(:container) { "container" }
@@ -333,7 +333,7 @@ describe Fog::Brightbox::Storage do
 
     it "raises an error" do
       assert_raises Fog::Brightbox::Storage::ManagementUrlUnknown do
-        service.create_temp_url(container, object, expiry_time, request_method, :scheme => "https")
+        service.create_temp_url(container, object, expiry_time, request_method, scheme: "https")
       end
     end
   end

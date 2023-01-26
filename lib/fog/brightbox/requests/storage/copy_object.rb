@@ -13,10 +13,10 @@ module Fog
         def copy_object(source_container_name, source_object_name, target_container_name, target_object_name, options = {})
           headers = { "X-Copy-From" => "/#{source_container_name}/#{source_object_name}" }.merge(options)
           request(
-                    :expects  => 201,
-                    :headers  => headers,
-                    :method   => "PUT",
-                    :path     => "#{Fog::Brightbox::Storage.escape(target_container_name)}/#{Fog::Brightbox::Storage.escape(target_object_name)}"
+                    expects: 201,
+                    headers: headers,
+                    method: "PUT",
+                    path: "#{Fog::Brightbox::Storage.escape(target_container_name)}/#{Fog::Brightbox::Storage.escape(target_object_name)}"
                   )
         end
       end

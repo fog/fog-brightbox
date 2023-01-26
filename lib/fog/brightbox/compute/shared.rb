@@ -82,7 +82,7 @@ module Fog
         # @return [Fog::Brightbox::Compute::Account]
         #
         def account
-          account_data = get_scoped_account.merge(:service => self)
+          account_data = get_scoped_account.merge(service: self)
           Fog::Brightbox::Compute::Account.new(account_data)
         end
 

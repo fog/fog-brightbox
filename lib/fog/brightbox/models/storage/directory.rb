@@ -4,12 +4,12 @@ module Fog
   module Brightbox
     class Storage
       class Directory < Fog::Model
-        identity :key, :aliases => "name"
+        identity :key, aliases: "name"
 
-        attribute :bytes, :aliases => "X-Container-Bytes-Used"
-        attribute :count, :aliases => "X-Container-Object-Count"
-        attribute :read_permissions, :aliases => "X-Container-Read"
-        attribute :write_permissions, :aliases => "X-Container-Write"
+        attribute :bytes, aliases: "X-Container-Bytes-Used"
+        attribute :count, aliases: "X-Container-Object-Count"
+        attribute :read_permissions, aliases: "X-Container-Read"
+        attribute :write_permissions, aliases: "X-Container-Write"
 
         def destroy
           requires :key
@@ -22,8 +22,8 @@ module Fog
         def files
           @files ||= begin
             Fog::Brightbox::Storage::Files.new(
-              :directory    => self,
-              :service   => service
+              directory: self,
+              service: service
             )
           end
         end
