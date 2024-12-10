@@ -14,7 +14,13 @@ describe Fog::Brightbox::Compute do
       }
 
       @credential_guard = Minitest::Mock.new
+      # Stub for older versions of fog-core
       def @credential_guard.reject
+        {}
+      end
+
+      # Stub for newer versions of fog-core
+      def @credential_guard.select
         {}
       end
 
