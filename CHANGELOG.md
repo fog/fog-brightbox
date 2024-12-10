@@ -1,3 +1,20 @@
+### 1.12.0 / 2024-12-10
+
+Bug fixes:
+
+* Declare `Excon[:omit_default_port]` to fix specs matching on headers
+  that vary based on the Ruby version and the discovered Excon version's
+  default behaviour
+* Explicitly require `base64` in authentication code
+* Require `base64` gem for Ruby 3.4 as it is no longer in stdlib
+* Remove `rubocop` version dependency as it is a development tool
+
+Changes:
+
+* Soft deprecation of Ruby 2.1 and 2.2 due to upstream constraints
+* Updated CI testing matrix for supported versions
+* Remove specs related to legacy FTP image uploading
+
 ### 1.11.0 / 2023-01-26
 
 Enhancements:
