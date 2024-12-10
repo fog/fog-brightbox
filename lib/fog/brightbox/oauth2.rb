@@ -1,3 +1,5 @@
+require "base64"
+
 module Fog
   module Brightbox
     # This module covers Brightbox's partial implementation of OAuth 2.0
