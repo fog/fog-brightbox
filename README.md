@@ -44,6 +44,12 @@ and its modules:
 As required by the main `fog-core` library, support for Ruby 1.9 was dropped in
 `v1.0.0` of this gem.
 
+Upstream changes on dependencies have resulted in support failing for Ruby <2.3
+from `v1.12.0` due to some libraries failing to declare usage of newer language
+features in their own gemspec files.
+
+As of 2024 `fog-core` is only testing for Ruby 3.0+ support.
+
 ## Contributing
 
 1. Fork it ( https://github.com/fog/fog-brightbox/fork )
