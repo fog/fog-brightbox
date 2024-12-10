@@ -22,7 +22,10 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version = ">= 2.0"
 
-  spec.add_dependency "base64"
+  if Gem::Version.new(RUBY_VERSION) >= Gem::Version.new("3.4")
+    spec.add_dependency "base64"
+  end
+
   spec.add_dependency "fog-core", ">= 1.45", "< 3.0"
   spec.add_dependency "fog-json"
   spec.add_dependency "dry-inflector"
