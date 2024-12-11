@@ -15,6 +15,7 @@ module Fog
         # @option options [Array] :listeners What port to listen on, port to pass through to and protocol (tcp, http, https, http+ws, https+wss) of listener. Timeout is optional and specified in milliseconds (default is 50000).
         # @option options [String] :healthcheck Healthcheck options - only "port" and "type" required
         # @option options [String] :buffer_size Buffer size in bytes
+        # @option options [Array<String>] :domains Array of domain names to assign to the load balancer
         # @option options [Boolean] :nested passed through with the API request. When true nested resources are expanded.
         #
         # @return [Hash] if successful Hash version of JSON object
