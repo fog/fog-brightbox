@@ -48,8 +48,8 @@ Shindo.tests("Fog::Compute[:brightbox] | DatabaseServer model", ["brightbox"]) d
         !@database_server.admin_username.nil?
       end
 
-      test("admin_password is nil") do
-        @database_server.admin_password.nil?
+      test("admin_password is not nil") do
+        !@database_server.admin_password.nil?
       end
     end
 
